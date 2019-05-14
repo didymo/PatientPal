@@ -1,0 +1,14 @@
+.questionBox {
+  border-collapse: collapse;
+  display:inline-block;
+  border:0.3px solid #000;
+  width: 50%;
+}
+.questionName {
+  width: 75%;
+  height: 30px;
+  border-bottom: 1px solid black;
+}
+.surveyName {
+  border: none;
+}
