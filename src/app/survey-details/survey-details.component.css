@@ -1,25 +1,29 @@
 .tab-view {
   border-collapse: collapse;
   display:inline-block;
-  border:0.3px solid #000;
+  border:1px solid #000;
   width: 95%;
+}
+.questionControls {
+  float: right;
 }
 
 .tab-info {
   border-collapse: collapse;
   list-style-type: none;
-  height: 100px;
+  height: 50px;
   overflow: hidden;
-  background-color: #8f8f8f;
+  background-color: #ffffff;
 }
 .tab-controls {
   float: right;
+  padding-right: 75px;
 }
 .tabControlBtn{
   color: white;
   background-color: black;
-  height: 100px;
-  width: 150px;
+  height: 80px;
+  width: 80px;
   text-align: center;
 }
 .questionBox {

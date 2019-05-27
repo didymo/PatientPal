@@ -23,9 +23,6 @@ export class SurveyDetailsComponent implements OnInit {
     questions: this.fb.array([
       this.fb.control('')
     ]),
-    selectMany: this.fb.array([
-      this.fb.control('')
-    ])
   });
   name = new FormControl(''); // Name of the survey
 
@@ -90,10 +87,27 @@ export class SurveyDetailsComponent implements OnInit {
    */
   createOption(): void {
 
-    this.optionElement = '<span><input type=\"radio\" name=\"gender\" value=\"newOption\"> new</span>';
-
+    // this.optionElement = '<span><input type=\"radio\" name=\"gender\" value=\"newOption\"> new<br></span>';
+    this.optionElement = '<div class="input-group" id="optionGroup">\n' +
+        '            <div class="input-group-prepend">\n' +
+        '              <div class="input-group-text">\n' +
+        '                <input type="radio" aria-label="Radio button for following text input">\n' +
+        '              </div>\n' +
+        '            </div>\n' +
+        '            <input type="text" class="form-control" aria-label="Text input with radio button" >\n' +
+        '            <div class="input-group-append">\n' +
+        '              <button class="btn btn-outline-danger" type="button" (click)="deleteOption(\'optionGroup\')">Delete</button>\n' +
+        '            </div>\n' +
+        '          </div>';
     document.getElementById('content').innerHTML += this.optionElement;
 
+  }
+
+  /**
+   * This function deletes an option
+   */
+  deleteOption(id: string): void {
+    document.getElementById(id).remove();
   }
 
   /**

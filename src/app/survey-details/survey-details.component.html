@@ -1,45 +1,70 @@
 
-<button (click)="addQuestion()">Add Question</button>
-<button (click)="goBack()">Go Back</button>
+<div class="tab-controls">
+  <button type="button" class="btn btn-primary btn-lg">Edit</button> &nbsp;
+  <button type="button" class="btn btn-primary btn-lg">Share</button> &nbsp;
+  <button type="button" class="btn btn-primary btn-lg">More</button> &nbsp;
+</div>
+
+
 <div *ngIf="survey" class="tab-view">
-  <h2>{{survey.name | uppercase}} Details</h2>
+<!--  <h2>{{survey.name | uppercase}} Details</h2>-->
   <div>
     <ul class="tab-info">
       <li>
-        <label class="surveyName"> Tab-View Name:
-          <input [(ngModel)]="survey.name" placeholder="name"/>
-        </label>
+        <div class="form-group row">
+          <label for="staticName" class="col-sm-2 col-form-label">Tab View Name</label>
+          <div class="col-sm-3">
+            <input type = "text" [(ngModel)]="survey.name" readonly class="form-control-plaintext" id="staticName"
+                   style="font-size: 30px">
+          </div>
+        </div>
       </li>
-      <li class="tab-controls"><button class="tabControlBtn">More</button></li>
-      <li class="tab-controls"><button class="tabControlBtn">Share</button></li>
-      <li class="tab-controls"><button class="tabControlBtn">Edit</button></li>
     </ul>
-
   </div>
-<!--  <button (click)="previewForm()">Preview</button>-->
 
   <div formArrayName = "questions">
     <div *ngFor= "let question of questions.controls; let i=index" class="questionBox">
-      <label>
+
+      <label style="padding-left: 10px">
         Question Name:
-        <input type="text" [formControlName]="i" class ="questionName">
+        <input type="text" [formControlName]="i" class ="questionName" style="padding-left: 10px">
       </label>
-      <br>
-      <form>
-        <button (click)="createOption()">Add option</button> <br><br>
-        <div class="content">
-          <span><input type="radio" name="gender" value="male" > Yes <br></span>
-          <span><input type="radio" name="gender" value="female"> No</span>
+        <div class="questionControls" style="float: right">
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Question Type
+            </button>
+            <div class="dropdown-menu" role="menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary" (click)="createOption()">Add Option</button>
+          <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">Delete</button>
+        </div>
+      <form style="padding-left: 10px">
+        <div id="content">
+          <div class="input-group" id="optionGroup">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="radio" aria-label="Radio button for following text input">
+              </div>
+            </div>
+            <input type="text" class="form-control" aria-label="Text input with radio button" >
+            <div class="input-group-append">
+              <button class="btn btn-outline-danger" type="button" (click)="deleteOption('optionGroup')">Delete</button>
+            </div>
+          </div>
         </div>
       </form>
       <br>
-      <button (click)="removeQuestion(i)">Delete</button>
     </div>
   </div>
-  <br>
-
-  <div>
-    <button (click)="saveSurvey()">Save & Exit</button>
-  </div>
-
 </div>
+
+<button (click)="addQuestion()">Add Question</button>
+<button (click)="goBack()">Go Back</button>
+<button (click)="saveSurvey()">Save & Exit</button>
