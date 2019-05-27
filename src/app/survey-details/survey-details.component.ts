@@ -93,4 +93,11 @@ export class SurveyDetailsComponent implements OnInit {
 
   }
 
+  /**
+   * @todo Figure out how to pass a XSL to enketo
+   */
+  previewForm(): void {
+
+  }
+
 }

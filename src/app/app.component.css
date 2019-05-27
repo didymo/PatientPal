@@ -1,5 +1,19 @@
-body {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+
+/* Style page content */
+
+.dashboard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
+}
+
+/*body {*/
+/*  display: block;*/
+/*  margin-left: auto;*/
+/*  margin-right: auto;*/
+/*}*/

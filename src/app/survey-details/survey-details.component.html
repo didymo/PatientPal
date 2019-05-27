@@ -1,15 +1,22 @@
-
-<div *ngIf="survey">
-
+<button (click)="addQuestion()">Add Question</button>
+<div *ngIf="survey" class="tab-view">
   <h2>{{survey.name | uppercase}} Details</h2>
-
   <div>
-    <label class="surveyName"> Survey Name:
-      <input [(ngModel)]="survey.name" placeholder="name"/>
-    </label>
+    <ul class="tab-info">
+      <li>
+        <label class="surveyName"> Tab-View Name:
+          <input [(ngModel)]="survey.name" placeholder="name"/>
+        </label>
+      </li>
+      <li class="tab-controls"><button class="tabControlBtn">More</button></li>
+      <li class="tab-controls"><button class="tabControlBtn">Share</button></li>
+      <li class="tab-controls"><button class="tabControlBtn">Edit</button></li>
+    </ul>
+
   </div>
   <br>
-  <button (click)="addQuestion()">Add Question</button> <br><br>
+<!--  <button (click)="previewForm()">Preview</button>-->
+  <br><br>
   <div formArrayName = "questions">
 
     <div *ngFor= "let question of questions.controls; let i=index" class="questionBox">
