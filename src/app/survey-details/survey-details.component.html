@@ -1,4 +1,6 @@
+
 <button (click)="addQuestion()">Add Question</button>
+<button (click)="goBack()">Go Back</button>
 <div *ngIf="survey" class="tab-view">
   <h2>{{survey.name | uppercase}} Details</h2>
   <div>
@@ -14,11 +16,9 @@
     </ul>
 
   </div>
-  <br>
 <!--  <button (click)="previewForm()">Preview</button>-->
-  <br><br>
-  <div formArrayName = "questions">
 
+  <div formArrayName = "questions">
     <div *ngFor= "let question of questions.controls; let i=index" class="questionBox">
       <label>
         Question Name:
@@ -35,13 +35,11 @@
       <br>
       <button (click)="removeQuestion(i)">Delete</button>
     </div>
-
   </div>
   <br>
 
   <div>
     <button (click)="saveSurvey()">Save & Exit</button>
-    <button (click)="goBack()">Cancel</button>
   </div>
 
 </div>

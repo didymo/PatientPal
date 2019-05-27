@@ -22,6 +22,9 @@ export class SurveyDetailsComponent implements OnInit {
   surveyForm = this.fb.group({
     questions: this.fb.array([
       this.fb.control('')
+    ]),
+    selectMany: this.fb.array([
+      this.fb.control('')
     ])
   });
   name = new FormControl(''); // Name of the survey
