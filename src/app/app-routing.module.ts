@@ -5,6 +5,7 @@ import {SurveyDetailsComponent} from './survey-details/survey-details.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/survey', pathMatch: 'full' },
+  // { path: 'detail/:id', component: DynamicFormComponent },
   { path: 'detail/:id', component: SurveyDetailsComponent },
   { path: 'survey', component: SurveysListComponent }
 ];

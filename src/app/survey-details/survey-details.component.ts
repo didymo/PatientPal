@@ -28,6 +28,7 @@ export class SurveyDetailsComponent implements OnInit {
 
   @Input() survey: Survey;
   private optionElement: string;
+  private optionCnt: number;
 
   constructor(
     private fb: FormBuilder,
@@ -108,6 +109,29 @@ export class SurveyDetailsComponent implements OnInit {
    */
   deleteOption(id: string): void {
     document.getElementById(id).remove();
+  }
+
+  optionText(): void {
+    this.deleteOption('optionGroup');
+    this.optionElement = '<div class="form-group">\n' +
+        '    <label for="exampleFormControlTextarea1">Text Box Question</label>\n' +
+        '    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>\n' +
+        '    <button class="btn btn-outline-danger" type="button" (click)="deleteOption(\'optionGroup\')">Delete</button>\n' +
+        '  </div>';
+    document.getElementById('content').innerHTML += this.optionElement;
+  }
+
+  optionNumber(): void {
+    this.deleteOption('optionGroup');
+    this.optionElement = '<div class="form-group">\n' +
+        '    <label for="exampleFormControlTextarea1">Number Question</label>\n' +
+        '    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>\n' +
+        '  </div>';
+    document.getElementById('content').innerHTML += this.optionElement;
+  }
+
+  showOptions(): void {
+    document.getElementById('optionDropdown').classList.toggle('show');
   }
 
   /**
