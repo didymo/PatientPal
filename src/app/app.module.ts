@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +12,8 @@ import { SurveysListComponent } from './surveys-list/surveys-list.component';
 import { SurveyDetailsComponent } from './survey-details/survey-details.component';
 import {FormsModule} from '@angular/forms';
 import { SurveySearchComponent } from './survey-search/survey-search.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { SurveySearchComponent } from './survey-search/survey-search.component';
     SurveysListComponent,
     SurveyDetailsComponent,
     SurveySearchComponent,
+    DashboardComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
