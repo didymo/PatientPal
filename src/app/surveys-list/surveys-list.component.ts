@@ -20,6 +20,7 @@ export class SurveysListComponent implements OnInit {
 
   surveys$: Observable<Survey[]>;
   private searchTerms = new Subject<string>();
+  private  isSearching: boolean;
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -28,6 +29,7 @@ export class SurveysListComponent implements OnInit {
 
   ngOnInit() {
     this.getSurveys();
+    // this.onSearch();
   }
   getSurveys(): void {
     this.surveyService.getSurveys()
@@ -37,6 +39,7 @@ export class SurveysListComponent implements OnInit {
   /**
    * Takes a string name, and appends a new survey
    * @param name
+   * stringy string string
    */
   createSurvey(name: string) {
     name = name.trim();
@@ -47,8 +50,7 @@ export class SurveysListComponent implements OnInit {
   }
 
   deleteSurvey(id: number) {
-    if(!id) { return; }
-
+    if (!id) { return; }
     this.surveys = this.surveys.filter(h => h.id !== id);
     this.surveyService.deleteSurvey(id).subscribe();
   }

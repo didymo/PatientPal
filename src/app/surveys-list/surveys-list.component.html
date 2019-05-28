@@ -1,8 +1,8 @@
 
 
-<!--<div class="survey_search">-->
-<!--  <app-survey-search></app-survey-search>-->
-<!--</div>-->
+<div class="survey_search">
+  <app-survey-search></app-survey-search>
+</div>
 
 <!--Table Data -->
 <div class="align-baseline" style="margin-top: 20px">
@@ -17,11 +17,9 @@
           <th scope="col">Last Modified</th>
         </tr>
         </thead>
-        <tbody>
-        <!--  <tr *ngFor="let survey of surveys$ | async"-->
-        <tr *ngFor="let survey of surveys"
-            routerLink="/detail/{{survey.id}}"
-            class="survey_data">
+        <tbody class="search-result">
+<!--          <tr *ngFor="let survey of surveys$ | async">-->
+        <tr *ngFor="let survey of surveys" routerLink="/detail/{{survey.id}}" class="survey_data"  >
           <td class="survey_id">{{survey.id }}</td>
           <td>{{ survey.name }}</td>
           <td class="created">{{survey.created}}</td>
@@ -33,14 +31,15 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="col-lg-4">
+        <input type="text" class="form-control" placeholder="Survey Name" #name>
+    <br>
+        <button class="btn btn-success" (click)="createSurvey(name.value); name.value = ''">Add Survey</button>
+    <br>
+  </div>
+</div>
 
-<!--Add Survey -->
-<!--<div class="container">-->
-<!--  <div class="col-lg-4">-->
-<!--    <input type="text" class="form-control" placeholder="Type here..." #name>-->
-<!--    <button class="btn btn-success" (click)="createSurvey(name.value); name.value = ''">Add Survey</button>-->
-<!--  </div>-->
-<!--</div>-->
 <hr>
 <footer class="container">
   <p>&copy; PatientPal 2019</p>
