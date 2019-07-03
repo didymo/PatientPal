@@ -5,6 +5,7 @@ import { Survey } from './survey';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
+import {Tabview} from './tabview';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,28 +17,45 @@ const httpOptions = {
 export class SurveyService {
 
   private surveysURL = 'api/surveys';  // URL to web api
-
+  // private drupalURL = 'http://didymoadmin:mypassword@qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
+  private  drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
   constructor(
     private http: HttpClient,
     private messageService: MessageService) {
   }
 
+  getTabViewList(): Observable<Tabview[]> {
+    return this.http.get<Tabview[]>(this.drupalURL)
+        .pipe(
+            tap(_ => this.log('fetched tabViews')),
+            catchError(this.handleError<Tabview[]>('getTabViewList', []))
+        );
+  }
+
+  /** GET survey by id. Will 404 if id not found */
+  getTabView(label: string): Observable<Tabview> {
+    const url = `${this.drupalURL}/${label}`;
+    return this.http.get<Tabview>(url).pipe(
+        tap(_ => this.log(`fetched survey id=${label}`)),
+        catchError(this.handleError<Tabview>(`getSurvey id=${label}`))
+    );
+  }
+
   /** POST: add a new project to the server */
   /**
    * @param survey
+   * Survey is a tab view
    */
   addSurvey(survey: Survey): Observable<Survey> {
-    // project.creation_date = new Date();
-    // project.modified_date = new Date();
-    // project.status = ProjectStatus.draft;
     return this.http.post<Survey>(this.surveysURL, survey, httpOptions).pipe(
       tap((newSurvey: Survey) => this.log(`added survey w/ id=${survey.id}`)),
       catchError(this.handleError<Survey>('addSurvey')));
   }
 
   /**
-   *
+   * Deletes a survey
    * @param survey
+   * s
    */
   deleteSurvey(survey: Survey | number): Observable<Survey> {
     const id = typeof survey === 'number' ? survey : survey.id;
@@ -48,6 +66,9 @@ export class SurveyService {
       catchError(this.handleError<Survey>('deleteSurvey')));
   }
 
+  /**
+   * Get surveys
+   */
   getSurveys(): Observable<Survey[]> {
     return this.http.get<Survey[]>(this.surveysURL)
       .pipe(
@@ -65,6 +86,11 @@ export class SurveyService {
     );
   }
 
+  /**
+   * Search Surveys
+   * @param term
+   * The search term
+   */
   searchSurveys(term: string): Observable<Survey[]> {
     if (!term.trim()) {
       // if not search term, return empty survey array.
@@ -96,7 +122,7 @@ export class SurveyService {
   }
 
   /** PUT: update the survey on the server */
-  updateSurvey (survey: Survey): Observable<any> {
+  updateSurvey(survey: Survey): Observable<any> {
     return this.http.put(this.surveysURL, survey, httpOptions).pipe(
       tap(_ => this.log(`updated survey id=${survey.id}`)),
       catchError(this.handleError<any>('updateSurvey'))

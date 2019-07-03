@@ -1,0 +1,30 @@
+<div class="survey_search">
+  <app-survey-search></app-survey-search>
+</div>
+
+<!--Table Data -->
+<div class="align-baseline" style="margin-top: 20px">
+  <div class="row">
+    <div class="col-md-12 col-md-offset0">
+      <table id="dtOrderExample" class="table table-hover">
+        <thead class = "thead-dark">
+        <tr class="table-success">
+          <th scope="col">Name</th>
+          <th scope="col">Created</th>
+          <th scope="col">Status</th>
+        </tr>
+        </thead>
+          <tbody class="search-result">
+          <tr *ngFor="let tab of tabviews" routerLink="/detail/{{tab.label}}" class="survey_data"  >
+              <td class="survey_id">{{tab.label }}</td>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr>
+<footer class="container">
+  <p>&copy; PatientPal 2019</p>
+</footer>

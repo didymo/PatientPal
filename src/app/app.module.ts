@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import { SurveySearchComponent } from './survey-search/survey-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TabViewsComponent } from './tab-views/tab-views.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     SurveySearchComponent,
     DashboardComponent,
     NavBarComponent,
+    TabViewsComponent,
   ],
   imports: [
     BrowserModule,
