@@ -3,7 +3,7 @@
  */
 export interface Tabview {
     label: string;
-    // entityId: number;
+    entityId: number;
     // obdId: number;
     // parentView: number;
     // koboFormId: string;

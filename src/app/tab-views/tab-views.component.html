@@ -2,6 +2,7 @@
   <app-survey-search></app-survey-search>
 </div>
 
+
 <!--Table Data -->
 <div class="align-baseline" style="margin-top: 20px">
   <div class="row">
@@ -9,14 +10,16 @@
       <table id="dtOrderExample" class="table table-hover">
         <thead class = "thead-dark">
         <tr class="table-success">
+          <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Created</th>
           <th scope="col">Status</th>
         </tr>
         </thead>
           <tbody class="search-result">
-          <tr *ngFor="let tab of tabviews" routerLink="/detail/{{tab.label}}" class="survey_data"  >
-              <td class="survey_id">{{tab.label }}</td>
+          <tr *ngFor="let tab of tabviews" routerLink="/detail/{{tab.entityId}}" class="survey_data"  >
+              <td class="survey_id">{{tab.entityId }}</td>
+              <td>{{ tab.label }}</td>
           </tr>
           </tbody>
       </table>
