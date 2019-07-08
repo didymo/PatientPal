@@ -1,109 +1,84 @@
-<!--Table Data -->
+
+<div class="tab-controls">
+    <button type="button" class="btn btn-primary btn-lg">Edit</button> &nbsp;
+    <button type="button" class="btn btn-primary btn-lg">Share</button> &nbsp;
+    <button type="button" class="btn btn-primary btn-lg">More</button> &nbsp;
+</div>
+
+
+<h2>{{questionType[0].tabViewLabel}}</h2>
+
 <div class="align-baseline" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-12 col-md-offset0">
             <table id="dtOrderExample" class="table table-hover">
                 <thead class = "thead-dark">
                 <tr class="table-success">
-                    <th scope="col">tabViewLabel</th>
                     <th scope="col">assessmentCode</th>
                     <th scope="col">assessmentDescription</th>
                     <th scope="col">assessmentType</th>
                     <th scope="col">assessmentLabel</th>
-                    <th scope="col">assessmentUuid</th>
                     <th scope="col">choiceCode</th>
                     <th scope="col">choiceDescription</th>
-                    <th scope="col">choiceLabel</th>
-                    <th scope="col">choiceUuid</th>
-                </tr>
+                    <th scope="col">choiceLabel</th></tr>
                 </thead>
                 <tbody class="search-result">
-                <tr *ngFor="let question of questionType">
-                    <td class="survey_id">{{question.tabViewLabel }}</td>
-                    <td>{{ question.assessmentCode }}</td>
-                    <td class="created">{{question.assessmentDescription}}</td>
-                    <td>{{question.assessmentType}}</td>
-                    <td>{{question.assessmentLabel}}</td>
-                    <td>{{question.assessmentUuid}}</td>
-                    <td>{{question.choiceCode}}</td>
-                    <td>{{question.choiceDescription}}</td>
-                    <td>{{question.choiceLabel}}</td>
-                    <td>{{question.choiceUuid}}</td>
-                </tr>
+                    <tr *ngFor="let question of questionType">
+                        <td>{{ question.assessmentCode }}</td>
+                        <td><input [(ngModel)]="question.assessmentDescription"></td>
+                        <td> {{question.assessmentType}}    </td>
+                        <td>{{question.assessmentLabel}}</td>
+                        <td>{{question.choiceCode}}</td>
+                        <td><input [(ngModel)]="question.choiceDescription"></td>
+                        <td>{{question.choiceLabel}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<!--<div class="tab-controls">-->
-<!--  <button type="button" class="btn btn-primary btn-lg">Edit</button> &nbsp;-->
-<!--  <button type="button" class="btn btn-primary btn-lg">Share</button> &nbsp;-->
-<!--  <button type="button" class="btn btn-primary btn-lg">More</button> &nbsp;-->
-<!--</div>-->
 
-
-<!--<div *ngIf="survey" class="tab-view">-->
-<!--  <h2>{{survey.name | uppercase}} Details</h2>-->
-<!--  <div>-->
-<!--    <ul class="tab-info">-->
-<!--      <li>-->
-<!--        <div class="form-group row">-->
-<!--          <label for="staticName" class="col-sm-2 col-form-label">Tab View Name</label>-->
-<!--          <div class="col-sm-3">-->
-<!--            <input type = "text" [(ngModel)]="survey.name" readonly class="form-control-plaintext" id="staticName"-->
-<!--                   style="font-size: 30px">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
-
-<!--  <div formArrayName = "questions">-->
-<!--    <div *ngFor= "let question of questions.controls; let i=index" class="questionBox">-->
-
-<!--      <label style="padding-left: 10px">-->
-<!--        Question Name:-->
-<!--        <input type="text" [formControlName]="i" class ="questionName" style="padding-left: 10px">-->
-<!--      </label>-->
-<!--        <div class="questionControls" style="float: right">-->
-<!--&lt;!&ndash;          <div class="btn-group">&ndash;&gt;-->
-<!--&lt;!&ndash;            <button type="button"  id="optionDropdown" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&ndash;&gt;-->
-<!--&lt;!&ndash;              Question Type&ndash;&gt;-->
-<!--&lt;!&ndash;            </button>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="dropdown-menu">&ndash;&gt;-->
-<!--&lt;!&ndash;              <a class="dropdown-item" href="#">Action</a>&ndash;&gt;-->
-<!--&lt;!&ndash;              <a class="dropdown-item" href="#">Another action</a>&ndash;&gt;-->
-<!--&lt;!&ndash;              <a class="dropdown-item" href="#">Something else here</a>&ndash;&gt;-->
-<!--&lt;!&ndash;              <div class="dropdown-divider"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;              <a class="dropdown-item" href="#">Separated link</a>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--          <button type="button" class="btn btn-info" (click)="optionNumber()">Number</button>-->
-<!--          <button type="button" class="btn btn-info" (click)="optionText()">Text</button>-->
-<!--          <button type="button" class="btn btn-secondary" (click)="createOption()">Add Option</button>-->
-<!--          <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">Delete</button>-->
-<!--        </div>-->
-<!--      <form style="padding-left: 10px">-->
-<!--        <div id="content">-->
-<!--          <div class="input-group" id="optionGroup">-->
-<!--            <div class="input-group-prepend">-->
-<!--              <div class="input-group-text">-->
-<!--                <input type="radio" aria-label="Radio button for following text input">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <input type="text" class="form-control" aria-label="Text input with radio button" >-->
-<!--            <div class="input-group-append">-->
-<!--              <button class="btn btn-outline-danger" type="button" (click)="deleteOption('optionGroup')">Delete</button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </form>-->
-<!--      <br>-->
+<!--<div formArrayName="items"-->
+<!--     *ngFor="let item of surveyForm.get('items').controls; let i = index;">-->
+<!--    <div [formGroupName]="i">-->
+<!--        <input formControlName="assessmentCode" [(ngModel)]="myQuestion">-->
+<!--        <input formControlName="assessmentDescription">-->
 <!--    </div>-->
-<!--  </div>-->
+
+
+<!--&lt;!&ndash;    Chosen name: {{ surveyForm.controls.items.controls[i].controls.name.value }}&ndash;&gt;-->
 <!--</div>-->
 
-<button (click)="addQuestion()">Add Question</button>
+<!--<div *ngFor="let question of questionType">-->
+
+<!--  <form [formGroup]="surveyForm">-->
+<!--      <h3>Assessment</h3>-->
+
+<!--      <label>-->
+<!--        Assesment Code:-->
+<!--        <input type="text" formControlName="assessmentCode">-->
+<!--      </label>-->
+
+<!--      <label>-->
+<!--        Assessment Description:-->
+<!--        <input type="text" formControlName="assessmentDescription:">-->
+<!--      </label>-->
+
+<!--      <label>-->
+<!--        Assessment Type:-->
+<!--        <input type="text" formControlName="assessmentType" >-->
+<!--      </label>-->
+
+<!--      <label>-->
+<!--        Assesment UUID:-->
+<!--        <input type="text" formControlName="AssessmentUuid">-->
+<!--      </label>-->
+
+<!--      <hr style="border: 2px solid black;" />-->
+<!--  </form>-->
+<!--</div>-->
+
+
 <button (click)="goBack()">Go Back</button>
 <button (click)="saveSurvey()">Save & Exit</button>
