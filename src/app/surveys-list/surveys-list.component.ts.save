@@ -16,11 +16,11 @@ import { SurveyService } from '../survey.service';
 export class SurveysListComponent implements OnInit {
 
     surveys: Survey [];
-    constructor(private surveyService: SurveyService) { }
+    contructor(private surveyService: SurveyService) { }
 
     surveys$: Observable<Survey[]>;
     private searchTerms = new Subject<string>();
-    private  isSearching: boolean;
+    private  isSearching: boolean;zz
 
     // Push a search term into the observable stream.
     search(term: string): void {

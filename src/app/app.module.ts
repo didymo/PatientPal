@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import { SurveySearchComponent } from './survey-search/survey-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TabViewsComponent } from './tab-views/tab-views.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +22,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     SurveySearchComponent,
     DashboardComponent,
     NavBarComponent,
+    TabViewsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
     FormsModule,
     ReactiveFormsModule
   ],
