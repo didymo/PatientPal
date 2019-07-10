@@ -1,4 +1,3 @@
-
 <div class="tab-controls">
     <button type="button" class="btn btn-primary btn-lg">Edit</button> &nbsp;
     <button type="button" class="btn btn-primary btn-lg">Share</button> &nbsp;
@@ -11,29 +10,32 @@
 <div class="align-baseline" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-12 col-md-offset0">
-            <table id="dtOrderExample" class="table table-hover">
-                <thead class = "thead-dark">
-                <tr class="table-success">
-                    <th scope="col">assessmentCode</th>
-                    <th scope="col">assessmentDescription</th>
-                    <th scope="col">assessmentType</th>
-                    <th scope="col">assessmentLabel</th>
-                    <th scope="col">choiceCode</th>
-                    <th scope="col">choiceDescription</th>
-                    <th scope="col">choiceLabel</th></tr>
-                </thead>
-                <tbody class="search-result">
+            <form novalidate class="detailForm" (submit)="submit()">
+                <table id="dtOrderExample" class="table table-hover">
+                    <thead class="thead-dark">
+                    <tr class="table-success">
+                        <th scope="col">assessmentCode</th>
+                        <th scope="col">assessmentDescription</th>
+                        <th scope="col">assessmentType</th>
+                        <th scope="col">assessmentLabel</th>
+                        <th scope="col">choiceCode</th>
+                        <th scope="col">choiceDescription</th>
+                        <th scope="col">choiceLabel</th>
+                    </tr>
+                    </thead>
+                    <tbody class="search-result">
                     <tr *ngFor="let question of questionType">
                         <td>{{ question.assessmentCode }}</td>
-                        <td><input [(ngModel)]="question.assessmentDescription"></td>
+                        <td><input [(ngModel)]="question.assessmentDescription" name="1"></td>
                         <td> {{question.assessmentType}}    </td>
                         <td>{{question.assessmentLabel}}</td>
                         <td>{{question.choiceCode}}</td>
-                        <td><input [(ngModel)]="question.choiceDescription"></td>
+                        <td><input [(ngModel)]="question.choiceDescription" name="2"></td>
                         <td>{{question.choiceLabel}}</td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>

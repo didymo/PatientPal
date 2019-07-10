@@ -110,4 +110,7 @@ export class SurveyDetailsComponent implements OnInit {
 
     }
 
+    submit(): void {
+
+    }
 }
