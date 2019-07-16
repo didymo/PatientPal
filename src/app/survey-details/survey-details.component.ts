@@ -53,7 +53,7 @@ export class SurveyDetailsComponent implements OnInit {
             .subscribe(
                 data => this.questionType = data,
                 err => console.log(err),
-                () => this.createSurvey());
+                () => this.sortSurvey());
     }
     /**
      * Returns a user back to the previous page
@@ -69,34 +69,41 @@ export class SurveyDetailsComponent implements OnInit {
      * y stores the position of the choices
      * x stores the positions of the survey questions
      */
-    createSurvey(): void {
+    sortSurvey(): void {
         let i = 0; let p = 0;
         let y = 0; let x = 0;
         for (i; i < this.questionType.length; i++) {
             if (this.questionType[i].assessmentType.toString() === '4') { // Question is a textbox question
-                this.survey[x] = new Survey(
-                    this.questionType[i].assessmentUuid,
-                    this.questionType[i].assessmentType,
-                    this.questionType[i].assessmentDescription
-                );
-                x++;
+                    this.createSurvey(x, i);
+                    x++;
             } else if (this.questionType[i].assessmentType.toString() === '5') { // Question is a select one
                 this.createSelectOne(x);
                 y = 0; p = i;
-                while (this.questionType[i].assessmentLabel === this.questionType[p].assessmentLabel) {
-                        this.survey[x].addChoice(
-                            this.questionType[i].choiceDescription,
-                            this.questionType[i].choiceUuid,
-                            y
-                        );
-                        i++;
-                        y++;
+                while (this.questionType[i].assessmentUuid === this.questionType[p].assessmentUuid) {
+                    this.addChoice(x, i, y);
+                    i++;
+                    y++;
                     }
                 x++;
                 i--;
-                }
             }
         }
+    }
+
+    /**
+     * Create Survey
+     * @param x
+     * X
+     * @param i
+     * i
+     */
+    createSurvey(x: number, i: number) {
+        this.survey[x] = new Survey(
+            this.questionType[i].assessmentUuid,
+            this.questionType[i].assessmentType,
+            this.questionType[i].assessmentDescription
+        );
+    }
 
     /**
      * Creates a select one question
@@ -108,6 +115,14 @@ export class SurveyDetailsComponent implements OnInit {
             this.questionType[index].assessmentUuid,
             this.questionType[index].assessmentType,
             this.questionType[index].assessmentDescription
+        );
+    }
+
+    addChoice(x: number, i: number, y: number) {
+        this.survey[x].addChoice(
+            this.questionType[i].choiceDescription,
+            this.questionType[i].choiceUuid,
+            y
         );
     }
     /**

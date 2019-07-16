@@ -36,30 +36,30 @@ export class SurveysListComponent implements OnInit {
             .subscribe(surveys => this.surveys = surveys);
     }
 
-    /**
-     * Takes a string name, and appends a new survey
-     * @param name
-     * stringy string string
-     */
-    createSurvey(name: string) {
-        name = name.trim();
-        if (!name) { return; }
-        this.surveyService.addSurvey({ name } as Survey)
-            .subscribe(project => {this.surveys.push(project);
-            });
-    }
+    // /**
+    //  * Takes a string name, and appends a new survey
+    //  * @param name
+    //  * stringy string string
+    //  */
+    // createSurvey(name: string) {
+    //     name = name.trim();
+    //     if (!name) { return; }
+    //     this.surveyService.addSurvey({ name } as Survey)
+    //         .subscribe(project => {this.surveys.push(project);
+    //         });
+    // }
 
 
-    /**
-     * Takes an ID, and deletes the survey
-     * @param id
-     * id == List ID
-     */
-    deleteSurvey(id: number) {
-        if (!id) { return; }
-        this.surveys = this.surveys.filter(h => h.id !== id);
-        this.surveyService.deleteSurvey(id).subscribe();
-    }
+    // /**
+    //  * Takes an ID, and deletes the survey
+    //  * @param id
+    //  * id == List ID
+    //  */
+    // deleteSurvey(id: number) {
+    //     if (!id) { return; }
+    //     this.surveys = this.surveys.filter(h => h.id !== id);
+    //     this.surveyService.deleteSurvey(id).subscribe();
+    // }
 
     /**
      * Will be used to make the dynamic search views
