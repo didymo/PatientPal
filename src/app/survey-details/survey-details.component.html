@@ -14,24 +14,16 @@
                 <table id="dtOrderExample" class="table table-hover">
                     <thead class="thead-dark">
                     <tr class="table-success">
-                        <th scope="col">assessmentCode</th>
-                        <th scope="col">assessmentDescription</th>
-                        <th scope="col">assessmentType</th>
-                        <th scope="col">assessmentLabel</th>
-                        <th scope="col">choiceCode</th>
-                        <th scope="col">choiceDescription</th>
-                        <th scope="col">choiceLabel</th>
+                        <th scope="col">AssessmentUUID</th>
+                        <th scope="col">AssessmentType</th>
+                        <th scope="col">AssessmentDescription</th>
                     </tr>
                     </thead>
                     <tbody class="search-result">
-                    <tr *ngFor="let question of questionType">
-                        <td>{{ question.assessmentCode }}</td>
-                        <td><input [(ngModel)]="question.assessmentDescription" name="1"></td>
-                        <td> {{question.assessmentType}}    </td>
-                        <td>{{question.assessmentLabel}}</td>
-                        <td>{{question.choiceCode}}</td>
-                        <td><input [(ngModel)]="question.choiceDescription" name="2"></td>
-                        <td>{{question.choiceLabel}}</td>
+                    <tr *ngFor="let surveys of survey">
+                        <td>{{ surveys.id }}</td>
+                        <td>{{ surveys.assessmentType }}</td>
+                        <td>{{ surveys.assessmentDesc }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -40,46 +32,7 @@
     </div>
 </div>
 
-
-<!--<div formArrayName="items"-->
-<!--     *ngFor="let item of surveyForm.get('items').controls; let i = index;">-->
-<!--    <div [formGroupName]="i">-->
-<!--        <input formControlName="assessmentCode" [(ngModel)]="myQuestion">-->
-<!--        <input formControlName="assessmentDescription">-->
-<!--    </div>-->
-
-
-<!--&lt;!&ndash;    Chosen name: {{ surveyForm.controls.items.controls[i].controls.name.value }}&ndash;&gt;-->
-<!--</div>-->
-
-<!--<div *ngFor="let question of questionType">-->
-
-<!--  <form [formGroup]="surveyForm">-->
-<!--      <h3>Assessment</h3>-->
-
-<!--      <label>-->
-<!--        Assesment Code:-->
-<!--        <input type="text" formControlName="assessmentCode">-->
-<!--      </label>-->
-
-<!--      <label>-->
-<!--        Assessment Description:-->
-<!--        <input type="text" formControlName="assessmentDescription:">-->
-<!--      </label>-->
-
-<!--      <label>-->
-<!--        Assessment Type:-->
-<!--        <input type="text" formControlName="assessmentType" >-->
-<!--      </label>-->
-
-<!--      <label>-->
-<!--        Assesment UUID:-->
-<!--        <input type="text" formControlName="AssessmentUuid">-->
-<!--      </label>-->
-
-<!--      <hr style="border: 2px solid black;" />-->
-<!--  </form>-->
-<!--</div>-->
+<button (click)="submit()">Submit </button> <br>{{payload}} <br>
 
 
 <button (click)="goBack()">Go Back</button>
