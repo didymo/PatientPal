@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class SurveyService {
 
-    private surveysURL = 'api/surveys';  // URL to web api
+    private surveysURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
     private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
     private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
     constructor(
@@ -51,50 +51,19 @@ export class SurveyService {
             );
     }
 
-    // /** POST: add a new project to the server */
-    // /**
-    //  * @param survey
-    //  * Survey is a tab view
-    //  */
-    // addSurvey(survey: Survey): Observable<Survey> {
-    //     return this.http.post<Survey>(this.surveysURL, survey, httpOptions).pipe(
-    //         tap((newSurvey: Survey) => this.log(`added survey w/ id=${survey.id}`)),
-    //         catchError(this.handleError<Survey>('addSurvey')));
-    // }
-
+    /** PATCH: add a new project to drupal */
     /**
-     * Deletes a survey
      * @param survey
-     * s
+     * The payload
      */
-    deleteSurvey(survey: Survey | number): Observable<Survey> {
-        const id = typeof survey === 'number' ? survey : survey.id;
-        const url = `${this.surveysURL}/${id}`;
-
-        return this.http.delete<Survey>(url, httpOptions).pipe(
-            tap(_ => this.log(`deleted survey id=${id}`)),
-            catchError(this.handleError<Survey>('deleteSurvey')));
-    }
-
-    /**
-     * Get surveys
-     */
-    getSurveys(): Observable<Survey[]> {
-        return this.http.get<Survey[]>(this.surveysURL)
+    addSurvey(survey: string): Observable<string> {
+        return this.http.patch<string>(this.surveysURL, survey, httpOptions)
             .pipe(
-                tap(_ => this.log('fetched surveys')),
-                catchError(this.handleError<Survey[]>('getSurveys', []))
+                catchError(this.handleError('addSurvey', survey))
             );
     }
 
-    /** GET survey by id. Will 404 if id not found */
-    getSurvey(id: number): Observable<Survey> {
-        const url = `${this.surveysURL}/${id}`;
-        return this.http.get<Survey>(url).pipe(
-            tap(_ => this.log(`fetched survey id=${id}`)),
-            catchError(this.handleError<Survey>(`getSurvey id=${id}`))
-        );
-    }
+
 
     /**
      * Search Surveys
@@ -130,14 +99,6 @@ export class SurveyService {
             return of(result as T);
         };
     }
-
-    // /** PUT: update the survey on the server */
-    // updateSurvey(survey: Survey): Observable<any> {
-    //     return this.http.put(this.surveysURL, survey, httpOptions).pipe(
-    //         tap(_ => this.log(`updated survey id=${survey.id}`)),
-    //         catchError(this.handleError<any>('updateSurvey'))
-    //     );
-    // }
     /** Log a SurveyService message with the MessageService */
     private log(message: string) {
         this.messageService.add(`SurveyService: ${message}`);

@@ -7,30 +7,46 @@
 
 <h2>{{questionType[0].tabViewLabel}}</h2>
 
-<div class="align-baseline" style="margin-top: 20px">
-    <div class="row">
-        <div class="col-md-12 col-md-offset0">
-            <form novalidate class="detailForm" (submit)="submit()">
-                <table id="dtOrderExample" class="table table-hover">
-                    <thead class="thead-dark">
-                    <tr class="table-success">
-                        <th scope="col">AssessmentUUID</th>
-                        <th scope="col">AssessmentType</th>
-                        <th scope="col">AssessmentDescription</th>
-                    </tr>
-                    </thead>
-                    <tbody class="search-result">
-                    <tr *ngFor="let assessments of survey.assessments">
-                        <td>{{ assessments.id }}</td>
-                        <td>{{ assessments.assessmentType }}</td>
-                        <td>{{ assessments.assessmentDesc }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </form>
+<form>
+    <div *ngFor="let assessments of survey.assessments">
+        <h3>{{assessments.assessmentDesc}}</h3>
+
+        <div *ngIf="assessments.assessmentType.toString() === '5'">
+                <div *ngFor="let choices of assessments.choices">
+                    <label>Choice: </label> <input [value]="choices.choiceDesc"/>
+                </div>
+        </div>
+        <div *ngIf="assessments.assessmentType.toString() === '4'">
+            <label>Question:</label> 
         </div>
     </div>
-</div>
+</form>
+
+
+<!--<div class="align-baseline" style="margin-top: 20px">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-12 col-md-offset0">-->
+<!--            <form novalidate class="detailForm" (submit)="submit()">-->
+<!--                <table id="dtOrderExample" class="table table-hover">-->
+<!--                    <thead class="thead-dark">-->
+<!--                    <tr class="table-success">-->
+<!--                        <th s1cope="col">AssessmentUUID</th>-->
+<!--                        <th scope="col">AssessmentType</th>-->
+<!--                        <th scope="col">AssessmentDescription</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody class="search-result">-->
+<!--                    <tr *ngFor="let assessments of survey.assessments">-->
+<!--                        <td>{{ assessments.id }}</td>-->
+<!--                        <td>{{ assessments.assessmentType }}</td>-->
+<!--                        <td>{{ assessments.assessmentDesc }}</td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <button (click)="submit()">Submit </button> <br>{{payload}} <br>
 

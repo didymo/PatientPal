@@ -125,15 +125,27 @@ export class SurveyDetailsComponent implements OnInit {
      * @todo Save added questions to the form
      */
     saveSurvey(): void {
-        // console.log(this.questionType.length + ' ' + this.survey.length);
+        this.generatePayload();
+        this.formService
+            .addSurvey(this.payload)
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => console.log(error1)
+            );
+
     }
 
     /**
      * Generates a payload
      */
     submit(): void {
-        this.payload = '{';
+        this.generatePayload();
+    }
+
+    generatePayload(): void {
+        this.payload = '';
         this.payload += JSON.stringify(this.survey);
-        this.payload += '}';
     }
 }
