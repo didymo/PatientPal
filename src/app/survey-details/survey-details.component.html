@@ -20,10 +20,10 @@
                     </tr>
                     </thead>
                     <tbody class="search-result">
-                    <tr *ngFor="let surveys of survey">
-                        <td>{{ surveys.id }}</td>
-                        <td>{{ surveys.assessmentType }}</td>
-                        <td>{{ surveys.assessmentDesc }}</td>
+                    <tr *ngFor="let assessments of survey.assessments">
+                        <td>{{ assessments.id }}</td>
+                        <td>{{ assessments.assessmentType }}</td>
+                        <td>{{ assessments.assessmentDesc }}</td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { Survey } from './survey';
+import { Survey } from './Survey';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -51,16 +51,16 @@ export class SurveyService {
             );
     }
 
-    /** POST: add a new project to the server */
-    /**
-     * @param survey
-     * Survey is a tab view
-     */
-    addSurvey(survey: Survey): Observable<Survey> {
-        return this.http.post<Survey>(this.surveysURL, survey, httpOptions).pipe(
-            tap((newSurvey: Survey) => this.log(`added survey w/ id=${survey.id}`)),
-            catchError(this.handleError<Survey>('addSurvey')));
-    }
+    // /** POST: add a new project to the server */
+    // /**
+    //  * @param survey
+    //  * Survey is a tab view
+    //  */
+    // addSurvey(survey: Survey): Observable<Survey> {
+    //     return this.http.post<Survey>(this.surveysURL, survey, httpOptions).pipe(
+    //         tap((newSurvey: Survey) => this.log(`added survey w/ id=${survey.id}`)),
+    //         catchError(this.handleError<Survey>('addSurvey')));
+    // }
 
     /**
      * Deletes a survey
@@ -131,13 +131,13 @@ export class SurveyService {
         };
     }
 
-    /** PUT: update the survey on the server */
-    updateSurvey(survey: Survey): Observable<any> {
-        return this.http.put(this.surveysURL, survey, httpOptions).pipe(
-            tap(_ => this.log(`updated survey id=${survey.id}`)),
-            catchError(this.handleError<any>('updateSurvey'))
-        );
-    }
+    // /** PUT: update the survey on the server */
+    // updateSurvey(survey: Survey): Observable<any> {
+    //     return this.http.put(this.surveysURL, survey, httpOptions).pipe(
+    //         tap(_ => this.log(`updated survey id=${survey.id}`)),
+    //         catchError(this.handleError<any>('updateSurvey'))
+    //     );
+    // }
     /** Log a SurveyService message with the MessageService */
     private log(message: string) {
         this.messageService.add(`SurveyService: ${message}`);

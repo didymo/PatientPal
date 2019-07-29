@@ -5,7 +5,7 @@ import {
     debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 
-import { Survey } from '../survey';
+import { Survey } from '../Survey';
 import { SurveyService } from '../survey.service';
 
 @Component({
