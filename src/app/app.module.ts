@@ -13,6 +13,7 @@ import { SurveySearchComponent } from './survey-search/survey-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TabViewsComponent } from './tab-views/tab-views.component';
+import {PreviewComponent} from './preview/preview.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TabViewsComponent } from './tab-views/tab-views.component';
     DashboardComponent,
     NavBarComponent,
     TabViewsComponent,
+    PreviewComponent,
   ],
   imports: [
     BrowserModule,

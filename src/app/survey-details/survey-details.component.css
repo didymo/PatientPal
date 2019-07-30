@@ -1,42 +1,22 @@
-.tab-view {
-  border-collapse: collapse;
-  display:inline-block;
-  border:1px solid #000;
-  width: 95%;
-}
-.questionControls {
-  float: right;
+#wrapper {
+    width: 100%;
+    border: 1px solid black;
+    overflow: hidden; /* will contain if #first is longer than #second */
 }
 
-.tab-info {
-  border-collapse: collapse;
-  list-style-type: none;
-  height: 50px;
-  overflow: hidden;
-  background-color: #ffffff;
+#questions {
+    width: 50%;
+    float:left; /* add this */
+    border: 1px solid black;
 }
-.tab-controls {
-  float: right;
-  padding-right: 75px;
+#assessments {
+    border: 2px solid;
+    border-radius: 5px;
+    width: 100%;
 }
-.tabControlBtn{
-  color: white;
-  background-color: black;
-  height: 80px;
-  width: 80px;
-  text-align: center;
-}
-.questionBox {
-  border-collapse: collapse;
-  display:inline-block;
-  border:0.3px solid #000;
-  width: 100%;
-}
-.questionName {
-  width: 75%;
-  height: 30px;
-  border-bottom: 1px solid black;
-}
-.surveyName {
-  border: none;
+
+#preview {
+    border: 1px solid black;
+    overflow: hidden;
+    float: left;
 }

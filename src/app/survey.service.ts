@@ -70,14 +70,14 @@ export class SurveyService {
      * @param term
      * The search term
      */
-    searchSurveys(term: string): Observable<Survey[]> {
+    searchSurveys(term: string): Observable<Tabview[]> {
         if (!term.trim()) {
             // if not search term, return empty survey array.
             return of([]);
         }
-        return this.http.get<Survey[]>(`${this.surveysURL}/?name=${term}`).pipe(
+        return this.http.get<Tabview[]>(`${this.drupalURL}/?name=${term}`).pipe(
             tap(_ => this.log(`found survey matching "${term}"`)),
-            catchError(this.handleError<Survey[]>('searchSurveys', []))
+            catchError(this.handleError<Tabview[]>('searchSurveys', []))
         );
     }
     /**
