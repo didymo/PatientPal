@@ -17,7 +17,8 @@
 
 #preview {
     /*border: 1px solid black;*/
-    padding-left: 1%;
+    padding-left: 3%;
     overflow: hidden;
     float: left;
+    width: 45%;
 }
