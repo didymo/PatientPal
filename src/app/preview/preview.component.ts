@@ -76,98 +76,49 @@ export class PreviewComponent implements OnInit {
         maxDate.setDate(maxDate.getDate() + 3);
         this.titleService.setTitle('Home | @esss/ng-xform');
 
-        this.fields = [
-        new TextField({
-          key: 'name',
-          label: 'Name',
-          validators: [
-            Validators.minLength(3)
-          ]
-        }),
-        new TextField({
-          key: 'email',
-          label: 'E-mail',
-          validators: [
-            Validators.required,
-            Validators.email
-          ]
-        }),
-        new SelectField({
-          key: 'color_ro',
-          label: 'Color read-only',
-          readOnly: true,
-          searchable: true,
-          options: this.colors,
-          optionLabelKey: 'name',
-        }),
-        new SelectField({
-          key: 'color',
-          label: 'Color',
-          searchable: true,
-          options: this.colors,
-          addNewOption: true,
-          addNewOptionText: 'Add Color',
-          optionLabelKey: 'name',
-        }),
-        new TextField({
-          key: 'other',
-          label: 'Other color',
-          visibilityFn: (value: any) => value.color && value.color.id === 0
-        }),
-
-        new SelectField({
-          key: 'type',
-          label: 'Type',
-          options: ['a', 'b'],
-          validators: [
-            Validators.required
-          ]
-        }),
-        new SelectField({
-          key: 'type_tags',
-          label: 'Type tags',
-          options: [{id: 1, description: 'A'}, {id: 2, description: 'B'}, {id: 3, description: 'C'}],
-          optionLabelKey: 'description',
-          optionValueKey: 'id',
-          multiple: true
-        }),
-        new SelectField({
-          key: 'opt',
-          label: 'Select an option',
-          options: [{id: 'A', description: 'Option A'}, {id: 'B', description: 'Option B'}, {id: 'C', description: 'Option C'}],
-          optionLabelKey: 'description',
-          optionValueKey: 'id',
-          onChangeFn: (value: string) => {
-            this.onchangefn.next(value);
-          }
-        }),
-        new TextField({
-          key: 'outputopt',
-          label: 'Output of option',
-          readOnly: true,
-        }),
-        new CheckboxField({
-          key: 'news',
-          label: 'News'
-        }),
-        new MultilineField({
-          key: 'comment',
-          label: 'Comment',
-          rows: 4
-        }),
-        new DateRangeField({
-          key: 'range',
-          label: 'Date range',
-          theme: 'blue'
-        }),
-        new CustomField({
-          key: 'custom_amount',
-          label: 'Custom Field Amount',
-          tmpl: this.customFieldTmpl
-        }),
-      ];
+        this.initWidgets();
     }
 
+    public initWidgets() {
+        let i = 0;
+        this.fields = [
+            new TextField({
+                key: 'name',
+                label: 'Name',
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            })
+        ];
+
+        for (i = 0; i < this.survey.assessments.length; i++) {
+            if (this.survey.assessments[i].assessmentType.toString() === '4') {
+                this.fields.push(
+                    new TextField({
+                        key: this.survey.assessments[i].id,
+                        label: this.survey.assessments[i].assessmentDesc,
+                        validators: [
+                            Validators.minLength(1)
+                        ]
+                    })
+                );
+            } else if (this.survey.assessments[i].assessmentType.toString() === '5') {
+                this.fields.push(
+                    new SelectField({
+                        key: this.survey.assessments[i].id,
+                        label: this.survey.assessments[i].assessmentDesc,
+                        searchable: true,
+                        options: this.survey.assessments[i].choices,
+                        addNewOption: true,
+                        addNewOptionText: 'Add Color',
+                        optionLabelKey: 'name',
+                    })
+                );
+            }
+
+        }
+    }
 
     public onSubmit(values: object) {
         this.model = values;

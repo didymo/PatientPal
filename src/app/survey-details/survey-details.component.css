@@ -22,3 +22,15 @@
     float: left;
     width: 45%;
 }
+#heading {
+    width: 100%;
+}
+
+#choice {
+    width: 70%;
+
+}
+
+#selectManyBtn {
+    float: right;
+}
