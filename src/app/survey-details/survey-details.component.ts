@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output} from '@angular/core';
+import {Component, OnInit, Input, Output, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -8,6 +8,7 @@ import {QuestionType} from '../QuestionType';
 import {Assessment} from '../Assessment';
 import {Choice} from '../Choice';
 import {stringify} from 'querystring';
+import {PreviewComponent} from '../preview/preview.component';
 
 @Component({
     selector: 'app-form-details',
@@ -19,6 +20,7 @@ import {stringify} from 'querystring';
  * This class will handle the process of viewing a survey's questions, as well as editing them
  */
 export class SurveyDetailsComponent implements OnInit {
+    @ViewChild(PreviewComponent) preview;
     id = + this.route.snapshot.paramMap.get('id');
     questionType: QuestionType [];
     survey: Survey;

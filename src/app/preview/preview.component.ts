@@ -98,35 +98,40 @@ export class PreviewComponent implements OnInit {
 
         for (i = 0; i < this.survey.assessments.length; i++) {
             if (this.survey.assessments[i].assessmentType.toString() === '4') {
-                this.fields.push(
-                    new TextField({
-                        key: this.survey.assessments[i].id,
-                        label: this.survey.assessments[i].assessmentDesc,
-                        validators: [
-                            Validators.required,
-                            Validators.minLength(1)
-                        ]
-                    })
-                );
-            } else if (this.survey.assessments[i].assessmentType.toString() === '5') {
-                this.fields.push(
-                    new SelectField({
-                        key: this.survey.assessments[i].id,
-                        label: this.survey.assessments[i].assessmentDesc,
-                        searchable: true,
-                        options: this.survey.assessments[i].choices,
-                        addNewOption: true,
-                        addNewOptionText: 'Add Color',
-                        optionLabelKey: 'name',
-                        validators: [
-                            Validators.required,
-                            Validators.minLength(1)
-                        ]
-                    })
-                );
-            }
 
+            }
         }
+    }
+
+    public createSelect(i: number) {
+        this.fields.push(
+            new SelectField({
+                key: this.survey.assessments[i].id,
+                label: this.survey.assessments[i].assessmentDesc,
+                searchable: true,
+                options: this.survey.assessments[i].choices,
+                addNewOption: true,
+                addNewOptionText: 'Add Color',
+                optionLabelKey: 'name',
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            })
+        );
+    }
+
+    public createText(i: number) {
+        this.fields.push(
+            new TextField({
+                key: this.survey.assessments[i].id,
+                label: this.survey.assessments[i].assessmentDesc,
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            })
+        );
     }
     public export() {
         const doc = document.getElementById('xform');
@@ -165,24 +170,4 @@ export class PreviewComponent implements OnInit {
     public onSubmit(values: object) {
         this.model = values;
     }
-
-
-    public observableSource(keyword: any): Observable<any[]> {
-        const url = `https://restcountries.eu/rest/v2/name/${keyword}`;
-        if (keyword) {
-            return this.http.get(url)
-                .pipe(
-                    map((res) => res as any[])
-                );
-        } else {
-            return of([]);
-        }
-    }
-
-    // public observableSourceByPlaceId(keyword: any): Observable<any> {
-    //   return of({
-    //     'alpha3Code': 'BRA',
-    //     'name': 'Brazil'
-    //   }).pipe(delay(300));
-    // }
 }

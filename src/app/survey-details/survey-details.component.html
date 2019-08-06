@@ -2,17 +2,17 @@
     <div id="questions">
         <h2>{{questionType[0].tabViewLabel}}</h2>
         <form (ngSubmit)="submit()" id="form">
-            <div *ngFor="let assessments of survey.assessments" id="assessments">
+            <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
                 <input [value]="assessments.assessmentDesc" id="heading">
 
                 <div *ngIf="assessments.assessmentType.toString() === '5'">
-                        <button (click)="selectMany()" id="selectManyBtn"> Select Many</button>
+                    <button (click)="preview.createSelect(i)" id="selectManyBtn"> Select Many</button>
                         <div *ngFor="let choices of assessments.choices">
                             <label>Choice: </label> <input [value]="choices.choiceDesc" id="choice"/>
                         </div>
                 </div>
                 <div *ngIf="assessments.assessmentType.toString() === '4'">
-                    <label>Question: </label>
+                    <button (click)="preview.createText(i)" id="selectTxtBtn"> Text Field</button>
                 </div>
             </div>
             <button (click)="submit()">Submit </button>
