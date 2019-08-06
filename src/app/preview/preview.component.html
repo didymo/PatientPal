@@ -1,5 +1,8 @@
-<h2>Preview</h2>
+<h2 id="test">Preview</h2>
 
-<ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" ></ng-xform>
+<ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" id="xform"></ng-xform>
 
+<!--<button (click)="export()">Export</button>-->
 
+<button id="create" (click)="export()">Save File</button>
+<a download="info.html" id="downloadlink" style="display: none">Export</a>

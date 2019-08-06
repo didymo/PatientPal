@@ -18,8 +18,7 @@ import {of} from 'rxjs/internal/observable/of';
 import {Validators} from '@angular/forms';
 import {delay, map} from 'rxjs/operators';
 import {Survey} from '../Survey';
-
-
+import {text} from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-preview',
@@ -38,7 +37,11 @@ export class PreviewComponent implements OnInit {
     @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
 
     @Input() survey: Survey;
-
+    private setting = {
+        element: {
+            dynamicDownload: null as HTMLElement
+        }
+    };
     private colors: any[] = [
         { id: 0, name: 'other' },
         { id: 1, name: 'blue' },
@@ -57,6 +60,8 @@ export class PreviewComponent implements OnInit {
     public model: any;
     public outputhelper = {A: 1, B: 2, C: 3};
     public subscriptions: Subscription[] = [];
+
+    docHTML = '';
 
     constructor(
         private titleService: Title,
@@ -99,6 +104,7 @@ export class PreviewComponent implements OnInit {
                         key: this.survey.assessments[i].id,
                         label: this.survey.assessments[i].assessmentDesc,
                         validators: [
+                            Validators.required,
                             Validators.minLength(1)
                         ]
                     })
@@ -113,11 +119,48 @@ export class PreviewComponent implements OnInit {
                         addNewOption: true,
                         addNewOptionText: 'Add Color',
                         optionLabelKey: 'name',
+                        validators: [
+                            Validators.required,
+                            Validators.minLength(1)
+                        ]
                     })
                 );
             }
 
         }
+    }
+    public export() {
+        const doc = document.getElementById('xform');
+        this.docHTML = doc.outerHTML;
+
+        this.createFile();
+    }
+
+    public createFile() {
+        let textFile = null;
+
+        const makeTextFile = text => {
+            const data = new Blob([text], {type: 'text/plain'});
+
+            // If we are replacing a previously generated file we need to
+            // manually revoke the object URL to avoid memory leaks.
+            if (textFile !== null) {
+                window.URL.revokeObjectURL(textFile);
+            }
+
+            textFile = window.URL.createObjectURL(data);
+
+            return textFile;
+        };
+        const create = document.getElementById('create');
+        const textbox = document.getElementById('textbox');
+
+        create.addEventListener('click', () => {
+            const link = document.getElementById('downloadlink');
+            // @ts-ignore
+            link.href = makeTextFile(this.docHTML);
+            link.style.display = 'block';
+        }, false);
     }
 
     public onSubmit(values: object) {

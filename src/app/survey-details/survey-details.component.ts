@@ -7,6 +7,7 @@ import {SurveyService} from '../survey.service';
 import {QuestionType} from '../QuestionType';
 import {Assessment} from '../Assessment';
 import {Choice} from '../Choice';
+import {stringify} from 'querystring';
 
 @Component({
     selector: 'app-form-details',
@@ -22,6 +23,8 @@ export class SurveyDetailsComponent implements OnInit {
     questionType: QuestionType [];
     survey: Survey;
     payload = '';
+    temp = '';
+
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
@@ -141,6 +144,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     submit(): void {
         this.generatePayload();
+        // this.temp += stringify(document.getElementById('heading').value);
     }
 
     generatePayload(): void {

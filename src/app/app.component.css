@@ -8,8 +8,8 @@
   width: 100%;
 }
 .main {
-  margin-left: 160px; /* Same as the width of the sidebar */
-  padding: 0px 10px;
+  /*margin-left: 160px; !* Same as the width of the sidebar *!*/
+  padding-left: 10%;
 }
 
 /*body {*/
