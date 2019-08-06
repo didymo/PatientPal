@@ -1,21 +1,23 @@
 <div id="wrapper">
     <div id="questions">
         <h2>{{questionType[0].tabViewLabel}}</h2>
-        <form>
+        <form (ngSubmit)="submit()" id="form">
             <div *ngFor="let assessments of survey.assessments" id="assessments">
-                <h3>{{assessments.assessmentDesc}}</h3>
+                <input [value]="assessments.assessmentDesc" id="heading">
 
                 <div *ngIf="assessments.assessmentType.toString() === '5'">
+                        <button (click)="selectMany()" id="selectManyBtn"> Select Many</button>
                         <div *ngFor="let choices of assessments.choices">
-                            <label>Choice: </label> <input [value]="choices.choiceDesc"/>
+                            <label>Choice: </label> <input [value]="choices.choiceDesc" id="choice"/>
                         </div>
                 </div>
                 <div *ngIf="assessments.assessmentType.toString() === '4'">
                     <label>Question: </label>
                 </div>
             </div>
+            <button (click)="submit()">Submit </button>
         </form>
-        <button (click)="submit()">Submit </button> <br>{{payload}} <br>
+        <br> {{temp}}<br>
         <button (click)="goBack()">Go Back</button>
         <button (click)="saveSurvey()">Save & Exit</button>
     </div>

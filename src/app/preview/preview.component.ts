@@ -18,8 +18,7 @@ import {of} from 'rxjs/internal/observable/of';
 import {Validators} from '@angular/forms';
 import {delay, map} from 'rxjs/operators';
 import {Survey} from '../Survey';
-
-
+import {text} from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-preview',
@@ -38,7 +37,11 @@ export class PreviewComponent implements OnInit {
     @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
 
     @Input() survey: Survey;
-
+    private setting = {
+        element: {
+            dynamicDownload: null as HTMLElement
+        }
+    };
     private colors: any[] = [
         { id: 0, name: 'other' },
         { id: 1, name: 'blue' },
@@ -58,6 +61,8 @@ export class PreviewComponent implements OnInit {
     public outputhelper = {A: 1, B: 2, C: 3};
     public subscriptions: Subscription[] = [];
 
+    docHTML = '';
+
     constructor(
         private titleService: Title,
         private http: HttpClient
@@ -76,98 +81,87 @@ export class PreviewComponent implements OnInit {
         maxDate.setDate(maxDate.getDate() + 3);
         this.titleService.setTitle('Home | @esss/ng-xform');
 
-        this.fields = [
-        new TextField({
-          key: 'name',
-          label: 'Name',
-          validators: [
-            Validators.minLength(3)
-          ]
-        }),
-        new TextField({
-          key: 'email',
-          label: 'E-mail',
-          validators: [
-            Validators.required,
-            Validators.email
-          ]
-        }),
-        new SelectField({
-          key: 'color_ro',
-          label: 'Color read-only',
-          readOnly: true,
-          searchable: true,
-          options: this.colors,
-          optionLabelKey: 'name',
-        }),
-        new SelectField({
-          key: 'color',
-          label: 'Color',
-          searchable: true,
-          options: this.colors,
-          addNewOption: true,
-          addNewOptionText: 'Add Color',
-          optionLabelKey: 'name',
-        }),
-        new TextField({
-          key: 'other',
-          label: 'Other color',
-          visibilityFn: (value: any) => value.color && value.color.id === 0
-        }),
-
-        new SelectField({
-          key: 'type',
-          label: 'Type',
-          options: ['a', 'b'],
-          validators: [
-            Validators.required
-          ]
-        }),
-        new SelectField({
-          key: 'type_tags',
-          label: 'Type tags',
-          options: [{id: 1, description: 'A'}, {id: 2, description: 'B'}, {id: 3, description: 'C'}],
-          optionLabelKey: 'description',
-          optionValueKey: 'id',
-          multiple: true
-        }),
-        new SelectField({
-          key: 'opt',
-          label: 'Select an option',
-          options: [{id: 'A', description: 'Option A'}, {id: 'B', description: 'Option B'}, {id: 'C', description: 'Option C'}],
-          optionLabelKey: 'description',
-          optionValueKey: 'id',
-          onChangeFn: (value: string) => {
-            this.onchangefn.next(value);
-          }
-        }),
-        new TextField({
-          key: 'outputopt',
-          label: 'Output of option',
-          readOnly: true,
-        }),
-        new CheckboxField({
-          key: 'news',
-          label: 'News'
-        }),
-        new MultilineField({
-          key: 'comment',
-          label: 'Comment',
-          rows: 4
-        }),
-        new DateRangeField({
-          key: 'range',
-          label: 'Date range',
-          theme: 'blue'
-        }),
-        new CustomField({
-          key: 'custom_amount',
-          label: 'Custom Field Amount',
-          tmpl: this.customFieldTmpl
-        }),
-      ];
+        this.initWidgets();
     }
 
+    public initWidgets() {
+        let i = 0;
+        this.fields = [
+            new TextField({
+                key: 'name',
+                label: 'Name',
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            })
+        ];
+
+        for (i = 0; i < this.survey.assessments.length; i++) {
+            if (this.survey.assessments[i].assessmentType.toString() === '4') {
+                this.fields.push(
+                    new TextField({
+                        key: this.survey.assessments[i].id,
+                        label: this.survey.assessments[i].assessmentDesc,
+                        validators: [
+                            Validators.required,
+                            Validators.minLength(1)
+                        ]
+                    })
+                );
+            } else if (this.survey.assessments[i].assessmentType.toString() === '5') {
+                this.fields.push(
+                    new SelectField({
+                        key: this.survey.assessments[i].id,
+                        label: this.survey.assessments[i].assessmentDesc,
+                        searchable: true,
+                        options: this.survey.assessments[i].choices,
+                        addNewOption: true,
+                        addNewOptionText: 'Add Color',
+                        optionLabelKey: 'name',
+                        validators: [
+                            Validators.required,
+                            Validators.minLength(1)
+                        ]
+                    })
+                );
+            }
+
+        }
+    }
+    public export() {
+        const doc = document.getElementById('xform');
+        this.docHTML = doc.outerHTML;
+
+        this.createFile();
+    }
+
+    public createFile() {
+        let textFile = null;
+
+        const makeTextFile = text => {
+            const data = new Blob([text], {type: 'text/plain'});
+
+            // If we are replacing a previously generated file we need to
+            // manually revoke the object URL to avoid memory leaks.
+            if (textFile !== null) {
+                window.URL.revokeObjectURL(textFile);
+            }
+
+            textFile = window.URL.createObjectURL(data);
+
+            return textFile;
+        };
+        const create = document.getElementById('create');
+        const textbox = document.getElementById('textbox');
+
+        create.addEventListener('click', () => {
+            const link = document.getElementById('downloadlink');
+            // @ts-ignore
+            link.href = makeTextFile(this.docHTML);
+            link.style.display = 'block';
+        }, false);
+    }
 
     public onSubmit(values: object) {
         this.model = values;

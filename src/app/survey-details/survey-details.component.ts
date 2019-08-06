@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -7,6 +7,7 @@ import {SurveyService} from '../survey.service';
 import {QuestionType} from '../QuestionType';
 import {Assessment} from '../Assessment';
 import {Choice} from '../Choice';
+import {stringify} from 'querystring';
 
 @Component({
     selector: 'app-form-details',
@@ -18,11 +19,12 @@ import {Choice} from '../Choice';
  * This class will handle the process of viewing a survey's questions, as well as editing them
  */
 export class SurveyDetailsComponent implements OnInit {
-
     id = + this.route.snapshot.paramMap.get('id');
     questionType: QuestionType [];
     survey: Survey;
     payload = '';
+    temp = '';
+
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
@@ -113,7 +115,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     initTemp(i: number): Assessment {
         const tempAssessment = new Assessment(
-            this.questionType[i].assessmentUuid,
+            this.questionType[i].assessmentCode,
             this.questionType[i].assessmentType,
             this.questionType[i].assessmentDescription
         );
@@ -142,10 +144,15 @@ export class SurveyDetailsComponent implements OnInit {
      */
     submit(): void {
         this.generatePayload();
+        // this.temp += stringify(document.getElementById('heading').value);
     }
 
     generatePayload(): void {
         this.payload = '';
         this.payload += JSON.stringify(this.survey);
+    }
+
+    selectMany() {
+
     }
 }

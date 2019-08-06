@@ -33,7 +33,7 @@ import {PreviewComponent} from './preview/preview.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgXformModule
+    NgXformModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
