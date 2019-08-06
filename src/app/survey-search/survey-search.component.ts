@@ -6,8 +6,8 @@ import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 
-import { Survey } from '../survey';
 import { SurveyService } from '../survey.service';
+import {Tabview} from '../tabview';
 
 @Component({
   selector: 'app-survey-search',
@@ -16,7 +16,7 @@ import { SurveyService } from '../survey.service';
 })
 export class SurveySearchComponent implements OnInit {
 
-  surveys$: Observable<Survey[]>;
+  surveys$: Observable<Tabview[]>;
   private searchTerms = new Subject<string>();
 
   constructor(private surveyService: SurveyService) { }

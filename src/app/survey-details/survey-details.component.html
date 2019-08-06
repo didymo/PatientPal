@@ -1,84 +1,30 @@
+<div id="wrapper">
+    <div id="questions">
+        <h2>{{questionType[0].tabViewLabel}}</h2>
+        <form (ngSubmit)="submit()" id="form">
+            <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
+                <input [value]="assessments.assessmentDesc" id="heading">
 
-<div class="tab-controls">
-    <button type="button" class="btn btn-primary btn-lg">Edit</button> &nbsp;
-    <button type="button" class="btn btn-primary btn-lg">Share</button> &nbsp;
-    <button type="button" class="btn btn-primary btn-lg">More</button> &nbsp;
-</div>
+                <div *ngIf="assessments.assessmentType.toString() === '5'">
+                    <button (click)="preview.createSelect(i)" id="selectManyBtn"> Select Many</button>
+                        <div *ngFor="let choices of assessments.choices">
+                            <label>Choice: </label> <input [value]="choices.choiceDesc" id="choice"/>
+                        </div>
+                </div>
+                <div *ngIf="assessments.assessmentType.toString() === '4'">
+                    <button (click)="preview.createText(i)" id="selectTxtBtn"> Text Field</button>
+                </div>
+            </div>
+            <button (click)="submit()">Submit </button>
+        </form>
+        <br> {{temp}}<br>
+        <button (click)="goBack()">Go Back</button>
+        <button (click)="saveSurvey()">Save & Exit</button>
+    </div>
 
-
-<h2>{{questionType[0].tabViewLabel}}</h2>
-
-<div class="align-baseline" style="margin-top: 20px">
-    <div class="row">
-        <div class="col-md-12 col-md-offset0">
-            <table id="dtOrderExample" class="table table-hover">
-                <thead class = "thead-dark">
-                <tr class="table-success">
-                    <th scope="col">assessmentCode</th>
-                    <th scope="col">assessmentDescription</th>
-                    <th scope="col">assessmentType</th>
-                    <th scope="col">assessmentLabel</th>
-                    <th scope="col">choiceCode</th>
-                    <th scope="col">choiceDescription</th>
-                    <th scope="col">choiceLabel</th></tr>
-                </thead>
-                <tbody class="search-result">
-                    <tr *ngFor="let question of questionType">
-                        <td>{{ question.assessmentCode }}</td>
-                        <td><input [(ngModel)]="question.assessmentDescription"></td>
-                        <td> {{question.assessmentType}}    </td>
-                        <td>{{question.assessmentLabel}}</td>
-                        <td>{{question.choiceCode}}</td>
-                        <td><input [(ngModel)]="question.choiceDescription"></td>
-                        <td>{{question.choiceLabel}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div id="preview">
+        <app-preview [survey] = "survey"></app-preview>
     </div>
 </div>
 
 
-<!--<div formArrayName="items"-->
-<!--     *ngFor="let item of surveyForm.get('items').controls; let i = index;">-->
-<!--    <div [formGroupName]="i">-->
-<!--        <input formControlName="assessmentCode" [(ngModel)]="myQuestion">-->
-<!--        <input formControlName="assessmentDescription">-->
-<!--    </div>-->
-
-
-<!--&lt;!&ndash;    Chosen name: {{ surveyForm.controls.items.controls[i].controls.name.value }}&ndash;&gt;-->
-<!--</div>-->
-
-<!--<div *ngFor="let question of questionType">-->
-
-<!--  <form [formGroup]="surveyForm">-->
-<!--      <h3>Assessment</h3>-->
-
-<!--      <label>-->
-<!--        Assesment Code:-->
-<!--        <input type="text" formControlName="assessmentCode">-->
-<!--      </label>-->
-
-<!--      <label>-->
-<!--        Assessment Description:-->
-<!--        <input type="text" formControlName="assessmentDescription:">-->
-<!--      </label>-->
-
-<!--      <label>-->
-<!--        Assessment Type:-->
-<!--        <input type="text" formControlName="assessmentType" >-->
-<!--      </label>-->
-
-<!--      <label>-->
-<!--        Assesment UUID:-->
-<!--        <input type="text" formControlName="AssessmentUuid">-->
-<!--      </label>-->
-
-<!--      <hr style="border: 2px solid black;" />-->
-<!--  </form>-->
-<!--</div>-->
-
-
-<button (click)="goBack()">Go Back</button>
-<button (click)="saveSurvey()">Save & Exit</button>

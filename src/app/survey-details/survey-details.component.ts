@@ -1,15 +1,14 @@
-import { Component, OnInit, Input} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
-import { FormArray } from '@angular/forms';
+import {Component, OnInit, Input, Output, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Survey } from '../survey';
+import { Survey } from '../Survey';
 import {SurveyService} from '../survey.service';
-import {Tabview} from '../tabview';
-import {Observable} from 'rxjs';
 import {QuestionType} from '../QuestionType';
+import {Assessment} from '../Assessment';
+import {Choice} from '../Choice';
+import {stringify} from 'querystring';
+import {PreviewComponent} from '../preview/preview.component';
 
 @Component({
     selector: 'app-form-details',
@@ -21,27 +20,12 @@ import {QuestionType} from '../QuestionType';
  * This class will handle the process of viewing a survey's questions, as well as editing them
  */
 export class SurveyDetailsComponent implements OnInit {
-
-    // surveyForm = this.fb.group({
-    //     assessmentCode: this.fb.control(''),
-    //     assessmentDescription: this.fb.control(''),
-    //     assessmentType: this.fb.control(''),
-    //     assessmentLabel: this.fb.control(''),
-    //     assessmentUuid: this.fb.control(''),
-    //     choiceCode: this.fb.control(''),
-    //     choiceDescription: this.fb.control(''),
-    //     choiceLabel: this.fb.control(''),
-    //     choiceUuid: this.fb.control(''),
-    // });
-
-    surveyForm: FormGroup;
-    items: FormArray;
-
-    name = new FormControl(''); // Name of the survey
-
-    @Input() survey: QuestionType;
-
+    @ViewChild(PreviewComponent) preview;
+    id = + this.route.snapshot.paramMap.get('id');
     questionType: QuestionType [];
+    survey: Survey;
+    payload = '';
+    temp = '';
 
     constructor(
         private fb: FormBuilder,
@@ -54,22 +38,19 @@ export class SurveyDetailsComponent implements OnInit {
      */
     ngOnInit() {
         this.getTabView();
-
-        this.surveyForm = this.fb.group({
-            assessmentCode: this.fb.control(''),
-            assessmentDescription: this.fb.control(''),
-            items: this.fb.array([this.createItem()])
-        });
-
     }
 
     /**
-     * Gets tab views
+     * GET tab views
+     * Once tab views are loaded into QuestionType, createSurvey is called
      */
     getTabView() {
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.formService.getTabView(id)
-            .subscribe(data => this.questionType = data);
+
+        this.formService.getTabView(this.id)
+            .subscribe(
+                data => this.questionType = data,
+                err => console.log(err),
+                () => this.sortSurvey());
     }
     /**
      * Returns a user back to the previous page
@@ -78,36 +59,98 @@ export class SurveyDetailsComponent implements OnInit {
         this.location.back();
     }
 
-    createItem(): FormGroup {
-        return this.fb.group({
-            assessmentCode: '',
-            assessmentDescription: ''
-        });
-    }
+    /**
+     * Sorts out assessments from the tab view into a Survey
+     */
+    sortSurvey(): void {
+        this.createSurvey(); // init survey
+        let tempAssessment: Assessment; let tempChoices: Choice;
+        let i = 0; let j = 0;
+        for (i; i < this.questionType.length; i++) {
+            tempAssessment = this.initTemp(i);
+            if (this.questionType[i].assessmentType.toString() === '4') {
+                tempChoices = this.createChoice(i);
+                tempAssessment.addChoice(tempChoices);
+            } else if (this.questionType[i].assessmentType.toString() === '5') {
+                j = i;
+                while (this.questionType[j].assessmentLabel === this.questionType[i].assessmentLabel) {
+                    tempChoices = this.createChoice(j);
+                    tempAssessment.addChoice(tempChoices);
+                    j++;
+                }
+                i = j; // Update new position of i
+            }
+            console.log(tempAssessment);
+            this.survey.addAssessment(tempAssessment);
+        }
 
-    addItem(): void {
-        this.items = this.surveyForm.get('items') as FormArray;
-        this.items.push(this.createItem());
     }
 
     /**
-     * Saves the questions/name that have been added
+     * Creates a new choice
+     * @param i
+     * Index of the array
+     */
+    createChoice(i: number): Choice {
+        const tempChoices = new Choice(
+            this.questionType[i].choiceUuid,
+            this.questionType[i].choiceDescription
+        );
+
+        return tempChoices;
+    }
+
+    /**
+     * Creates a new survey
+     */
+    createSurvey(): void {
+        this.survey = new Survey(
+            this.id,
+            this.questionType[0].assessmentLabel
+        );
+    }
+
+    /**
+     * Init temp assessment
+     * @param i
+     * Index of the array
+     */
+    initTemp(i: number): Assessment {
+        const tempAssessment = new Assessment(
+            this.questionType[i].assessmentCode,
+            this.questionType[i].assessmentType,
+            this.questionType[i].assessmentDescription
+        );
+
+        return tempAssessment;
+    }
+    /**
+     * Should save any of the updated fields
      * @todo Save added questions to the form
      */
     saveSurvey(): void {
+        this.generatePayload();
+        this.formService
+            .addSurvey(this.payload)
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => console.log(error1)
+            );
+
     }
 
     /**
-     * This function deletes an option
+     * Generates a payload
      */
-    deleteOption(id: string): void {
-        document.getElementById(id).remove();
-    }
-    /**
-     * @todo Figure out how to pass a XSL to enketo
-     */
-    previewForm(): void {
-
+    submit(): void {
+        this.generatePayload();
+        // this.temp += stringify(document.getElementById('heading').value);
     }
 
+    generatePayload(): void {
+        this.payload = '';
+        this.payload += JSON.stringify(this.survey);
+    }
 }

@@ -3,8 +3,8 @@
     <input type="text" class="form-control mr-sm-2" placeholder="Search" #searchBox id="search-box" (input)="search(searchBox.value)">
     <ul class="search-result">
       <li *ngFor="let survey of surveys$ | async" >
-        <a routerLink="/detail/{{survey.id}}">
-          {{survey.name}}
+        <a routerLink="/detail/{{survey.label}}">
+          {{survey.label}}
         </a>
       </li>
     </ul>
