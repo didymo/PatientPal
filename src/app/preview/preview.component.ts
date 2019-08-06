@@ -18,7 +18,6 @@ import {of} from 'rxjs/internal/observable/of';
 import {Validators} from '@angular/forms';
 import {delay, map} from 'rxjs/operators';
 import {Survey} from '../Survey';
-import {text} from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-preview',
@@ -167,31 +166,6 @@ export class PreviewComponent implements OnInit {
         this.model = values;
     }
 
-    populate() {
-        this.xformComponent.setValue({
-            name: 'Customer',
-            email: 'customer@mail.com',
-            type_tags: [2],
-            type: 'b',
-            color: { id: 3, name: 'white' },
-            color_ro: { id: 3, name: 'white' },
-            address: {
-                street: 'ChIJn7h-4b9JJ5URGCq6n0zj1tM'
-            },
-            gender: 1,
-            length: { value: 2, unit: 'm'},
-            width: { value: 3, unit: 'ft'},
-            opt: 'A',
-            news: true,
-            comment: 'Mussum Ipsum, caci.',
-            birth: new Date(),
-            range: [
-                '2018-09-06T03:00:00.000Z',
-                '2018-10-08T03:00:00.000Z'
-            ],
-            custom_amount: 456
-        });
-    }
 
     public observableSource(keyword: any): Observable<any[]> {
         const url = `https://restcountries.eu/rest/v2/name/${keyword}`;
