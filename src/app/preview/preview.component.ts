@@ -36,23 +36,8 @@ export class PreviewComponent implements OnInit {
     @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
 
     @Input() survey: Survey;
-    private setting = {
-        element: {
-            dynamicDownload: null as HTMLElement
-        }
-    };
-    private colors: any[] = [
-        { id: 0, name: 'other' },
-        { id: 1, name: 'blue' },
-        { id: 2, name: 'yellow' },
-        { id: 3, name: 'white' },
-        { id: 4, name: 'black' },
-        { id: 5, name: 'orange' },
-        { id: 6, name: 'purple' }
-    ];
 
     public onchangefn = new Subject<string>();
-
     public fields: DynamicField[];
     public horizontal = false;
     public labelWidth = 2;
@@ -83,6 +68,9 @@ export class PreviewComponent implements OnInit {
         this.initWidgets();
     }
 
+    /**
+     * This function is used to init the fields array.
+     */
     public initWidgets() {
         let i = 0;
         this.fields = [
@@ -103,6 +91,10 @@ export class PreviewComponent implements OnInit {
         }
     }
 
+    /**
+     * This funtion is used to create a SelectField
+     * @param i Is used to determine which assessment has been inputed
+     */
     public createSelect(i: number) {
         this.fields.push(
             new SelectField({
@@ -121,6 +113,10 @@ export class PreviewComponent implements OnInit {
         );
     }
 
+    /**
+     * Used to create a TextField
+     * @param i Is used to determine which assessment has been inputed
+     */
     public createText(i: number) {
         this.fields.push(
             new TextField({
@@ -133,6 +129,10 @@ export class PreviewComponent implements OnInit {
             })
         );
     }
+
+    /**
+     * Will be used to export the html file to drupal
+     */
     public export() {
         const doc = document.getElementById('xform');
         this.docHTML = doc.outerHTML;
@@ -140,6 +140,11 @@ export class PreviewComponent implements OnInit {
         this.createFile();
     }
 
+    /**
+     * This function creates a file
+     * This file has the string generated from the ng-xform html tag
+     * It will then create a downloadable link
+     */
     public createFile() {
         let textFile = null;
 

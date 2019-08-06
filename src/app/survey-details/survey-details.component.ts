@@ -153,8 +153,4 @@ export class SurveyDetailsComponent implements OnInit {
         this.payload = '';
         this.payload += JSON.stringify(this.survey);
     }
-
-    selectMany() {
-
-    }
 }
