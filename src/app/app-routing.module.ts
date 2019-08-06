@@ -9,7 +9,7 @@ const routes: Routes = [
   // { path: 'detail/:id', component: DynamicFormComponent },
   { path: 'detail/:id', component: SurveyDetailsComponent },
   { path: 'survey', component: SurveysListComponent },
-  { path: 'tab-views', component: TabViewsComponent}
+  { path: 'tab-views', component: TabViewsComponent},
 ];
 
 @NgModule({
