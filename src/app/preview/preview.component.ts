@@ -14,9 +14,7 @@ import {AppComponent} from '../app.component';
 import {Title} from '@angular/platform-browser';
 import {Observable, Subject, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {of} from 'rxjs/internal/observable/of';
 import {Validators} from '@angular/forms';
-import {delay, map} from 'rxjs/operators';
 import {Survey} from '../Survey';
 
 @Component({
@@ -72,7 +70,6 @@ export class PreviewComponent implements OnInit {
      * This function is used to init the fields array.
      */
     public initWidgets() {
-        let i = 0;
         this.fields = [
             new TextField({
                 key: 'name',
@@ -81,14 +78,8 @@ export class PreviewComponent implements OnInit {
                     Validators.required,
                     Validators.minLength(1)
                 ]
-            })
+            }),
         ];
-
-        for (i = 0; i < this.survey.assessments.length; i++) {
-            if (this.survey.assessments[i].assessmentType.toString() === '4') {
-
-            }
-        }
     }
 
     /**
@@ -129,7 +120,6 @@ export class PreviewComponent implements OnInit {
             })
         );
     }
-
     /**
      * Will be used to export the html file to drupal
      */

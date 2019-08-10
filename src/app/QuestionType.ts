@@ -1,5 +1,5 @@
 /**
- * This class will store the data of the questions returned from the tab view
+ * This interface will store the data of the questions returned from the tab view
  */
 export interface QuestionType {
     tabViewLabel: string;

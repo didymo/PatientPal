@@ -26,7 +26,7 @@ export class SurveyDetailsComponent implements OnInit {
     survey: Survey;
     payload = '';
     temp = '';
-
+    test = '';
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
@@ -64,28 +64,23 @@ export class SurveyDetailsComponent implements OnInit {
      */
     sortSurvey(): void {
         this.createSurvey(); // init survey
-        let tempAssessment: Assessment; let tempChoices: Choice;
+        let tempAssessment: Assessment;
         let i = 0; let j = 0;
         for (i; i < this.questionType.length; i++) {
             tempAssessment = this.initTemp(i);
             if (this.questionType[i].assessmentType.toString() === '4') {
-                tempChoices = this.createChoice(i);
-                tempAssessment.addChoice(tempChoices);
+                tempAssessment.addChoice(this.createChoice(i));
             } else if (this.questionType[i].assessmentType.toString() === '5') {
-                j = i;
+                j = i; // index of the choice
                 while (this.questionType[j].assessmentLabel === this.questionType[i].assessmentLabel) {
-                    tempChoices = this.createChoice(j);
-                    tempAssessment.addChoice(tempChoices);
+                    tempAssessment.addChoice(this.createChoice(j));
                     j++;
                 }
                 i = j; // Update new position of i
             }
-            console.log(tempAssessment);
             this.survey.addAssessment(tempAssessment);
         }
-
     }
-
     /**
      * Creates a new choice
      * @param i
@@ -109,7 +104,6 @@ export class SurveyDetailsComponent implements OnInit {
             this.questionType[0].assessmentLabel
         );
     }
-
     /**
      * Init temp assessment
      * @param i
@@ -126,9 +120,8 @@ export class SurveyDetailsComponent implements OnInit {
     }
     /**
      * Should save any of the updated fields
-     * @todo Save added questions to the form
      */
-    saveSurvey(): void {
+    submit(): void {
         this.generatePayload();
         this.formService
             .addSurvey(this.payload)
@@ -138,17 +131,31 @@ export class SurveyDetailsComponent implements OnInit {
                 },
                 error1 => console.log(error1)
             );
+        this.temp = 'SUBMITTED!';
+    }
 
+    /**
+     * Updates the values within survey
+     */
+    saveSurvey(): void {
+        let i = 0;
+        let x = 0;
+        for (i; i < this.survey.assessments.length; i++) {
+            this.survey.assessments[i].setAssessmentDescription(
+                (document.getElementById('heading' + i) as HTMLInputElement).value);
+            for (x = 0; x < this.survey.assessments[i].choices.length; x++) {
+                // this.survey.assessments[i].choices[x].setChoice(
+                //     (document.getElementById('choice' + x ) as HTMLInputElement).value);
+                // this.test += (document.getElementById('choice' + 0 ) as HTMLInputElement).value;
+            }
+        }
+        this.temp = 'SAVED!';
+        this.generatePayload();
     }
 
     /**
      * Generates a payload
      */
-    submit(): void {
-        this.generatePayload();
-        // this.temp += stringify(document.getElementById('heading').value);
-    }
-
     generatePayload(): void {
         this.payload = '';
         this.payload += JSON.stringify(this.survey);
