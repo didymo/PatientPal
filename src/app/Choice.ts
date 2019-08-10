@@ -5,4 +5,8 @@ export class Choice {
         this.id = id;
         this.choiceDesc = choiceDesc;
     }
+
+    setChoice(temp: string): void {
+        this.choiceDesc = temp;
+    }
 }

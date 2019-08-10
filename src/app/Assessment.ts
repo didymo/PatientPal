@@ -21,4 +21,7 @@ export class Assessment {
         ));
     }
 
+    setAssessmentDescription(temp: string): void {
+        this.assessmentDesc = temp;
+    }
 }

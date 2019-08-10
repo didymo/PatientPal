@@ -1,18 +1,19 @@
 #wrapper {
     width: 100%;
-    border: 1px solid black;
+    border: 0.1px solid black;
     overflow: hidden; /* will contain if #first is longer than #second */
 }
 
 #questions {
     width: 50%;
     float:left; /* add this */
+    padding-left: 2%;
     border: 1px solid black;
 }
 #assessments {
     border: 2px solid;
     border-radius: 5px;
-    width: 100%;
+    width: 95%;
 }
 
 #preview {
@@ -26,9 +27,8 @@
     width: 100%;
 }
 
-#choice {
+.choiceLabel {
     width: 70%;
-
 }
 
 #selectManyBtn {

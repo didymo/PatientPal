@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { Survey } from './Survey';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -17,9 +16,14 @@ const httpOptions = {
 })
 export class SurveyService {
 
-    private surveysURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
-    private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
-    private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
+    // private surveysURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
+    // private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
+    // private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
+
+    private surveysURL = 'http://192.168.1.111/tabview/edit';
+    private drupalURL = 'http://192.168.1.111/rest/tab/list?_format=json';
+    private tabViewURL = 'http://192.168.1.111/rest/content/tab/get/';
+
     constructor(
         private http: HttpClient,
         private messageService: MessageService) {
@@ -62,13 +66,9 @@ export class SurveyService {
                 catchError(this.handleError('addSurvey', survey))
             );
     }
-
-
-
     /**
      * Search Surveys
-     * @param term
-     * The search term
+     * @param The search term
      */
     searchSurveys(term: string): Observable<Tabview[]> {
         if (!term.trim()) {
