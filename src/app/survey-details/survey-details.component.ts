@@ -7,7 +7,6 @@ import {SurveyService} from '../survey.service';
 import {QuestionType} from '../QuestionType';
 import {Assessment} from '../Assessment';
 import {Choice} from '../Choice';
-import {stringify} from 'querystring';
 import {PreviewComponent} from '../preview/preview.component';
 
 @Component({
@@ -26,7 +25,6 @@ export class SurveyDetailsComponent implements OnInit {
     survey: Survey;
     payload = '';
     temp = '';
-    test = '';
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
@@ -138,18 +136,17 @@ export class SurveyDetailsComponent implements OnInit {
      * Updates the values within survey
      */
     saveSurvey(): void {
-        let i = 0;
-        let x = 0;
+        let i = 0; // Holds the position of the assessments
+        let x = 0; // Holds the position of the choices
         for (i; i < this.survey.assessments.length; i++) {
             this.survey.assessments[i].setAssessmentDescription(
-                (document.getElementById('heading' + i) as HTMLInputElement).value);
+                (document.getElementById(this.survey.assessments[i].id) as HTMLInputElement).value);
             for (x = 0; x < this.survey.assessments[i].choices.length; x++) {
-                // this.survey.assessments[i].choices[x].setChoice(
-                //     (document.getElementById('choice' + x ) as HTMLInputElement).value);
-                // this.test += (document.getElementById('choice' + 0 ) as HTMLInputElement).value;
+                this.survey.assessments[i].choices[x].setChoice(
+                    (document.getElementById(this.survey.assessments[i].choices[x].id) as HTMLInputElement).value);
             }
         }
-        this.temp = 'SAVED!';
+        // this.temp = 'SAVED!';
         this.generatePayload();
     }
 

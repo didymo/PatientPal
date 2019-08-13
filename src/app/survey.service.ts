@@ -20,9 +20,9 @@ export class SurveyService {
     // private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
     // private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
 
-    private surveysURL = 'http://192.168.1.111/tabview/edit';
-    private drupalURL = 'http://192.168.1.111/rest/tab/list?_format=json';
-    private tabViewURL = 'http://192.168.1.111/rest/content/tab/get/';
+    private surveysURL = 'http://192.168.1.103/tabview/edit';
+    private drupalURL = 'http://192.168.1.103/rest/tab/list?_format=json';
+    private tabViewURL = 'http://192.168.1.103/rest/content/tab/get/';
 
     constructor(
         private http: HttpClient,
@@ -75,7 +75,7 @@ export class SurveyService {
             // if not search term, return empty survey array.
             return of([]);
         }
-        return this.http.get<Tabview[]>(`${this.drupalURL}/?name=${term}`).pipe(
+        return this.http.get<Tabview[]>(`${this.drupalURL}/?label=${term}`).pipe(
             tap(_ => this.log(`found survey matching "${term}"`)),
             catchError(this.handleError<Tabview[]>('searchSurveys', []))
         );

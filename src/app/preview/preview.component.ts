@@ -87,6 +87,7 @@ export class PreviewComponent implements OnInit {
      * @param i Is used to determine which assessment has been inputed
      */
     public createSelect(i: number) {
+
         this.fields.push(
             new SelectField({
                 key: this.survey.assessments[i].id,
