@@ -2,12 +2,12 @@ import {Choice} from './Choice';
 
 export class Assessment {
 
-    id: string;
+    id: number;
     assessmentType: number;
     assessmentDesc: string;
     choices: Choice[];
 
-    constructor(id: string, assessmentType: number, assessmentDesc: string) {
+    constructor(id: number, assessmentType: number, assessmentDesc: string) {
         this.id = id;
         this.assessmentType = assessmentType;
         this.assessmentDesc = assessmentDesc;

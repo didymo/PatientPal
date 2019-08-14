@@ -20,9 +20,9 @@ export class SurveyService {
     // private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
     // private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
 
-    private surveysURL = 'http://192.168.1.103/tabview/edit';
-    private drupalURL = 'http://192.168.1.103/rest/tab/list?_format=json';
-    private tabViewURL = 'http://192.168.1.103/rest/content/tab/get/';
+    private surveysURL = 'http://192.168.1.115/tabview/edit';
+    private drupalURL = 'http://192.168.1.115/rest/tab/list?_format=json';
+    private tabViewURL = 'http://192.168.1.115/rest/content/tab/get/';
 
     constructor(
         private http: HttpClient,

@@ -12,4 +12,7 @@ export interface QuestionType {
     choiceDescription: string;
     choiceLabel: number;
     choiceUuid: string;
+    assessmentId: number;
+    tabViewId: number;
+    choiceId: number;
 }

@@ -1,7 +1,8 @@
 export class Choice {
-    id: string;
+    id: number;
     choiceDesc: string;
-    constructor(id: string, choiceDesc: string) {
+
+    constructor(id: number, choiceDesc: string) {
         this.id = id;
         this.choiceDesc = choiceDesc;
     }

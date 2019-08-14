@@ -86,7 +86,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     createChoice(i: number): Choice {
         const tempChoices = new Choice(
-            this.questionType[i].choiceUuid,
+            this.questionType[i].choiceId,
             this.questionType[i].choiceDescription
         );
 
@@ -98,7 +98,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     createSurvey(): void {
         this.survey = new Survey(
-            this.id,
+            this.questionType[0].tabViewId,
             this.questionType[0].assessmentLabel
         );
     }
@@ -109,7 +109,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     initTemp(i: number): Assessment {
         const tempAssessment = new Assessment(
-            this.questionType[i].assessmentCode,
+            this.questionType[i].assessmentId,
             this.questionType[i].assessmentType,
             this.questionType[i].assessmentDescription
         );
@@ -140,10 +140,10 @@ export class SurveyDetailsComponent implements OnInit {
         let x = 0; // Holds the position of the choices
         for (i; i < this.survey.assessments.length; i++) {
             this.survey.assessments[i].setAssessmentDescription(
-                (document.getElementById(this.survey.assessments[i].id) as HTMLInputElement).value);
+                (document.getElementById(this.survey.assessments[i].id.toString()) as HTMLInputElement).value);
             for (x = 0; x < this.survey.assessments[i].choices.length; x++) {
                 this.survey.assessments[i].choices[x].setChoice(
-                    (document.getElementById(this.survey.assessments[i].choices[x].id) as HTMLInputElement).value);
+                    (document.getElementById(this.survey.assessments[i].choices[x].id.toString()) as HTMLInputElement).value);
             }
         }
         // this.temp = 'SAVED!';
