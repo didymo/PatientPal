@@ -52,16 +52,11 @@ export class PreviewComponent implements OnInit {
 
     ngOnInit() {
 
-        const minDate = new Date();
-        const maxDate = new Date();
-
         this.subscriptions.push(this.onchangefn.asObservable().subscribe(
             (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
         ));
 
-        minDate.setDate(minDate.getDate() - 3);
-        maxDate.setDate(maxDate.getDate() + 3);
-        this.titleService.setTitle('Home | @esss/ng-xform');
+        this.titleService.setTitle('Tabview | ' + this.survey.tabDesc);
 
         this.initWidgets();
     }
@@ -96,7 +91,7 @@ export class PreviewComponent implements OnInit {
                 options: this.survey.assessments[i].choices,
                 addNewOption: true,
                 addNewOptionText: 'Add Color',
-                optionLabelKey: 'name',
+                optionLabelKey: 'test',
                 validators: [
                     Validators.required,
                     Validators.minLength(1)

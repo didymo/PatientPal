@@ -10,7 +10,7 @@ export interface QuestionType {
     assessmentUuid: string;
     choiceCode: boolean;
     choiceDescription: string;
-    choiceLabel: number;
+    choiceLabel: string;
     choiceUuid: string;
     assessmentId: number;
     tabViewId: number;
