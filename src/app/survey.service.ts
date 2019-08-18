@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import {Tabview} from './tabview';
 import {QuestionType} from './QuestionType';
 
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -20,9 +20,9 @@ export class SurveyService {
     // private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
     // private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
 
-    private surveysURL = 'http://192.168.1.115/tabview/edit';
-    private drupalURL = 'http://192.168.1.115/rest/tab/list?_format=json';
-    private tabViewURL = 'http://192.168.1.115/rest/content/tab/get/';
+    private surveysURL = 'http://192.168.1.117/tabview/edit';
+    private drupalURL = 'http://192.168.1.117/rest/tab/list?_format=json';
+    private tabViewURL = 'http://192.168.1.117/rest/content/tab/get/';
 
     constructor(
         private http: HttpClient,
@@ -60,10 +60,13 @@ export class SurveyService {
      * @param survey
      * The payload
      */
-    addSurvey(survey: string): Observable<string> {
-        return this.http.patch<string>(this.surveysURL, survey, httpOptions)
+    addSurvey(payload: string): Observable<any> {
+        console.log(payload);
+        return this.http
+            .patch<string>(this.surveysURL, payload, httpOptions)
             .pipe(
-                catchError(this.handleError('addSurvey', survey))
+                tap(_ => this.log(`updated Survey id`)),
+                catchError(this.handleError<any>('addSurvey', payload))
             );
     }
     /**

@@ -4,25 +4,28 @@
         <form (ngSubmit)="submit()" id="form">
             <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
                 <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id>
-                <div *ngIf="assessments.assessmentType.toString() === '5'">
+                <div *ngIf="assessments.asessmentType.toString() === '5'">
                     <button (click)="preview.createSelect(i)" id="selectManyBtn" class="btn-light"> Select Many</button>
                     <div *ngFor="let choices of assessments.choices let x = index">
                         <label>Option {{x + 1}}</label>
                         <input [value]="choices.choiceDesc" [attr.id]=assessments.choices[x].id class="form-control"/>
                     </div>
                 </div>
-                <div *ngIf="assessments.assessmentType.toString() === '4'">
+                <div *ngIf="assessments.asessmentType.toString() === '4'">
                     <button (click)="preview.createText(i)" id="selectTxtBtn"> Text Field</button>
                 </div>
             </div>
-            <button (click)="submit()">Submit </button>
+            <button>Submit</button>
         </form>
         <br>
-        <h3>{{temp}}</h3><br>
+        <!--        <h3>{{temp}}</h3><br>-->
         <button (click)="goBack()">Go Back</button>
         <button (click)="saveSurvey()">Save & Exit</button>
-        <br>{{payload}}<br>
+        <!--        <br>{{payload}}<br>-->
+        <button (click)="triim()">Trim</button>
+
     </div>
+
 
     <div id="preview">
         <app-preview [survey] = "survey"></app-preview>

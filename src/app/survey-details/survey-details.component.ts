@@ -19,12 +19,13 @@ import {PreviewComponent} from '../preview/preview.component';
  * This class will handle the process of viewing a survey's questions, as well as editing them
  */
 export class SurveyDetailsComponent implements OnInit {
+
+
     @ViewChild(PreviewComponent) preview;
     id = + this.route.snapshot.paramMap.get('id');
     questionType: QuestionType [];
     survey: Survey;
     payload = '';
-    temp = '';
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
@@ -42,7 +43,7 @@ export class SurveyDetailsComponent implements OnInit {
      * GET tab views
      * Once tab views are loaded into QuestionType, createSurvey is called
      */
-    getTabView() {
+    public getTabView() {
 
         this.formService.getTabView(this.id)
             .subscribe(
@@ -53,24 +54,23 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Returns a user back to the previous page
      */
-    goBack(): void {
+    public goBack(): void {
         this.location.back();
     }
-
     /**
      * Sorts out assessments from the tab view into a Survey
      */
-    sortSurvey(): void {
+    public sortSurvey(): void {
         this.createSurvey(); // init survey
         let tempAssessment: Assessment;
         let i = 0; let j = 0;
         for (i; i < this.questionType.length; i++) {
-            tempAssessment = this.initTemp(i);
+            tempAssessment = this.createAssessment(i);
             if (this.questionType[i].assessmentType.toString() === '4') {
                 tempAssessment.addChoice(this.createChoice(i));
             } else if (this.questionType[i].assessmentType.toString() === '5') {
                 j = i; // index of the choice
-                while (this.questionType[j].assessmentLabel === this.questionType[i].assessmentLabel) {
+                while (this.questionType[j].assessmentId === this.questionType[i].assessmentId) {
                     tempAssessment.addChoice(this.createChoice(j));
                     j++;
                 }
@@ -84,7 +84,7 @@ export class SurveyDetailsComponent implements OnInit {
      * @param i
      * Index of the array
      */
-    createChoice(i: number): Choice {
+    public createChoice(i: number): Choice {
         const tempChoices = new Choice(
             this.questionType[i].choiceId,
             this.questionType[i].choiceDescription
@@ -96,10 +96,10 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Creates a new survey
      */
-    createSurvey(): void {
+    public createSurvey(): void {
         this.survey = new Survey(
             this.questionType[0].tabViewId,
-            this.questionType[0].assessmentLabel
+            this.questionType[0].tabViewLabel
         );
     }
     /**
@@ -107,20 +107,19 @@ export class SurveyDetailsComponent implements OnInit {
      * @param i
      * Index of the array
      */
-    initTemp(i: number): Assessment {
+    public createAssessment(i: number): Assessment {
         const tempAssessment = new Assessment(
             this.questionType[i].assessmentId,
             this.questionType[i].assessmentType,
-            this.questionType[i].assessmentDescription
+            this.questionType[i].assessmentLabel.replace(/\s/g, '')
         );
-
         return tempAssessment;
     }
     /**
      * Should save any of the updated fields
      */
-    submit(): void {
-        this.generatePayload();
+    public submit(): void {
+        this.payload = JSON.stringify(this.survey);
         this.formService
             .addSurvey(this.payload)
             .subscribe(
@@ -129,13 +128,12 @@ export class SurveyDetailsComponent implements OnInit {
                 },
                 error1 => console.log(error1)
             );
-        this.temp = 'SUBMITTED!';
     }
 
     /**
      * Updates the values within survey
      */
-    saveSurvey(): void {
+    public saveSurvey(): void {
         let i = 0; // Holds the position of the assessments
         let x = 0; // Holds the position of the choices
         for (i; i < this.survey.assessments.length; i++) {
@@ -146,15 +144,16 @@ export class SurveyDetailsComponent implements OnInit {
                     (document.getElementById(this.survey.assessments[i].choices[x].id.toString()) as HTMLInputElement).value);
             }
         }
-        // this.temp = 'SAVED!';
-        this.generatePayload();
     }
 
-    /**
-     * Generates a payload
-     */
-    generatePayload(): void {
-        this.payload = '';
-        this.payload += JSON.stringify(this.survey);
+    public triim(): void {
+        let i = 0;
+        let j = 0;
+
+        for (i; i < this.survey.assessments.length; i++) {
+            for (j; j < this.survey.assessments[i].choices.length; j++) {
+                this.survey.assessments[i].choices[j].setChoice(this.survey.assessments[i].choices[j].choiceDesc.trim());
+            }
+        }
     }
 }
