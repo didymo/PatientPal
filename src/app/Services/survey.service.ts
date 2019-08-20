@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
-import {Tabview} from './tabview';
-import {QuestionType} from './QuestionType';
+import {Tabview} from '../tabview';
+import {QuestionType} from '../QuestionType';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -20,9 +20,9 @@ export class SurveyService {
     // private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
     // private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
 
-    private surveysURL = 'http://192.168.1.117/tabview/edit';
-    private drupalURL = 'http://192.168.1.117/rest/tab/list?_format=json';
-    private tabViewURL = 'http://192.168.1.117/rest/content/tab/get/';
+    private surveysURL = 'http://192.168.1.118/tabview/edit';
+    private drupalURL = 'http://192.168.1.118/rest/tab/list?_format=json';
+    private tabViewURL = 'http://192.168.1.118/rest/content/tab/get/';
 
     constructor(
         private http: HttpClient,
@@ -69,18 +69,21 @@ export class SurveyService {
                 catchError(this.handleError<any>('addSurvey', payload))
             );
     }
+
     /**
      * Search Surveys
-     * @param The search term
+     * @param term
+     * The search term
      */
     searchSurveys(term: string): Observable<Tabview[]> {
         if (!term.trim()) {
             // if not search term, return empty survey array.
             return of([]);
         }
-        return this.http.get<Tabview[]>(`${this.drupalURL}/?label=${term}`).pipe(
-            tap(_ => this.log(`found survey matching "${term}"`)),
-            catchError(this.handleError<Tabview[]>('searchSurveys', []))
+        return this.http.get<Tabview[]>(`${this.drupalURL}/?label=${term}`)
+            .pipe(
+                tap(_ => this.log(`found survey matching "${term}"`)),
+                catchError(this.handleError<Tabview[]>('searchSurveys', []))
         );
     }
     /**

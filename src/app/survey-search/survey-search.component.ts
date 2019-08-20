@@ -6,7 +6,7 @@ import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 
-import { SurveyService } from '../survey.service';
+import {SurveyService} from '../Services/survey.service';
 import {Tabview} from '../tabview';
 
 @Component({

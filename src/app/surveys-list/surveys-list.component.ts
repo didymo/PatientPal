@@ -6,7 +6,7 @@ import {
 } from 'rxjs/operators';
 
 import { Survey } from '../Survey';
-import { SurveyService } from '../survey.service';
+import {SurveyService} from '../Services/survey.service';
 
 @Component({
     selector: 'app-forms-list',

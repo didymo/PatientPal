@@ -6,16 +6,17 @@ import {
     DynamicField,
     MeasureField, MultilineField, NestedFormGroup,
     NgXformEditSaveComponent,
-    NgXformModule,
+    NgXformModule, NumberField,
     RadioGroupField,
     SelectField, TextField
 } from '@esss/ng-xform';
 import {AppComponent} from '../app.component';
 import {Title} from '@angular/platform-browser';
-import {Observable, Subject, Subscription} from 'rxjs';
+import {Observable, of, Subject, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Validators} from '@angular/forms';
 import {Survey} from '../Survey';
+import {delay} from 'rxjs/operators';
 
 @Component({
     selector: 'app-preview',
@@ -67,14 +68,25 @@ export class PreviewComponent implements OnInit {
     public initWidgets() {
         this.fields = [
             new TextField({
-                key: 'name',
-                label: 'Name',
+                key: this.survey.assessments[0].id,
+                label: this.survey.assessments[0].assessmentDesc,
                 validators: [
                     Validators.required,
                     Validators.minLength(1)
                 ]
-            }),
+            })
         ];
+
+        let i = 0;
+        for (i; i < this.survey.assessments.length; i++) {
+            this.removeField(i);
+            if (this.survey.assessments[i].asessmentType.toString() === '5') {
+                this.createRadioGroup(i);
+                this.createSelect(i);
+            } else {
+                this.createText(i);
+            }
+        }
     }
 
     /**
@@ -83,21 +95,84 @@ export class PreviewComponent implements OnInit {
      */
     public createSelect(i: number) {
 
-        this.fields.push(
-            new SelectField({
-                key: this.survey.assessments[i].id,
-                label: this.survey.assessments[i].assessmentDesc,
-                searchable: true,
-                options: this.survey.assessments[i].choices,
-                addNewOption: true,
-                addNewOptionText: 'Add Color',
-                optionLabelKey: 'test',
-                validators: [
-                    Validators.required,
-                    Validators.minLength(1)
-                ]
-            })
-        );
+        // Check if field already exists
+        if (this.fieldCheck(i, 'SELECT')) {
+            return;
+        }
+        // Push new select into the fields array
+        const tempField = new SelectField({
+            key: this.survey.assessments[i].id.toString(),
+            label: this.survey.assessments[i].assessmentDesc,
+            searchable: true,
+            options: this.survey.assessments[i].choices,
+            addNewOption: true,
+            addNewOptionText: 'id',
+            optionLabelKey: 'choiceDesc',
+            validators: [
+                Validators.required,
+                Validators.minLength(1)
+            ]
+        });
+
+        // Reposition
+        this.orderField(i, tempField);
+
+    }
+
+    /**
+     * This funtion is used to create a SelectField
+     * @param i Is used to determine which assessment has been inputed
+     */
+    public createSelectMany(i: number) {
+
+        // Check if field already exists
+        if (this.fieldCheck(i, 'SELECT')) {
+            return;
+        }
+        // Push new select into the fields array
+        const tempField = new SelectField({
+            key: this.survey.assessments[i].id.toString(),
+            label: this.survey.assessments[i].assessmentDesc,
+            searchable: true,
+            options: this.survey.assessments[i].choices,
+            addNewOption: true,
+            addNewOptionText: 'id',
+            optionLabelKey: 'choiceDesc',
+            multiple: true,
+            validators: [
+                Validators.required,
+                Validators.minLength(1)
+            ]
+        });
+
+        // Reposition
+        this.orderField(i, tempField);
+
+    }
+
+    /**
+     * This funtion is used to create a RadioGroup
+     * @param i Is used to determine which assessment has been inputed
+     */
+    public createRadioGroup(i: number) {
+
+        // Check if field already exists
+        if (this.fieldCheck(i, 'RADIOGROUP')) {
+            return;
+        }
+        // Push new radio group into the fields array
+        const tempField = new RadioGroupField({
+            key: this.survey.assessments[i].id.toString(),
+            label: this.survey.assessments[i].assessmentDesc,
+            options: of(this.survey.assessments[i].choices).pipe(delay(10)),
+            optionValueKey: 'id',
+            optionLabelKey: 'choiceDesc',
+            validators: [
+                Validators.required
+            ]
+        });
+        // Reposition
+        this.orderField(i, tempField);
     }
 
     /**
@@ -105,16 +180,133 @@ export class PreviewComponent implements OnInit {
      * @param i Is used to determine which assessment has been inputed
      */
     public createText(i: number) {
-        this.fields.push(
-            new TextField({
-                key: this.survey.assessments[i].id,
-                label: this.survey.assessments[i].assessmentDesc,
-                validators: [
-                    Validators.required,
-                    Validators.minLength(1)
-                ]
-            })
-        );
+
+        // Check if field already exists
+        if (this.fieldCheck(i, 'TEXT')) {
+            return;
+        }
+        // Push new text field into the fields array
+        const tempField = new TextField({
+            key: this.survey.assessments[i].id,
+            label: this.survey.assessments[i].assessmentDesc,
+            validators: [
+                Validators.required,
+                Validators.minLength(1)
+            ]
+        });
+
+        // Reposition
+        this.orderField(i, tempField);
+    }
+
+    /**
+     * Used to create a NumberField
+     * @param i Is used to determine which assessment has been inputed
+     */
+    public createNumber(i: number): void {
+
+        // Check if field already exists
+        if (this.fieldCheck(i, 'NUMBER')) {
+            return;
+        }
+        // Push new number field into the fields array
+        const tempField = new NumberField({
+            key: this.survey.assessments[i].id,
+            label: this.survey.assessments[i].assessmentDesc,
+            validators: [
+                Validators.required,
+                Validators.minLength(1)
+            ]
+        });
+
+        // Reposition
+        this.orderField(i, tempField);
+    }
+
+    /**
+     * Used to create a TextField
+     * @param i Is used to determine which assessment has been inputed
+     */
+    public createCheckBox(i: number) {
+
+        // Check if field already exists
+        if (this.fieldCheck(i, 'CHECK')) {
+            return;
+        }
+        // Push new text field into the fields array
+        const tempField = new CheckboxField({
+            key: this.survey.assessments[i].id,
+            label: this.survey.assessments[i].assessmentDesc,
+        });
+
+        // Reposition
+        this.orderField(i, tempField);
+    }
+
+    /**
+     * This function will return a boolean whether or not an element already exists in the array
+     * @param i
+     * i is the index of the array which will be checked
+     */
+    public fieldCheck(i: number, fieldType: string): boolean {
+        let j = 0;
+        for (j; j < this.fields.length; j++) {
+            if (this.fields[j].key === this.survey.assessments[i].id && fieldType === this.fields[j].controlType) {
+                return true;
+            } else if (this.fields[j].key === this.survey.assessments[i].id) {
+                this.removeField(j);
+                return false;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This function will remove a specified element in the fields array
+     * @param i
+     * i is the index of the array which will be removed
+     */
+    public removeField(i: number) {
+        this.fields.splice(i, 1);
+    }
+
+    /**
+     * This function is used to order the position of a newly added field
+     * @param i
+     * i is the index of the array which will be added
+     */
+    public orderField(i: number, field: any) {
+        this.fields.splice(i, 0, field);
+    }
+
+    /**
+     * This function removes and inserts the new data
+     * @param i
+     * Index of the array which will be added
+     */
+    public updateField(i: number): void {
+        switch (this.fields[i].controlType) {
+            case 'SELECT':
+                this.removeField(i);
+                this.createSelect(i);
+                break;
+            case 'RADIOGROUP':
+                this.removeField(i);
+                this.createRadioGroup(i);
+                break;
+            case 'TEXT':
+                this.removeField(i);
+                this.createText(i);
+                break;
+            case 'NUMBER':
+                this.removeField(i);
+                this.createNumber(i);
+                break;
+            case 'CHECK':
+                this.removeField(i);
+                this.createCheckBox(i);
+                break;
+        }
     }
     /**
      * Will be used to export the html file to drupal
@@ -136,13 +328,9 @@ export class PreviewComponent implements OnInit {
 
         const makeTextFile = text => {
             const data = new Blob([text], {type: 'text/plain'});
-
-            // If we are replacing a previously generated file we need to
-            // manually revoke the object URL to avoid memory leaks.
             if (textFile !== null) {
                 window.URL.revokeObjectURL(textFile);
             }
-
             textFile = window.URL.createObjectURL(data);
 
             return textFile;

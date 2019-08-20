@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Survey } from '../Survey';
-import {SurveyService} from '../survey.service';
+import {SurveyService} from '../Services/survey.service';
 import {QuestionType} from '../QuestionType';
 import {Assessment} from '../Assessment';
 import {Choice} from '../Choice';
@@ -85,14 +85,21 @@ export class SurveyDetailsComponent implements OnInit {
      * Index of the array
      */
     public createChoice(i: number, type: number): Choice {
+        let tempChoices: Choice;
+        if (type === 4) {
+            tempChoices = new Choice(
+                4,
+                'Type 4'
+            );
 
-        const tempChoices = new Choice(
+            return tempChoices;
+        }
+
+        tempChoices = new Choice(
             this.questionType[i].choiceId,
             this.questionType[i].choiceLabel
         );
-        if (type === 4) {
-            tempChoices.setChoice(this.questionType[i].choiceDescription);
-        }
+
         return tempChoices;
     }
 
@@ -150,9 +157,16 @@ export class SurveyDetailsComponent implements OnInit {
                 } catch (e) {
                     console.log(e);
                 }
-
-
             }
         }
+    }
+
+    /**
+     * When user clicks save question
+     */
+    public saveQuestion(i: number): void {
+        this.saveSurvey();
+        // this.submit();
+        this.preview.updateField(i);
     }
 }

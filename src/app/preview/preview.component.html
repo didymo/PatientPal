@@ -1,7 +1,9 @@
-<h2 id="test">Preview</h2>
+<div id="wrapper" *ngIf="survey">
+    <h2 id="test">Preview</h2>
+    <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" id="xform"></ng-xform>
 
-<ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" id="xform"></ng-xform>
 
+    <button id="create" (click)="export()">Save File</button>
+    <a download="info.html" id="downloadlink" style="display: none">Export</a>
+</div>
 
-<button id="create" (click)="export()">Save File</button>
-<a download="info.html" id="downloadlink" style="display: none">Export</a>

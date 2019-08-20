@@ -38,3 +38,23 @@
 #selectTxtBtn {
     float: right;
 }
+
+#selectRadio {
+    float: right;
+}
+
+#selectNumber {
+    float: right;
+}
+
+#selectOneBtn {
+    float: right;
+}
+
+#checkBox {
+    float: right;
+}
+
+#saveBtn {
+    float: bottom;
+}

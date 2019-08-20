@@ -1,29 +1,38 @@
 <h2 *ngIf="questionType">{{questionType[0].tabViewLabel}}</h2>
 <div id="wrapper" *ngIf="survey">
     <div id="questions">
-        <form (ngSubmit)="submit()" id="form">
+        <form (ngSubmit)="saveSurvey()" id="form">
             <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
                 <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id>
                 <div *ngIf="assessments.asessmentType.toString() === '5'">
-                    <button (click)="preview.createSelect(i)" id="selectManyBtn" class="btn-light"> Select Many</button>
+                    <button (click)="preview.createSelectMany(i)" id="selectManyBtn" class="btn-light"> Select Many
+                    </button>
+                    <button (click)="preview.createSelect(i)" id="selectOneBtn" class="btn-light"> Select One</button>
+                    <button (click)="preview.createCheckBox(i)" id="checkBox" class="btn-light"> CheckBox</button>
+                    <button (click)="preview.createRadioGroup(i)" id="selectRadio" class="btn-light"> Radio</button>
+
                     <div *ngFor="let choices of assessments.choices let x = index">
                         <label>Option {{x + 1}}</label>
                         <input [value]="choices.choiceDesc" [attr.id]=assessments.choices[x].id class="form-control"/>
                     </div>
                 </div>
                 <div *ngIf="assessments.asessmentType.toString() === '4'">
-                    <button (click)="preview.createText(i)" id="selectTxtBtn"> Text Field</button>
+                    <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn-light"> Text</button>
+                    <button (click)="preview.createNumber(i)" id="selectNumber" class="btn-light"> Number</button>
+
                 </div>
+                <button (click)="saveQuestion(i)" id="saveBtn" class="btn-light">Save Question</button>
             </div>
-            <button>Submit</button>
+            <button (click)="saveSurvey()">Save</button>
         </form>
         <br>
+        <button (click)="submit()">Submit</button>
         <button (click)="goBack()">Go Back</button>
-        <button (click)="saveSurvey()">Save & Exit</button>
+
     </div>
 
 
-    <div id="preview">
+    <div id="preview" *ngIf="survey">
         <app-preview [survey] = "survey"></app-preview>
     </div>
 </div>

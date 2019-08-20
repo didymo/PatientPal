@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SurveyService} from '../survey.service';
+import {SurveyService} from '../Services/survey.service';
 import { Tabview} from '../tabview';
 import {Survey} from '../Survey';
 import {Observable} from 'rxjs';
