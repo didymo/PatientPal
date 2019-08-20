@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {SurveysListComponent} from './surveys-list/surveys-list.component';
-import {SurveyDetailsComponent} from './survey-details/survey-details.component';
+import {SurveyDetailsComponent} from './survey-editor/survey-details.component';
 import {TabViewsComponent} from './tab-views/tab-views.component';
 
 const routes: Routes = [

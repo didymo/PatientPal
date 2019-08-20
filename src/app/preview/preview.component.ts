@@ -29,6 +29,10 @@ import {delay} from 'rxjs/operators';
     imports: [NgXformModule] ,
     bootstrap: [AppComponent]
 })
+/**
+ * Handles the previewing of Surveys
+ * When a user is editing a survey this component will display what the actual question will look like
+ */
 export class PreviewComponent implements OnInit {
 
     @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
@@ -37,8 +41,17 @@ export class PreviewComponent implements OnInit {
     @Input() survey: Survey;
 
     public onchangefn = new Subject<string>();
+    /**
+     * Stores the fields
+     */
     public fields: DynamicField[];
+    /**
+     * Determine if a form is horizontal viewing or not
+     */
     public horizontal = false;
+    /**
+     * Defines the width of a label
+     */
     public labelWidth = 2;
     public model: any;
     public outputhelper = {A: 1, B: 2, C: 3};
@@ -46,24 +59,35 @@ export class PreviewComponent implements OnInit {
 
     docHTML = '';
 
+    /**
+     * Constructor for PreviewComponent
+     * @param titleService
+     * Used to set the title of the window
+     * @param http
+     * Interface with http
+     */
     constructor(
         private titleService: Title,
         private http: HttpClient
     ) { }
 
+    /**
+     * ngOnInit for PreviewComponent
+     */
     ngOnInit() {
 
         this.subscriptions.push(this.onchangefn.asObservable().subscribe(
             (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
         ));
 
-        this.titleService.setTitle('Tabview | ' + this.survey.tabDesc);
+        this.titleService.setTitle('TabviewList | ' + this.survey.tabDesc); // Sets the title
 
-        this.initWidgets();
+        this.initWidgets(); // Initiates the widgets
     }
 
     /**
      * This function is used to init the fields array.
+     * The fields will be used to display the different type of questions
      */
     public initWidgets() {
         this.fields = [
@@ -212,7 +236,7 @@ export class PreviewComponent implements OnInit {
         // Push new number field into the fields array
         const tempField = new NumberField({
             key: this.survey.assessments[i].id,
-            label: this.survey.assessments[i].assessmentDesc,
+            label: this.survey.assessments[i].assessmentDesc + ' (Number)',
             validators: [
                 Validators.required,
                 Validators.minLength(1)

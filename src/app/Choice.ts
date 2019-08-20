@@ -1,13 +1,26 @@
 /**
- * This class stores the choices that a user can alter when making a survey
+ * This class store the choices that have been imported from Drupal
+ * This format has been defined within Drupal, so that once Survey has been converted into a JSON string
+ * It can match the data in Drupal
  */
 export class Choice {
-    // This Id is used to refer to the ID of a mosaiq choice
+    /**
+     * The ID of a choice
+     * Used to uniquely identify the choice stored in Drupal
+     */
     id: number;
-
-    // This description stores the description of a given choice
+    /**
+     * The description of a choice
+     */
     choiceDesc: string;
 
+    /**
+     * Constructor for Choice class
+     * @param id
+     * The ID of a choice
+     * @param choiceDesc
+     * The description of a choice
+     */
     constructor(id: number, choiceDesc: string) {
         this.id = id;
         this.choiceDesc = choiceDesc;
@@ -15,11 +28,11 @@ export class Choice {
 
     /**
      * This function sets a new choice description
-     * @param temp
-     * Temp is the new string that will be used to alter the current choice description
+     * @param choiceDescription
+     * The description of a choice
      */
-    public setChoice(temp: string): void {
-        this.choiceDesc = temp;
+    public setChoiceDescription(choiceDescription: string): void {
+        this.choiceDesc = choiceDescription;
     }
 
 }
