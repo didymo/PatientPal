@@ -105,39 +105,56 @@ export class PreviewComponent implements OnInit {
         for (i; i < this.survey.assessments.length; i++) {
             this.removeField(i);
             if (this.survey.assessments[i].asessmentType.toString() === '5') {
-                this.createRadioGroup(i);
-                this.createSelect(i);
+                this.createRadioGroup(i, false);
+                this.createSelect(i, false);
             } else {
-                this.createText(i);
+                this.createText(i, false);
             }
         }
     }
 
     /**
-     * This funtion is used to create a SelectField
+     * This funtion is used to create a selectOne
      * @param i Is used to determine which assessment has been inputed
+     * @param optional
+     * Determine if a question is optional or not
      */
-    public createSelect(i: number) {
+    public createSelect(i: number, optional: boolean) {
+
+        let tempField: SelectField;
 
         // Check if field already exists
         if (this.fieldCheck(i, 'SELECT')) {
             return;
         }
-        // Push new select into the fields array
-        const tempField = new SelectField({
-            key: this.survey.assessments[i].id.toString(),
-            label: this.survey.assessments[i].assessmentDesc,
-            searchable: true,
-            options: this.survey.assessments[i].choices,
-            addNewOption: true,
-            addNewOptionText: 'id',
-            optionLabelKey: 'choiceDesc',
-            validators: [
-                Validators.required,
-                Validators.minLength(1)
-            ]
-        });
-
+        // Condition depending on a question is optional or not
+        if (optional) {
+            // Push new select into the fields array
+            tempField = new SelectField({
+                key: this.survey.assessments[i].id.toString(),
+                label: this.survey.assessments[i].assessmentDesc,
+                searchable: true,
+                options: this.survey.assessments[i].choices,
+                addNewOption: true,
+                addNewOptionText: 'id',
+                optionLabelKey: 'choiceDesc',
+            });
+        } else {
+            // Push new select into the fields array
+            tempField = new SelectField({
+                key: this.survey.assessments[i].id.toString(),
+                label: this.survey.assessments[i].assessmentDesc,
+                searchable: true,
+                options: this.survey.assessments[i].choices,
+                addNewOption: true,
+                addNewOptionText: 'id',
+                optionLabelKey: 'choiceDesc',
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            });
+        }
         // Reposition
         this.orderField(i, tempField);
 
@@ -145,29 +162,48 @@ export class PreviewComponent implements OnInit {
 
     /**
      * This funtion is used to create a SelectField
-     * @param i Is used to determine which assessment has been inputed
+     * @param i Is used to determine which assessment has been inputted
+     * @param optional
+     * Whether or not a question is optional or not
      */
-    public createSelectMany(i: number) {
+    public createSelectMany(i: number, optional: boolean) {
+
+        let tempField: SelectField;
 
         // Check if field already exists
         if (this.fieldCheck(i, 'SELECT')) {
             return;
         }
-        // Push new select into the fields array
-        const tempField = new SelectField({
-            key: this.survey.assessments[i].id.toString(),
-            label: this.survey.assessments[i].assessmentDesc,
-            searchable: true,
-            options: this.survey.assessments[i].choices,
-            addNewOption: true,
-            addNewOptionText: 'id',
-            optionLabelKey: 'choiceDesc',
-            multiple: true,
-            validators: [
-                Validators.required,
-                Validators.minLength(1)
-            ]
-        });
+        // Condition depending on a question is optional or not
+        if (optional) {
+            // Push new select into the fields array
+            tempField = new SelectField({
+                key: this.survey.assessments[i].id.toString(),
+                label: this.survey.assessments[i].assessmentDesc,
+                searchable: true,
+                options: this.survey.assessments[i].choices,
+                addNewOption: true,
+                addNewOptionText: 'id',
+                optionLabelKey: 'choiceDesc',
+                multiple: true,
+            });
+        } else {
+            // Push new select into the fields array
+            tempField = new SelectField({
+                key: this.survey.assessments[i].id.toString(),
+                label: this.survey.assessments[i].assessmentDesc,
+                searchable: true,
+                options: this.survey.assessments[i].choices,
+                addNewOption: true,
+                addNewOptionText: 'id',
+                optionLabelKey: 'choiceDesc',
+                multiple: true,
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            });
+        }
 
         // Reposition
         this.orderField(i, tempField);
@@ -177,24 +213,41 @@ export class PreviewComponent implements OnInit {
     /**
      * This funtion is used to create a RadioGroup
      * @param i Is used to determine which assessment has been inputed
+     * @param optional
+     * Whether or not a question is optional or not
      */
-    public createRadioGroup(i: number) {
+    public createRadioGroup(i: number, optional: boolean) {
+
+        let tempField: RadioGroupField;
 
         // Check if field already exists
         if (this.fieldCheck(i, 'RADIOGROUP')) {
             return;
         }
-        // Push new radio group into the fields array
-        const tempField = new RadioGroupField({
-            key: this.survey.assessments[i].id.toString(),
-            label: this.survey.assessments[i].assessmentDesc,
-            options: of(this.survey.assessments[i].choices).pipe(delay(10)),
-            optionValueKey: 'id',
-            optionLabelKey: 'choiceDesc',
-            validators: [
-                Validators.required
-            ]
-        });
+        // Condition depending on a question is optional or not
+        if (optional) {
+            // Push new radio group into the fields array
+            tempField = new RadioGroupField({
+                key: this.survey.assessments[i].id.toString(),
+                label: this.survey.assessments[i].assessmentDesc,
+                options: of(this.survey.assessments[i].choices).pipe(delay(10)),
+                optionValueKey: 'id',
+                optionLabelKey: 'choiceDesc',
+            });
+        } else {
+            // Push new radio group into the fields array
+            tempField = new RadioGroupField({
+                key: this.survey.assessments[i].id.toString(),
+                label: this.survey.assessments[i].assessmentDesc,
+                options: of(this.survey.assessments[i].choices).pipe(delay(10)),
+                optionValueKey: 'id',
+                optionLabelKey: 'choiceDesc',
+                validators: [
+                    Validators.required
+                ]
+            });
+        }
+
         // Reposition
         this.orderField(i, tempField);
     }
@@ -202,22 +255,35 @@ export class PreviewComponent implements OnInit {
     /**
      * Used to create a TextField
      * @param i Is used to determine which assessment has been inputed
+     * @param optional
+     * Whether or not a question is optional or not
      */
-    public createText(i: number) {
+    public createText(i: number, optional: boolean) {
+        let tempField: TextField;
 
         // Check if field already exists
         if (this.fieldCheck(i, 'TEXT')) {
             return;
         }
-        // Push new text field into the fields array
-        const tempField = new TextField({
-            key: this.survey.assessments[i].id,
-            label: this.survey.assessments[i].assessmentDesc,
-            validators: [
-                Validators.required,
-                Validators.minLength(1)
-            ]
-        });
+        // Condition depending on a question is optional or not
+        if (optional) {
+            // Push new text field into the fields array
+            tempField = new TextField({
+                key: this.survey.assessments[i].id,
+                label: this.survey.assessments[i].assessmentDesc,
+            });
+        } else {
+            // Push new text field into the fields array
+            tempField = new TextField({
+                key: this.survey.assessments[i].id,
+                label: this.survey.assessments[i].assessmentDesc,
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            });
+        }
+
 
         // Reposition
         this.orderField(i, tempField);
@@ -226,22 +292,35 @@ export class PreviewComponent implements OnInit {
     /**
      * Used to create a NumberField
      * @param i Is used to determine which assessment has been inputed
+     * @param optional
+     * Whether or not a question is optional or not
      */
-    public createNumber(i: number): void {
+    public createNumber(i: number, optional: boolean): void {
+
+        let tempField: NumberField;
 
         // Check if field already exists
         if (this.fieldCheck(i, 'NUMBER')) {
             return;
         }
-        // Push new number field into the fields array
-        const tempField = new NumberField({
-            key: this.survey.assessments[i].id,
-            label: this.survey.assessments[i].assessmentDesc + ' (Number)',
-            validators: [
-                Validators.required,
-                Validators.minLength(1)
-            ]
-        });
+        // Condition depending on a question is optional or not
+        if (optional) {
+            // Push new number field into the fields array
+            tempField = new NumberField({
+                key: this.survey.assessments[i].id,
+                label: this.survey.assessments[i].assessmentDesc + ' (Number)',
+            });
+        } else {
+            // Push new number field into the fields array
+            tempField = new NumberField({
+                key: this.survey.assessments[i].id,
+                label: this.survey.assessments[i].assessmentDesc + ' (Number)',
+                validators: [
+                    Validators.required,
+                    Validators.minLength(1)
+                ]
+            });
+        }
 
         // Reposition
         this.orderField(i, tempField);
@@ -251,7 +330,7 @@ export class PreviewComponent implements OnInit {
      * Used to create a TextField
      * @param i Is used to determine which assessment has been inputed
      */
-    public createCheckBox(i: number) {
+    public createCheckBox(i: number, optional: boolean) {
 
         // Check if field already exists
         if (this.fieldCheck(i, 'CHECK')) {
@@ -307,28 +386,30 @@ export class PreviewComponent implements OnInit {
      * This function removes and inserts the new data
      * @param i
      * Index of the array which will be added
+     * @param optional
+     * Whether or not a question is optional or not
      */
-    public updateField(i: number): void {
+    public updateField(i: number, optional: boolean): void {
         switch (this.fields[i].controlType) {
             case 'SELECT':
                 this.removeField(i);
-                this.createSelect(i);
+                this.createSelect(i, optional);
                 break;
             case 'RADIOGROUP':
                 this.removeField(i);
-                this.createRadioGroup(i);
+                this.createRadioGroup(i, optional);
                 break;
             case 'TEXT':
                 this.removeField(i);
-                this.createText(i);
+                this.createText(i, optional);
                 break;
             case 'NUMBER':
                 this.removeField(i);
-                this.createNumber(i);
+                this.createNumber(i, optional);
                 break;
             case 'CHECK':
                 this.removeField(i);
-                this.createCheckBox(i);
+                this.createCheckBox(i, optional);
                 break;
         }
     }
@@ -370,6 +451,11 @@ export class PreviewComponent implements OnInit {
         }, false);
     }
 
+    /**
+     * Handles the submitting the values
+     * @param values
+     * values are the values stored in the input fields
+     */
     public onSubmit(values: object) {
         this.model = values;
     }

@@ -15,14 +15,14 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class SurveyService {
+    //
+    // private surveysURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
+    // private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
+    // private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
 
-    private surveysURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
-    private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
-    private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
-
-    // private surveysURL = 'http://192.168.1.118/tabview/edit';
-    // private drupalURL = 'http://192.168.1.118/rest/tab/list?_format=json';
-    // private tabViewURL = 'http://192.168.1.118/rest/content/tab/get/';
+    private surveysURL = 'http://192.168.1.119/tabview/edit';
+    private drupalURL = 'http://192.168.1.119/rest/tab/list?_format=json';
+    private tabViewURL = 'http://192.168.1.119/rest/content/tab/get/';
 
     constructor(
         private http: HttpClient,

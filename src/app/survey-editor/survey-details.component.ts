@@ -194,8 +194,8 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * When user clicks save question, all question choices are then saved
      */
-    public saveQuestion(i: number): void {
+    public saveQuestion(i: number, optional: boolean): void {
         this.saveSurvey(); // Save the survey
-        this.preview.updateField(i); // Update the preview
+        this.preview.updateField(i, optional); // Update the preview
     }
 }

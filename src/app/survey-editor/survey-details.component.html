@@ -21,7 +21,11 @@
                     <button (click)="preview.createNumber(i)" id="selectNumber" class="btn-light"> Number</button>
 
                 </div>
-                <button (click)="saveQuestion(i)" id="saveBtn" class="btn-light">Save Question</button>
+                <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn-light">Save Question</button>
+                <button (click)="saveQuestion(i, false)" id="mandatory" class="btn-light">Mandatory</button>
+
+                <button (click)="saveQuestion(i, true)" id="optional" class="btn-light">Optional Question</button>
+
             </div>
             <button (click)="saveSurvey()">Save</button>
         </form>
