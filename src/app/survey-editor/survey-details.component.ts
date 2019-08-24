@@ -8,6 +8,8 @@ import {TabView} from '../TabView';
 import {Assessment} from '../Assessment';
 import {Choice} from '../Choice';
 import {PreviewComponent} from '../preview/preview.component';
+import {ExcelService} from '../Services/excel.service';
+import {Worksheet} from '../Worksheet';
 
 @Component({
     selector: 'app-form-details',
@@ -48,6 +50,7 @@ export class SurveyDetailsComponent implements OnInit {
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private formService: SurveyService,
+        private excelService: ExcelService,
         private location: Location
     ) { }
     /**
@@ -175,20 +178,19 @@ export class SurveyDetailsComponent implements OnInit {
      * Iterates through the input tags and sets the assessments/choices description to those values
      */
     public saveSurvey(): void {
-        let i = 0; // Holds the position of the assessments
-        let x = 0; // Holds the position of the choices
-        for (i; i < this.survey.assessments.length; i++) {
-            this.survey.assessments[i].setAssessmentDescription(
-                (document.getElementById(this.survey.assessments[i].id.toString()) as HTMLInputElement).value); // Value in the input tag
-            for (x = 0; x < this.survey.assessments[i].choices.length; x++) {
+
+        this.survey.assessments.forEach(function(item, index, array) {
+            item.setAssessmentDescription(
+                (document.getElementById(item.id.toString()) as HTMLInputElement).value); // Value in the input tag
+            item.choices.forEach(function(choice, index, array) {
                 try {
-                    this.survey.assessments[i].choices[x].setChoiceDescription(
-                        (document.getElementById(this.survey.assessments[i].choices[x].id.toString()) as HTMLInputElement).value);
+                    choice.setChoiceDescription(
+                        (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
                 } catch (e) {
                     console.log(e);
                 }
-            }
-        }
+            })
+        })
     }
 
     /**
@@ -197,5 +199,34 @@ export class SurveyDetailsComponent implements OnInit {
     public saveQuestion(i: number, optional: boolean): void {
         this.saveSurvey(); // Save the survey
         this.preview.updateField(i, optional); // Update the preview
+    }
+
+    /**
+     * Creates an instance of Worksheet
+     * @return Worksheet
+     * Returns worksheet to be used for the exporting of XLSX files
+     */
+    public createWorksheet(): Worksheet[] {
+
+        let worksheet = this.tabViews.map((tabview) => {
+            let obj = new Worksheet(
+                tabview.tabViewLabel,
+                tabview.tabViewId,
+                tabview.assessmentId,
+                tabview.assessmentDescription,
+                tabview.assessmentType,
+                tabview.assessmentLabel,
+                tabview.choiceId,
+                tabview.choiceDescription,
+                tabview.choiceLabel
+            );
+            return obj;
+        });
+
+        return worksheet;
+    }
+
+    exportAsXLSX(): void {
+        this.excelService.exportExcelFile(this.createWorksheet(), this.tabViews[0].tabViewLabel);
     }
 }
