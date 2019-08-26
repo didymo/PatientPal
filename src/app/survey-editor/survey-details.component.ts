@@ -128,7 +128,7 @@ export class SurveyDetailsComponent implements OnInit {
             /** Creates a normal choice*/
             tempChoices = new Choice(
                 this.tabViews[i].choiceId,
-                this.tabViews[i].choiceLabel
+                this.tabViews[i].choiceLabel.trim()
             );
         }
         return tempChoices;
