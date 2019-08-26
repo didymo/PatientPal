@@ -17,6 +17,7 @@ import {HttpClient} from '@angular/common/http';
 import {Validators} from '@angular/forms';
 import {Survey} from '../Survey';
 import {delay} from 'rxjs/operators';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
     selector: 'app-preview',
@@ -90,6 +91,7 @@ export class PreviewComponent implements OnInit {
      * The fields will be used to display the different type of questions
      */
     public initWidgets() {
+
         this.fields = [
             new TextField({
                 key: this.survey.assessments[0].id,
