@@ -1,0 +1,13 @@
+.navbar {
+    height: 65px;
+    background-color: #016fbe;
+    box-shadow: 0px 1px 10px #999;
+}
+
+.navbar .navbar-brand {
+    font-size: 32px;
+    font-weight: lighter;
+    font-family: Arial;
+    color: #ffffff;
+}
+

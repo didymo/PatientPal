@@ -31,30 +31,37 @@
     width: 70%;
 }
 
-#selectManyBtn {
-    float: right;
+#ass5 {
+
 }
 
-#selectTxtBtn {
-    float: right;
+#ass4 {
+    border: 1px solid blue;
 }
 
-#selectRadio {
-    float: right;
+#btn-div-1 {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
-#selectNumber {
-    float: right;
+#option-div-parent {
+    padding: 10px;
 }
 
-#selectOneBtn {
-    float: right;
+#option-div-child {
+    display: flex;
 }
 
-#checkBox {
-    float: right;
+#selectRadio, #checkBox, #selectOneBtn, #selectManyBtn {
+    border: none;
+    background-color: #016fbe;
 }
 
-#saveBtn {
-    float: bottom;
+#saveBtn, #optional, #mandatory {
+    padding: 5px 5px;
+    font-size: 10px;
+    border-radius: 3px;
+    border: none;
+    background-color: #016fbe;
 }

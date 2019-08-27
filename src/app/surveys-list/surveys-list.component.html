@@ -1,46 +1,45 @@
-
-
+<!--Survery Search Bar-->
 <div class="survey_search">
-  <app-survey-search></app-survey-search>
+    <app-survey-search></app-survey-search>
 </div>
 
 <!--Table Data -->
 <div class="align-baseline" style="margin-top: 20px">
-  <div class="row">
-    <div class="col-md-12 col-md-offset0">
-      <table id="dtOrderExample" class="table table-hover">
-        <thead class = "thead-dark">
-        <tr class="table-success">
-          <th scope="col">Id</th>
-          <th scope="col">Name</th>
-          <th scope="col">Created</th>
-          <th scope="col">Last Modified</th>
-        </tr>
-        </thead>
-        <tbody class="search-result">
-<!--          <tr *ngFor="let survey of surveys$ | async">-->
-        <tr *ngFor="let survey of surveys" routerLink="/detail/{{survey.id}}" class="survey_data"  >
-          <td class="survey_id">{{survey.id }}</td>
-          <td>{{ survey.name }}</td>
-          <td class="created">{{survey.created}}</td>
-          <td>{{survey.lastModified}}
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <div class="row">
+        <div class="col-md-12 col-md-offset0">
+            <table id="dtOrderExample" class="table table-hover">
+                <thead class="thead-dark">
+                <tr class="table-success">
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Last Modified</th>
+                </tr>
+                </thead>
+                <tbody class="search-result">
+                <!--          <tr *ngFor="let survey of surveys$ | async">-->
+                <tr *ngFor="let survey of surveys" routerLink="/detail/{{survey.id}}" class="survey_data">
+                    <td class="survey_id">{{survey.id }}</td>
+                    <td>{{ survey.name }}</td>
+                    <td class="created">{{survey.created}}</td>
+                    <td>{{survey.lastModified}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
 <div class="container">
-  <div class="col-lg-4">
+    <div class="col-lg-4">
         <input type="text" class="form-control" placeholder="Survey Name" #name>
-    <br>
+        <br>
         <button class="btn btn-success" (click)="createSurvey(name.value); name.value = ''">Add Survey</button>
-    <br>
-  </div>
+        <br>
+    </div>
 </div>
 
 <hr>
 <footer class="container">
-  <p>&copy; PatientPal 2019</p>
+    <p>&copy; PatientPal 2019</p>
 </footer>
