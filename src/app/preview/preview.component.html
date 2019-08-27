@@ -3,7 +3,6 @@
     <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" id="xform"></ng-xform>
 
 
-    <button id="create" (click)="export()">Save File</button>
-    <a download="info.html" id="downloadlink" style="display: none">Export</a>
-</div>
-
+<button id="create" (click)="export()">Save File</button>
+<button id="sendtodb" (click)="db_export()">Export to Database</button>
+<a download="info.html" id="downloadlink" style="display: none">Export</a>

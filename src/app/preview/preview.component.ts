@@ -14,6 +14,7 @@ import {AppComponent} from '../app.component';
 import {Title} from '@angular/platform-browser';
 import {Observable, of, Subject, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {Validators} from '@angular/forms';
 import {Survey} from '../Survey';
 import {delay} from 'rxjs/operators';
@@ -423,6 +424,30 @@ export class PreviewComponent implements OnInit {
         this.docHTML = doc.outerHTML;
 
         this.createFile();
+    }
+
+    /** Export HTML file to database **/
+    public db_export()
+    {
+	this.exportHTMLtoDB().subscribe(str => console.log(str));
+    }
+
+    exportHTMLtoDB(): Observable<String>
+    {
+	const db_service_url = "http://formserver.patientpal.com";
+        const doc = document.getElementById('xform');
+	this.docHTML = doc.outerHTML;
+
+	let json = { "name":this.survey.tabDesc, "version":1, "filedir":"ANGULAR","valid":1, "contents":this.docHTML };
+	console.log(json);
+
+	const httpOptions = {
+	    headers: new HttpHeaders({
+	        'Content-Type': 'text/plain',
+	    })
+	};
+
+	return this.http.post<String>(db_service_url, json, httpOptions);
     }
 
     /**
