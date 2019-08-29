@@ -1,25 +1,60 @@
-
-<!-- Side navigation -->
-<div class="sidenav">
-  <br>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Projects</a>
-    <div class="dropdown-menu" aria-labelledby="dropdown01">
-<!--      <a class="dropdown-item" href="#">Deployed</a>-->
-<!--      <a class="dropdown-item" href="#">Draft</a>-->
-<!--      <a class="dropdown-item" href="#">Archived</a>-->
-
-    </div>
-  </li>
-  <a class="dropdown-item" href="#" routerLink="/tab-views">Tab Views</a>
-  <a class="dropdown-item" href="#">Deployed</a>
-  <a class="dropdown-item" href="#">Draft</a>
-  <a class="dropdown-item" href="#">Archived</a>
-
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Libraries</a>
-    <div class="dropdown-menu" aria-labelledby="dropdown02">
-    </div>
-  </li>
-  <a class="dropdown-item" href="#">My Library</a>
+<!-- Side navbar -->
+<div class="bg-light border-right" id="sidebar-wrapper">
+  <div class="sidebar-heading">
+    <button class="btn btn-primary" style="width: 100%;" (click)="triggerPopup()">New</button>
+  </div>
+  <div class="list-group list-group-flush" st>
+    <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/tab-views">
+      <div class="nav-div-parent">
+        <div class="nav-div-child1">
+          <img class="nav-icons" src="assets/icons/tab-views.svg">
+        </div>
+        <div class="nav-div-child2">
+          <p class="nav-div-child2p">Tab Views</p>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action bg-light">
+      <div class="nav-div-parent">
+        <div class="nav-div-child1">
+          <img class="nav-icons" src="assets/icons/deployed.svg">
+        </div>
+        <div class="nav-div-child2">
+          <p class="nav-div-child2p">Deployed</p>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action bg-light">
+      <div class="nav-div-parent">
+        <div class="nav-div-child1">
+          <img class="nav-icons" src="assets/icons/draft.svg">
+        </div>
+        <div class="nav-div-child2">
+          <p class="nav-div-child2p">Draft</p>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action bg-light">
+      <div class="nav-div-parent">
+        <div class="nav-div-child1">
+          <img class="nav-icons" src="assets/icons/archived.svg">
+        </div>
+        <div class="nav-div-child2">
+          <p class="nav-div-child2p">Archived</p>
+        </div>
+      </div>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action bg-light">
+      <div class="nav-div-parent">
+        <div class="nav-div-child1">
+          <img class="nav-icons" src="assets/icons/my-library.svg">
+        </div>
+        <div class="nav-div-child2">
+          <p class="nav-div-child2p">My Library</p>
+        </div>
+      </div>
+    </a>
+  </div>
 </div>
+
+

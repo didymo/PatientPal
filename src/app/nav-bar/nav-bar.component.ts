@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+// import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -13,11 +16,28 @@ export class NavBarComponent implements OnInit {
   }
 
   /**
-   * This function handles dropdown of projects
+   * Handle the popup window
+   * This window displays a single input in which a user will enter the path to their file
+   * A path is chosen, it will call importXLSX file.
    */
-  expandProject(): void {
+  public triggerPopup(): void {
+  }
 
-    document.getElementById('projectDrop').classList.toggle('show');
+  // openDialog(): void {
+  //   const dialogRef = this.dialog.open(NavBarComponent, {
+  //     width: '250px',
+  //     data: {}
+  //   });
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //   });
+  // }
+
+  /**
+   * Handles the importing of XLSX files
+   */
+  public importXLSX(): void {
 
   }
 

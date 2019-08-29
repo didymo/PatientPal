@@ -36,6 +36,9 @@ import {PreviewComponent} from './preview/preview.component';
     NgXformModule,
   ],
   providers: [],
+  exports: [
+    NavBarComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
