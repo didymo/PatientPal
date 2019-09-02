@@ -10,9 +10,7 @@ import {Choice} from '../Choice';
 import {PreviewComponent} from '../preview/preview.component';
 import {ExcelService} from '../Services/excel.service';
 import {Worksheet} from '../Worksheet';
-import {isBefore} from 'ngx-bootstrap/chronos/utils/date-compare';
-import {pipe} from 'rxjs';
-import {delay} from 'rxjs/operators';
+
 
 @Component({
     selector: 'app-form-details',
@@ -90,37 +88,43 @@ export class SurveyDetailsComponent implements OnInit {
      * Then it is added into the Survey
      */
     public sortSurvey(): void {
-        this.createSurvey(); // init survey
+        this.createSurvey(); // Create an instance of a survey
 
-        let tempAssessment: Assessment; // Create a temporary
-        let i = 0; // Iterates through the tab view
-        let j = 0; // Iterates through the assessment choices
+        let tempAssessment: Assessment; // Create an instance of an assessment
+        let i = 0; // Holds position of choices
+        let j = 0; // Holds position of assessment
 
-        for (i; i < this.tabViews.length; i++) {
-            tempAssessment = this.createAssessment(i); // Create a new assessment
-            if (this.tabViews[i].assessmentType.toString() === '4') {
-                tempAssessment.addChoice(this.createChoice(i, 4)); // Add a single choice to an assessment
-            } else if (this.tabViews[i].assessmentType.toString() === '5') {
-                j = i; // index of the choice
-
-                while (this.tabViews[j].assessmentId === this.tabViews[i].assessmentId) {
-
-                    tempAssessment.addChoice(this.createChoice(j, 5)); // Add a single a choice to an assessment
-                    j++;
+        this.tabViews.forEach((item, index, array) => {
+            if (index === 0) { // Default statement
+                tempAssessment = this.createAssessment(index); // Create a new assessment
+                this.survey.addAssessment(tempAssessment);
+                if (item.assessmentType.toString() === '4') {
+                    this.survey.assessments[j].addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
+                } else if (item.assessmentType.toString() === '5') {
+                    this.survey.assessments[j].addChoice(this.createChoice(i, 5)); // Add a single a choice to an assessment
+                    i++;
                 }
-                i = j; // Update new position of i
-                if (this.tabViews[j] === undefined) {
-                    console.log('UNDEFINED ' + i + ' ' + j);
-                }
+            } else if (item.assessmentType.toString() === '4') {
+                tempAssessment = this.createAssessment(index); // Create a new assessment
+                tempAssessment.addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
+                this.survey.addAssessment(tempAssessment);
+                j++;
+            } else if (item.assessmentType.toString() === '5' && item.assessmentId === this.tabViews[index - 1].assessmentId) {
+                this.survey.assessments[j].addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
+                i++;
+            } else if (item.assessmentType.toString() === '5' && item.assessmentId !== this.tabViews[index - 1].assessmentId) {
+                i = 0;
+                tempAssessment = this.createAssessment(index); // Create a new assessment
+                tempAssessment.addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
+                this.survey.addAssessment(tempAssessment);
+                j++;
             }
-            this.survey.addAssessment(tempAssessment); // Add the assessment to the survey
-        }
+        });
 
         let blob = this.excelService.getExcelData();
         if (blob !== undefined) {
             this.updateToExcel(blob);
         }
-
     }
     /**
      * Creates a new choice based on the assessment type
@@ -166,7 +170,7 @@ export class SurveyDetailsComponent implements OnInit {
         const tempAssessment = new Assessment(
             this.tabViews[i].assessmentId,
             this.tabViews[i].assessmentType,
-            this.tabViews[i].assessmentLabel.trim()
+            this.tabViews[i].assessmentDescription.trim()
         );
         return tempAssessment;
     }
@@ -245,19 +249,40 @@ export class SurveyDetailsComponent implements OnInit {
         this.excelService.exportExcelFile(this.createWorksheet(), this.tabViews[0].tabViewLabel);
     }
 
+    /**
+     * This funciton updates the survey class based on the data from the imported XLSX files
+     * @param blob
+     * A json string from the XLSX file
+     */
     public updateToExcel(blob: any []) {
 
-        this.survey.assessments.forEach(function(item, index, array) {
-            item.setAssessmentDescription(
-                (blob[index].assessmentDescription));
-            item.choices.forEach(function(choice, i, array) {
-                try {
-                    choice.setChoiceDescription(
-                        (blob[i].choiceDescription));
-                } catch (e) {
-                    console.log(e);
+        let i = 0; // Holds the position of the assessments
+        let j = 0; // Holds the position of the choices
+
+        blob.forEach((item, index, array) => {
+            if (index === 0) {
+                this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
+                if (item.assessmentType.toString() === '4') {
+                    this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
+                    i++; // Update the position of the assessment
+                } else if (item.assessmentType.toString() === '5') {
+                    this.survey.assessments[i].choices[j].setChoiceDescription(item.choiceDescription.toString());
+                    j++; // Update the position of the choice
                 }
-            });
-        });
+            } else if (item.assessmentType.toString() === '4') {
+                this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
+                i++; // Update the position of the assessments
+            } else if (item.assessmentType.toString() === '5' && this.survey.assessments[i].id === item.assessmentId) {
+                this.survey.assessments[i].choices[j].setChoiceDescription(item.choiceDescription.toString());
+                j++; // Update the position of the choice
+            } else if (item.assessmentType.toString() === '5' && this.survey.assessments[i].id !== item.assessmentId) {
+                j = 0; // Reset values
+                i++; // Move onto the next assessment
+                this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
+                this.survey.assessments[i].choices[j].setChoiceDescription(item.choiceDescription.toString());
+                j++; // Update the position of the choice
+            }
+
+        })
     }
 }
