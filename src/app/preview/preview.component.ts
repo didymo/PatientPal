@@ -38,8 +38,8 @@ import {delay} from 'rxjs/operators';
  */
 export class PreviewComponent implements OnInit {
 
-    @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
-    @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
+    @ViewChild(NgXformEditSaveComponent, {static: false}) xformComponent: NgXformEditSaveComponent;
+    @ViewChild('customField', {static: false}) customFieldTmpl: TemplateRef<any>;
 
     @Input() survey: Survey;
 

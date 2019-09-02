@@ -11,6 +11,8 @@ import {PreviewComponent} from '../preview/preview.component';
 import {ExcelService} from '../Services/excel.service';
 import {Worksheet} from '../Worksheet';
 import {isBefore} from 'ngx-bootstrap/chronos/utils/date-compare';
+import {pipe} from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 @Component({
     selector: 'app-form-details',
@@ -26,7 +28,7 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Stores an instance of the preview component
      */
-    @ViewChild(PreviewComponent) preview;
+    @ViewChild(PreviewComponent, {static: false}) preview;
     /**
      * The id from the URL is linked to the entity ID of the tabview
      */
@@ -59,6 +61,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     ngOnInit() {
         this.getTabView();
+
     }
 
     /**
@@ -99,14 +102,25 @@ export class SurveyDetailsComponent implements OnInit {
                 tempAssessment.addChoice(this.createChoice(i, 4)); // Add a single choice to an assessment
             } else if (this.tabViews[i].assessmentType.toString() === '5') {
                 j = i; // index of the choice
+
                 while (this.tabViews[j].assessmentId === this.tabViews[i].assessmentId) {
+
                     tempAssessment.addChoice(this.createChoice(j, 5)); // Add a single a choice to an assessment
                     j++;
                 }
                 i = j; // Update new position of i
+                if (this.tabViews[j] === undefined) {
+                    console.log('UNDEFINED ' + i + ' ' + j);
+                }
             }
             this.survey.addAssessment(tempAssessment); // Add the assessment to the survey
         }
+
+        let blob = this.excelService.getExcelData();
+        if (blob !== undefined) {
+            this.updateToExcel(blob);
+        }
+
     }
     /**
      * Creates a new choice based on the assessment type
@@ -128,7 +142,7 @@ export class SurveyDetailsComponent implements OnInit {
             /** Creates a normal choice*/
             tempChoices = new Choice(
                 this.tabViews[i].choiceId,
-                this.tabViews[i].choiceLabel.trim()
+                this.tabViews[i].choiceDescription.trim()
             );
         }
         return tempChoices;
@@ -229,5 +243,21 @@ export class SurveyDetailsComponent implements OnInit {
 
     exportAsXLSX(): void {
         this.excelService.exportExcelFile(this.createWorksheet(), this.tabViews[0].tabViewLabel);
+    }
+
+    public updateToExcel(blob: any []) {
+
+        this.survey.assessments.forEach(function(item, index, array) {
+            item.setAssessmentDescription(
+                (blob[index].assessmentDescription));
+            item.choices.forEach(function(choice, i, array) {
+                try {
+                    choice.setChoiceDescription(
+                        (blob[i].choiceDescription));
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        });
     }
 }
