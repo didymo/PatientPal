@@ -18,7 +18,8 @@ import {HttpHeaders} from '@angular/common/http';
 import {Validators} from '@angular/forms';
 import {Survey} from '../Survey';
 import {delay} from 'rxjs/operators';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
+
+// import {AppModule} from '../app.module';
 
 @Component({
     selector: 'app-preview',
@@ -28,7 +29,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @NgModule({
     declarations: [AppComponent] ,
-    imports: [NgXformModule] ,
+    imports: [NgXformModule],
     bootstrap: [AppComponent]
 })
 /**
@@ -37,8 +38,8 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
  */
 export class PreviewComponent implements OnInit {
 
-    @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
-    @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
+    @ViewChild(NgXformEditSaveComponent, {static: false}) xformComponent: NgXformEditSaveComponent;
+    @ViewChild('customField', {static: false}) customFieldTmpl: TemplateRef<any>;
 
     @Input() survey: Survey;
 
