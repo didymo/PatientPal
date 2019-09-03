@@ -3,41 +3,43 @@
     <div id="questions">
         <form (ngSubmit)="saveSurvey()" id="form">
             <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
-                <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id>
+                <div id="title-div">
+                    <div id="title-div-child1">
+                        <p>Title:</p>
+                    </div>
+                    <div id="title-div-child2">
+                        <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id>
+                    </div>
+                </div>
 
                 <!--Assessment 5-->
                 <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
-                    <!--<div style="padding: 15px; display: flex;">
-                        <div style="flex: .3;">
-                            <p>Title:</p>
-                        </div>
-
-                        <div style="flex: 2; text-align: left">
-                            <p>Fatigue (activity)</p>
-                        </div>
-                    </div>-->
                     <div id="btn-div-1">
                         <div>
-                            <button (click)="preview.createRadioGroup(i)" id="selectRadio" class="btn btn-primary">
+                            <button (click)="preview.createRadioGroup(i)" id="selectRadio"
+                                    class="btn btn-outline-primary">
                                 Radio
                             </button>
                         </div>
                         <div>
-                            <button (click)="preview.createCheckBox(i)" id="checkBox" class="btn btn-primary">Checkbox
+                            <button (click)="preview.createCheckBox(i)" id="checkBox" class="btn btn-outline-primary">
+                                Checkbox
                             </button>
                         </div>
                         <div>
-                            <button (click)="preview.createSelect(i)" id="selectOneBtn" class="btn btn-primary">Select
+                            <button (click)="preview.createSelect(i)" id="selectOneBtn" class="btn btn-outline-primary">
+                                Select
                                 One
                             </button>
                         </div>
                         <div>
-                            <button (click)="preview.createSelectMany(i)" id="selectManyBtn" class="btn btn-primary">
+                            <button (click)="preview.createSelectMany(i)" id="selectManyBtn"
+                                    class="btn btn-outline-primary">
                                 Select Many
                             </button>
                         </div>
                     </div>
-                    <div id="option-div-parent" *ngFor="let choices of assessments.choices let x = index">
+                    <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
                         <div id="option-div-child">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Option {{x + 1}}</span>
@@ -51,36 +53,58 @@
 
                 <!--Assessment 4-->
                 <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
-                    <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn-light"> Text</button>
-                    <button (click)="preview.createNumber(i)" id="selectNumber" class="btn-light"> Number</button>
+                    <div id="option-div-parent2">
+                        <p id="p-title">Select if answer is a text or number input:</p>
+                    </div>
+                    <div id="btn-div-2">
+                        <div class="submit-child">
+                            <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn btn-primary">Text
+                            </button>
+                        </div>
+                        <div class="submit-child">
+                            <button (click)="preview.createNumber(i)" id="selectNumber" class="btn btn-primary">Number
+                            </button>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <!--Submit Buttons-->
-                <div style="padding-left: 10px; padding-right: 10px; padding-bottom: 10px; display: flex">
-                    <div style="margin-right: 5px;">
-                        <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-primary">Save Question
+                <div id="submit-div">
+                    <div class="submit-child">
+                        <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                            Question
                         </button>
                     </div>
-                    <div style="margin-right: 5px;">
-                        <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">Mandatory
+                    <div class="submit-child">
+                        <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                            Mandatory
                         </button>
                     </div>
-                    <div style="margin-right: 5px;">
-                        <button (click)="saveQuestion(i, true)" id="optional" class="btn btn-primary">Optional
+                    <div class="submit-child">
+                        <button (click)="saveQuestion(i, true)" id="optional" class="btn btn-outline-primary">Optional
                             Question
                         </button>
                     </div>
                 </div>
             </div>
-            <button (click)="saveSurvey()">Save</button>
+            <div id="save-div">
+                <button class="btn btn-primary" id="save-btn" (click)="saveSurvey()">Save</button>
+            </div>
         </form>
-        <br>
-        <button (click)="submit()">Submit</button>
-        <button (click)="goBack()">Go Back</button>
-        <button (click)="exportAsXLSX()"> Export as XLSX</button>
-
+        <div id="submit-div2">
+            <div class="submit-child">
+                <button class="btn btn-primary" id="sub-btn" (click)="submit()">Submit</button>
+            </div>
+            <div class="submit-child">
+                <button class="btn btn-primary" id="back-btn" (click)="goBack()">Go Back</button>
+            </div>
+            <div class="submit-child">
+                <button class="btn btn-primary" id="exp-btn" (click)="exportAsXLSX()"> Export as XLSX</button>
+            </div>
+        </div>
     </div>
-
 
     <div id="preview" *ngIf="survey">
         <app-preview [survey] = "survey"></app-preview>
