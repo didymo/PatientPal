@@ -54,15 +54,17 @@
                 <!--Assessment 4-->
                 <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
                     <div id="option-div-parent2">
-                        <p id="p-title">Select if answer is a text or number input:</p>
+                        <p id="p-title">Select if answer is a text or number:</p>
                     </div>
                     <div id="btn-div-2">
                         <div class="submit-child">
-                            <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn btn-primary">Text
+                            <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn btn-outline-primary">
+                                Text
                             </button>
                         </div>
                         <div class="submit-child">
-                            <button (click)="preview.createNumber(i)" id="selectNumber" class="btn btn-primary">Number
+                            <button (click)="preview.createNumber(i)" id="selectNumber" class="btn btn-outline-primary">
+                                Number
                             </button>
                         </div>
                     </div>
