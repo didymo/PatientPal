@@ -3,18 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="fc6f3188-5839-4600-89b0-741875d3d48d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Services/excel.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_Services/excel.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_Services/excel.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Services/message.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_Services/message.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Services/message.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_Services/message.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Services/survey.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_Services/survey.service.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/Services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_Services/survey.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-search/survey-search.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-search/survey-search.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-search/survey-search.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-search/survey-search.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-search/survey-search.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-search/survey-search.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.ts.save" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -28,36 +30,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+            <state relative-caret-position="504">
+              <caret line="198" column="43" selection-start-line="198" selection-start-column="43" selection-end-line="198" selection-end-column="43" />
               <folding>
-                <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#0#74#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/survey-search/survey-search.component.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="53" column="39" lean-forward="true" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
+            <state relative-caret-position="697">
+              <caret line="41" column="2" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
               <folding>
-                <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#0#58#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/survey-search/survey-search.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -101,7 +94,6 @@
         <option value="$PROJECT_DIR$/angular.json" />
         <option value="$PROJECT_DIR$/src/app/preview/preview.component.css" />
         <option value="$PROJECT_DIR$/src/main.ts" />
-        <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/src/app/survey.service.ts" />
         <option value="$PROJECT_DIR$/src/app/survey-details/survey-details.component.css" />
         <option value="$PROJECT_DIR$/src/app/survey-details/survey-details.component.html" />
@@ -110,7 +102,6 @@
         <option value="$PROJECT_DIR$/src/app/Tabview.ts" />
         <option value="$PROJECT_DIR$/src/app/TabView.ts" />
         <option value="$PROJECT_DIR$/src/app/Choice.ts" />
-        <option value="$PROJECT_DIR$/src/app/survey-search/survey-search.component.ts" />
         <option value="$PROJECT_DIR$/src/app/survey-details/survey-editor.component.ts" />
         <option value="$PROJECT_DIR$/src/app/survey-details/survey-details.component.ts" />
         <option value="$PROJECT_DIR$/src/app/TabviewList.ts" />
@@ -118,10 +109,8 @@
         <option value="$PROJECT_DIR$/src/app/Worksheet.ts" />
         <option value="$PROJECT_DIR$/src/app/Assessment.ts" />
         <option value="$PROJECT_DIR$/src/app/preview/preview.component.html" />
-        <option value="$PROJECT_DIR$/src/app/survey-search/survey-search.component.html" />
         <option value="$PROJECT_DIR$/src/app/dashboard/dashboard.component.html" />
         <option value="$PROJECT_DIR$/src/app/dashboard/dashboard.component.css" />
-        <option value="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.html" />
         <option value="$PROJECT_DIR$/src/app/tab-views/tab-views.component.css" />
         <option value="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.css" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -131,8 +120,6 @@
         <option value="$PROJECT_DIR$/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app/nav-bar/new-tab-view-dialog.css" />
-        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" />
         <option value="$PROJECT_DIR$/src/app/Services/excel.service.ts" />
         <option value="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" />
         <option value="$PROJECT_DIR$/src/app/Services/survey.service.ts" />
@@ -142,17 +129,23 @@
         <option value="$PROJECT_DIR$/src/app/survey-editor-dashboard/survey-editor-dashboard.component.ts" />
         <option value="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" />
         <option value="$PROJECT_DIR$/src/app/app.component.css" />
-        <option value="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" />
         <option value="$PROJECT_DIR$/src/app/_Services/survey.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" />
         <option value="$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/survey-search/survey-search.component.html" />
+        <option value="$PROJECT_DIR$/src/app/survey-search/survey-search.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1785" />
-    <option name="y" value="169" />
-    <option name="width" value="2550" />
-    <option name="height" value="1024" />
+    <option name="x" value="1920" />
+    <option name="y" value="27" />
+    <option name="width" value="2560" />
+    <option name="height" value="1366" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -197,7 +190,7 @@
               <item name="PatientPal" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="survey-search" type="462c0819:PsiDirectoryNode" />
+              <item name="survey-editor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PatientPal" type="b2602c69:ProjectViewProjectNode" />
@@ -362,7 +355,7 @@
       <workItem from="1567140174640" duration="382000" />
       <workItem from="1567381433764" duration="14343000" />
       <workItem from="1567396505903" duration="16414000" />
-      <workItem from="1567472476244" duration="712000" />
+      <workItem from="1567472476244" duration="6553000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -497,11 +490,18 @@
       <option name="project" value="LOCAL" />
       <updated>1567415541440</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Fixed up sorting">
+      <created>1567473240290</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1567473240290</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230120000" />
+    <option name="totallyTimeSpent" value="235961000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -531,29 +531,30 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3281759" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3281759" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013796" side_tool="true" weight="0.40625" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4990146" weight="0.5962171" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4990146" weight="0.35032895" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32648027" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24354243" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20102483" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24986821" />
       <window_info id="npm" order="2" side_tool="true" weight="0.32999474" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32829374" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32894737" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49862042" visible="true" weight="0.203125" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39967105" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32937366" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32899022" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32886723" />
-      <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32829374" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50054115" side_tool="true" weight="0.47521552" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49945888" weight="0.475162" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3281759" />
+      <window_info anchor="bottom" id="TypeScript" order="9" weight="0.3281759" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013796" side_tool="true" weight="0.40625" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4990146" weight="0.35032895" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32648027" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -588,9 +589,6 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@esss/ng-xform/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@esss/ng-xform/ng-xform.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -612,13 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/TabviewList.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/angular.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -626,16 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="2" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -675,23 +656,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.css">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/tab-views/tab-views.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
@@ -738,16 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -764,16 +718,6 @@
           <caret line="73" selection-start-line="73" selection-end-line="73" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/tab-views/tab-views.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="80" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="80" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -886,16 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1887">
-          <caret line="111" column="101" selection-start-line="111" selection-start-column="101" selection-end-line="111" selection-end-column="110" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/preview/preview.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -908,34 +842,97 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/_Services/survey.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="41" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="41" />
+        <state relative-caret-position="408">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/survey-search/survey-search.component.html">
+    <entry file="file://$PROJECT_DIR$/src/app/tab-views/tab-views.component.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/survey-search/survey-search.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/survey-search/survey-search.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="39" lean-forward="true" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
+        <state relative-caret-position="408">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="78" selection-start-line="11" selection-start-column="78" selection-end-line="11" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/surveys-list/surveys-list.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="36" column="8" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/TabviewList.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+        <state relative-caret-position="136">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/tab-views/tab-views.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="2" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="198" column="43" selection-start-line="198" selection-start-column="43" selection-end-line="198" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#74#0" expanded="true" />
           </folding>
         </state>
       </provider>

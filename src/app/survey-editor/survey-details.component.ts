@@ -10,12 +10,14 @@ import {Choice} from '../Choice';
 import {PreviewComponent} from '../preview/preview.component';
 import {ExcelService} from '../_Services/excel.service';
 import {Worksheet} from '../Worksheet';
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
     selector: 'app-form-details',
     templateUrl: './survey-details.component.html',
-    styleUrls: ['./survey-details.component.css']
+    styleUrls: ['./survey-details.component.css'],
+    providers: [MatSnackBar]
 })
 /**
  * @implements OnInit
@@ -45,14 +47,17 @@ export class SurveyDetailsComponent implements OnInit {
      * @param fb FromBuilder
      * @param route Activated Route
      * @param formService The service class that inferfaces with Drupal
+     * @param excelService
      * @param location Instance of Location
+     * @param _snackBar
      */
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private formService: SurveyService,
         private excelService: ExcelService,
-        private location: Location
+        private location: Location,
+        private _snackBar: MatSnackBar
     ) { }
     /**
      * NgInit for the SurveyDetailComponent Class
@@ -124,6 +129,7 @@ export class SurveyDetailsComponent implements OnInit {
         let blob = this.excelService.getExcelData();
         if (blob !== undefined) {
             this.updateToExcel(blob);
+            this.openSnackBar('Import Successful', 'Close');
         }
     }
     /**
@@ -190,6 +196,8 @@ export class SurveyDetailsComponent implements OnInit {
                 },
                 error1 => console.log(error1) // Log errors
             );
+        this.openSnackBar('Survey Submitted', 'Close');
+
     }
 
     /**
@@ -218,6 +226,8 @@ export class SurveyDetailsComponent implements OnInit {
     public saveQuestion(i: number, optional: boolean): void {
         this.saveSurvey(); // Save the survey
         this.preview.updateField(i, optional); // Update the preview
+        this.openSnackBar('Question Saved', 'Close');
+
     }
 
     /**
@@ -284,5 +294,12 @@ export class SurveyDetailsComponent implements OnInit {
             }
 
         })
+
+    }
+
+    public openSnackBar(message: string, action: string): void {
+        this._snackBar.open(message, action, {
+            duration: 2000,
+        });
     }
 }

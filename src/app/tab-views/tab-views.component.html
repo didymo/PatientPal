@@ -1,6 +1,11 @@
-<div class="survey_search">
-  <app-survey-search></app-survey-search>
+<div class="container">
+    <div id="search-component" class="col-lg-9">
+
+        <input #searchBox id="search-box" class="form-control mr-sm-2"
+               placeholder="Search tab view name" type="text" [(ngModel)]="queryString"/>
+    </div>
 </div>
+
 <!--Table Data -->
 <div class="align-baseline" style="margin-top: 20px">
   <div class="row">
@@ -15,7 +20,8 @@
         </tr>
         </thead>
           <tbody class="search-result">
-          <tr *ngFor="let tab of tabviews" routerLink="/detail/{{tab.entityId}}" class="survey_data"  >
+          <tr *ngFor="let tab of tabviews | tabViewSearch: queryString" routerLink="/detail/{{tab.entityId}}"
+              class="survey_data">
               <td class="survey_id">{{tab.entityId }}</td>
               <td>{{ tab.label }}</td>
               <td>10/10/19</td>

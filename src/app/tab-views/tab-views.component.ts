@@ -1,12 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {SurveyService} from '../_Services/survey.service';
 import {TabviewList} from '../TabviewList';
 
-@Component({
-  selector: 'app-tab-views',
-  templateUrl: './tab-views.component.html',
-  styleUrls: ['./tab-views.component.css']
+@Pipe({
+    name: 'tabViewSearch'
 })
+/**
+ * Used to handle the search functionality of the application
+ * Searches for specific TabViews
+ * Displays a search bar on the application
+ * A user can enter search terms and then see any TabView with similar characters
+ */
+export class TabViewSearch implements PipeTransform {
+
+
+    transform(value: TabviewList[], term: string): TabviewList[] {
+        if (term == null) {
+            return value;
+        } else {
+            return value.filter(item => item.label.toLowerCase().match(term.toLowerCase()));
+        }
+    }
+
+}
+
+@Component({
+    selector: 'app-tab-views',
+    templateUrl: './tab-views.component.html',
+    styleUrls: ['./tab-views.component.css'],
+    providers: [TabViewSearch]
+})
+
 
 /**
  * Used to display a list of Tabviews that have been imported from Drupal
@@ -19,6 +43,7 @@ export class TabViewsComponent implements OnInit {
      * The array will be used to output all the TabViews in a table
      */
     tabviews: TabviewList [];
+    queryString: string;
 
     /**
      * Constructor of the TabViewComponent Class
