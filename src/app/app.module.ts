@@ -17,6 +17,7 @@ import { TabViewsComponent } from './tab-views/tab-views.component';
 import {PreviewComponent} from './preview/preview.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule, MatFormFieldModule} from '@angular/material';
+import {SurveyEditorDashboardComponent} from './survey-editor-dashboard/survey-editor-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatDialogModule, MatFormFieldModule} from '@angular/material';
     NavBarComponent,
     TabViewsComponent,
     PreviewComponent,
-      NewTabViewDialog
+      NewTabViewDialog,
+      SurveyEditorDashboardComponent
   ],
   imports: [
     BrowserModule,

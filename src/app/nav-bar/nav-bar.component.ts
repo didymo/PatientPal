@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {ExcelService} from '../Services/excel.service';
+import {ExcelService} from '../_Services/excel.service';
 import * as XLSX from 'xlsx';
 
 export interface DialogData {

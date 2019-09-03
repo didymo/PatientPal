@@ -3,12 +3,12 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Survey } from '../Survey';
-import {SurveyService} from '../Services/survey.service';
+import {SurveyService} from '../_Services/survey.service';
 import {TabView} from '../TabView';
 import {Assessment} from '../Assessment';
 import {Choice} from '../Choice';
 import {PreviewComponent} from '../preview/preview.component';
-import {ExcelService} from '../Services/excel.service';
+import {ExcelService} from '../_Services/excel.service';
 import {Worksheet} from '../Worksheet';
 
 
