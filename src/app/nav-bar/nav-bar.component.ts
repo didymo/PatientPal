@@ -81,12 +81,12 @@ export class NewTabViewDialog {
                 arr[i] = String.fromCharCode(data[i]);
             }
             let bstr = arr.join('');
-            let workbook = XLSX.read(bstr, {type: 'binary'});
-            let first_sheet_name = workbook.SheetNames[0];
-            let worksheet = workbook.Sheets[first_sheet_name];
-            this.blob = XLSX.utils.sheet_to_json(worksheet, {raw: true});
-            this.entityId = this.blob[0].tabViewId;
-            this.sendData();
+            let workbook = XLSX.read(bstr, {type: 'binary'}); // Read in the excel file
+            let first_sheet_name = workbook.SheetNames[0]; // Get the first worksheet in the excel file
+            let worksheet = workbook.Sheets[first_sheet_name]; // Create the worksheet
+            this.blob = XLSX.utils.sheet_to_json(worksheet, {raw: true}); // Create the blob
+            this.entityId = this.blob[0].tabViewId; // Get the entity ID from the excel sheet
+            this.sendData(); // Send the data to the excel service
 
         };
         reader.readAsArrayBuffer(f);
@@ -94,6 +94,9 @@ export class NewTabViewDialog {
         document.getElementById('fileSelector').addEventListener('change', this.handleFile, false);
     }
 
+    /**
+     * Send the excel data to the excel service
+     */
     public sendData(): void {
         this.excelService.setExcelData(this.blob);
     }

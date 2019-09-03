@@ -64,7 +64,6 @@ export class SurveyDetailsComponent implements OnInit {
      */
     ngOnInit() {
         this.getTabView();
-
     }
 
     /**
@@ -96,36 +95,37 @@ export class SurveyDetailsComponent implements OnInit {
         this.createSurvey(); // Create an instance of a survey
 
         let tempAssessment: Assessment; // Create an instance of an assessment
-        let i = 0; // Holds position of choices
-        let j = 0; // Holds position of assessment
+        let cPos = 0; // Holds position of choices
+        let aPos = 0; // Holds position of assessment
 
         this.tabViews.forEach((item, index, array) => {
             if (index === 0) { // Default statement
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 this.survey.addAssessment(tempAssessment);
                 if (item.assessmentType.toString() === '4') {
-                    this.survey.assessments[j].addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
+                    this.survey.assessments[aPos].addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
                 } else if (item.assessmentType.toString() === '5') {
-                    this.survey.assessments[j].addChoice(this.createChoice(i, 5)); // Add a single a choice to an assessment
-                    i++;
+                    this.survey.assessments[aPos].addChoice(this.createChoice(cPos, 5)); // Add a single a choice to an assessment
+                    cPos++; // Update the position of the choice
                 }
             } else if (item.assessmentType.toString() === '4') {
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 tempAssessment.addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
                 this.survey.addAssessment(tempAssessment);
-                j++;
+                aPos++; // Update the position of the assessment
             } else if (item.assessmentType.toString() === '5' && item.assessmentId === this.tabViews[index - 1].assessmentId) {
-                this.survey.assessments[j].addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
-                i++;
+                this.survey.assessments[aPos].addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
+                cPos++; // Update the position of the choice
             } else if (item.assessmentType.toString() === '5' && item.assessmentId !== this.tabViews[index - 1].assessmentId) {
-                i = 0;
+                cPos = 0; // Reset the position of the choice
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 tempAssessment.addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
-                this.survey.addAssessment(tempAssessment);
-                j++;
+                this.survey.addAssessment(tempAssessment); // Add the assessment to the survey
+                aPos++; // Update the position of the assessment
             }
         });
 
+        // Check if an excel file is present
         let blob = this.excelService.getExcelData();
         if (blob !== undefined) {
             this.updateToExcel(blob);
@@ -168,7 +168,7 @@ export class SurveyDetailsComponent implements OnInit {
         );
     }
     /**
-     * Init temp assessment
+     * Create a new assessment
      * @param i
      * Index of the array
      */
@@ -266,37 +266,44 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public updateToExcel(blob: any []) {
 
-        let i = 0; // Holds the position of the assessments
-        let j = 0; // Holds the position of the choices
+        let aPos = 0; // Holds the position of the assessments
+        let cPos = 0; // Holds the position of the choices
 
         blob.forEach((item, index, array) => {
             if (index === 0) {
-                this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
+                this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
                 if (item.assessmentType.toString() === '4') {
-                    this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
-                    i++; // Update the position of the assessment
+                    this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
+                    aPos++; // Update the position of the assessment
                 } else if (item.assessmentType.toString() === '5') {
-                    this.survey.assessments[i].choices[j].setChoiceDescription(item.choiceDescription.toString());
-                    j++; // Update the position of the choice
+                    this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                    cPos++; // Update the position of the choice
                 }
             } else if (item.assessmentType.toString() === '4') {
-                this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
-                i++; // Update the position of the assessments
-            } else if (item.assessmentType.toString() === '5' && this.survey.assessments[i].id === item.assessmentId) {
-                this.survey.assessments[i].choices[j].setChoiceDescription(item.choiceDescription.toString());
-                j++; // Update the position of the choice
-            } else if (item.assessmentType.toString() === '5' && this.survey.assessments[i].id !== item.assessmentId) {
-                j = 0; // Reset values
-                i++; // Move onto the next assessment
-                this.survey.assessments[i].setAssessmentDescription(item.assessmentDescription.toString());
-                this.survey.assessments[i].choices[j].setChoiceDescription(item.choiceDescription.toString());
-                j++; // Update the position of the choice
+                this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
+                aPos++; // Update the position of the assessments
+            } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id === item.assessmentId) {
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                cPos++; // Update the position of the choice
+            } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id !== item.assessmentId) {
+                cPos = 0; // Reset values
+                aPos++; // Move onto the next assessment
+                this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                cPos++; // Update the position of the choice
             }
 
         })
 
     }
 
+    /**
+     * Opens up a snack bar which will offer the user some feedback on an action
+     * @param message
+     * The message that will be displayed
+     * @param action
+     * An action
+     */
     public openSnackBar(message: string, action: string): void {
         this._snackBar.open(message, action, {
             duration: 2000,
