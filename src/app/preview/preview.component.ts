@@ -1,10 +1,8 @@
-import {Component, Input, NgModule, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, NgModule, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {
     CheckboxField,
-    CustomField, DateField,
-    DateRangeField,
+    CustomField,
     DynamicField,
-    MeasureField, MultilineField, NestedFormGroup,
     NgXformEditSaveComponent,
     NgXformModule, NumberField,
     RadioGroupField,
@@ -18,7 +16,8 @@ import {HttpHeaders} from '@angular/common/http';
 import {Validators} from '@angular/forms';
 import {Survey} from '../Survey';
 import {delay} from 'rxjs/operators';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
+
+// import {AppModule} from '../app.module';
 
 @Component({
     selector: 'app-preview',
@@ -28,7 +27,7 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @NgModule({
     declarations: [AppComponent] ,
-    imports: [NgXformModule] ,
+    imports: [NgXformModule],
     bootstrap: [AppComponent]
 })
 /**
@@ -37,8 +36,8 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
  */
 export class PreviewComponent implements OnInit {
 
-    @ViewChild(NgXformEditSaveComponent) xformComponent: NgXformEditSaveComponent;
-    @ViewChild('customField') customFieldTmpl: TemplateRef<any>;
+    @ViewChild(NgXformEditSaveComponent, {static: true}) xformComponent: NgXformEditSaveComponent;
+    @ViewChild('customField', {static: true}) customFieldTmpl: TemplateRef<any>;
 
     @Input() survey: Survey;
 
@@ -54,7 +53,7 @@ export class PreviewComponent implements OnInit {
     /**
      * Defines the width of a label
      */
-    public labelWidth = 2;
+    public labelWidth = 0;
     public model: any;
     public outputhelper = {A: 1, B: 2, C: 3};
     public subscriptions: Subscription[] = [];
@@ -82,10 +81,14 @@ export class PreviewComponent implements OnInit {
             (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
         ));
 
+
         this.titleService.setTitle('TabviewList | ' + this.survey.tabDesc); // Sets the title
 
+
         this.initWidgets(); // Initiates the widgets
+
     }
+
 
     /**
      * This function is used to init the fields array.
@@ -101,7 +104,7 @@ export class PreviewComponent implements OnInit {
                     Validators.required,
                     Validators.minLength(1)
                 ]
-            })
+            }),
         ];
 
         let i = 0;
@@ -147,7 +150,7 @@ export class PreviewComponent implements OnInit {
             tempField = new SelectField({
                 key: this.survey.assessments[i].id.toString(),
                 label: this.survey.assessments[i].assessmentDesc,
-                searchable: true,
+                searchable: false,
                 options: this.survey.assessments[i].choices,
                 addNewOption: true,
                 addNewOptionText: 'id',
@@ -155,7 +158,8 @@ export class PreviewComponent implements OnInit {
                 validators: [
                     Validators.required,
                     Validators.minLength(1)
-                ]
+                ],
+
             });
         }
         // Reposition
