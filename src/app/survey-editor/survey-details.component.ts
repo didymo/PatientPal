@@ -266,6 +266,8 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public updateToExcel(blob: any []) {
 
+        this.survey.tabDesc = blob[0].tabViewLabel;
+
         let aPos = 0; // Holds the position of the assessments
         let cPos = 0; // Holds the position of the choices
 

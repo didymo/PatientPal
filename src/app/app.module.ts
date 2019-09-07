@@ -15,7 +15,6 @@ import {TabViewsComponent, TabViewSearch} from './tab-views/tab-views.component'
 import {PreviewComponent} from './preview/preview.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule, MatFormFieldModule, MatSnackBarModule} from '@angular/material';
-import {SurveyEditorDashboardComponent} from './survey-editor-dashboard/survey-editor-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import {SurveyEditorDashboardComponent} from './survey-editor-dashboard/survey-e
     TabViewsComponent,
     PreviewComponent,
     NewTabViewDialog,
-    SurveyEditorDashboardComponent,
     TabViewSearch,
   ],
   imports: [

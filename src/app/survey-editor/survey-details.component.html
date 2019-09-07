@@ -1,5 +1,5 @@
-<h2 *ngIf="tabViews">{{tabViews[0].tabViewLabel}}</h2>
 <div id="wrapper" *ngIf="survey">
+    <h2 *ngIf="tabViews">{{survey.tabDesc}}</h2>
     <div id="questions">
         <form (ngSubmit)="saveSurvey()" id="form">
             <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">

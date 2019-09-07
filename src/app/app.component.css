@@ -46,7 +46,7 @@ body {
   }
 
   #page-content-wrapper {
-    min-width: 0;
+      min-width: 0vh;
     width: 100%;
   }
 
