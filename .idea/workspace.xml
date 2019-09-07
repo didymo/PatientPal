@@ -4,11 +4,6 @@
     <list default="true" id="fc6f3188-5839-4600-89b0-741875d3d48d" name="Default Changelist" comment="Design">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/_Services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_Services/survey.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -21,79 +16,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="27" selection-start-line="27" selection-end-line="27" />
-                  <folding>
-                    <element signature="e#0#58#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/app/preview/preview.component.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="49" selection-end-column="55" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="791">
-                  <caret line="269" lean-forward="true" selection-start-line="269" selection-end-line="269" />
-                  <folding>
-                    <element signature="e#0#74#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="49" column="3" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
-                  <folding>
-                    <element signature="e#0#56#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/_Services/survey.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="49" column="65" lean-forward="true" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -118,7 +51,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature-export-design1" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
@@ -167,7 +100,6 @@
         <option value="$PROJECT_DIR$/src/app/app-routing.module.ts" />
         <option value="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" />
         <option value="$PROJECT_DIR$/src/app/dashboard/dashboard.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/_Services/survey.service.ts" />
         <option value="$PROJECT_DIR$/src/app/preview/preview.component.html" />
         <option value="$PROJECT_DIR$/src/app/preview/preview.component.css" />
         <option value="$PROJECT_DIR$/src/app/app.component.css" />
@@ -176,6 +108,7 @@
         <option value="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" />
         <option value="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" />
         <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/_Services/survey.service.ts" />
       </list>
     </option>
   </component>
@@ -221,6 +154,13 @@
               <item name="PatientPal" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="_Services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PatientPal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PatientPal" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="nav-bar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -247,6 +187,7 @@
   <component name="PropertiesComponent">
     <property name="ChangesTree.GroupingKeys" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.karma.karma_node_package_dir" value="" />
@@ -559,7 +500,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251486000" />
+    <option name="totallyTimeSpent" value="251519000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -718,27 +659,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/survey-editor-dashboard/survey-editor-dashboard.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/survey-editor-dashboard/survey-editor-dashboard.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/survey-editor-dashboard/survey-editor-dashboard.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/survey-editor-dashboard/survey-editor-dashboard.component.css" />
+    <entry file="file://$PROJECT_DIR$/src/app/survey-editor-dashboard/survey-editor-dashboard.component.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/survey-editor-dashboard/survey-editor-dashboard.component.html" />
     <entry file="file://$PROJECT_DIR$/src/app/Survey.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -841,13 +764,6 @@
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_Services/survey.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -984,6 +900,13 @@
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_Services/survey.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="49" column="65" lean-forward="true" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
         </state>
       </provider>
     </entry>
