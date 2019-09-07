@@ -15,6 +15,10 @@ const EXCEL_EXTENSION = '.xlsx';
  */
 export class ExcelService {
 
+    /**This will be the data gathered from the excel file*/
+    private excelData: any[];
+
+
     constructor() {
     }
 
@@ -52,4 +56,20 @@ export class ExcelService {
 
         FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     }
+
+    public setExcelData(blob: any[]): void {
+        this.excelData = blob;
+    }
+
+    public getExcelData(): any [] {
+        let tmp = this.excelData;
+        return tmp;
+        this.clearData();
+    }
+
+    public clearData() {
+        this.excelData = undefined;
+    }
 }
+
+

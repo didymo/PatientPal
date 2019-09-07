@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {SurveyService} from '../Services/survey.service';
 
 @Component({
   selector: 'app-dashboard',

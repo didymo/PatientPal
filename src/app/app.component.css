@@ -13,7 +13,7 @@ body {
 }
 
 #sidebar-wrapper {
-  margin-top: 80px;
+    margin-top: 65px;
   min-height: 100vh;
   margin-left: -15rem;
   -webkit-transition: margin .25s ease-out;
@@ -46,7 +46,7 @@ body {
   }
 
   #page-content-wrapper {
-    min-width: 0;
+      min-width: 0vh;
     width: 100%;
   }
 
@@ -55,35 +55,6 @@ body {
   }
 }
 
-.list-group-item {
-  padding-top: 0%;
-  padding-bottom: 0%;
-}
-
-.nav-div-parent {
-  display: flex;
-  height: 40px;
-}
-
-.nav-div-child1 {
-  flex: .2;
-  padding: 7px 0px;
-}
-
-.nav-div-child2 {
-  flex: 1;
-  padding: 7px 0px;
-}
-
-.nav-div-child2p {
-  margin-left: 3%;
-  font-family: Arial;
-}
-
-.nav-icons {
-  height: 25px;
-  width: 25px;
-}
 
 /*table*/
 /*{*/
