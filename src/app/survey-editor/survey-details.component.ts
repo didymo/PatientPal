@@ -2,15 +2,16 @@ import {Component, OnInit, Input, Output, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Survey } from '../Survey';
-import {SurveyService} from '../_Services/survey.service';
-import {TabView} from '../TabView';
-import {Assessment} from '../Assessment';
-import {Choice} from '../Choice';
+import {Survey} from '../_classes/Survey';
+import {SurveyService} from '../_services/survey.service';
+import {TabView} from '../_classes/TabView';
+import {Assessment} from '../_classes/Assessment';
+import {Choice} from '../_classes/Choice';
 import {PreviewComponent} from '../preview/preview.component';
-import {ExcelService} from '../_Services/excel.service';
-import {Worksheet} from '../Worksheet';
+import {ExcelService} from '../_services/excel.service';
+import {Worksheet} from '../_classes/Worksheet';
 import {MatSnackBar} from '@angular/material';
+import {FormBuilderComponent} from '../form-builder/form-builder.component';
 
 
 @Component({
@@ -28,7 +29,9 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Stores an instance of the preview component
      */
-    @ViewChild(PreviewComponent, {static: false}) preview;
+        // @ViewChild(PreviewComponent, {static: false}) preview;
+    @ViewChild(FormBuilderComponent, {static: false}) formBuilder;
+
     /**
      * The id from the URL is linked to the entity ID of the tabview
      */
@@ -225,7 +228,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public saveQuestion(i: number, optional: boolean): void {
         this.saveSurvey(); // Save the survey
-        this.preview.updateField(i, optional); // Update the preview
+        this.formBuilder.updateField(i, optional); // Update the preview
         this.openSnackBar('Question Saved', 'Close');
 
     }

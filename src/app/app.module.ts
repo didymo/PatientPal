@@ -15,6 +15,8 @@ import {TabViewsComponent, TabViewSearch} from './tab-views/tab-views.component'
 import {PreviewComponent} from './preview/preview.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule, MatFormFieldModule, MatSnackBarModule} from '@angular/material';
+import {FormBuilderComponent} from './form-builder/form-builder.component';
+import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form-question.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule, MatFormFieldModule, MatS
     PreviewComponent,
     NewTabViewDialog,
     TabViewSearch,
+      FormBuilderComponent,
+      DynamicFormQuestionComponent,
   ],
   imports: [
     BrowserModule,

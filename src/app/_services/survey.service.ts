@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
-import {TabviewList} from '../TabviewList';
-import {TabView} from '../TabView';
+import {TabviewList} from '../_classes/TabviewList';
+import {TabView} from '../_classes/TabView';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -19,10 +19,10 @@ export class SurveyService {
     private surveysURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
     private drupalURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
     private tabViewURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
-
-    // private surveysURL = 'http://192.168.1.129/tabview/edit';
-    // private drupalURL = 'http://192.168.1.129/rest/tab/list?_format=json';
-    // private tabViewURL = 'http://192.168.1.129/rest/content/tab/get/';
+    //
+    // private surveysURL = 'http://192.168.1.130/tabview/edit';
+    // private drupalURL = 'http://192.168.1.130/rest/tab/list?_format=json';
+    // private tabViewURL = 'http://192.168.1.130/rest/content/tab/get/';
 
     constructor(
         private http: HttpClient,

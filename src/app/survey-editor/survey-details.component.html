@@ -1,6 +1,6 @@
 <div id="wrapper" *ngIf="survey">
-    <h2 *ngIf="tabViews">{{survey.tabDesc}}</h2>
     <div id="questions">
+        <h2 *ngIf="tabViews">{{survey.tabDesc}}</h2>
         <form (ngSubmit)="saveSurvey()" id="form">
             <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
                 <div id="title-div">
@@ -16,24 +16,26 @@
                 <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
                     <div id="btn-div-1">
                         <div>
-                            <button (click)="preview.createRadioGroup(i)" id="selectRadio"
+                            <button (click)="formBuilder.createRadioGroup(i)" id="selectRadio"
                                     class="btn btn-outline-primary">
                                 Radio
                             </button>
                         </div>
                         <div>
-                            <button (click)="preview.createCheckBox(i)" id="checkBox" class="btn btn-outline-primary">
+                            <button (click)="formBuilder.createCheckBox(i)" id="checkBox"
+                                    class="btn btn-outline-primary">
                                 Checkbox
                             </button>
                         </div>
                         <div>
-                            <button (click)="preview.createSelect(i)" id="selectOneBtn" class="btn btn-outline-primary">
+                            <button (click)="formBuilder.createSelect(i)" id="selectOneBtn"
+                                    class="btn btn-outline-primary">
                                 Select
                                 One
                             </button>
                         </div>
                         <div>
-                            <button (click)="preview.createSelectMany(i)" id="selectManyBtn"
+                            <button (click)="formBuilder.createSelectMany(i)" id="selectManyBtn"
                                     class="btn btn-outline-primary">
                                 Select Many
                             </button>
@@ -58,12 +60,14 @@
                     </div>
                     <div id="btn-div-2">
                         <div class="submit-child">
-                            <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn btn-outline-primary">
+                            <button (click)="formBuilder.createText(i)" id="selectTxtBtn"
+                                    class="btn btn-outline-primary">
                                 Text
                             </button>
                         </div>
                         <div class="submit-child">
-                            <button (click)="preview.createNumber(i)" id="selectNumber" class="btn btn-outline-primary">
+                            <button (click)="formBuilder.createNumber(i)" id="selectNumber"
+                                    class="btn btn-outline-primary">
                                 Number
                             </button>
                         </div>
@@ -109,7 +113,8 @@
     </div>
 
     <div id="preview" *ngIf="survey">
-        <app-preview [survey] = "survey"></app-preview>
+        <!--        <app-preview [survey] = "survey"></app-preview>-->
+        <app-form-builder [survey]="survey"></app-form-builder>
     </div>
 </div>
 

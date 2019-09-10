@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {ExcelService} from '../_Services/excel.service';
+import {ExcelService} from '../_services/excel.service';
 import * as XLSX from 'xlsx';
 
 export interface DialogData {
@@ -98,7 +98,8 @@ export class NewTabViewDialog {
      * Send the excel data to the excel service
      */
     public sendData(): void {
-        this.excelService.setExcelData(this.blob);
+        let id = this.blob[0].tabViewId;
+        this.excelService.setExcelData(this.blob, id);
     }
 
 }

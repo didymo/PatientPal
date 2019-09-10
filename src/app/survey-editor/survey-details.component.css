@@ -17,10 +17,10 @@
 
 #preview {
     /*border: 1px solid black;*/
-    padding-left: 3%;
+    padding-left: 1%;
     overflow: hidden;
     float: left;
-    width: 45%;
+    width: 50%;
 }
 #heading {
     width: 100%;

@@ -1,6 +1,6 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
-import {SurveyService} from '../_Services/survey.service';
-import {TabviewList} from '../TabviewList';
+import {SurveyService} from '../_services/survey.service';
+import {TabviewList} from '../_classes/TabviewList';
 
 @Pipe({
     name: 'tabViewSearch'

@@ -14,10 +14,9 @@ import {Observable, of, Subject, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {Validators} from '@angular/forms';
-import {Survey} from '../Survey';
+import {Survey} from '../_classes/Survey';
 import {delay} from 'rxjs/operators';
 
-// import {AppModule} from '../app.module';
 
 @Component({
     selector: 'app-preview',
