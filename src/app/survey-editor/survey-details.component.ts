@@ -314,4 +314,5 @@ export class SurveyDetailsComponent implements OnInit {
             duration: 2000,
         });
     }
+
 }
