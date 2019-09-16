@@ -12,7 +12,13 @@ import {ExcelService} from '../_services/excel.service';
 import {Worksheet} from '../_classes/Worksheet';
 import {MatSnackBar} from '@angular/material';
 import {FormBuilderComponent} from '../form-builder/form-builder.component';
+import {MatDialog} from '@angular/material/dialog';
+import {DeployedLink} from './deployed-link';
+import {environment} from '../../environments/environment';
 
+export interface DialogData {
+    link: string;
+}
 
 @Component({
     selector: 'app-form-details',
@@ -60,7 +66,8 @@ export class SurveyDetailsComponent implements OnInit {
         private formService: SurveyService,
         private excelService: ExcelService,
         private location: Location,
-        private _snackBar: MatSnackBar
+        private _snackBar: MatSnackBar,
+        public dialog: MatDialog
     ) { }
     /**
      * NgInit for the SurveyDetailComponent Class
@@ -204,7 +211,7 @@ export class SurveyDetailsComponent implements OnInit {
     }
 
     /**
-     * Saves, the questions, and sends a POST request to drupal
+     * Saves, the questions, and sends a POST request to the formserver
      * Generates a JSON string
      * Calls deploy survey in the service class
      */
@@ -217,10 +224,9 @@ export class SurveyDetailsComponent implements OnInit {
                 res => {
                     console.log(res);
                 },
-                error1 => console.log(error1) // Log errors
+                error1 => console.log(error1), // Log errors
+                () => this.openDialog()
             );
-        this.openSnackBar('Survey Deployed', 'Close');
-
     }
 
     /**
@@ -332,6 +338,22 @@ export class SurveyDetailsComponent implements OnInit {
     public openSnackBar(message: string, action: string): void {
         this._snackBar.open(message, action, {
             duration: 2000,
+        });
+    }
+
+    /**
+     * Handle the dialog window
+     * This dialog displays a single input which contains the URL of the deployed survey
+     */
+    openDialog(): void {
+        const dialogRef = this.dialog.open(DeployedLink, {
+            height: '25%',
+            width: '25%',
+            data: {link: environment.formServerApplicationURL + this.id}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
         });
     }
 

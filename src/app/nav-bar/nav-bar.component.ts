@@ -7,8 +7,6 @@ export interface DialogData {
     animal: string;
     name: string;
 }
-
-
 @Component({
     selector: 'app-nav-bar',
     templateUrl: './nav-bar.component.html',

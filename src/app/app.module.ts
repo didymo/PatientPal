@@ -17,6 +17,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule, MatFormFieldModule, MatSnackBarModule} from '@angular/material';
 import {FormBuilderComponent} from './form-builder/form-builder.component';
 import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form-question.component';
+import {DeployedLink} from './survey-editor/deployed-link';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form
     TabViewSearch,
       FormBuilderComponent,
       DynamicFormQuestionComponent,
+      DeployedLink
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form
   exports: [
     NavBarComponent
   ],
-    entryComponents: [NewTabViewDialog],
+    entryComponents: [NewTabViewDialog, DeployedLink],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
