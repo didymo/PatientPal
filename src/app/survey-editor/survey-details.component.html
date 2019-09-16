@@ -1,116 +1,163 @@
-<div id="wrapper" *ngIf="survey">
-    <h2 *ngIf="tabViews">{{survey.tabDesc}}</h2>
-    <div id="questions">
-        <form (ngSubmit)="saveSurvey()" id="form">
-            <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
-                <div id="title-div">
-                    <div id="title-div-child1">
-                        <p>Title:</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light position-fixed">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <button class="nav-link" (click)="saveSurvey()">
+                    <div>
+                        <img class="nav-icons" src="assets/icons/save.svg">
                     </div>
-                    <div id="title-div-child2">
-                        <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" (click)="submit()">
+                    Submit
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" (click)="goBack()">
+                    <div>
+                        <img class="nav-icons" src="assets/icons/back.svg">
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" (click)="exportAsXLSX()">
+                    <div>
+                        <img class="nav-icons" src="assets/icons/export.svg">
+                    </div>
+                </button>
+            </li>
+            <li class="nav-item">
+                <div id="nav2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Title</span>
+                    </div>
+                    <div class="input-group-append">
+                        <span *ngIf="tabViews">{{tabViews[0].tabViewLabel}}</span>
                     </div>
                 </div>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-                <!--Assessment 5-->
-                <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
-                    <div id="btn-div-1">
-                        <div>
-                            <button (click)="preview.createRadioGroup(i)" id="selectRadio"
-                                    class="btn btn-outline-primary">
-                                Radio
-                            </button>
+<br/> <br/>
+<div>
+
+    <div id="wrapper" *ngIf="survey">
+
+        <div id="questions">
+            <form (ngSubmit)="saveSurvey()" id="form">
+                <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
+                    <div class="title-div">
+                        <div class="title-div-child1">
+                            <p>Title:</p>
                         </div>
-                        <div>
-                            <button (click)="preview.createCheckBox(i)" id="checkBox" class="btn btn-outline-primary">
-                                Checkbox
-                            </button>
-                        </div>
-                        <div>
-                            <button (click)="preview.createSelect(i)" id="selectOneBtn" class="btn btn-outline-primary">
-                                Select
-                                One
-                            </button>
-                        </div>
-                        <div>
-                            <button (click)="preview.createSelectMany(i)" id="selectManyBtn"
-                                    class="btn btn-outline-primary">
-                                Select Many
-                            </button>
+                        <div class="title-div-child2">
+                            <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id>
                         </div>
                     </div>
-                    <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
-                        <div id="option-div-child">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Option {{x + 1}}</span>
+
+                    <!--Assessment 5-->
+                    <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
+                        <div id="btn-div-1">
+                            <div>
+                                <button (click)="preview.createRadioGroup(i)" id="selectRadio"
+                                        class="btn btn-outline-primary">
+                                    Radio
+                                </button>
                             </div>
-                            <input [value]="choices.choiceDesc" [attr.id]=assessments.choices[x].id
-                                   class="form-control"/>
+                            <div>
+                                <button (click)="preview.createCheckBox(i)" id="checkBox"
+                                        class="btn btn-outline-primary">
+                                    Checkbox
+                                </button>
+                            </div>
+                            <div>
+                                <button (click)="preview.createSelect(i)" id="selectOneBtn"
+                                        class="btn btn-outline-primary">
+                                    Select
+                                    One
+                                </button>
+                            </div>
+                            <div>
+                                <button (click)="preview.createSelectMany(i)" id="selectManyBtn"
+                                        class="btn btn-outline-primary">
+                                    Select Many
+                                </button>
+                            </div>
+                        </div>
+                        <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
+                            <div id="option-div-child">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Option {{x + 1}}</span>
+                                </div>
+                                <input [value]="choices.choiceDesc" [attr.id]=assessments.choices[x].id
+                                       class="form-control"/>
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
-                <!--Assessment 4-->
-                <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
-                    <div id="option-div-parent2">
-                        <p id="p-title">Select if answer is a text or number:</p>
+                    <!--Assessment 4-->
+                    <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
+                        <div id="option-div-parent2">
+                            <p id="p-title">Select if answer is a text or number input:</p>
+                        </div>
+                        <div id="btn-div-2">
+                            <div class="submit-child">
+                                <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn btn-primary">Text
+                                </button>
+                            </div>
+                            <div class="submit-child">
+                                <button (click)="preview.createNumber(i)" id="selectNumber" class="btn btn-primary">
+                                    Number
+                                </button>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div id="btn-div-2">
+
+                    <!--Submit Buttons-->
+                    <div id="submit-div">
                         <div class="submit-child">
-                            <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn btn-outline-primary">
-                                Text
+                            <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                                Question
                             </button>
                         </div>
                         <div class="submit-child">
-                            <button (click)="preview.createNumber(i)" id="selectNumber" class="btn btn-outline-primary">
-                                Number
+                            <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                                Mandatory
+                            </button>
+                        </div>
+                        <div class="submit-child">
+                            <button (click)="saveQuestion(i, true)" id="optional" class="btn btn-outline-primary">
+                                Optional
+                                Question
                             </button>
                         </div>
                     </div>
-
-
                 </div>
+                <!--                <div id="save-div">-->
+                <!--                    <button class="btn btn-primary" id="save-btn" (click)="saveSurvey()">Save</button>-->
+                <!--                </div>-->
+            </form>
+            <!--            <div id="submit-div2">-->
+            <!--                <div class="submit-child">-->
+            <!--                    <button class="btn btn-primary" id="sub-btn" (click)="submit()">Submit</button>-->
+            <!--                </div>-->
+            <!--                <div class="submit-child">-->
+            <!--                    <button class="btn btn-primary" id="back-btn" (click)="goBack()">Go Back</button>-->
+            <!--                </div>-->
+            <!--                <div class="submit-child">-->
+            <!--                    <button class="btn btn-primary" id="exp-btn" (click)="exportAsXLSX()"> Export as XLSX</button>-->
+            <!--                </div>-->
+            <!--            </div>-->
+        </div>
 
-                <!--Submit Buttons-->
-                <div id="submit-div">
-                    <div class="submit-child">
-                        <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
-                            Question
-                        </button>
-                    </div>
-                    <div class="submit-child">
-                        <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
-                            Mandatory
-                        </button>
-                    </div>
-                    <div class="submit-child">
-                        <button (click)="saveQuestion(i, true)" id="optional" class="btn btn-outline-primary">Optional
-                            Question
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div id="save-div">
-                <button class="btn btn-primary" id="save-btn" (click)="saveSurvey()">Save</button>
-            </div>
-        </form>
-        <div id="submit-div2">
-            <div class="submit-child">
-                <button class="btn btn-primary" id="sub-btn" (click)="submit()">Submit</button>
-            </div>
-            <div class="submit-child">
-                <button class="btn btn-primary" id="back-btn" (click)="goBack()">Go Back</button>
-            </div>
-            <div class="submit-child">
-                <button class="btn btn-primary" id="exp-btn" (click)="exportAsXLSX()"> Export as XLSX</button>
-            </div>
+        <div id="preview" *ngIf="survey">
+            <app-preview [survey]="survey"></app-preview>
         </div>
     </div>
-
-    <div id="preview" *ngIf="survey">
-        <app-preview [survey] = "survey"></app-preview>
-    </div>
 </div>
-
-
