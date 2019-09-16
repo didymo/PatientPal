@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  surveysURL: 'https://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit',
-  drupalURL: 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json',
-  tabViewURL: 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/'
+    surveysURL: 'http://192.168.1.137/tabview/edit',
+    drupalURL: 'http://192.168.1.137/rest/tab/list?_format=json',
+    tabViewURL: 'http://192.168.1.137/rest/content/tab/get/',
+    formServerURL: 'http://192.168.1.137:81/'
 };
 
 /*

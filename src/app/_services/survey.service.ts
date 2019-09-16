@@ -64,7 +64,7 @@ export class SurveyService {
 
     deploySurvey(payload: string, hash: string): Observable<any> {
         console.log(payload);
-        const url = `${environment.surveysURL}${hash}`;
+        const url = `${environment.formServerURL}${hash}`;
         return this.http
             .post<string>(url, payload, httpOptions)
             .pipe(
