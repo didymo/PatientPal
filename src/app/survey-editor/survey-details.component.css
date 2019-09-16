@@ -4,6 +4,28 @@
     overflow: hidden; /* will contain if #first is longer than #second */
 }
 
+.navbar {
+    height: 45px;
+    padding: 0 0 0;
+}
+
+.collapse {
+    height: 100%;
+    width: 100%;
+}
+
+.nav-item {
+    margin: 3px;
+    /*border-bottom: 1px solid lightgray;*/
+    /*border-right: 1px solid lightgray;*/
+    /*border-left: 1px solid lightgray;*/
+}
+
+.nav-icons {
+    height: 20px;
+    width: 20px;
+}
+
 #questions {
     width: 50%;
     float:left; /* add this */
@@ -38,18 +60,18 @@
 
 }
 
-#title-div {
+.title-div {
     padding: 10px;
     display: flex;
     height: 50px;
 }
 
-#title-div-child1 {
+.title-div-child1 {
     flex: .3;
     padding-top: 7px;
 }
 
-#title-div-child2 {
+.title-div-child2 {
     flex: 2;
     text-align: left;
 }
@@ -112,22 +134,35 @@
     background-color: #016fbe;
 }
 
-#save-div {
-    padding: 10px;
-}
+/*#save-div {*/
+/*    padding: 10px;*/
+/*}*/
 
 #submit-div {
     padding: 10px;
     display: flex;
 }
 
-#submit-div2 {
-    display: flex;
-    padding: 10px;
-}
+/*#submit-div2 {*/
+/*    display: flex;*/
+/*    padding: 10px;*/
+/*}*/
 
 .submit-child {
     margin-right: 15px;
 }
 
-/*Toggle Switch*/
+#nav2 {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.input-group-append {
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding-top: 9px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: bold;
+}
