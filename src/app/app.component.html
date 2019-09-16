@@ -22,64 +22,8 @@
 
 <div class="d-flex" id="wrapper">
     <!-- Side navbar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">
-            <button class="btn btn-primary" style="width: 100%;">New</button>
-        </div>
-        <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item list-group-item-action bg-light" routerLink="/tab-views">
-                <div class="nav-div-parent">
-                    <div class="nav-div-child1">
-                        <img class="nav-icons" src="assets/icons/tab-views.svg">
-                    </div>
-                    <div class="nav-div-child2">
-                        <p class="nav-div-child2p">Tab Views</p>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">
-                <div class="nav-div-parent">
-                    <div class="nav-div-child1">
-                        <img class="nav-icons" src="assets/icons/deployed.svg">
-                    </div>
-                    <div class="nav-div-child2">
-                        <p class="nav-div-child2p">Deployed</p>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">
-                <div class="nav-div-parent">
-                    <div class="nav-div-child1">
-                        <img class="nav-icons" src="assets/icons/draft.svg">
-                    </div>
-                    <div class="nav-div-child2">
-                        <p class="nav-div-child2p">Draft</p>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">
-                <div class="nav-div-parent">
-                    <div class="nav-div-child1">
-                        <img class="nav-icons" src="assets/icons/archived.svg">
-                    </div>
-                    <div class="nav-div-child2">
-                        <p class="nav-div-child2p">Archived</p>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">
-                <div class="nav-div-parent">
-                    <div class="nav-div-child1">
-                        <img class="nav-icons" src="assets/icons/my-library.svg">
-                    </div>
-                    <div class="nav-div-child2">
-                        <p class="nav-div-child2p">My Library</p>
-                    </div>
-                </div>
-            </a>
-            <!--        <button class="btn btn-primary" id="menu-toggle">Hide</button>-->
-        </div>
-    </div>
+    <app-nav-bar></app-nav-bar>
+    <!--        <button class="btn btn-primary" id="menu-toggle">Hide</button>-->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
