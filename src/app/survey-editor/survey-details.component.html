@@ -27,6 +27,11 @@
                     </div>
                 </button>
             </li>
+            <li>
+                <div class="submit-child">
+                    <button class="btn btn-primary" id="exp-btn" (click)="deploy()"> Deploy</button>
+                </div>
+            </li>
             <li class="nav-item">
                 <div id="nav2">
                     <div class="input-group-prepend">
@@ -155,9 +160,7 @@
             <!--                </div>-->
             <!--            </div>-->
         </div>
-    <div class="submit-child">
-        <button class="btn btn-primary" id="exp-btn" (click)="deploy()"> Deploy</button>
-    </div>
+
 
         <div id="preview" *ngIf="survey">
             <app-preview [survey]="survey"></app-preview>

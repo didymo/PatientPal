@@ -35,8 +35,8 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Stores an instance of the preview component
      */
-        // @ViewChild(PreviewComponent, {static: false}) preview;
-    @ViewChild(FormBuilderComponent, {static: false}) formBuilder;
+    @ViewChild(PreviewComponent, {static: false}) preview;
+    // @ViewChild(FormBuilderComponent, {static: false}) formBuilder;
 
     /**
      * The id from the URL is linked to the entity ID of the tabview
