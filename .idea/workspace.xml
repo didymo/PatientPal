@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc6f3188-5839-4600-89b0-741875d3d48d" name="Default Changelist" comment="Fixed Excel Bug and added dynamic forms into the project">
+    <list default="true" id="fc6f3188-5839-4600-89b0-741875d3d48d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/survey.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +199,7 @@
       <workItem from="1568158905115" duration="342000" />
       <workItem from="1568252893639" duration="1300000" />
       <workItem from="1568262235436" duration="2182000" />
-      <workItem from="1568620458376" duration="323000" />
+      <workItem from="1568620458376" duration="1174000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -371,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1567898456022</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Added form server url to environments">
+      <created>1568620872706</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1568620872706</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -424,7 +429,8 @@
     <MESSAGE value="Added SnackBar and modified search" />
     <MESSAGE value="Merged code" />
     <MESSAGE value="Changed drupal url" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed drupal url" />
+    <MESSAGE value="Added form server url to environments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added form server url to environments" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="masterDetails">
