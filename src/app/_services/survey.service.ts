@@ -16,13 +16,14 @@ const httpOptions = {
 })
 export class SurveyService {
 
-    private surveysURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
-    private drupalURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
-    private tabViewURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
+//    private surveysURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
+//    private drupalURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
+//    private tabViewURL = 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
     //
-    // private surveysURL = 'http://192.168.1.130/tabview/edit';
-    // private drupalURL = 'http://192.168.1.130/rest/tab/list?_format=json';
-    // private tabViewURL = 'http://192.168.1.130/rest/content/tab/get/';
+   private surveysURL = 'http://192.168.1.137/tabview/edit';
+   private drupalURL = 'http://192.168.1.137/rest/tab/list?_format=json';
+   private tabViewURL = 'http://192.168.1.137/rest/content/tab/get/';
+   private mysiteURL = 'http://192.168.1.137:81/';
 
     constructor(
         private http: HttpClient,
@@ -68,6 +69,17 @@ export class SurveyService {
                 tap(_ => this.log(`updated Survey id`)),
                 catchError(this.handleError<any>('addSurvey', payload))
             );
+    }
+
+    deploySurvey(payload: string, hash: string): Observable<any> {
+        console.log(payload);
+        const url = `${this.mysiteURL}${hash}`;
+        return this.http
+            .post<string>(url, payload, httpOptions)
+            .pipe(
+                tap(_ => this.log(`Deployed Survey`)),
+                catchError(this.handleError<any>('addSurvey', payload))
+            )
     }
 
     /**

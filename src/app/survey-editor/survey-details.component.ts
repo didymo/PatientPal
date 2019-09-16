@@ -204,6 +204,26 @@ export class SurveyDetailsComponent implements OnInit {
     }
 
     /**
+     * Saves, the questions, and sends a POST request to drupal
+     * Generates a JSON string
+     * Calls deploy survey in the service class
+     */
+    public deploy(): void {
+        this.saveSurvey(); // Save any updated fields
+        const payload = JSON.stringify(this.survey); // Generate a payload
+        this.formService
+            .deploySurvey(payload, this.survey.tabId.toString()) // Add the survey
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => console.log(error1) // Log errors
+            );
+        this.openSnackBar('Survey Deployed', 'Close');
+
+    }
+
+    /**
      * Updates the values within survey
      * Iterates through the input tags and sets the assessments/choices description to those values
      */

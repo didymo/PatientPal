@@ -429,8 +429,10 @@ export class PreviewComponent implements OnInit {
         this.createFile();
     }
 
-    /** Export HTML file to database **/
-    public db_export(){
+    /**
+     *  Export HTML file to database
+     */
+    public db_export() {
 	this.exportHTMLtoDB().subscribe(str => console.log(str));
     }
 
