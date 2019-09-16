@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  surveysURL: 'https://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit',
+  drupalURL: 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json',
+  tabViewURL: 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/'
 };
 
 /*
