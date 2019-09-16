@@ -11,7 +11,6 @@ import {PreviewComponent} from '../preview/preview.component';
 import {ExcelService} from '../_services/excel.service';
 import {Worksheet} from '../_classes/Worksheet';
 import {MatSnackBar} from '@angular/material';
-import {FormBuilderComponent} from '../form-builder/form-builder.component';
 import {MatDialog} from '@angular/material/dialog';
 import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
@@ -36,7 +35,6 @@ export class SurveyDetailsComponent implements OnInit {
      * Stores an instance of the preview component
      */
     @ViewChild(PreviewComponent, {static: false}) preview;
-    // @ViewChild(FormBuilderComponent, {static: false}) formBuilder;
 
     /**
      * The id from the URL is linked to the entity ID of the tabview
@@ -254,7 +252,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public saveQuestion(i: number, optional: boolean): void {
         this.saveSurvey(); // Save the survey
-        this.formBuilder.updateField(i, optional); // Update the preview
+        this.preview.updateField(i, optional); // Update the preview
         this.openSnackBar('Question Saved', 'Close');
 
     }
