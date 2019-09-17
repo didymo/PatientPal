@@ -2,20 +2,4 @@
     <h2 id="test">{{survey.tabDesc}}</h2>
     <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" id="xform"></ng-xform>
 
-    <button id="create" (click)="export()">Save File</button>
-    <button id="sendtodb" (click)="db_export()">Export to Database</button>
-    <a download="info.html" id="downloadlink" style="display: none">Export</a>
 </div>
-<!-- Custom Field -->
-<ng-template #customField let-customControl="control" let-isEditing="isEditing">
-    <div class="custom-radio">
-        <input type="select"
-               [formControl]="customControl"
-               [attr.disabled]="!isEditing || null"
-               class="form-control"
-               id="exampleInputAmount"
-               placeholder="Amount"
-        />
-    </div>
-</ng-template>
-

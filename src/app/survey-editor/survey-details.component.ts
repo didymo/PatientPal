@@ -2,16 +2,22 @@ import {Component, OnInit, Input, Output, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Survey } from '../Survey';
-import {SurveyService} from '../_Services/survey.service';
-import {TabView} from '../TabView';
-import {Assessment} from '../Assessment';
-import {Choice} from '../Choice';
+import {Survey} from '../_classes/Survey';
+import {SurveyService} from '../_services/survey.service';
+import {TabView} from '../_classes/TabView';
+import {Assessment} from '../_classes/Assessment';
+import {Choice} from '../_classes/Choice';
 import {PreviewComponent} from '../preview/preview.component';
-import {ExcelService} from '../_Services/excel.service';
-import {Worksheet} from '../Worksheet';
+import {ExcelService} from '../_services/excel.service';
+import {Worksheet} from '../_classes/Worksheet';
 import {MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {DeployedLink} from './deployed-link';
+import {environment} from '../../environments/environment';
 
+export interface DialogData {
+    link: string;
+}
 
 @Component({
     selector: 'app-form-details',
@@ -29,6 +35,7 @@ export class SurveyDetailsComponent implements OnInit {
      * Stores an instance of the preview component
      */
     @ViewChild(PreviewComponent, {static: false}) preview;
+
     /**
      * The id from the URL is linked to the entity ID of the tabview
      */
@@ -57,7 +64,8 @@ export class SurveyDetailsComponent implements OnInit {
         private formService: SurveyService,
         private excelService: ExcelService,
         private location: Location,
-        private _snackBar: MatSnackBar
+        private _snackBar: MatSnackBar,
+        public dialog: MatDialog
     ) { }
     /**
      * NgInit for the SurveyDetailComponent Class
@@ -201,6 +209,25 @@ export class SurveyDetailsComponent implements OnInit {
     }
 
     /**
+     * Saves, the questions, and sends a POST request to the formserver
+     * Generates a JSON string
+     * Calls deploy survey in the service class
+     */
+    public deploy(): void {
+        this.saveSurvey(); // Save any updated fields
+        const payload = JSON.stringify(this.survey); // Generate a payload
+        this.formService
+            .deploySurvey(payload, this.survey.tabId.toString()) // Add the survey
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => console.log(error1), // Log errors
+                () => this.openDialog()
+            );
+    }
+
+    /**
      * Updates the values within survey
      * Iterates through the input tags and sets the assessments/choices description to those values
      */
@@ -311,4 +338,21 @@ export class SurveyDetailsComponent implements OnInit {
             duration: 2000,
         });
     }
+
+    /**
+     * Handle the dialog window
+     * This dialog displays a single input which contains the URL of the deployed survey
+     */
+    openDialog(): void {
+        const dialogRef = this.dialog.open(DeployedLink, {
+            height: '25%',
+            width: '25%',
+            data: {link: environment.formServerApplicationURL + this.id}
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
+    }
+
 }
