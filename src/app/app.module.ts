@@ -19,6 +19,7 @@ import {FormBuilderComponent} from './form-builder/form-builder.component';
 import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form-question.component';
 import {DeployedLink} from './survey-editor/deployed-link';
 import {MatInputModule} from '@angular/material/input';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatInputModule} from '@angular/material/input';
         MatDialogModule,
         MatFormFieldModule,
         MatSnackBarModule,
-        MatInputModule
+        MatInputModule,
+        ScrollingModule
 
     ],
   providers: [
