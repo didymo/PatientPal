@@ -4,13 +4,14 @@
 
 export const environment = {
   production: false,
-    surveysURL: 'http://192.168.1.137/tabview/edit',
-    drupalURL: 'http://192.168.1.137/rest/tab/list?_format=json',
-    tabViewURL: 'http://192.168.1.137/rest/content/tab/get/',
-    formServerURL: 'http://192.168.1.137:81/',
-    formServerApplicationURL: 'http://localhost:4200/form/'
-};
-
+  surveysURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit',
+  surveyVersionsURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/list/',
+  drupalURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json',
+  tabViewURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/',
+  formServerURL: 'http://qadrupal.lan.sesahs.nsw.gov.au:81/',
+  formServerApplicationURL: 'http://localhost:4200/form/'
+  };
+  
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

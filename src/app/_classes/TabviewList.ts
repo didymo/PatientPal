@@ -24,4 +24,9 @@ export interface TabviewList {
      * TabView KoboFormID
      */
     koboFormId: string;
+    /**
+    * TabView Versions
+    * This is every version available for this tabview
+    */
+    versions: number[];
 }

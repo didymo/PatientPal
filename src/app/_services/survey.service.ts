@@ -34,6 +34,19 @@ export class SurveyService {
     }
 
     /**
+     * Returns versions list for any given tabview
+     * @param ID
+     * GET request to druapl using the entityId associated with the tab view
+     */
+     getTabViewVersion(ID: number): Observable<Array<number>> {
+        const url = `${environment.surveyVersionsURL}${ID}${'?_format=json'}`;
+	return this.http.get<Array<number>>(url)
+            .pipe(
+                tap(_ => this.log('fetched tabView versions')),
+		catchError(this.handleError<Array<number>>('getTabViewList', []))
+            );
+    }
+    /**
      * Returns tab view and the questions from the tab view
      * @param ID
      * GET request to druapl using the entityId associated with the tab view

@@ -63,6 +63,12 @@ export class TabViewsComponent implements OnInit {
    */
   getTabViews() {
     this.surveyService.getTabViewList()
-        .subscribe(data => this.tabviews = data);
+    .subscribe(data => this.tabviews = data);  
+  }
+
+  getTabViewVersion(id: number) {
+    var versions: number[];
+    this.surveyService.getTabViewVersion(id)
+    .subscribe(data => versions = data);
   }
 }

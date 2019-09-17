@@ -14,7 +14,9 @@
           <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Created</th>
+          <th scope="col">Latest Version</th>
           <th scope="col">Status</th>
+          <th scope="col">History</th>
         </tr>
         </thead>
           <tbody class="search-result">
@@ -23,8 +25,9 @@
               <td class="survey_id">{{tab.entityId }}</td>
               <td>{{ tab.label }}</td>
               <td>10/10/19</td>
+	      <td>{{ this.getTabViewVersion(tab.entityId) }}</td>
               <td>Draft</td>
-	      <td>Versions</tb>
+              <td>Version History</td>
           </tr>
           </tbody>
       </table>

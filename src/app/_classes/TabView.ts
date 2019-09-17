@@ -54,6 +54,11 @@ export interface TabView {
      */
     assessmentId: number;
     /**
+     * A tab view's version number.
+     * Used to uniquely identify which version of a tabview we are using
+     */
+    version: number;
+    /**
      * The ID of the actual tab view
      * Used to uniquely identify which tabview questions and choices are associated with will be updated
      */
