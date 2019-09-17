@@ -1,3 +1,8 @@
+<div id="return" *ngIf="self">
+    <div class="submit-child">
+        <button class="btn btn-primary" id="exp-btn1" routerLink="/detail/{{survey.tabId}}"> Return</button>
+    </div>
+</div>
 <div id="wrapper" *ngIf="survey">
     <h2 id="test">{{survey.tabDesc}}</h2>
     <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" id="xform"></ng-xform>

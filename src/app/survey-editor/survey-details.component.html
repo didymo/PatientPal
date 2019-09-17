@@ -32,6 +32,13 @@
                     <button class="btn btn-primary" id="exp-btn" (click)="deploy()"> Deploy</button>
                 </div>
             </li>
+            <li>
+                <div class="submit-child">
+                    <button class="btn btn-primary" id="exp-btn1" (click)="setSurveyData(true)"
+                            routerLink="/preview/{{survey.tabId}}"> Preview
+                    </button>
+                </div>
+            </li>
             <li class="nav-item">
                 <div id="nav2">
                     <div class="input-group-prepend">
@@ -163,7 +170,7 @@
 
 
         <div id="preview" *ngIf="survey">
-            <app-preview [survey]="survey"></app-preview>
+            <app-preview></app-preview>
         </div>
     </div>
 </div>

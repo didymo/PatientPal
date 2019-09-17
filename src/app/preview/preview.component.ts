@@ -1,7 +1,6 @@
 import {Component, ElementRef, Input, NgModule, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {
     CheckboxField,
-    CustomField,
     DynamicField,
     NgXformEditSaveComponent,
     NgXformModule, NumberField,
@@ -10,12 +9,11 @@ import {
 } from '@esss/ng-xform';
 import {AppComponent} from '../app.component';
 import {Title} from '@angular/platform-browser';
-import {Observable, of, Subject, Subscription} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {HttpHeaders} from '@angular/common/http';
+import {of, Subject, Subscription} from 'rxjs';
 import {Validators} from '@angular/forms';
 import {Survey} from '../_classes/Survey';
 import {delay} from 'rxjs/operators';
+import {BuildFormService} from '../_services/build-form.service';
 
 
 @Component({
@@ -38,7 +36,10 @@ export class PreviewComponent implements OnInit {
     @ViewChild(NgXformEditSaveComponent, {static: true}) xformComponent: NgXformEditSaveComponent;
     @ViewChild('customField', {static: true}) customFieldTmpl: TemplateRef<any>;
 
-    @Input() survey: Survey;
+    // @Input() survey: Survey;
+
+    survey: Survey;
+    private self: boolean;
 
     public onchangefn = new Subject<string>();
     /**
@@ -63,12 +64,12 @@ export class PreviewComponent implements OnInit {
      * Constructor for PreviewComponent
      * @param titleService
      * Used to set the title of the window
-     * @param http
-     * Interface with http
+     * @param fbService
+     * Retrieve surveys from component
      */
     constructor(
         private titleService: Title,
-        private http: HttpClient
+        private fbService: BuildFormService
     ) { }
 
     /**
@@ -76,19 +77,16 @@ export class PreviewComponent implements OnInit {
      */
     ngOnInit() {
 
+        this.survey = this.fbService.getSurvey();
+        this.self = this.fbService.getSelf();
+
         this.subscriptions.push(this.onchangefn.asObservable().subscribe(
             (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
         ));
-
-
         this.titleService.setTitle('TabviewList | ' + this.survey.tabDesc); // Sets the title
-
-
         this.initWidgets(); // Initiates the widgets
 
     }
-
-
     /**
      * This function is used to init the fields array.
      * The fields will be used to display the different type of questions
@@ -130,7 +128,7 @@ export class PreviewComponent implements OnInit {
 
         // Check if field already exists
         if (this.fieldCheck(i, 'SELECT')) {
-            return;
+            this.removeField(i);
         }
         // Condition depending on a question is optional or not
         if (optional) {
@@ -178,7 +176,7 @@ export class PreviewComponent implements OnInit {
 
         // Check if field already exists
         if (this.fieldCheck(i, 'SELECT')) {
-            return;
+            this.removeField(i);
         }
         // Condition depending on a question is optional or not
         if (optional) {
@@ -419,75 +417,5 @@ export class PreviewComponent implements OnInit {
                 break;
         }
     }
-    /**
-     * Will be used to export the html file to drupal
-     */
-    public export() {
-        const doc = document.getElementById('xform');
-        this.docHTML = doc.outerHTML;
 
-        this.createFile();
-    }
-
-    /**
-     *  Export HTML file to database
-     */
-    public db_export() {
-	this.exportHTMLtoDB().subscribe(str => console.log(str));
-    }
-
-    exportHTMLtoDB(): Observable<String>
-    {
-	const db_service_url = "http://formserver.patientpal.com";
-        const doc = document.getElementById('xform');
-	this.docHTML = doc.outerHTML;
-
-	let json = { "name":this.survey.tabDesc, "version":1, "filedir":"ANGULAR","valid":1, "contents":this.docHTML };
-	console.log(json);
-
-	const httpOptions = {
-	    headers: new HttpHeaders({
-	        'Content-Type': 'text/plain',
-	    })
-	};
-
-	return this.http.post<String>(db_service_url, json, httpOptions);
-    }
-
-    /**
-     * This function creates a file
-     * This file has the string generated from the ng-xform html tag
-     * It will then create a downloadable link
-     */
-    public createFile() {
-        let textFile = null;
-
-        const makeTextFile = text => {
-            const data = new Blob([text], {type: 'text/plain'});
-            if (textFile !== null) {
-                window.URL.revokeObjectURL(textFile);
-            }
-            textFile = window.URL.createObjectURL(data);
-
-            return textFile;
-        };
-        const create = document.getElementById('create');
-        const textbox = document.getElementById('textbox');
-
-        create.addEventListener('click', () => {
-            const link = document.getElementById('downloadlink');
-            // @ts-ignore
-            link.href = makeTextFile(this.docHTML);
-            link.style.display = 'block';
-        }, false);
-    }
-
-    /**
-     * Handles the submitting the values
-     * @param values
-     * values are the values stored in the input fields
-     */
-    public onSubmit(values: object) {
-        this.model = values;
-    }
 }

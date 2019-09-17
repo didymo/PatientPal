@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="fc6f3188-5839-4600-89b0-741875d3d48d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +57,7 @@
     <property name="javascript.karma.karma_node_package_dir" value="" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/_Services" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/_services" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -61,19 +66,19 @@
     <property name="nodejs.mocha.mocha_node_package_dir" value="" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app/_classes" />
-      <recent name="$PROJECT_DIR$/src/app/_Services" />
-      <recent name="$PROJECT_DIR$/src/app/nav-bar" />
-      <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$/src/app/Services" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/assets/icons" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/_services" />
+      <recent name="$PROJECT_DIR$/src/app/_Services" />
+      <recent name="$PROJECT_DIR$/src/app/_classes" />
+      <recent name="$PROJECT_DIR$/src/app/nav-bar" />
+      <recent name="$PROJECT_DIR$/src/app" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -203,6 +208,8 @@
       <workItem from="1568262235436" duration="2182000" />
       <workItem from="1568620458376" duration="1174000" />
       <workItem from="1568622038540" duration="4336000" />
+      <workItem from="1568680458383" duration="38000" />
+      <workItem from="1568681792780" duration="2026000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -393,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568627486465</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Merged code with design branch">
+      <created>1568627551876</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1568627551876</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView">

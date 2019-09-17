@@ -14,6 +14,7 @@ import {MatSnackBar} from '@angular/material';
 import {MatDialog} from '@angular/material/dialog';
 import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
+import {BuildFormService} from '../_services/build-form.service';
 
 export interface DialogData {
     link: string;
@@ -64,6 +65,7 @@ export class SurveyDetailsComponent implements OnInit {
         private formService: SurveyService,
         private excelService: ExcelService,
         private location: Location,
+        private fbService: BuildFormService,
         private _snackBar: MatSnackBar,
         public dialog: MatDialog
     ) { }
@@ -139,6 +141,8 @@ export class SurveyDetailsComponent implements OnInit {
             this.updateToExcel(blob);
             this.openSnackBar('Import Successful', 'Close');
         }
+
+        this.setSurveyData(false);
     }
     /**
      * Creates a new choice based on the assessment type
@@ -343,7 +347,7 @@ export class SurveyDetailsComponent implements OnInit {
      * Handle the dialog window
      * This dialog displays a single input which contains the URL of the deployed survey
      */
-    openDialog(): void {
+    public openDialog(): void {
         const dialogRef = this.dialog.open(DeployedLink, {
             height: '25%',
             width: '25%',
@@ -355,4 +359,13 @@ export class SurveyDetailsComponent implements OnInit {
         });
     }
 
+    /**
+     * Sets the survey data
+     * @param self
+     * self view or preview view
+     */
+    public setSurveyData(self: boolean): void {
+        this.fbService.setSurvey(this.survey);
+        this.fbService.setSelf(self);
+    }
 }
