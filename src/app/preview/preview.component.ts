@@ -14,10 +14,9 @@ import {Observable, of, Subject, Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 import {Validators} from '@angular/forms';
-import {Survey} from '../Survey';
+import {Survey} from '../_classes/Survey';
 import {delay} from 'rxjs/operators';
 
-// import {AppModule} from '../app.module';
 
 @Component({
     selector: 'app-preview',
@@ -430,9 +429,10 @@ export class PreviewComponent implements OnInit {
         this.createFile();
     }
 
-    /** Export HTML file to database **/
-    public db_export()
-    {
+    /**
+     *  Export HTML file to database
+     */
+    public db_export() {
 	this.exportHTMLtoDB().subscribe(str => console.log(str));
     }
 

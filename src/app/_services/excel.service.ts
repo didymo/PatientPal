@@ -18,6 +18,8 @@ export class ExcelService {
     /**This will be the data gathered from the excel file*/
     private excelData: any[];
 
+    private excelId: number;
+
 
     constructor() {
     }
@@ -57,18 +59,25 @@ export class ExcelService {
         FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     }
 
-    public setExcelData(blob: any[]): void {
+    public setExcelData(blob: any[], id: number): void {
+        this.excelData = undefined;
         this.excelData = blob;
+        this.excelId = id;
     }
 
     public getExcelData(): any [] {
         let tmp = this.excelData;
-        return tmp;
         this.clearData();
+        return tmp;
+
     }
 
     public clearData() {
         this.excelData = undefined;
+    }
+
+    public getID(): number {
+        return this.excelId;
     }
 }
 

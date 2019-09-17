@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+    surveysURL: 'http://192.168.1.137/tabview/edit',
+    drupalURL: 'http://192.168.1.137/rest/tab/list?_format=json',
+    tabViewURL: 'http://192.168.1.137/rest/content/tab/get/',
+    formServerURL: 'http://192.168.1.137:81/',
+    formServerApplicationURL: 'http://localhost:4200/form/'
 };
 
 /*

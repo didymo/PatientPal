@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 import { Observable, of } from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
-import {TabviewList} from '../TabviewList';
-import {TabView} from '../TabView';
+import {TabviewList} from '../_classes/TabviewList';
+import {TabView} from '../_classes/TabView';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -15,15 +16,6 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class SurveyService {
-
-    private surveysURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit';
-    private drupalURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json';
-    private tabViewURL = 'https://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/';
-
-    // private surveysURL = 'http://192.168.1.129/tabview/edit';
-    // private drupalURL = 'http://192.168.1.129/rest/tab/list?_format=json';
-    // private tabViewURL = 'http://192.168.1.129/rest/content/tab/get/';
-
     constructor(
         private http: HttpClient,
         private messageService: MessageService) {
@@ -34,7 +26,7 @@ export class SurveyService {
      * Will return 404 if not found
      */
     getTabViewList(): Observable<TabviewList[]> {
-        return this.http.get<TabviewList[]>(this.drupalURL)
+        return this.http.get<TabviewList[]>(environment.drupalURL)
             .pipe(
                 tap(_ => this.log('fetched tabViews')),
                 catchError(this.handleError<TabviewList[]>('getTabViewList', []))
@@ -47,7 +39,7 @@ export class SurveyService {
      * GET request to druapl using the entityId associated with the tab view
      */
     getTabView(ID: number): Observable<TabView[]> {
-        const url = `${this.tabViewURL}${ID}/${'?_format=json'}`;
+        const url = `${environment.tabViewURL}${ID}/${'?_format=json'}`;
         return this.http.get<TabView[]>(url)
             .pipe(
                 tap(_ => this.log('fetched tabViews')),
@@ -63,11 +55,22 @@ export class SurveyService {
     addSurvey(payload: string): Observable<any> {
         console.log(payload);
         return this.http
-            .patch<string>(this.surveysURL, payload, httpOptions)
+            .patch<string>(environment.surveysURL, payload, httpOptions)
             .pipe(
                 tap(_ => this.log(`updated Survey id`)),
                 catchError(this.handleError<any>('addSurvey', payload))
             );
+    }
+
+    deploySurvey(payload: string, hash: string): Observable<any> {
+        console.log(payload);
+        const url = `${environment.formServerURL}${hash}`;
+        return this.http
+            .post<string>(url, payload, httpOptions)
+            .pipe(
+                tap(_ => this.log(`Deployed Survey`)),
+                catchError(this.handleError<any>('addSurvey', payload))
+            )
     }
 
     /**
@@ -80,7 +83,7 @@ export class SurveyService {
             // if not search term, return empty survey array.
             return of([]);
         }
-        return this.http.get<TabviewList[]>(`${this.drupalURL}/?label=${term}`)
+        return this.http.get<TabviewList[]>(`${environment.drupalURL}/?label=${term}`)
             .pipe(
                 tap(_ => this.log(`found survey matching "${term}"`)),
                 catchError(this.handleError<TabviewList[]>('searchSurveys', []))
