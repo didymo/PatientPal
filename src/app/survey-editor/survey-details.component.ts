@@ -90,12 +90,6 @@ export class SurveyDetailsComponent implements OnInit {
                 () => this.sortSurvey()); // Sort tabviews into a Survey
     }
     /**
-     * Returns a user back to the previous page
-     */
-    public goBack(): void {
-        this.location.back();
-    }
-    /**
      * Sorts out the tabviews that were retrieved from Drupal
      * Creates assessments and their choices by iterating through the tabviews
      * Once an assessment is created and it's choices have been populated
@@ -144,6 +138,7 @@ export class SurveyDetailsComponent implements OnInit {
 
         this.setSurveyData(false);
     }
+
     /**
      * Creates a new choice based on the assessment type
      * @param i
@@ -297,7 +292,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public updateToExcel(blob: any []) {
 
-        this.survey.tabDesc = blob[0].tabViewLabel;
+        this.survey.tabDesc = '(' + this.excelService.getTranslationName() + ') ' + blob[0].tabViewLabel;
 
         let aPos = 0; // Holds the position of the assessments
         let cPos = 0; // Holds the position of the choices

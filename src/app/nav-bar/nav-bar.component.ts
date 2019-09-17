@@ -30,7 +30,7 @@ export class NavBarComponent implements OnInit {
      */
     openDialog(): void {
         const dialogRef = this.dialog.open(NewTabViewDialog, {
-            height: '30%',
+            height: '35%',
             width: '40%',
         });
 
@@ -52,6 +52,7 @@ export class NewTabViewDialog {
     arrayBuffer: any;
     blob: any[];
     entityId: number;
+    translationName;
 
     constructor(
         public dialogRef: MatDialogRef<NewTabViewDialog>,
@@ -61,6 +62,12 @@ export class NewTabViewDialog {
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+
+    closeDialog(): void {
+        this.translationName = (document.getElementById('languageInput') as HTMLInputElement).value;
+        this.dialogRef.close();
+        this.sendData();
     }
 
     /**
@@ -84,7 +91,7 @@ export class NewTabViewDialog {
             let worksheet = workbook.Sheets[first_sheet_name]; // Create the worksheet
             this.blob = XLSX.utils.sheet_to_json(worksheet, {raw: true}); // Create the blob
             this.entityId = this.blob[0].tabViewId; // Get the entity ID from the excel sheet
-            this.sendData(); // Send the data to the excel service
+            // this.sendData(); // Send the data to the excel service
 
         };
         reader.readAsArrayBuffer(f);
@@ -98,6 +105,7 @@ export class NewTabViewDialog {
     public sendData(): void {
         let id = this.blob[0].tabViewId;
         this.excelService.setExcelData(this.blob, id);
+        this.excelService.setTranslation(this.translationName);
     }
 
 }

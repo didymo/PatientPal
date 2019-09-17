@@ -18,6 +18,7 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule, MatFormFieldModule, MatS
 import {FormBuilderComponent} from './form-builder/form-builder.component';
 import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form-question.component';
 import {DeployedLink} from './survey-editor/deployed-link';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -33,19 +34,20 @@ import {DeployedLink} from './survey-editor/deployed-link';
       DynamicFormQuestionComponent,
       DeployedLink
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgXformModule,
-      BrowserAnimationsModule,
-      MatDialogModule,
-    MatFormFieldModule,
-    MatSnackBarModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgXformModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSnackBarModule,
+        MatInputModule
 
-  ],
+    ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ],

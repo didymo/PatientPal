@@ -10,18 +10,24 @@ body {
 
 #page-content-wrapper {
     margin-top: 70px;
-    /*padding: 1%;*/
+    min-width: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 1%;
 }
 
 #sidebar-wrapper {
     margin-top: 65px;
-  min-height: 100vh;
-  margin-left: -15rem;
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
-  box-shadow: 0px 0px 10px #999;
+    min-height: 100vh;
+    margin-left: -15rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    box-shadow: 0px 0px 10px #999;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -33,12 +39,12 @@ body {
   width: 15rem;
 }
 
-#page-content-wrapper {
-  min-width: 100vw;
-    padding-left: 1%;
-    padding-right: 1%;
-    padding-bottom: 1%;
-}
+/*#page-content-wrapper {*/
+/*  min-width: 100vw;*/
+/*    padding-left: 1%;*/
+/*    padding-right: 1%;*/
+/*    padding-bottom: 1%;*/
+/*}*/
 
 #wrapper.toggled #sidebar-wrapper {
   margin-left: 0;
@@ -50,8 +56,7 @@ body {
   }
 
   #page-content-wrapper {
-      min-width: 0;
-    width: 100%;
+
   }
 
   #wrapper.toggled #sidebar-wrapper {
