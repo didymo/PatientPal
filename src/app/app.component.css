@@ -1,6 +1,6 @@
 .main {
   /*margin-left: 160px; !* Same as the width of the sidebar *!*/
-  padding-left: 10%;
+    /*padding-left: 10%;*/
 }
 
 body {
@@ -21,7 +21,7 @@ body {
 
 #sidebar-wrapper {
     margin-top: 65px;
-    min-height: 100vh;
+    min-height: 100%;
     margin-left: -15rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
