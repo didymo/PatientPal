@@ -1,7 +1,7 @@
 
 #sidebar-wrapper {
     margin-top: 65px;
-    min-height: 100%;
+    min-height: 100vh;
     margin-left: -15rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;

@@ -1,40 +1,32 @@
 <div class="navigation">
     <button class="btn toolbar-item" routerLink="/tab-views">
-        <div>
-            <img class="nav-icons" src="assets/icons/back.svg">
-        </div>
-    </button>
-    <button class="btn toolbar-item" (click)="saveSurvey()">
-        <div>
-            <img class="nav-icons" src="assets/icons/save.svg">
-        </div>
-    </button>
-    <button class="btn toolbar-item" (click)="exportAsXLSX()">
-        <div>
-            <img class="nav-icons" src="assets/icons/export.svg">
-        </div>
-    </button>
-    <button class="btn toolbar-item" id="exp-btn" (click)="deploy()">
-        <img class="nav-icons" src="assets/icons/deployed.svg">
+        Return
     </button>
     <button class="btn toolbar-item" id="exp-btn1" (click)="setSurveyData(true)"
             routerLink="/preview/{{survey.tabId}}">
         Preview
     </button>
-    <button class="btn toolbar-item" (click)="submit()">
-        Submit
-    </button>
     <button class="btn toolbar-item" ng-click="showDiv = !showDiv">
         Live Preview
     </button>
-    <div class="col-lg-5 toolbar-title" *ngIf="survey">
+    <button class="btn toolbar-item" (click)="submit()">
+        Save
+    </button>
+    <button class="btn toolbar-item" (click)="exportAsXLSX()">
+        Export
+    </button>
+    <button class="btn toolbar-item" id="exp-btn" (click)="deploy()">
+        Deploy
+    </button>
+    <div class="col-lg-8 toolbar-title" *ngIf="survey">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Survey Title</span>
             </div>
-            <input type="text" class="form-control" [value]="survey.tabDesc">
+            <input type="text" class="form-control" [value]="survey.tabDesc" style="font-weight: bold">
         </div>
     </div>
+
 </div>
 <br>
 <div>
@@ -46,8 +38,13 @@
                 <form (ngSubmit)="saveSurvey()" id="form">
                     <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
                         <div class="title-div">
-                            <div id="imgView">
-                                <img src="assets/logo.png" width="30" height="30" class="rounded float-left" alt="">
+                            <div class="imgView" *ngIf="assessments.asessmentType.toString() === '5'">
+                                <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
+                                     alt="">
+                            </div>
+                            <div class="imgView" *ngIf="assessments.asessmentType.toString() === '4'">
+                                <img src="assets/icons/texts.png" width="24" height="24" class="rounded float-left"
+                                     alt="">
                             </div>
                             <div class="title-div-child1">
                                 <p style="font-weight: bold">{{i + 1}}.</p>
@@ -82,14 +79,16 @@
                                         Mandatory
                                     </button>
                                 </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Question Types
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Radio</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                <button class="btn btn-outline-primary " type="button" data-toggle="collapse"
+                                        data-target="#collapseExample" aria-expanded="false"
+                                        aria-controls="collapseExample">
+                                    Change Field
+                                </button>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                        richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
+                                        anderson cred nesciunt sapiente ea proident.
                                     </div>
                                 </div>
 <!--                            <div>-->
@@ -162,12 +161,12 @@
                 </form>
             </cdk-virtual-scroll-viewport>
         </div>
-        <div>
-            <div id="preview" *ngIf="survey">
-                <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90" >
-                    <app-preview></app-preview>
-                </cdk-virtual-scroll-viewport>
-            </div>
-        </div>
+        <!--        <div>-->
+        <!--            <div id="preview" *ngIf="survey">-->
+        <!--                <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90" >-->
+        <!--                    <app-preview></app-preview>-->
+        <!--                </cdk-virtual-scroll-viewport>-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </div>

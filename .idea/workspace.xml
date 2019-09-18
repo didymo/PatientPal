@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc6f3188-5839-4600-89b0-741875d3d48d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/archive.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/box.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/clipboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/rockit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/select.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/icons/texts.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
     </list>
@@ -22,11 +31,6 @@
         <option value="HTML File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>sv</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -55,7 +59,7 @@
     <property name="javascript.karma.karma_node_package_dir" value="" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/_services" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/icons" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -68,15 +72,15 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets/icons" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/_services" />
       <recent name="$PROJECT_DIR$/src/app/_Services" />
       <recent name="$PROJECT_DIR$/src/app/_classes" />
       <recent name="$PROJECT_DIR$/src/app/nav-bar" />
       <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/icons" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -219,7 +223,7 @@
       <workItem from="1568680458383" duration="38000" />
       <workItem from="1568681792780" duration="3443000" />
       <workItem from="1568685678240" duration="4088000" />
-      <workItem from="1568784348943" duration="6484000" />
+      <workItem from="1568784348943" duration="12501000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -431,7 +435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568789833809</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fixed toolbar">
+      <created>1568790937533</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1568790937533</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView">

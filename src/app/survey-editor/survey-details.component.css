@@ -2,7 +2,9 @@
     width: 100%;
     /*margin-top: 1%;*/
     overflow: hidden; /* will contain if #first is longer than #second */
-    box-shadow: 0px 0px 10px #b7b7b7;
+    /*box-shadow: 0px 0px 10px #b7b7b7;*/
+    /*border-radius: 5px;*/
+    /*border: 10#bfbfbf;*/
     /*display: flex;*/
     /*flex-flow: row;*/
     /*justify-content: flex-start;*/
@@ -29,25 +31,21 @@
     padding-left: 1%;
     overflow: hidden;
     float: left;
-    width: 50%;
-    -webkit-transition: margin .25s ease-out;
-    -moz-transition: margin .25s ease-out;
-    -o-transition: margin .25s ease-out;
-    transition: margin .25s ease-out;
+    width: 0%;
 
 }
 
 #questions {
     /*margin-top: 1%;*/
     /*width: 100%;*/
-    width: 45%;
+    width: 100%;
     float: left; /* add this */
     /*box-shadow: 0px 0px 3px #c7c7c7;*/
 }
 
 #assessments {
-    margin-top: 1.5%;
-    margin-bottom: 1.5%;
+    margin-top: 0.5%;
+    margin-bottom: 2%;
     border-radius: 5px;
     margin-left: 2%;
     margin-right: 1%;
@@ -68,12 +66,12 @@
 }
 
 .nav-icons {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
 }
 
 .navigation {
-    box-shadow: 0px 0px 5px #b4b4b4;
+    box-shadow: 0px 0px 10px #b4b4b4;
     background: #f5f5f5;
     display: flex;
     flex-flow: row wrap;
@@ -87,7 +85,7 @@
 
 .toolbar-item {
     /*padding-bottom: 0.1%;*/
-    padding-top: 0.9%;
+    margin-top: 0.5%;
 
 }
 
@@ -120,8 +118,8 @@
     width: 70%;
 }
 
-#imgView {
-    flex: .1;
+.imgView {
+    flex: .0;
 }
 .title-div {
     padding: 10px;
