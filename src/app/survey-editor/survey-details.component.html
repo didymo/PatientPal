@@ -1,52 +1,96 @@
+<!--<div class="row justify-content-center">-->
+<!--    <div class="col-lg-10 position-fixed" id="toolbar">-->
+<!--        <div class="box" id="toolbarItems">-->
+<!--            <button class="btn" routerLink="/tab-views">-->
+<!--                <div>-->
+<!--                    <img class="nav-icons" src="assets/icons/back.svg">-->
+<!--                </div>-->
+<!--            </button>-->
+<!--            <button class="btn" (click)="saveSurvey()">-->
+<!--                <div>-->
+<!--                    <img class="nav-icons" src="assets/icons/save.svg">-->
+<!--                </div>-->
+<!--            </button>-->
+<!--            <button class="btn" (click)="exportAsXLSX()">-->
+<!--                <div>-->
+<!--                    <img class="nav-icons" src="assets/icons/export.svg">-->
+<!--                </div>-->
+<!--            </button>-->
+<!--            <div class="submit-child">-->
+<!--                <button class="btn" id="exp-btn" (click)="deploy()">-->
+<!--                    <img class="nav-icons" src="assets/icons/deployed.svg">-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="submit-child">-->
+<!--                <button class="btn " id="exp-btn1" (click)="setSurveyData(true)"-->
+<!--                        routerLink="/preview/{{survey.tabId}}">-->
+<!--                    Preview-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <button class="btn" (click)="submit()">-->
+<!--                    Submit-->
+<!--                </button>-->
+<!--            </div>-->
 
+<!--            <div *ngIf="survey" id="sTitle">-->
+<!--                <div class="col-lg-12">-->
+<!--                    <div class="input-group mb-7">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                            <span class="input-group-text" id="basic-addon1">Survey Title</span>-->
+<!--                        </div>-->
+<!--                        <input type="text" class="form-control" [value]="survey.tabDesc">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <button class="btn" ng-click="showDiv = !showDiv">-->
+<!--                    Live Preview-->
+<!--                </button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<div class="row justify-content-center">
-    <div class="col-lg-10 position-fixed" id="toolbar">
-        <div class="box" id="toolbarItems">
-            <button class="btn" routerLink="/tab-views">
-                <div>
-                    <img class="nav-icons" src="assets/icons/back.svg">
-                </div>
-            </button>
-            <button class="btn" (click)="saveSurvey()">
-                <div>
-                    <img class="nav-icons" src="assets/icons/save.svg">
-                </div>
-            </button>
-            <button class="btn" (click)="exportAsXLSX()">
-                <div>
-                    <img class="nav-icons" src="assets/icons/export.svg">
-                </div>
-            </button>
-            <div class="submit-child">
-                <button class="btn" id="exp-btn" (click)="deploy()">
-                    <img class="nav-icons" src="assets/icons/deployed.svg">
-                </button>
+<div class="navigation">
+    <button class="btn toolbar-item" routerLink="/tab-views">
+        <div>
+            <img class="nav-icons" src="assets/icons/back.svg">
+        </div>
+    </button>
+    <button class="btn toolbar-item" (click)="saveSurvey()">
+        <div>
+            <img class="nav-icons" src="assets/icons/save.svg">
+        </div>
+    </button>
+    <button class="btn toolbar-item" (click)="exportAsXLSX()">
+        <div>
+            <img class="nav-icons" src="assets/icons/export.svg">
+        </div>
+    </button>
+    <button class="btn toolbar-item" id="exp-btn" (click)="deploy()">
+        <img class="nav-icons" src="assets/icons/deployed.svg">
+    </button>
+    <button class="btn toolbar-item" id="exp-btn1" (click)="setSurveyData(true)"
+            routerLink="/preview/{{survey.tabId}}">
+        Preview
+    </button>
+    <button class="btn toolbar-item" (click)="submit()">
+        Submit
+    </button>
+    <button class="btn toolbar-item" ng-click="showDiv = !showDiv">
+        Live Preview
+    </button>
+    <div class="col-lg-5 toolbar-title" *ngIf="survey">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Survey Title</span>
             </div>
-            <div class="submit-child">
-                <button class="btn " id="exp-btn1" (click)="setSurveyData(true)"
-                        routerLink="/preview/{{survey.tabId}}">
-                    Preview
-                </button>
-            </div>
-            <div>
-                <button class="btn" (click)="submit()">
-                    Submit
-                </button>
-            </div>
-
-            <div *ngIf="survey" id="sTitle">
-                <div class="col-lg-12">
-                    <div class="input-group mb-7">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Survey Title</span>
-                        </div>
-                        <input type="text" class="form-control" [value]="survey.tabDesc">
-                    </div>
-                </div>
-            </div>
+            <input type="text" class="form-control" [value]="survey.tabDesc">
         </div>
     </div>
+
+
 </div>
 <br>
 <div>
@@ -54,56 +98,56 @@
     <div id="wrapper" *ngIf="survey">
 
         <div id="questions">
-            <cdk-virtual-scroll-viewport  style="height: 90vh" itemSize="90" >
-            <form (ngSubmit)="saveSurvey()" id="form">
-                <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
-                    <div class="title-div">
-                        <div id="imgView">
-                            <img src="assets/logo.png" width="30" height="30" class="rounded float-left" alt="">
+            <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90" >
+                <form (ngSubmit)="saveSurvey()" id="form">
+                    <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
+                        <div class="title-div">
+                            <div id="imgView">
+                                <img src="assets/logo.png" width="30" height="30" class="rounded float-left" alt="">
+                            </div>
+                            <div class="title-div-child1">
+                                <p style="font-weight: bold">{{i + 1}}.</p>
+                            </div>
+                            <div class="title-div-child2">
+                                <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id style="font-weight: bold">
+                            </div>
                         </div>
-                        <div class="title-div-child1">
-                            <p style="font-weight: bold">{{i + 1}}.</p>
-                        </div>
-                        <div class="title-div-child2">
-                            <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id style="font-weight: bold">
-                        </div>
-                    </div>
 
-                    <!--Assessment 5-->
-                    <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
+                        <!--Assessment 5-->
+                        <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
 
-                        <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
-                            <div id="option-div-child">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Option {{x + 1}}</span>
-                                </div>
-                                <textarea [value]="choices.choiceDesc" [attr.id]=assessments.choices[x].id
-                                       class="form-control" rows="2">
+                            <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
+                                <div id="option-div-child">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Option {{x + 1}}</span>
+                                    </div>
+                                    <textarea [value]="choices.choiceDesc" [attr.id]=assessments.choices[x].id
+                                              class="form-control" rows="2">
                                 </textarea>
-                            </div>
-                        </div>
-                        <div id="btn-div-1">
-
-                            <div class="submit-child">
-                                <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
-                                    Question
-                                </button>
-                            </div>
-                            <div class="submit-child">
-                                <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
-                                    Mandatory
-                                </button>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Question Types
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Radio</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
                             </div>
+                            <div id="btn-div-1">
+
+                                <div class="submit-child">
+                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                                        Question
+                                    </button>
+                                </div>
+                                <div class="submit-child">
+                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                                        Mandatory
+                                    </button>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Question Types
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Radio</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
 <!--                            <div>-->
 <!--                                <button (click)="preview.createRadioGroup(i)" id="selectRadio"-->
 <!--                                        class="btn btn-outline-primary">-->
@@ -129,35 +173,35 @@
 <!--                                    Select Many-->
 <!--                                </button>-->
 <!--                            </div>-->
+                            </div>
                         </div>
-                    </div>
 
 
-                    <!--Assessment 4-->
-                    <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
-                        <div id="option-div-parent2">
-                        </div>
-                        <div id="btn-div-2">
-                            <div class="submit-child">
-                                <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
-                                    Question
-                                </button>
+                        <!--Assessment 4-->
+                        <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
+                            <div id="option-div-parent2">
                             </div>
-                            <div class="submit-child">
-                                <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
-                                    Mandatory
-                                </button>
-                            </div>
-                            <div class="dropdown">
-                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Question Types
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Radio</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                            <div id="btn-div-2">
+                                <div class="submit-child">
+                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                                        Question
+                                    </button>
                                 </div>
-                            </div>
+                                <div class="submit-child">
+                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                                        Mandatory
+                                    </button>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Question Types
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Radio</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
 <!--                            <div class="submit-child">-->
 <!--                                <button (click)="preview.createText(i)" id="selectTxtBtn" class="btn btn-primary">Text-->
 <!--                                </button>-->
@@ -167,16 +211,16 @@
 <!--                                    Number-->
 <!--                                </button>-->
 <!--                            </div>-->
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-            </form>
+                    </div>
+                </form>
             </cdk-virtual-scroll-viewport>
         </div>
         <div>
             <div id="preview" *ngIf="survey">
-                <cdk-virtual-scroll-viewport  style="height: 90vh" itemSize="90" >
+                <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90" >
                     <app-preview></app-preview>
                 </cdk-virtual-scroll-viewport>
             </div>

@@ -1,26 +1,33 @@
 #wrapper {
+
     width: 100%;
-    margin-top: 3%;
+    /*margin-top: 1%;*/
     overflow: hidden; /* will contain if #first is longer than #second */
     /*box-shadow: 0px 0px 10px #b7b7b7;*/
 
 }
 
-.navbar {
-    height: 45px;
-    padding: 0 0 0;
+#preview {
+    /*border: 1px solid black;*/
+    padding-left: 1%;
+    overflow: hidden;
+    float: left;
+    width: 50%;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+
 }
 
-.collapse {
-    height: 100%;
-    width: 100%;
-}
+@media (min-width: 700px) {
+    #questions {
+        margin-left: 0;
+    }
 
-.nav-item {
-    margin: 3px;
-    /*border-bottom: 1px solid lightgray;*/
-    /*border-right: 1px solid lightgray;*/
-    /*border-left: 1px solid lightgray;*/
+    #wrapper.toggled #questions {
+        margin-left: -15rem;
+    }
 }
 
 .nav-icons {
@@ -28,28 +35,50 @@
     width: 20px;
 }
 
-#toolbar {
+.navigation {
     box-shadow: 0px 0px 5px #b4b4b4;
     background: #f5f5f5;
     display: flex;
-    padding-bottom: 0.5%;
-}
-#toolbarItems {
-    margin-top: 0.4%;
-    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-direction: row;
-    align-items: flex-end;
-    justify-content: flex-end;
-    margin-bottom: 0.1%;
+    z-index: 500;
+    /*margin-top: 0.4%;*/
+    /*margin-bottom: 0.1%;*/
 }
 
-#sTitle {
-    margin-left: 3%;
-    /*width: 40%;*/
+.toolbar-item {
+    /*padding-bottom: 0.1%;*/
+    padding-top: 0.9%;
+
 }
+
+.toolbar-title {
+    padding-top: 0.5%;
+}
+
+
+/* Medium screens */
+@media all and (max-width: 800px) {
+    .navigation {
+        /* When on medium sized screens, we center it by evenly distributing empty space around items */
+        justify-content: space-around;
+    }
+}
+
+/* Small screens */
+@media all and (max-width: 500px) {
+    .navigation {
+        /* On small screens, we are no longer using row direction but column */
+        flex-direction: column;
+    }
+}
+
 
 #questions {
     /*margin-top: 1%;*/
+    /*width: 100%;*/
     width: 45%;
     float:left; /* add this */
     /*box-shadow: 0px 0px 3px #c7c7c7;*/
@@ -66,13 +95,7 @@
 
 }
 
-#preview {
-    /*border: 1px solid black;*/
-    padding-left: 1%;
-    overflow: hidden;
-    float: left;
-    width: 50%;
-}
+
 #heading {
     width: 100%;
 }
@@ -143,16 +166,6 @@
     margin-bottom: 0;
 }
 
-
-/*#submit-div {*/
-/*    padding: 10px;*/
-/*    display: flex;*/
-/*}*/
-
-/*#submit-div2 {*/
-/*    display: flex;*/
-/*    padding: 10px;*/
-/*}*/
 
 .submit-child {
     margin-right: 15px;
