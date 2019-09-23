@@ -1,21 +1,21 @@
 <div class="navigation">
-    <button class="btn toolbar-item" routerLink="/tab-views">
+    <button class="btn btn-light toolbar-item" routerLink="/tab-views">
         Return
     </button>
-    <button class="btn toolbar-item" id="exp-btn1" (click)="setSurveyData(true)"
+    <button class="btn btn-light toolbar-item" id="exp-btn1" (click)="setSurveyData(true)"
             routerLink="/preview/{{survey.tabId}}">
         Preview
     </button>
-    <button class="btn toolbar-item" ng-click="showDiv = !showDiv">
+    <button class="btn btn-light toolbar-item" ng-click="showDiv = !showDiv">
         Live Preview
     </button>
-    <button class="btn toolbar-item" (click)="submit()">
+    <button class="btn btn-light toolbar-item" (click)="submit()">
         Save
     </button>
-    <button class="btn toolbar-item" (click)="exportAsXLSX()">
+    <button class="btn btn-light toolbar-item" (click)="exportAsXLSX()">
         Export
     </button>
-    <button class="btn toolbar-item" id="exp-btn" (click)="deploy()">
+    <button class="btn btn-light toolbar-item" id="exp-btn" (click)="deploy()">
         Deploy
     </button>
     <div class="col-lg-8 toolbar-title" *ngIf="survey">
@@ -30,24 +30,24 @@
 </div>
 <br>
 <div>
-
     <div id="wrapper" *ngIf="survey">
-
         <div id="questions">
             <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90" >
                 <form (ngSubmit)="saveSurvey()" id="form">
                     <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
                         <div class="title-div">
-                            <div class="imgView" *ngIf="assessments.asessmentType.toString() === '5'">
-                                <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
+                            <div style="margin-left: 1.5%;" class="imgView"
+                                 *ngIf="assessments.asessmentType.toString() === '5'">
+                                <img src="assets/icons/select.png" width="30" height="30" class="rounded float-left"
                                      alt="">
                             </div>
-                            <div class="imgView" *ngIf="assessments.asessmentType.toString() === '4'">
-                                <img src="assets/icons/texts.png" width="24" height="24" class="rounded float-left"
+                            <div style="margin-left: 1.5%;" class="imgView"
+                                 *ngIf="assessments.asessmentType.toString() === '4'">
+                                <img src="assets/icons/texts.png" width="30" height="30" class="rounded float-left"
                                      alt="">
                             </div>
                             <div class="title-div-child1">
-                                <p style="font-weight: bold">{{i + 1}}.</p>
+                                <p style="font-weight: bold; text-align: center">{{i + 1}}.</p>
                             </div>
                             <div class="title-div-child2">
                                 <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id style="font-weight: bold">
@@ -70,16 +70,16 @@
                             <div id="btn-div-1">
 
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-primary">Save
                                         Question
                                     </button>
                                 </div>
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
                                         Mandatory
                                     </button>
                                 </div>
-                                <button class="btn btn-outline-primary " type="button" data-toggle="collapse"
+                                <button id="change-field" class="btn btn-primary " type="button" data-toggle="collapse"
                                         data-target="#collapseExample" aria-expanded="false"
                                         aria-controls="collapseExample">
                                     Change Field
@@ -126,17 +126,19 @@
                             </div>
                             <div id="btn-div-2">
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-primary">Save
                                         Question
                                     </button>
                                 </div>
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
                                         Mandatory
                                     </button>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
                                         Question Types
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

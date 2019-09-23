@@ -3,6 +3,7 @@
     margin-top: 65px;
     min-height: 100vh;
     margin-left: -15rem;
+    height: 100%;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
@@ -77,4 +78,10 @@
 
 .align-baseline {
     margin-top: 20px;
+}
+
+#import-button {
+    width: 100%;
+    background-color: #016fbe;
+    border: 0;
 }
