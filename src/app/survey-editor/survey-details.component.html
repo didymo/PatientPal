@@ -2,7 +2,7 @@
     <button class="btn toolbar-item" routerLink="/tab-views">
         Return
     </button>
-    <button class="btn toolbar-item" id="exp-btn1" (click)="setSurveyData(true)"
+    <button class="btn btn-light toolbar-item" id="exp-btn1" (click)="setSurveyData(true)"
             routerLink="/preview/{{survey.tabId}}">
         Preview
     </button>
@@ -10,10 +10,10 @@
     <button class="btn toolbar-item" (click)="submit()">
         Save
     </button>
-    <button class="btn toolbar-item" (click)="exportAsXLSX()">
+    <button class="btn btn-light toolbar-item" (click)="exportAsXLSX()">
         Export
     </button>
-    <button class="btn toolbar-item" id="exp-btn" (click)="deploy()">
+    <button class="btn btn-light toolbar-item" id="exp-btn" (click)="deploy()">
         Deploy
     </button>
     <mat-slide-toggle style="margin-top: 0.9%; margin-left: 0.9%"
@@ -74,16 +74,16 @@
                             <div id="btn-div-1">
 
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-primary">Save
                                         Question
                                     </button>
                                 </div>
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
                                         Mandatory
                                     </button>
                                 </div>
-                                <button class="btn btn-outline-primary " type="button" data-toggle="collapse"
+                                <button id="change-field" class="btn btn-primary " type="button" data-toggle="collapse"
                                         data-target="#collapseExample" aria-expanded="false"
                                         aria-controls="collapseExample">
                                     Change Field
@@ -130,17 +130,19 @@
                             </div>
                             <div id="btn-div-2">
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-outline-primary">Save
+                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-primary">Save
                                         Question
                                     </button>
                                 </div>
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-outline-primary">
+                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
                                         Mandatory
                                     </button>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
                                         Question Types
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
