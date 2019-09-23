@@ -48,7 +48,21 @@ export interface DialogData {
             state('visible', style({
                 display: 'block'
             })),
-        ])
+        ]),
+        trigger('fullPreview', [
+            state('open', style({
+                width: '100%'
+            })),
+            state('closed', style({
+                width: '0%'
+            })),
+            transition('open => closed', [
+                animate('0.3s')
+            ]),
+            transition('closed => open', [
+                animate('0.3s')
+            ]),
+        ]),
     ],
 })
 /**
@@ -78,6 +92,7 @@ export class SurveyDetailsComponent implements OnInit {
     disabled = false;
     checked = false;
     isOpen = true;
+    isPreview = false;
 
     /**
      * Constructor for the SurveyDetailsComponent Class
@@ -395,6 +410,7 @@ export class SurveyDetailsComponent implements OnInit {
     public setSurveyData(self: boolean): void {
         this.fbService.setSurvey(this.survey);
         this.fbService.setSelf(self);
+        // this.isPreview = !this.isPreview;
     }
 
     public setToggle() {

@@ -3,16 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="fc6f3188-5839-4600-89b0-741875d3d48d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_classes/Survey.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/Survey.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/nav-bar/new-tab-view-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/new-tab-view-dialog.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icons/archive.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icons/archive.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icons/box.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icons/box.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icons/clipboard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icons/clipboard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icons/edit.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icons/edit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/icons/rockit.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/icons/rockit.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,15 +69,15 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/icons" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/_services" />
       <recent name="$PROJECT_DIR$/src/app/_Services" />
       <recent name="$PROJECT_DIR$/src/app/_classes" />
       <recent name="$PROJECT_DIR$/src/app/nav-bar" />
       <recent name="$PROJECT_DIR$/src/app" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets/icons" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -223,7 +222,7 @@
       <workItem from="1568685678240" duration="4088000" />
       <workItem from="1568784348943" duration="12501000" />
       <workItem from="1569204923521" duration="482000" />
-      <workItem from="1569205422570" duration="10897000" />
+      <workItem from="1569205422570" duration="14420000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -442,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568790937533</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Animation of live preview">
+      <created>1569216457768</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1569216457768</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -471,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed table and replaced with form that is able to show the choices within an assessment" />
     <MESSAGE value="Added preview component" />
     <MESSAGE value="imported ng-xforms &#10;Generates demo code" />
     <MESSAGE value="Pushing preview" />
@@ -496,7 +501,8 @@
     <MESSAGE value="Merged code with design branch" />
     <MESSAGE value="Preview can now be viewed itself" />
     <MESSAGE value="Fixed toolbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed toolbar" />
+    <MESSAGE value="Animation of live preview" />
+    <option name="LAST_COMMIT_MESSAGE" value="Animation of live preview" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="masterDetails">

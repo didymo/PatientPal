@@ -3,11 +3,13 @@
     <div mat-dialog-content>
         <p>Please select an XLSX file</p>
         <input class="form-control" id="languageInput" type="text" placeholder="Translation Language"
-               style="width: 20vw">
+               style="width: 20vw; margin-top: 2%">
         <br>
 
-        <input id="fileSelector" type="file" accept=".xlsx" (change)="handleFile($event)">
+        <input id="fileSelector" type="file" accept=".xlsx" (change)="handleFile($event)"
+               style="margin-top: 2%">
     </div>
+    <br>
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()" class="btn-light">Cancel</button>
         <button mat-button (click)="closeDialog()" routerLink="/detail/{{entityId}}" class="btn-light"
