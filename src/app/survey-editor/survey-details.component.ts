@@ -15,6 +15,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
 import {BuildFormService} from '../_services/build-form.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 export interface DialogData {
     link: string;
@@ -24,7 +25,31 @@ export interface DialogData {
     selector: 'app-form-details',
     templateUrl: './survey-details.component.html',
     styleUrls: ['./survey-details.component.css'],
-    providers: [MatSnackBar]
+    providers: [MatSnackBar],
+    animations: [
+        trigger('openClose', [
+            state('open', style({
+                width: '100%'
+            })),
+            state('closed', style({
+                width: '50%'
+            })),
+            transition('open => closed', [
+                animate('0.3s')
+            ]),
+            transition('closed => open', [
+                animate('0.3s')
+            ]),
+        ]),
+        trigger('openPreview', [
+            state('hidden', style({
+                display: 'none'
+            })),
+            state('visible', style({
+                display: 'block'
+            })),
+        ])
+    ],
 })
 /**
  * @implements OnInit
@@ -49,6 +74,10 @@ export class SurveyDetailsComponent implements OnInit {
      * An instance of a Survey
      */
     private survey: Survey;
+
+    disabled = false;
+    checked = false;
+    isOpen = true;
 
     /**
      * Constructor for the SurveyDetailsComponent Class
@@ -97,30 +126,32 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public sortSurvey(): void {
         this.createSurvey(); // Create an instance of a survey
-
+        let assessmentType: string;
         let tempAssessment: Assessment; // Create an instance of an assessment
         let cPos = 0; // Holds position of choices
         let aPos = 0; // Holds position of assessment
 
         this.tabViews.forEach((item, index, array) => {
+            assessmentType = item.assessmentType.toString();
             if (index === 0) { // Default statement
+
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 this.survey.addAssessment(tempAssessment);
-                if (item.assessmentType.toString() === '4') {
+                if (assessmentType === '4') {
                     this.survey.assessments[aPos].addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
-                } else if (item.assessmentType.toString() === '5') {
+                } else if (assessmentType === '5') {
                     this.survey.assessments[aPos].addChoice(this.createChoice(cPos, 5)); // Add a single a choice to an assessment
                     cPos++; // Update the position of the choice
                 }
-            } else if (item.assessmentType.toString() === '4') {
+            } else if (assessmentType === '4') {
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 tempAssessment.addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
                 this.survey.addAssessment(tempAssessment);
                 aPos++; // Update the position of the assessment
-            } else if (item.assessmentType.toString() === '5' && item.assessmentId === this.tabViews[index - 1].assessmentId) {
+            } else if (assessmentType === '5' && item.assessmentId === this.tabViews[index - 1].assessmentId) {
                 this.survey.assessments[aPos].addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
                 cPos++; // Update the position of the choice
-            } else if (item.assessmentType.toString() === '5' && item.assessmentId !== this.tabViews[index - 1].assessmentId) {
+            } else if (assessmentType === '5' && item.assessmentId !== this.tabViews[index - 1].assessmentId) {
                 cPos = 0; // Reset the position of the choice
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 tempAssessment.addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
@@ -143,7 +174,7 @@ export class SurveyDetailsComponent implements OnInit {
      * Creates a new choice based on the assessment type
      * @param i
      * Index of the array
-     * @type
+     * @param type
      * The assessment type
      */
     public createChoice(i: number, type: number): Choice {
@@ -159,7 +190,7 @@ export class SurveyDetailsComponent implements OnInit {
             /** Creates a normal choice*/
             tempChoices = new Choice(
                 this.tabViews[i].choiceId,
-                this.tabViews[i].choiceDescription.trim()
+                this.tabViews[i].choiceLabel.trim()
             );
         }
         return tempChoices;
@@ -231,7 +262,9 @@ export class SurveyDetailsComponent implements OnInit {
      * Iterates through the input tags and sets the assessments/choices description to those values
      */
     public saveSurvey(): void {
-
+        this.survey.setDescription(
+            (document.getElementById('surveyTitle') as HTMLInputElement).value
+        );
         this.survey.assessments.forEach(function(item, index, array) {
             item.setAssessmentDescription(
                 (document.getElementById(item.id.toString()) as HTMLInputElement).value); // Value in the input tag
@@ -363,4 +396,9 @@ export class SurveyDetailsComponent implements OnInit {
         this.fbService.setSurvey(this.survey);
         this.fbService.setSelf(self);
     }
+
+    public setToggle() {
+        this.isOpen = !this.isOpen;
+    }
+
 }

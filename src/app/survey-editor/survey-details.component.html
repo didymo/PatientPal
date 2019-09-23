@@ -1,4 +1,4 @@
-<div class="navigation">
+<div class="navigation" *ngIf="survey">
     <button class="btn toolbar-item" routerLink="/tab-views">
         Return
     </button>
@@ -6,9 +6,7 @@
             routerLink="/preview/{{survey.tabId}}">
         Preview
     </button>
-    <button class="btn toolbar-item" ng-click="showDiv = !showDiv">
-        Live Preview
-    </button>
+
     <button class="btn toolbar-item" (click)="submit()">
         Save
     </button>
@@ -18,22 +16,28 @@
     <button class="btn toolbar-item" id="exp-btn" (click)="deploy()">
         Deploy
     </button>
+    <mat-slide-toggle style="margin-top: 0.8%; margin-left: 0.5%"
+                      class="tp-margin"
+                      [checked]="checked"
+                      [disabled]="disabled"
+                      (change)="setToggle()"
+                      color="primary">
+        Live Preview
+    </mat-slide-toggle>
     <div class="col-lg-8 toolbar-title" *ngIf="survey">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Survey Title</span>
             </div>
-            <input type="text" class="form-control" [value]="survey.tabDesc" style="font-weight: bold">
+            <input type="text" class="form-control" id="surveyTitle" [value]="survey.tabDesc" style="font-weight: bold">
         </div>
     </div>
 
 </div>
 <br>
 <div>
-
     <div id="wrapper" *ngIf="survey">
-
-        <div id="questions">
+        <div id="questions" [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
             <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90" >
                 <form (ngSubmit)="saveSurvey()" id="form">
                     <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
@@ -161,12 +165,12 @@
                 </form>
             </cdk-virtual-scroll-viewport>
         </div>
-        <!--        <div>-->
-        <!--            <div id="preview" *ngIf="survey">-->
-        <!--                <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90" >-->
-        <!--                    <app-preview></app-preview>-->
-        <!--                </cdk-virtual-scroll-viewport>-->
-        <!--            </div>-->
-        <!--        </div>-->
+        <ng-container>
+            <div id="preview" [@openPreview]="isOpen ? 'hidden' : 'visible'">
+                <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90">
+                    <app-preview></app-preview>
+                </cdk-virtual-scroll-viewport>
+            </div>
+        </ng-container>
     </div>
 </div>
