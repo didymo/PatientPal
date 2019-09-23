@@ -352,20 +352,20 @@ export class SurveyDetailsComponent implements OnInit {
                     this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
                     aPos++; // Update the position of the assessment
                 } else if (item.assessmentType.toString() === '5') {
-                    this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                    this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
                     cPos++; // Update the position of the choice
                 }
             } else if (item.assessmentType.toString() === '4') {
                 this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
                 aPos++; // Update the position of the assessments
             } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id === item.assessmentId) {
-                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
                 cPos++; // Update the position of the choice
             } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id !== item.assessmentId) {
                 cPos = 0; // Reset values
                 aPos++; // Move onto the next assessment
                 this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
-                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
                 cPos++; // Update the position of the choice
             }
 

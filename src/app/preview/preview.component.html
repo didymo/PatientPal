@@ -1,4 +1,4 @@
-<div class="navigation">
+<div class="navigation" *ngIf="self">
     <button class="btn btn-light toolbar-item" routerLink="/detail/{{survey.tabId}}">
         Return
     </button>
@@ -10,7 +10,6 @@
             <input type="text" class="form-control" [value]="survey.tabDesc">
         </div>
     </div>
-
 </div>
 
 <!--<div id="return" *ngIf="self">-->

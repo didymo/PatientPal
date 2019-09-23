@@ -146,7 +146,7 @@ export class PreviewComponent implements OnInit {
             // Push new select into the fields array
             tempField = new SelectField({
                 key: this.survey.assessments[i].id.toString(),
-                label: this.survey.assessments[i].assessmentDesc,
+                label: (i + 1) + '. ' + this.survey.assessments[i].assessmentDesc,
                 searchable: false,
                 options: this.survey.assessments[i].choices,
                 addNewOption: true,
@@ -280,7 +280,7 @@ export class PreviewComponent implements OnInit {
             // Push new text field into the fields array
             tempField = new TextField({
                 key: this.survey.assessments[i].id,
-                label: this.survey.assessments[i].assessmentDesc,
+                label:  (i + 1) + '. ' + this.survey.assessments[i].assessmentDesc,
                 validators: [
                     Validators.required,
                     Validators.minLength(1)
