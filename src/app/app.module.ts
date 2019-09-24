@@ -21,6 +21,7 @@ import {DeployedLink} from './survey-editor/deployed-link';
 import {MatInputModule} from '@angular/material/input';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys/deployed-surveys.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     TabViewSearch,
       FormBuilderComponent,
       DynamicFormQuestionComponent,
-      DeployedLink
+      DeployedLink,
+      DeployedSurveysComponent,
+      DeployedSurveySearch
   ],
     imports: [
         BrowserModule,

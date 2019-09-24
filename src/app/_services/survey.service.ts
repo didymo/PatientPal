@@ -7,6 +7,7 @@ import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import {TabviewList} from '../_classes/TabviewList';
 import {TabView} from '../_classes/TabView';
+import {DeployedSurvey} from '../_classes/DeployedSurvey';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -88,6 +89,18 @@ export class SurveyService {
                 tap(_ => this.log(`found survey matching "${term}"`)),
                 catchError(this.handleError<TabviewList[]>('searchSurveys', []))
         );
+    }
+
+    /**
+     * GET TabViewList from drupal
+     * Will return 404 if not found
+     */
+    getDeployedSurveys(): Observable<string[]> {
+        return this.http.get<string[]>(environment.formServerDeployed)
+            .pipe(
+                tap(_ => this.log('fetched deployed')),
+                catchError(this.handleError<string[]>('getDeployedSurveys', []))
+            );
     }
     /**
      * Handle Http operation that failed.
