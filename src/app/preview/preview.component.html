@@ -1,5 +1,30 @@
-<div id="wrapper" *ngIf="survey">
-    <h2 id="test">{{survey.tabDesc}}</h2>
-    <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields" id="xform"></ng-xform>
+<div class="navigation" *ngIf="self">
+    <button class="btn btn-light toolbar-item" routerLink="/detail/{{survey.tabId}}">
+        Return
+    </button>
+    <div class="col-lg-8 toolbar-title" *ngIf="survey">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Survey Title</span>
+            </div>
+            <input type="text" class="form-control" [value]="survey.tabDesc">
+        </div>
+    </div>
+</div>
 
+<!--<div id="return" *ngIf="self">-->
+<!--    <div class="submit-child">-->
+<!--        <button class="btn btn-primary" id="exp-btn1" routerLink="/detail/{{survey.tabId}}"> Return</button>-->
+<!--        <h2 id="test">{{survey.tabDesc}}</h2>-->
+<!--    </div>-->
+<!--</div>-->
+<div id="wrapper" *ngIf="survey">
+    <div id="questions">
+        <cdk-virtual-scroll-viewport style="height: 90vh" itemSize="90">
+            <div id="assessments">
+                <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields"
+                          id="xform"></ng-xform>
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </div>
 </div>

@@ -20,6 +20,8 @@ export class ExcelService {
 
     private excelId: number;
 
+    private translationName: string;
+
 
     constructor() {
     }
@@ -65,6 +67,10 @@ export class ExcelService {
         this.excelId = id;
     }
 
+    public setTranslation(translation: string): void {
+        this.translationName = translation;
+    }
+
     public getExcelData(): any [] {
         let tmp = this.excelData;
         this.clearData();
@@ -78,6 +84,10 @@ export class ExcelService {
 
     public getID(): number {
         return this.excelId;
+    }
+
+    public getTranslationName(): string {
+        return this.translationName;
     }
 }
 

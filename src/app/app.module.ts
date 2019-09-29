@@ -18,6 +18,10 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule, MatFormFieldModule, MatS
 import {FormBuilderComponent} from './form-builder/form-builder.component';
 import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form-question.component';
 import {DeployedLink} from './survey-editor/deployed-link';
+import {MatInputModule} from '@angular/material/input';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys/deployed-surveys.component';
 
 @NgModule({
   declarations: [
@@ -31,21 +35,26 @@ import {DeployedLink} from './survey-editor/deployed-link';
     TabViewSearch,
       FormBuilderComponent,
       DynamicFormQuestionComponent,
-      DeployedLink
+      DeployedLink,
+      DeployedSurveysComponent,
+      DeployedSurveySearch
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgXformModule,
-      BrowserAnimationsModule,
-      MatDialogModule,
-    MatFormFieldModule,
-    MatSnackBarModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgXformModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSnackBarModule,
+        MatInputModule,
+        ScrollingModule,
+        MatSlideToggleModule
 
-  ],
+    ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ],

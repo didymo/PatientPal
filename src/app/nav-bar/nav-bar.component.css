@@ -3,11 +3,12 @@
     margin-top: 65px;
     min-height: 100vh;
     margin-left: -15rem;
+    height: 100%;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
-    box-shadow: 0px 0px 10px #999;
+    box-shadow: 0px 0px 5px #c4c4c4;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -20,7 +21,7 @@
 }
 
 #page-content-wrapper {
-    min-width: 100vw;
+    min-width: 100%;
     padding-left: 1%;
     padding-right: 1%;
     padding-bottom: 1%;
@@ -77,4 +78,10 @@
 
 .align-baseline {
     margin-top: 20px;
+}
+
+#import-button {
+    width: 100%;
+    background-color: #016fbe;
+    border: 0;
 }

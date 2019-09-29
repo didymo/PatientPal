@@ -14,6 +14,8 @@ import {MatSnackBar} from '@angular/material';
 import {MatDialog} from '@angular/material/dialog';
 import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
+import {BuildFormService} from '../_services/build-form.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 export interface DialogData {
     link: string;
@@ -23,7 +25,45 @@ export interface DialogData {
     selector: 'app-form-details',
     templateUrl: './survey-details.component.html',
     styleUrls: ['./survey-details.component.css'],
-    providers: [MatSnackBar]
+    providers: [MatSnackBar],
+    animations: [
+        trigger('openClose', [
+            state('open', style({
+                width: '100%'
+            })),
+            state('closed', style({
+                width: '50%'
+            })),
+            transition('open => closed', [
+                animate('0.3s')
+            ]),
+            transition('closed => open', [
+                animate('0.3s')
+            ]),
+        ]),
+        trigger('openPreview', [
+            state('hidden', style({
+                display: 'none'
+            })),
+            state('visible', style({
+                display: 'block'
+            })),
+        ]),
+        trigger('fullPreview', [
+            state('open', style({
+                width: '100%'
+            })),
+            state('closed', style({
+                width: '0%'
+            })),
+            transition('open => closed', [
+                animate('0.3s')
+            ]),
+            transition('closed => open', [
+                animate('0.3s')
+            ]),
+        ]),
+    ],
 })
 /**
  * @implements OnInit
@@ -49,6 +89,11 @@ export class SurveyDetailsComponent implements OnInit {
      */
     private survey: Survey;
 
+    disabled = false;
+    checked = false;
+    isOpen = true;
+    isPreview = false;
+
     /**
      * Constructor for the SurveyDetailsComponent Class
      * @param fb FromBuilder
@@ -64,6 +109,7 @@ export class SurveyDetailsComponent implements OnInit {
         private formService: SurveyService,
         private excelService: ExcelService,
         private location: Location,
+        private fbService: BuildFormService,
         private _snackBar: MatSnackBar,
         public dialog: MatDialog
     ) { }
@@ -88,12 +134,6 @@ export class SurveyDetailsComponent implements OnInit {
                 () => this.sortSurvey()); // Sort tabviews into a Survey
     }
     /**
-     * Returns a user back to the previous page
-     */
-    public goBack(): void {
-        this.location.back();
-    }
-    /**
      * Sorts out the tabviews that were retrieved from Drupal
      * Creates assessments and their choices by iterating through the tabviews
      * Once an assessment is created and it's choices have been populated
@@ -101,30 +141,32 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public sortSurvey(): void {
         this.createSurvey(); // Create an instance of a survey
-
+        let assessmentType: string;
         let tempAssessment: Assessment; // Create an instance of an assessment
         let cPos = 0; // Holds position of choices
         let aPos = 0; // Holds position of assessment
 
         this.tabViews.forEach((item, index, array) => {
+            assessmentType = item.assessmentType.toString();
             if (index === 0) { // Default statement
+
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 this.survey.addAssessment(tempAssessment);
-                if (item.assessmentType.toString() === '4') {
+                if (assessmentType === '4') {
                     this.survey.assessments[aPos].addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
-                } else if (item.assessmentType.toString() === '5') {
+                } else if (assessmentType === '5') {
                     this.survey.assessments[aPos].addChoice(this.createChoice(cPos, 5)); // Add a single a choice to an assessment
                     cPos++; // Update the position of the choice
                 }
-            } else if (item.assessmentType.toString() === '4') {
+            } else if (assessmentType === '4') {
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 tempAssessment.addChoice(this.createChoice(index, 4)); // Add a single choice to an assessment
                 this.survey.addAssessment(tempAssessment);
                 aPos++; // Update the position of the assessment
-            } else if (item.assessmentType.toString() === '5' && item.assessmentId === this.tabViews[index - 1].assessmentId) {
+            } else if (assessmentType === '5' && item.assessmentId === this.tabViews[index - 1].assessmentId) {
                 this.survey.assessments[aPos].addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
                 cPos++; // Update the position of the choice
-            } else if (item.assessmentType.toString() === '5' && item.assessmentId !== this.tabViews[index - 1].assessmentId) {
+            } else if (assessmentType === '5' && item.assessmentId !== this.tabViews[index - 1].assessmentId) {
                 cPos = 0; // Reset the position of the choice
                 tempAssessment = this.createAssessment(index); // Create a new assessment
                 tempAssessment.addChoice(this.createChoice(index, 5)); // Add a single a choice to an assessment
@@ -139,12 +181,15 @@ export class SurveyDetailsComponent implements OnInit {
             this.updateToExcel(blob);
             this.openSnackBar('Import Successful', 'Close');
         }
+
+        this.setSurveyData(false);
     }
+
     /**
      * Creates a new choice based on the assessment type
      * @param i
      * Index of the array
-     * @type
+     * @param type
      * The assessment type
      */
     public createChoice(i: number, type: number): Choice {
@@ -160,7 +205,7 @@ export class SurveyDetailsComponent implements OnInit {
             /** Creates a normal choice*/
             tempChoices = new Choice(
                 this.tabViews[i].choiceId,
-                this.tabViews[i].choiceDescription.trim()
+                this.tabViews[i].choiceLabel.trim()
             );
         }
         return tempChoices;
@@ -232,7 +277,9 @@ export class SurveyDetailsComponent implements OnInit {
      * Iterates through the input tags and sets the assessments/choices description to those values
      */
     public saveSurvey(): void {
-
+        this.survey.setDescription(
+            (document.getElementById('surveyTitle') as HTMLInputElement).value
+        );
         this.survey.assessments.forEach(function(item, index, array) {
             item.setAssessmentDescription(
                 (document.getElementById(item.id.toString()) as HTMLInputElement).value); // Value in the input tag
@@ -293,7 +340,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public updateToExcel(blob: any []) {
 
-        this.survey.tabDesc = blob[0].tabViewLabel;
+        this.survey.tabDesc = '(' + this.excelService.getTranslationName() + ') ' + blob[0].tabViewLabel;
 
         let aPos = 0; // Holds the position of the assessments
         let cPos = 0; // Holds the position of the choices
@@ -305,20 +352,20 @@ export class SurveyDetailsComponent implements OnInit {
                     this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
                     aPos++; // Update the position of the assessment
                 } else if (item.assessmentType.toString() === '5') {
-                    this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                    this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
                     cPos++; // Update the position of the choice
                 }
             } else if (item.assessmentType.toString() === '4') {
                 this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
                 aPos++; // Update the position of the assessments
             } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id === item.assessmentId) {
-                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
                 cPos++; // Update the position of the choice
             } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id !== item.assessmentId) {
                 cPos = 0; // Reset values
                 aPos++; // Move onto the next assessment
                 this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
-                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
                 cPos++; // Update the position of the choice
             }
 
@@ -343,7 +390,7 @@ export class SurveyDetailsComponent implements OnInit {
      * Handle the dialog window
      * This dialog displays a single input which contains the URL of the deployed survey
      */
-    openDialog(): void {
+    public openDialog(): void {
         const dialogRef = this.dialog.open(DeployedLink, {
             height: '25%',
             width: '25%',
@@ -353,6 +400,21 @@ export class SurveyDetailsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
         });
+    }
+
+    /**
+     * Sets the survey data
+     * @param self
+     * self view or preview view
+     */
+    public setSurveyData(self: boolean): void {
+        this.fbService.setSurvey(this.survey);
+        this.fbService.setSelf(self);
+        // this.isPreview = !this.isPreview;
+    }
+
+    public setToggle() {
+        this.isOpen = !this.isOpen;
     }
 
 }

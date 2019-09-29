@@ -39,4 +39,13 @@ export class Survey {
   public addAssessment(assessment: Assessment) {
     this.assessments.push(assessment);
   }
+
+    /**
+     * Sets the tab view description
+     * @param desc
+     * The description of the tab view
+     */
+    public setDescription(desc: string) {
+        this.tabDesc = desc;
+    }
 }

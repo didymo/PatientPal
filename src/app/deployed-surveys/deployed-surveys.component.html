@@ -5,7 +5,7 @@
 </div>
 
 <!--Table Data -->
-<div class="align-baseline" style="margin-top: 20px">
+<div class="align-baseline" *ngIf="surveys" style="margin-top: 20px">
     <cdk-virtual-scroll-viewport  style="height: 90vh" itemSize="90" id="scrollView" >
         <div class="row">
             <div class="col-md-12 col-md-offset0">
@@ -19,12 +19,12 @@
                     </tr>
                     </thead>
                     <tbody class="search-result">
-                    <tr *ngFor="let tab of tabviews | tabViewSearch: queryString" routerLink="/detail/{{tab.entityId}}"
+                    <tr *ngFor="let tab of surveys| deployedSurveySearch: queryString"
                         class="survey_data">
-                        <td class="survey_id">{{tab.entityId }}</td>
-                        <td>{{ tab.label }}</td>
+                        <td class="survey_id">{{tab.id }}</td>
+                        <td>{{ tab.name }}</td>
                         <td>10/10/19</td>
-                        <td>Draft</td>
+                        <td>Deployed</td>
                     </tr>
                     </tbody>
                 </table>
@@ -36,5 +36,5 @@
 
 <hr>
 <footer class="container">
-  <p>&copy; PatientPal 2019</p>
+    <p>&copy; PatientPal 2019</p>
 </footer>
