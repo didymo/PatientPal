@@ -8,6 +8,7 @@ import {TextboxQuestion} from '../_questions/question-textbox';
 import {NumberField, RadioGroupField, SelectField, TextField} from '@esss/ng-xform';
 import {RadioQuestion} from '../_questions/question-radio';
 import {NumberQuestion} from '../_questions/question-number';
+import {BuildFormService} from '../_services/build-form.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class FormBuilderComponent implements OnInit {
     form: FormGroup;
     payLoad = '';
 
-    constructor(private qcs: QuestionControlService) {
+    constructor(private qcs: QuestionControlService, private fb: BuildFormService) {
     }
 
     ngOnInit() {
@@ -56,7 +57,6 @@ export class FormBuilderComponent implements OnInit {
      * Whether or not a question is optional or not
      */
     public createSelect(i: number, optional: boolean) {
-
         let tempField: SelectField;
 
         // Check if field already exists
@@ -70,7 +70,7 @@ export class FormBuilderComponent implements OnInit {
                 label: this.survey.assessments[i].assessmentDesc,
                 options: this.survey.assessments[i].choices,
                 order: i,
-                required: false
+                required: true
             },
             this.survey.assessments[i].choices);
         console.log(tempField.controlType);
@@ -97,7 +97,7 @@ export class FormBuilderComponent implements OnInit {
             key: this.survey.assessments[i].id,
             label: this.survey.assessments[i].assessmentDesc,
             order: i,
-            required: false
+            required: true
         });
 
         // Reposition
@@ -124,7 +124,7 @@ export class FormBuilderComponent implements OnInit {
                 label: this.survey.assessments[i].assessmentDesc,
                 options: this.survey.assessments[i].choices,
                 order: i,
-                required: false
+                required: true
             },
             this.survey.assessments[i].choices);
 
@@ -149,7 +149,7 @@ export class FormBuilderComponent implements OnInit {
         // Push new number field into the fields array
         tempField = new NumberQuestion({
             key: this.survey.assessments[i].id,
-            label: this.survey.assessments[i].assessmentDesc + ' (Number)',
+            label: this.survey.assessments[i].assessmentDesc,
             order: i,
             type: 'number',
             required: true
@@ -203,21 +203,22 @@ export class FormBuilderComponent implements OnInit {
      * Whether or not a question is optional or not
      */
     public updateField(i: number, optional: boolean): void {
-
+        console.log(this.fields[i].controlType);
+        console.log(this.survey.assessments[i].assessmentDesc);
         switch (this.fields[i].controlType) {
-            case 'SELECT':
+            case 'dropdown':
                 this.removeField(i);
                 this.createSelect(i, optional);
                 break;
-            case 'RADIOGROUP':
+            case 'radio':
                 this.removeField(i);
                 this.createRadioGroup(i, optional);
                 break;
-            case 'TEXT':
+            case 'textbox':
                 this.removeField(i);
                 this.createText(i, optional);
                 break;
-            case 'NUMBER':
+            case 'number':
                 this.removeField(i);
                 this.createNumber(i, optional);
                 break;

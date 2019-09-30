@@ -95,10 +95,13 @@
                                         dropdown
                                     </button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem (click)="preview.createRadioGroup(i)">Radio Buttons
+                                        <button ngbDropdownItem (click)="preview.createRadioGroup(i, false)">Radio
+                                            Buttons
                                         </button>
-                                        <button ngbDropdownItem (click)="preview.createSelect(i)">Select One</button>
-                                        <button ngbDropdownItem (click)="preview.createSelectMany(i)">Select Many
+                                        <button ngbDropdownItem (click)="preview.createSelect(i, false)">Select One
+                                        </button>
+                                        <button ngbDropdownItem (click)="preview.createSelectMany(i , false)">Select
+                                            Many
                                         </button>
                                     </div>
                                 </div>
@@ -126,8 +129,10 @@
                                         dropdown
                                     </button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem (click)="preview.createText(i)">Text Field</button>
-                                        <button ngbDropdownItem (click)="preview.createNumber(i)">Number Field</button>
+                                        <button ngbDropdownItem (click)="preview.createText(i, false)">Text Field
+                                        </button>
+                                        <button ngbDropdownItem (click)="preview.createNumber(i, false)">Number Field
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -138,13 +143,14 @@
             </cdk-virtual-scroll-viewport>
         </div>
         <ng-container>
-            <div id="preview"
+            <div id="preview" *ngIf="survey"
                  [@openPreview]="isOpen ? 'hidden' : 'visible'"
                  [@fullPreview]="fullPreview ? 'open' : 'close'"
             >
-                <cdk-virtual-scroll-viewport style="height: 85vh" itemSize="90">
+                <!--                <cdk-virtual-scroll-viewport style="height: 85vh" itemSize="90">-->
+                <!--                    <app-form-builder [survey]="survey"></app-form-builder>-->
                     <app-preview></app-preview>
-                </cdk-virtual-scroll-viewport>
+                <!--                </cdk-virtual-scroll-viewport>-->
             </div>
         </ng-container>
     </div>

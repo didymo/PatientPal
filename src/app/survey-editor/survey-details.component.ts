@@ -16,10 +16,12 @@ import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
 import {BuildFormService} from '../_services/build-form.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {FormBuilderComponent} from '../form-builder/form-builder.component';
 
 export interface DialogData {
     link: string;
 }
+
 
 @Component({
     selector: 'app-form-details',
@@ -75,6 +77,8 @@ export class SurveyDetailsComponent implements OnInit {
      * Stores an instance of the preview component
      */
     @ViewChild(PreviewComponent, {static: false}) preview;
+    // @ViewChild(FormBuilderComponent, {static: false}) preview;
+
 
     /**
      * The id from the URL is linked to the entity ID of the tabview
@@ -302,6 +306,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public saveQuestion(i: number, optional: boolean): void {
         this.saveSurvey(); // Save the survey
+        // this.fbService.setSurvey(this.survey);
         this.preview.updateField(i, optional); // Update the preview
         this.openSnackBar('Question Saved', 'Close');
 

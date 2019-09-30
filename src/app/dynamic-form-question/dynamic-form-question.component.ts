@@ -11,9 +11,9 @@ export class DynamicFormQuestionComponent {
     @Input() question: QuestionBase<any>;
     @Input() form: FormGroup;
 
+    touched = false;
+
     get isValid() {
         return this.form.controls[this.question.key].valid;
     }
-
-    whitespace = '50%';
 }
