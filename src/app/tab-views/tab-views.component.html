@@ -6,7 +6,7 @@
 
 <!--Table Data -->
 <div class="align-baseline" style="margin-top: 20px">
-    <cdk-virtual-scroll-viewport  style="height: 90vh" itemSize="90" id="scrollView" >
+    <cdk-virtual-scroll-viewport style="height: 85vh" itemSize="90" id="scrollView">
         <div class="row">
             <div class="col-md-12 col-md-offset0">
                 <table id="dtOrderExample" class="table table-bordered table-hover">
@@ -19,7 +19,8 @@
                     </tr>
                     </thead>
                     <tbody class="search-result">
-                    <tr *ngFor="let tab of tabviews | tabViewSearch: queryString" routerLink="/detail/{{tab.entityId}}"
+                    <tr *ngFor="let tab of tabviews | tabViewSearch: queryString"
+                        routerLink="/detail/{{tab.entityId}}"
                         class="survey_data">
                         <td class="survey_id">{{tab.entityId }}</td>
                         <td>{{ tab.label }}</td>

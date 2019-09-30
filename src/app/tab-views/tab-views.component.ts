@@ -6,13 +6,9 @@ import {TabviewList} from '../_classes/TabviewList';
     name: 'tabViewSearch'
 })
 /**
- * Used to handle the search functionality of the application
- * Searches for specific TabViews
- * Displays a search bar on the application
- * A user can enter search terms and then see any TabView with similar characters
+ * Handles the sorting by views in the table
  */
 export class TabViewSearch implements PipeTransform {
-
 
     transform(value: TabviewList[], term: string): TabviewList[] {
         if (term == null) {
@@ -44,6 +40,7 @@ export class TabViewsComponent implements OnInit {
      */
     tabviews: TabviewList [];
     queryString: string;
+    sortString: string;
 
     /**
      * Constructor of the TabViewComponent Class

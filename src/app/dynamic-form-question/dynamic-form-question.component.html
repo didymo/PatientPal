@@ -7,12 +7,12 @@
             <div *ngSwitchCase="'textbox'" style="margin-bottom: 24%;">
                 <input class="form-control" [formControlName]="question.key"
                        [id]="question.key" [type]="question.type" ngModel="{{question.label}}"
-                       style="display: block; width: 20vw">
+                >
 
             </div>
 
             <!--DropDown-->
-            <div *ngSwitchCase="'dropdown'" style="margin-bottom: 50%;">
+            <div *ngSwitchCase="'dropdown'">
                 <select class="form-control" [id]="question.key" [formControlName]="question.key"
                         style="display: block; width: 20vw;">
                     <option *ngFor="let opt of question.options" [value]="opt.key" id="drop">{{opt.value}}</option>
@@ -29,7 +29,7 @@
                            [value]="opt.key"
                            id="radioBtn"
                            checked>
-                    <label style="margin-bottom: 5%; margin-top: 5%">{{opt.value}}</label>
+                    <label>{{opt.value}}</label>
                 </div>
             </div>
 

@@ -49,7 +49,6 @@ export class FormBuilderComponent implements OnInit {
 
     }
 
-
     /**
      * This funtion is used to create a SelectField
      * @param i Is used to determine which assessment has been inputted
@@ -222,10 +221,7 @@ export class FormBuilderComponent implements OnInit {
                 this.removeField(i);
                 this.createNumber(i, optional);
                 break;
-            // case 'CHECK':
-            //     this.removeField(i);
-            //     this.createCheckBox(i, optional);
-            //     break;
+
         }
     }
 

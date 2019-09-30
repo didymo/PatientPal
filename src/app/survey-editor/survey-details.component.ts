@@ -57,10 +57,10 @@ export interface DialogData {
                 width: '0%'
             })),
             transition('open => closed', [
-                animate('0.3s')
+                animate('0.5s')
             ]),
             transition('closed => open', [
-                animate('0.3s')
+                animate('0.5s')
             ]),
         ]),
     ],
@@ -92,7 +92,10 @@ export class SurveyDetailsComponent implements OnInit {
     disabled = false;
     checked = false;
     isOpen = true;
-    isPreview = false;
+    isPreview = true;
+    fullPreview = false;
+    previewDisabled = false;
+    hideEdit = false;
 
     /**
      * Constructor for the SurveyDetailsComponent Class
@@ -415,6 +418,17 @@ export class SurveyDetailsComponent implements OnInit {
 
     public setToggle() {
         this.isOpen = !this.isOpen;
+        this.previewDisabled = !this.previewDisabled;
+
+    }
+
+    public setPreview() {
+        this.disabled = !this.disabled;
+        this.isOpen = !this.isOpen;
+        this.fullPreview = !this.fullPreview;
+        this.isPreview = !this.isPreview;
+        this.hideEdit = !this.hideEdit;
+
     }
 
 }
