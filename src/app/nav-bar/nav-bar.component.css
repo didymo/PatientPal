@@ -8,9 +8,12 @@
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
-    box-shadow: 0px 0px 5px #c4c4c4;
+    box-shadow: 0px 0px 10px #c4c4c4;
 }
 
+#header {
+
+}
 #sidebar-wrapper .sidebar-heading {
     padding: 0.875rem 1.25rem;
     font-size: 1.2rem;

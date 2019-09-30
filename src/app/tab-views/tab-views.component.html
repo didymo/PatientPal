@@ -1,41 +1,39 @@
-<div id="search-component" style="width: 700px;">
+<div id="wrapper">
+    <div id="search-component" style="width: 700px; margin-left: 2.5%">
 
-    <input #searchBox id="search-box" class="form-control mr-sm-2"
-           placeholder="Search tab view name" type="text" [(ngModel)]="queryString"/>
-</div>
+        <input #searchBox id="search-box" class="form-control mr-sm-2"
+               placeholder="Search tab view name" type="text" [(ngModel)]="queryString"/>
+    </div>
 
-<!--Table Data -->
-<div class="align-baseline" style="margin-top: 20px">
-    <cdk-virtual-scroll-viewport style="height: 85vh" itemSize="90" id="scrollView">
-        <div class="row">
-            <div class="col-md-12 col-md-offset0">
-                <table id="dtOrderExample" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Created</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody class="search-result">
-                    <tr *ngFor="let tab of tabviews | tabViewSearch: queryString"
-                        routerLink="/detail/{{tab.entityId}}"
-                        class="survey_data">
-                        <td class="survey_id">{{tab.entityId }}</td>
-                        <td>{{ tab.label }}</td>
-                        <td>10/10/19</td>
-                        <td>Draft</td>
-                    </tr>
-                    </tbody>
-                </table>
+    <!--Table Data -->
+    <div class="align-baseline" style="margin-top: 20px; width: 95%; margin-left: 2.5%">
+        <cdk-virtual-scroll-viewport style="height: 85vh;" itemSize="90" id="scrollView">
+            <div class="row">
+                <div class="col-md-12 col-md-offset0">
+                    <table id="dtOrderExample" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Created</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody class="search-result">
+                        <tr *ngFor="let tab of tabviews | tabViewSearch: queryString"
+                            routerLink="/detail/{{tab.entityId}}"
+                            class="survey_data">
+                            <td class="survey_id">{{tab.entityId }}</td>
+                            <td>{{ tab.label }}</td>
+                            <td>10/10/19</td>
+                            <td>Draft</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </cdk-virtual-scroll-viewport>
+        </cdk-virtual-scroll-viewport>
 
+    </div>
 </div>
 
-<hr>
-<footer class="container">
-  <p>&copy; PatientPal 2019</p>
-</footer>
