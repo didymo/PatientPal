@@ -27,7 +27,20 @@ export class TabViewSearch implements PipeTransform {
  * Handles the sorting by views in the table
  */
 export class OrderBy implements PipeTransform {
-
+    /**
+     * Compare function
+     * @param a
+     * @param b
+     */
+    compare(a: any, b: any): number {
+        if (a < b) {
+            return -1;
+        } else if (a > b) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     transform(value: TabviewList[], term: string): TabviewList[] {
         if (term == null) {
@@ -38,49 +51,25 @@ export class OrderBy implements PipeTransform {
                 return value.sort((a, b) => {
                     let itemA = a.entityId;
                     let itemB = b.entityId;
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    return this.compare(itemA, itemB);
                 });
             case 'IDBack':
                 return value.sort((a, b) => {
                     let itemA = b.entityId;
                     let itemB = a.entityId;
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    return this.compare(itemA, itemB);
                 });
             case 'Label':
                 return value.sort((a, b) => {
-                    let itemA = b.label.toLowerCase();
-                    let itemB = a.label.toLowerCase();
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    let itemA = b.label.toLowerCase().replace(/\s/g, '');
+                    let itemB = a.label.toLowerCase().replace(/\s/g, '');
+                    return this.compare(itemA, itemB);
                 });
             case 'LabelBack':
                 return value.sort((a, b) => {
-                    let itemA = a.label.toLowerCase();
-                    let itemB = b.label.toLowerCase();
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    let itemA = a.label.toLowerCase().replace(/\s/g, '');
+                    let itemB = b.label.toLowerCase().replace(/\s/g, '');
+                    return this.compare(itemA, itemB);
                 });
         }
 
