@@ -1,6 +1,9 @@
+#wrapper {
+}
 .table td {
     cursor: pointer;
 }
+
 
 .table {
     margin-left: auto;

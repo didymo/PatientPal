@@ -2,10 +2,9 @@
     <h1 mat-dialog-title> Survey Deployed!</h1>
     <div mat-dialog-content>
         <p>Form Link</p>
-        <mat-form-field>
-            <input matInput type="text" id="link" id="link" [(ngModel)]="link" style="width: 40vh">
-        </mat-form-field>
+        <input matInput type="text" id="link" id="link" [(ngModel)]="link" style="width: 50%">
     </div>
+    <br>
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()" class="btn-light">Cancel</button>
         <button mat-button mat-dialog-close="copyText()" class="btn-light" cdkFocusInitial (click)="copyText()">Copy

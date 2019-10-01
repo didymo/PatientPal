@@ -49,11 +49,11 @@ export class PreviewComponent implements OnInit {
     /**
      * Determine if a form is horizontal viewing or not
      */
-    public horizontal = false;
+    public horizontal = true;
     /**
      * Defines the width of a label
      */
-    public labelWidth = 0;
+    public labelWidth = 0
     public model: any;
     public outputhelper = {A: 1, B: 2, C: 3};
     public subscriptions: Subscription[] = [];
@@ -86,6 +86,14 @@ export class PreviewComponent implements OnInit {
         this.titleService.setTitle('TabviewList | ' + this.survey.tabDesc); // Sets the title
         this.initWidgets(); // Initiates the widgets
 
+    }
+
+    changeTitle(i: number, title: string) {
+        this.fields[i].label = i + 1 + '. ' + title;
+    }
+
+    changeChoice(i: number, x: number, title: string) {
+        this.survey.assessments[i].choices[x].choiceDesc = title;
     }
     /**
      * This function is used to init the fields array.
@@ -312,13 +320,13 @@ export class PreviewComponent implements OnInit {
             // Push new number field into the fields array
             tempField = new NumberField({
                 key: this.survey.assessments[i].id,
-                label: this.survey.assessments[i].assessmentDesc + ' (Number)',
+                label: this.survey.assessments[i].assessmentDesc,
             });
         } else {
             // Push new number field into the fields array
             tempField = new NumberField({
                 key: this.survey.assessments[i].id,
-                label: this.survey.assessments[i].assessmentDesc + ' (Number)',
+                label: this.survey.assessments[i].assessmentDesc,
                 validators: [
                     Validators.required,
                     Validators.minLength(1)

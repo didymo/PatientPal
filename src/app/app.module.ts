@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import {AppComponent} from './app.component';
 import { NgXformModule } from '@esss/ng-xform';
@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys/deployed-surveys.component';
+import {OrderBy} from './tab-views/tab-views.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys
       DynamicFormQuestionComponent,
       DeployedLink,
       DeployedSurveysComponent,
-      DeployedSurveySearch
+      DeployedSurveySearch,
+      OrderBy,
   ],
     imports: [
         BrowserModule,
@@ -52,7 +54,8 @@ import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys
         MatSnackBarModule,
         MatInputModule,
         ScrollingModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        NgbModule
 
     ],
   providers: [

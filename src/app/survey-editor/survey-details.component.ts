@@ -16,10 +16,11 @@ import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
 import {BuildFormService} from '../_services/build-form.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-
+import {NgForm} from '@angular/forms';
 export interface DialogData {
     link: string;
 }
+
 
 @Component({
     selector: 'app-form-details',
@@ -57,10 +58,10 @@ export interface DialogData {
                 width: '0%'
             })),
             transition('open => closed', [
-                animate('0.3s')
+                animate('0.5s')
             ]),
             transition('closed => open', [
-                animate('0.3s')
+                animate('0.5s')
             ]),
         ]),
     ],
@@ -75,6 +76,8 @@ export class SurveyDetailsComponent implements OnInit {
      * Stores an instance of the preview component
      */
     @ViewChild(PreviewComponent, {static: false}) preview;
+    // @ViewChild(FormBuilderComponent, {static: false}) preview;
+
 
     /**
      * The id from the URL is linked to the entity ID of the tabview
@@ -92,7 +95,10 @@ export class SurveyDetailsComponent implements OnInit {
     disabled = false;
     checked = false;
     isOpen = true;
-    isPreview = false;
+    isPreview = true;
+    fullPreview = false;
+    previewDisabled = false;
+    hideEdit = false;
 
     /**
      * Constructor for the SurveyDetailsComponent Class
@@ -267,7 +273,7 @@ export class SurveyDetailsComponent implements OnInit {
                 res => {
                     console.log(res);
                 },
-                error1 => console.log(error1), // Log errors
+                error1 => this.openSnackBar('Error when deploying', 'Close'), // Log errors
                 () => this.openDialog()
             );
     }
@@ -297,11 +303,18 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * When user clicks save question, all question choices are then saved
      */
-    public saveQuestion(i: number, optional: boolean): void {
-        this.saveSurvey(); // Save the survey
+    public saveQuestion(i: number, x: number, optional: boolean): void {
+        this.survey.assessments[i].setAssessmentDescription(
+            (document.getElementById(this.survey.assessments[i].id.toString()) as HTMLInputElement).value);
+        this.survey.assessments[i].choices.forEach((choice, index, array) => {
+            try {
+                choice.setChoiceDescription(
+                    (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
+            } catch (e) {
+                console.log(e);
+            }
+        });
         this.preview.updateField(i, optional); // Update the preview
-        this.openSnackBar('Question Saved', 'Close');
-
     }
 
     /**
@@ -392,8 +405,8 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public openDialog(): void {
         const dialogRef = this.dialog.open(DeployedLink, {
-            height: '25%',
-            width: '25%',
+            height: '30%',
+            width: '40%',
             data: {link: environment.formServerApplicationURL + this.id}
         });
 
@@ -415,6 +428,17 @@ export class SurveyDetailsComponent implements OnInit {
 
     public setToggle() {
         this.isOpen = !this.isOpen;
+        this.previewDisabled = !this.previewDisabled;
+
+    }
+
+    public setPreview() {
+        this.disabled = !this.disabled;
+        this.isOpen = !this.isOpen;
+        this.fullPreview = !this.fullPreview;
+        this.isPreview = !this.isPreview;
+        this.hideEdit = !this.hideEdit;
+
     }
 
 }

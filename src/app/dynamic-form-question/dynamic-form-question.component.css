@@ -1,8 +1,7 @@
 .container {
-    display: flex;
-    flex-flow: row wrap;
-    align-content: space-between;
-    justify-content: space-between;
 
+}
 
+#row {
+    width: 90%;
 }
