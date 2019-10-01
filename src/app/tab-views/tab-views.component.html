@@ -1,5 +1,5 @@
 <div id="wrapper">
-    <div id="search-component" style="width: 700px; margin-left: 2.5%">
+    <div id="search-component" style="width: 35%; margin-left: 2.5%">
 
         <input #searchBox id="search-box" class="form-control mr-sm-2"
                placeholder="Search tab view name" type="text" [(ngModel)]="queryString"/>
@@ -13,14 +13,14 @@
                     <table id="dtOrderExample" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Created</th>
-                            <th scope="col">Status</th>
+                            <th scope="col" class="title" (click)="tableSort()">ID</th>
+                            <th scope="col" class="title" (click)="nameSort()">Name</th>
+                            <th scope="col" class="title">Created</th>
+                            <th scope="col" class="title">Status</th>
                         </tr>
                         </thead>
                         <tbody class="search-result">
-                        <tr *ngFor="let tab of tabviews | tabViewSearch: queryString"
+                        <tr *ngFor="let tab of tabviews | tabViewSearch: queryString | orderBy: sortString"
                             routerLink="/detail/{{tab.entityId}}"
                             class="survey_data">
                             <td class="survey_id">{{tab.entityId }}</td>

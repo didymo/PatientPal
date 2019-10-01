@@ -61,7 +61,12 @@
                                 <p style="font-weight: bold">{{i + 1}}.</p>
                             </div>
                             <div class="title-div-child2">
-                                <input class="form-control" [value]="assessments.assessmentDesc" [attr.id]=assessments.id style="font-weight: bold">
+                                <input class="form-control"
+                                       [value]="assessments.assessmentDesc"
+                                       [(ngModel)]="survey.assessments[i].assessmentDesc"
+                                       (ngModelChange)="preview.changeTitle(i,$event)"
+                                       [ngModelOptions]="{standalone: true}"
+                                       [attr.id]=assessments.id style="font-weight: bold">
                             </div>
                         </div>
 
@@ -73,18 +78,19 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Option {{x + 1}}</span>
                                     </div>
-                                    <textarea [value]="choices.choiceDesc" [attr.id]=assessments.choices[x].id
-                                              class="form-control" rows="2">
+                                    <textarea
+                                            [(ngModel)]="survey.assessments[i].choices[x].choiceDesc"
+                                            [ngModelOptions]="{standalone: true}"
+                                            (ngModelChange)="saveQuestion(i, x, false)"
+                                            [value]="choices.choiceDesc"
+                                            [attr.id]=assessments.choices[x].id
+                                            class="form-control" rows="2"
+                                    >
                                 </textarea>
                                 </div>
                             </div>
                             <div id="btn-div-1">
 
-                                <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-primary">Save
-                                        Question
-                                    </button>
-                                </div>
                                 <div class="submit-child">
                                     <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
                                         Mandatory
@@ -115,11 +121,6 @@
                             </div>
                             <div id="btn-div-2">
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="saveBtn" class="btn btn-primary">Save
-                                        Question
-                                    </button>
-                                </div>
-                                <div class="submit-child">
                                     <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
                                         Mandatory
                                     </button>
@@ -147,10 +148,10 @@
                  [@openPreview]="isOpen ? 'hidden' : 'visible'"
                  [@fullPreview]="fullPreview ? 'open' : 'close'"
             >
-                <!--                <cdk-virtual-scroll-viewport style="height: 85vh" itemSize="90">-->
+                <cdk-virtual-scroll-viewport style="height: 85vh" itemSize="90">
                 <!--                    <app-form-builder [survey]="survey"></app-form-builder>-->
                     <app-preview></app-preview>
-                <!--                </cdk-virtual-scroll-viewport>-->
+                </cdk-virtual-scroll-viewport>
             </div>
         </ng-container>
     </div>

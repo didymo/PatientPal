@@ -23,6 +23,10 @@
     width: 15rem;
 }
 
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #e8e8e8;
+}
+
 #page-content-wrapper {
     min-width: 100%;
     padding-left: 1%;

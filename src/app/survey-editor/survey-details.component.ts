@@ -16,8 +16,7 @@ import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
 import {BuildFormService} from '../_services/build-form.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {FormBuilderComponent} from '../form-builder/form-builder.component';
-
+import {NgForm} from '@angular/forms';
 export interface DialogData {
     link: string;
 }
@@ -274,7 +273,7 @@ export class SurveyDetailsComponent implements OnInit {
                 res => {
                     console.log(res);
                 },
-                error1 => console.log(error1), // Log errors
+                error1 => this.openSnackBar('Error when deploying', 'Close'), // Log errors
                 () => this.openDialog()
             );
     }
@@ -304,12 +303,18 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * When user clicks save question, all question choices are then saved
      */
-    public saveQuestion(i: number, optional: boolean): void {
-        this.saveSurvey(); // Save the survey
-        // this.fbService.setSurvey(this.survey);
+    public saveQuestion(i: number, x: number, optional: boolean): void {
+        this.survey.assessments[i].setAssessmentDescription(
+            (document.getElementById(this.survey.assessments[i].id.toString()) as HTMLInputElement).value);
+        this.survey.assessments[i].choices.forEach((choice, index, array) => {
+            try {
+                choice.setChoiceDescription(
+                    (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
+            } catch (e) {
+                console.log(e);
+            }
+        });
         this.preview.updateField(i, optional); // Update the preview
-        this.openSnackBar('Question Saved', 'Close');
-
     }
 
     /**
@@ -400,8 +405,8 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public openDialog(): void {
         const dialogRef = this.dialog.open(DeployedLink, {
-            height: '25%',
-            width: '25%',
+            height: '30%',
+            width: '40%',
             data: {link: environment.formServerApplicationURL + this.id}
         });
 

@@ -22,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys/deployed-surveys.component';
+import {OrderBy} from './tab-views/tab-views.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys
       DynamicFormQuestionComponent,
       DeployedLink,
       DeployedSurveysComponent,
-      DeployedSurveySearch
+      DeployedSurveySearch,
+      OrderBy,
   ],
     imports: [
         BrowserModule,
