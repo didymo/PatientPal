@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, Input, Output, ViewChild, HostListener} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -76,8 +76,12 @@ export class SurveyDetailsComponent implements OnInit {
      * Stores an instance of the preview component
      */
     @ViewChild(PreviewComponent, {static: false}) preview;
-    // @ViewChild(FormBuilderComponent, {static: false}) preview;
+    innerWidth: number;
 
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        this.innerWidth = window.innerWidth;
+    }
 
     /**
      * The id from the URL is linked to the entity ID of the tabview
@@ -123,6 +127,7 @@ export class SurveyDetailsComponent implements OnInit {
      * NgInit for the SurveyDetailComponent Class
      */
     ngOnInit() {
+        this.innerWidth = window.innerWidth;
         this.getTabView();
     }
 
@@ -211,7 +216,7 @@ export class SurveyDetailsComponent implements OnInit {
             /** Creates a normal choice*/
             tempChoices = new Choice(
                 this.tabViews[i].choiceId,
-                this.tabViews[i].choiceLabel.trim()
+                this.tabViews[i].choiceDescription.trim()
             );
         }
         return tempChoices;
@@ -306,14 +311,8 @@ export class SurveyDetailsComponent implements OnInit {
     public saveQuestion(i: number, x: number, optional: boolean): void {
         this.survey.assessments[i].setAssessmentDescription(
             (document.getElementById(this.survey.assessments[i].id.toString()) as HTMLInputElement).value);
-        this.survey.assessments[i].choices.forEach((choice, index, array) => {
-            try {
-                choice.setChoiceDescription(
-                    (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
-            } catch (e) {
-                console.log(e);
-            }
-        });
+        this.survey.assessments[i].choices[x].setChoiceDescription(
+            (document.getElementById(this.survey.assessments[i].choices[x].id.toString()) as HTMLInputElement).value);
         this.preview.updateField(i, optional); // Update the preview
     }
 
@@ -428,7 +427,13 @@ export class SurveyDetailsComponent implements OnInit {
 
     public setToggle() {
         this.isOpen = !this.isOpen;
+        if (!this.isOpen) {
+            (document.getElementById('livePreview') as HTMLButtonElement).style.backgroundColor = '#0198ff';
+        } else {
+            (document.getElementById('livePreview') as HTMLButtonElement).style.backgroundColor = '#ffffff';
+        }
         this.previewDisabled = !this.previewDisabled;
+
 
     }
 

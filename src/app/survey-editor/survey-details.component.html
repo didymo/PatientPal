@@ -4,9 +4,7 @@
     </button>
     <button class="btn btn-light toolbar-item" id="exp-btn1" (click)="setPreview()"
             checked="false"
-            [disabled]=previewDisabled
-    >
-        <!--            routerLink="/preview/{{survey.tabId}}">-->
+            [disabled]=previewDisabled>
         Preview
     </button>
 
@@ -19,14 +17,15 @@
     <button class="btn btn-light toolbar-item" id="exp-btn" (click)="deploy()">
         Deploy
     </button>
-    <mat-slide-toggle style="margin-top: 0.9%; margin-left: 0.9%"
-                      class="tp-margin"
-                      [checked]="checked"
-                      [disabled]="disabled"
-                      (change)="setToggle()"
-                      color="primary">
+    <button
+            *ngIf="innerWidth > 765"
+            class="btn btn-light toolbar-item"
+            [disabled]="disabled"
+            (click)="setToggle()"
+            id="livePreview"
+            color="primary">
         Live Preview
-    </mat-slide-toggle>
+    </button>
     <div class="col-lg-7 toolbar-title" *ngIf="survey">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -92,7 +91,7 @@
                             <div id="btn-div-1">
 
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
+                                    <button id="mandatory" class="btn btn-primary">
                                         Mandatory
                                     </button>
                                 </div>
@@ -121,7 +120,7 @@
                             </div>
                             <div id="btn-div-2">
                                 <div class="submit-child">
-                                    <button (click)="saveQuestion(i, false)" id="mandatory" class="btn btn-primary">
+                                    <button id="mandatory" class="btn btn-primary">
                                         Mandatory
                                     </button>
                                 </div>

@@ -13,6 +13,8 @@ export class TabViewSearch implements PipeTransform {
     transform(value: TabviewList[], term: string): TabviewList[] {
         if (term == null) {
             return value;
+        } else if (parseInt(term[0]) >= 0 && parseInt(term[0]) <= 9) {
+            return value.filter(item => item.entityId.toString().toLowerCase().match(term.toLowerCase()));
         } else {
             return value.filter(item => item.label.toLowerCase().match(term.toLowerCase()));
         }
@@ -30,7 +32,9 @@ export class OrderBy implements PipeTransform {
     /**
      * Compare function
      * @param a
+     * Item a to be compared with item B
      * @param b
+     * Item b that is compared with item A
      */
     compare(a: any, b: any): number {
         if (a < b) {
@@ -122,6 +126,9 @@ export class TabViewsComponent implements OnInit {
         .subscribe(data => this.tabviews = data);
   }
 
+    /**
+     * Handles the table sort based on the ID
+     */
     public tableSort(): void {
         this.orderId = !this.orderId;
 
@@ -132,6 +139,9 @@ export class TabViewsComponent implements OnInit {
         }
     }
 
+    /**
+     * Deals with the sorting of names in the table
+     */
     public nameSort(): void {
         this.orderName = !this.orderName;
 
