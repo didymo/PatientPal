@@ -1,13 +1,6 @@
 #wrapper {
     width: 100%;
-    /*margin-top: 1%;*/
     overflow: hidden; /* will contain if #first is longer than #second */
-    /*box-shadow: 0px 0px 10px #b7b7b7;*/
-    /*border-radius: 5px;*/
-    /*border: 10#bfbfbf;*/
-    /*display: flex;*/
-    /*flex-flow: row;*/
-    /*justify-content: flex-start;*/
 }
 
 /* Medium screens */
@@ -98,7 +91,6 @@
 .toolbar-title {
     padding-top: 0.5%;
 }
-
 
 /* Medium screens */
 @media all and (max-width: 800px) {

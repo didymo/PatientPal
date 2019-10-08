@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/deployed-link.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/deployed-link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -228,7 +216,14 @@
       <workItem from="1569204923521" duration="482000" />
       <workItem from="1569205422570" duration="14420000" />
       <workItem from="1569292921699" duration="3753000" />
-      <workItem from="1569890488281" duration="12386000" />
+      <workItem from="1569890488281" duration="14553000" />
+      <workItem from="1569978906338" duration="7000" />
+      <workItem from="1570071689932" duration="9000" />
+      <workItem from="1570080118283" duration="2087000" />
+      <workItem from="1570156472886" duration="4575000" />
+      <workItem from="1570328662648" duration="671000" />
+      <workItem from="1570493714569" duration="296000" />
+      <workItem from="1570494046581" duration="357000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -475,7 +470,28 @@
       <option name="project" value="LOCAL" />
       <updated>1569832078857</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Order Table and Live Preview">
+      <created>1569907690793</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1569907690793</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Fixed issues with table sort">
+      <created>1569909985000</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1569909985000</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Fixed issues with table sort">
+      <created>1570159744896</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1570159744896</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -518,8 +534,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added some css" />
-    <MESSAGE value="Added feature to export html file from the preview component" />
     <MESSAGE value="Fixed typo" />
     <MESSAGE value="Fixed code, and added some css" />
     <MESSAGE value="Added ability to edit survey choices, and assessments" />
@@ -543,7 +557,9 @@
     <MESSAGE value="Animation of preview" />
     <MESSAGE value="Added some tweeks to the css" />
     <MESSAGE value="Fixed Toolbar alignment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Toolbar alignment" />
+    <MESSAGE value="Order Table and Live Preview" />
+    <MESSAGE value="Fixed issues with table sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issues with table sort" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="masterDetails">

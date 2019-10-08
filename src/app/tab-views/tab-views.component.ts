@@ -13,6 +13,8 @@ export class TabViewSearch implements PipeTransform {
     transform(value: TabviewList[], term: string): TabviewList[] {
         if (term == null) {
             return value;
+        } else if (parseInt(term[0]) >= 0 && parseInt(term[0]) <= 9) {
+            return value.filter(item => item.entityId.toString().toLowerCase().match(term.toLowerCase()));
         } else {
             return value.filter(item => item.label.toLowerCase().match(term.toLowerCase()));
         }
@@ -27,7 +29,22 @@ export class TabViewSearch implements PipeTransform {
  * Handles the sorting by views in the table
  */
 export class OrderBy implements PipeTransform {
-
+    /**
+     * Compare function
+     * @param a
+     * Item a to be compared with item B
+     * @param b
+     * Item b that is compared with item A
+     */
+    compare(a: any, b: any): number {
+        if (a < b) {
+            return -1;
+        } else if (a > b) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     transform(value: TabviewList[], term: string): TabviewList[] {
         if (term == null) {
@@ -38,49 +55,25 @@ export class OrderBy implements PipeTransform {
                 return value.sort((a, b) => {
                     let itemA = a.entityId;
                     let itemB = b.entityId;
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    return this.compare(itemA, itemB);
                 });
             case 'IDBack':
                 return value.sort((a, b) => {
                     let itemA = b.entityId;
                     let itemB = a.entityId;
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    return this.compare(itemA, itemB);
                 });
             case 'Label':
                 return value.sort((a, b) => {
-                    let itemA = b.label.toLowerCase();
-                    let itemB = a.label.toLowerCase();
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    let itemA = b.label.toLowerCase().replace(/\s/g, '');
+                    let itemB = a.label.toLowerCase().replace(/\s/g, '');
+                    return this.compare(itemA, itemB);
                 });
             case 'LabelBack':
                 return value.sort((a, b) => {
-                    let itemA = a.label.toLowerCase();
-                    let itemB = b.label.toLowerCase();
-                    if (itemA < itemB) {
-                        return -1;
-                    } else if (itemA > itemB) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
+                    let itemA = a.label.toLowerCase().replace(/\s/g, '');
+                    let itemB = b.label.toLowerCase().replace(/\s/g, '');
+                    return this.compare(itemA, itemB);
                 });
         }
 
@@ -133,6 +126,9 @@ export class TabViewsComponent implements OnInit {
         .subscribe(data => this.tabviews = data);
   }
 
+    /**
+     * Handles the table sort based on the ID
+     */
     public tableSort(): void {
         this.orderId = !this.orderId;
 
@@ -143,6 +139,9 @@ export class TabViewsComponent implements OnInit {
         }
     }
 
+    /**
+     * Deals with the sorting of names in the table
+     */
     public nameSort(): void {
         this.orderName = !this.orderName;
 
