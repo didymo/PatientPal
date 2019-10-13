@@ -24,7 +24,6 @@
     "@esss/ng-xform": "^0.25.0",
     "@ng-bootstrap/ng-bootstrap": "^5.1.1",
     "@ng-select/ng-select": "^3.0.7",
-    "angular-in-memory-web-api": "^0.9.0",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^3.2.1",
     "file-saver": "^2.0.2",
