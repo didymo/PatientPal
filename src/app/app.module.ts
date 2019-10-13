@@ -24,6 +24,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys/deployed-surveys.component';
 import {OrderBy} from './tab-views/tab-views.component';
 import {DraftViewComponent} from './draft-view/draft-view.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {DraftViewComponent} from './draft-view/draft-view.component';
         MatInputModule,
         ScrollingModule,
         MatSlideToggleModule,
-        NgbModule
+        NgbModule,
+        DragDropModule
 
     ],
   providers: [

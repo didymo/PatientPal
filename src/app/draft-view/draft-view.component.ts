@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TabviewList} from '../_classes/TabviewList';
 import {SurveyService} from '../_services/survey.service';
-import {TabViewSearch, OrderBy} from '../tab-views/tab-views.component';
+import {TabViewSearch, OrderBy,} from '../tab-views/tab-views.component';
 
 @Component({
     selector: 'app-draft-view',

@@ -16,7 +16,7 @@ import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
 import {BuildFormService} from '../_services/build-form.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {NgForm} from '@angular/forms';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 export interface DialogData {
     link: string;
 }
@@ -317,7 +317,6 @@ export class SurveyDetailsComponent implements OnInit {
             if (item.asessmentType.toString() == '5') {
                 item.choices.forEach(function(choice, index, array) {
                     try {
-                        console.log(choice.id.toString());
                         choice.setChoiceDescription(
                             (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
                     } catch (e) {
@@ -448,6 +447,9 @@ export class SurveyDetailsComponent implements OnInit {
         // this.isPreview = !this.isPreview;
     }
 
+    /**
+     * Sets the state of the toggle button
+     */
     public setToggle() {
         this.isOpen = !this.isOpen;
         if (!this.isOpen) {
@@ -456,17 +458,21 @@ export class SurveyDetailsComponent implements OnInit {
             (document.getElementById('livePreview') as HTMLButtonElement).style.backgroundColor = '#ffffff';
         }
         this.previewDisabled = !this.previewDisabled;
-
-
     }
 
+    /**
+     * Sets the state of the preview buttons
+     */
     public setPreview() {
         this.disabled = !this.disabled;
         this.isOpen = !this.isOpen;
         this.fullPreview = !this.fullPreview;
         this.isPreview = !this.isPreview;
         this.hideEdit = !this.hideEdit;
+    }
 
+    drop(event: CdkDragDrop<string[]>) {
+        moveItemInArray(this.survey.assessments, event.previousIndex, event.currentIndex);
     }
 
 }

@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +31,12 @@
         <option value="petercharles20 &lt;ps952@uowmail.edu.au&gt;" />
       </list>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ploish-peter" />
+        <entry key="$PROJECT_DIR$" value="polish-peter" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Qd1yY8DFrErPPQVuwABM10Grw9" />
   <component name="ProjectLevelVcsManager">
@@ -229,7 +232,7 @@
       <workItem from="1570514444905" duration="14000" />
       <workItem from="1570665821727" duration="798000" />
       <workItem from="1570667951382" duration="1230000" />
-      <workItem from="1570929180363" duration="9598000" />
+      <workItem from="1570929180363" duration="13633000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -511,7 +514,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570938982411</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Added draft component">
+      <created>1570940703815</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1570940703815</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView">
@@ -554,7 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added ability to edit survey choices, and assessments" />
     <MESSAGE value="Modified code to match drupal data" />
     <MESSAGE value="Patch request now works, but descriptions must be &lt; 50 chars long" />
     <MESSAGE value="Functionality to change quesiton types" />
@@ -579,7 +588,8 @@
     <MESSAGE value="Fixed issues with table sort" />
     <MESSAGE value="Some polish" />
     <MESSAGE value="Added drafting and publishing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added drafting and publishing" />
+    <MESSAGE value="Added draft component" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added draft component" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="masterDetails">

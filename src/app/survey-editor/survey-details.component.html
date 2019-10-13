@@ -49,99 +49,104 @@
              class="open-close-container">
             <cdk-virtual-scroll-viewport style="height: 87vh" itemSize="90">
                 <form (ngSubmit)="saveSurvey()" id="form">
-                    <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments">
-                        <div class="title-div">
-                            <div class="imgView" *ngIf="assessments.asessmentType.toString() === '5'">
-                                <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
-                                     alt="">
+                    <div cdkDropList class="assessment-list" (cdkDropListDropped)="drop($event)">
+                        <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments"
+                             class="assessment-item" cdkDrag>
+                            <div class="title-div">
+                                <div class="imgView" *ngIf="assessments.asessmentType.toString() === '5'">
+                                    <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
+                                         alt="">
+                                </div>
+                                <div class="imgView" *ngIf="assessments.asessmentType.toString() === '4'">
+                                    <img src="assets/icons/texts.png" width="24" height="24" class="rounded float-left"
+                                         alt="">
+                                </div>
+                                <div class="title-div-child1">
+                                    <p style="font-weight: bold">{{i + 1}}.</p>
+                                </div>
+                                <div class="title-div-child2">
+                                    <input class="form-control"
+                                           [value]="assessments.assessmentDesc"
+                                           [(ngModel)]="survey.assessments[i].assessmentDesc"
+                                           (ngModelChange)="preview.changeTitle(i,$event)"
+                                           [ngModelOptions]="{standalone: true}"
+                                           [attr.id]=assessments.id style="font-weight: bold">
+                                </div>
                             </div>
-                            <div class="imgView" *ngIf="assessments.asessmentType.toString() === '4'">
-                                <img src="assets/icons/texts.png" width="24" height="24" class="rounded float-left"
-                                     alt="">
-                            </div>
-                            <div class="title-div-child1">
-                                <p style="font-weight: bold">{{i + 1}}.</p>
-                            </div>
-                            <div class="title-div-child2">
-                                <input class="form-control"
-                                       [value]="assessments.assessmentDesc"
-                                       [(ngModel)]="survey.assessments[i].assessmentDesc"
-                                       (ngModelChange)="preview.changeTitle(i,$event)"
-                                       [ngModelOptions]="{standalone: true}"
-                                       [attr.id]=assessments.id style="font-weight: bold">
-                            </div>
-                        </div>
 
-                        <!--Assessment 5-->
-                        <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
+                            <!--Assessment 5-->
+                            <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
 
-                            <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
-                                <div id="option-div-child">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Option {{x + 1}}</span>
-                                    </div>
-                                    <textarea
-                                            [(ngModel)]="survey.assessments[i].choices[x].choiceDesc"
-                                            [ngModelOptions]="{standalone: true}"
-                                            (ngModelChange)="saveQuestion(i, x, false)"
-                                            [value]="choices.choiceDesc"
-                                            [attr.id]=assessments.choices[x].id
-                                            class="form-control" rows="2"
-                                    >
+                                <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
+                                    <div id="option-div-child">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Option {{x + 1}}</span>
+                                        </div>
+                                        <textarea
+                                                [(ngModel)]="survey.assessments[i].choices[x].choiceDesc"
+                                                [ngModelOptions]="{standalone: true}"
+                                                (ngModelChange)="saveQuestion(i, x, false)"
+                                                [value]="choices.choiceDesc"
+                                                [attr.id]=assessments.choices[x].id
+                                                class="form-control" rows="2"
+                                        >
                                 </textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="btn-div-1">
+                                <div id="btn-div-1">
 
-                                <div class="submit-child">
-                                    <button id="mandatory" class="btn btn-primary">
-                                        Mandatory
-                                    </button>
-                                </div>
-                                <div ngbDropdown placement="top-right" class="d-inline-block">
-                                    <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
-                                        dropdown
-                                    </button>
-                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem (click)="preview.createRadioGroup(i, false)">Radio
-                                            Buttons
+                                    <div class="submit-child">
+                                        <button id="mandatory" class="btn btn-primary">
+                                            Mandatory
                                         </button>
-                                        <button ngbDropdownItem (click)="preview.createSelect(i, false)">Select One
+                                    </div>
+                                    <div ngbDropdown placement="top-right" class="d-inline-block">
+                                        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
+                                            dropdown
                                         </button>
-                                        <button ngbDropdownItem (click)="preview.createSelectMany(i , false)">Select
-                                            Many
-                                        </button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                            <button ngbDropdownItem (click)="preview.createRadioGroup(i, false)">Radio
+                                                Buttons
+                                            </button>
+                                            <button ngbDropdownItem (click)="preview.createSelect(i, false)">Select One
+                                            </button>
+                                            <button ngbDropdownItem (click)="preview.createSelectMany(i , false)">Select
+                                                Many
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <!--Assessment 4-->
-                        <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
-                            <div id="option-div-parent2">
-                            </div>
-                            <div id="btn-div-2">
-                                <div class="submit-child">
-                                    <button id="mandatory" class="btn btn-primary">
-                                        Mandatory
-                                    </button>
+                            <!--Assessment 4-->
+                            <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
+                                <div id="option-div-parent2">
                                 </div>
-                                <div ngbDropdown placement="top-right" class="d-inline-block">
-                                    <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>Toggle
-                                        dropdown
-                                    </button>
-                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem (click)="preview.createText(i, false)">Text Field
+                                <div id="btn-div-2">
+                                    <div class="submit-child">
+                                        <button id="mandatory" class="btn btn-primary">
+                                            Mandatory
                                         </button>
-                                        <button ngbDropdownItem (click)="preview.createNumber(i, false)">Number Field
+                                    </div>
+                                    <div ngbDropdown placement="top-right" class="d-inline-block">
+                                        <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>Toggle
+                                            dropdown
                                         </button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                            <button ngbDropdownItem (click)="preview.createText(i, false)">Text Field
+                                            </button>
+                                            <button ngbDropdownItem (click)="preview.createNumber(i, false)">Number
+                                                Field
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
+
                 </form>
             </cdk-virtual-scroll-viewport>
         </div>
