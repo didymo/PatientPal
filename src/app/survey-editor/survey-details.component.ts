@@ -216,7 +216,7 @@ export class SurveyDetailsComponent implements OnInit {
             /** Creates a normal choice*/
             tempChoices = new Choice(
                 this.tabViews[i].choiceId,
-                this.tabViews[i].choiceDescription.trim()
+                this.tabViews[i].choiceLabel.trim()
             );
         }
         return tempChoices;
@@ -240,7 +240,7 @@ export class SurveyDetailsComponent implements OnInit {
         const tempAssessment = new Assessment(
             this.tabViews[i].assessmentId,
             this.tabViews[i].assessmentType,
-            this.tabViews[i].assessmentDescription.trim()
+            this.tabViews[i].assessmentLabel.trim()
         );
         return tempAssessment;
     }
@@ -258,10 +258,30 @@ export class SurveyDetailsComponent implements OnInit {
                 res => {
                     console.log(res);
                 },
-                error1 => console.log(error1) // Log errors
+                error1 => console.log(error1), // Log errors
+                () => this.openSnackBar('Survey Submitted', 'Close')
             );
-        this.openSnackBar('Survey Submitted', 'Close');
 
+
+    }
+
+    /**
+     * Saves, and publishes survey to drupal
+     * Generates a JSON string
+     * Calls publishSurvey from the service class to interface with Drupal
+     */
+    public publish(): void {
+        this.saveSurvey(); // Save any updated fields
+        const payload = JSON.stringify(this.survey); // Generate a payload
+        this.formService
+            .publishSurvey(payload) // Add the survey
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => console.log(error1), // Log errors
+                () => this.openSnackBar('Survey Published', 'Close')
+            );
     }
 
     /**
@@ -294,14 +314,17 @@ export class SurveyDetailsComponent implements OnInit {
         this.survey.assessments.forEach(function(item, index, array) {
             item.setAssessmentDescription(
                 (document.getElementById(item.id.toString()) as HTMLInputElement).value); // Value in the input tag
-            item.choices.forEach(function(choice, index, array) {
-                try {
-                    choice.setChoiceDescription(
-                        (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
-                } catch (e) {
-                    console.log(e);
-                }
-            })
+            if (item.asessmentType.toString() == '5') {
+                item.choices.forEach(function(choice, index, array) {
+                    try {
+                        console.log(choice.id.toString());
+                        choice.setChoiceDescription(
+                            (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
+                    } catch (e) {
+                        console.log(e);
+                    }
+                });
+            }
         })
     }
 

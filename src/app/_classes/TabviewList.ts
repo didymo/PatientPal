@@ -24,4 +24,7 @@ export interface TabviewList {
      * TabView KoboFormID
      */
     koboFormId: string;
+    ownedByUser: boolean;
+    revisionId: number;
+    revisionStatus: string;
 }

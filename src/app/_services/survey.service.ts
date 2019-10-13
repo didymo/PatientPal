@@ -10,7 +10,10 @@ import {TabView} from '../_classes/TabView';
 import {DeployedSurvey} from '../_classes/DeployedSurvey';
 
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ZGlkeW1vYWRtaW46bXlwYXNzd29yZA=='
+    })
 };
 
 @Injectable({
@@ -27,7 +30,7 @@ export class SurveyService {
      * Will return 404 if not found
      */
     getTabViewList(): Observable<TabviewList[]> {
-        return this.http.get<TabviewList[]>(environment.drupalURL)
+        return this.http.get<TabviewList[]>(environment.drupalURL, httpOptions)
             .pipe(
                 tap(_ => this.log('fetched tabViews')),
                 catchError(this.handleError<TabviewList[]>('getTabViewList', []))
@@ -60,6 +63,21 @@ export class SurveyService {
             .pipe(
                 tap(_ => this.log(`updated Survey id`)),
                 catchError(this.handleError<any>('addSurvey', payload))
+            );
+    }
+
+    /** PATCH: Publish a survey to drupal */
+    /**
+     * @param survey
+     * The payload
+     */
+    publishSurvey(payload: string): Observable<any> {
+        console.log(payload);
+        return this.http
+            .patch<string>(environment.publishURL, payload, httpOptions)
+            .pipe(
+                tap(_ => this.log(`Survey Published`)),
+                catchError(this.handleError<any>('Publish', payload))
             );
     }
 
