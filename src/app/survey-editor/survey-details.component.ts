@@ -16,7 +16,9 @@ import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
 import {BuildFormService} from '../_services/build-form.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {NgForm} from '@angular/forms';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ThrowStmt } from '@angular/compiler';
 export interface DialogData {
     link: string;
 }
@@ -72,16 +74,6 @@ export interface DialogData {
  * Users will use the to edit their questions, save those questions, and then either publish/draft them
  */
 export class SurveyDetailsComponent implements OnInit {
-    /**
-     * Stores an instance of the preview component
-     */
-    @ViewChild(PreviewComponent, {static: false}) preview;
-    innerWidth: number;
-
-    @HostListener('window:resize', ['$event'])
-    onResize(event) {
-        this.innerWidth = window.innerWidth;
-    }
 
     /**
      * The id from the URL is linked to the entity ID of the tabview
@@ -103,6 +95,18 @@ export class SurveyDetailsComponent implements OnInit {
     fullPreview = false;
     previewDisabled = false;
     hideEdit = false;
+    inputResult: any;
+    /**
+     * Stores an instance of the preview component
+     */
+    @ViewChild(PreviewComponent, {static: false}) preview;
+    innerWidth: number;
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        this.innerWidth = window.innerWidth;
+    }
+
 
     /**
      * Constructor for the SurveyDetailsComponent Class
@@ -121,7 +125,8 @@ export class SurveyDetailsComponent implements OnInit {
         private location: Location,
         private fbService: BuildFormService,
         private _snackBar: MatSnackBar,
-        public dialog: MatDialog
+        public dialog: MatDialog,
+        private modalService: NgbModal
     ) { }
     /**
      * NgInit for the SurveyDetailComponent Class
@@ -216,7 +221,7 @@ export class SurveyDetailsComponent implements OnInit {
             /** Creates a normal choice*/
             tempChoices = new Choice(
                 this.tabViews[i].choiceId,
-                this.tabViews[i].choiceDescription.trim()
+                this.tabViews[i].choiceLabel.trim()
             );
         }
         return tempChoices;
@@ -240,7 +245,7 @@ export class SurveyDetailsComponent implements OnInit {
         const tempAssessment = new Assessment(
             this.tabViews[i].assessmentId,
             this.tabViews[i].assessmentType,
-            this.tabViews[i].assessmentDescription.trim()
+            this.tabViews[i].assessmentLabel.trim()
         );
         return tempAssessment;
     }
@@ -258,10 +263,30 @@ export class SurveyDetailsComponent implements OnInit {
                 res => {
                     console.log(res);
                 },
-                error1 => console.log(error1) // Log errors
+                error1 => console.log(error1), // Log errors
+                () => this.openSnackBar('Survey Submitted', 'Close')
             );
-        this.openSnackBar('Survey Submitted', 'Close');
 
+
+    }
+
+    /**
+     * Saves, and publishes survey to drupal
+     * Generates a JSON string
+     * Calls publishSurvey from the service class to interface with Drupal
+     */
+    public publish(): void {
+        this.saveSurvey(); // Save any updated fields
+        const payload = JSON.stringify(this.survey); // Generate a payload
+        this.formService
+            .publishSurvey(payload) // Add the survey
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => console.log(error1), // Log errors
+                () => this.openSnackBar('Survey Published', 'Close')
+            );
     }
 
     /**
@@ -294,14 +319,16 @@ export class SurveyDetailsComponent implements OnInit {
         this.survey.assessments.forEach(function(item, index, array) {
             item.setAssessmentDescription(
                 (document.getElementById(item.id.toString()) as HTMLInputElement).value); // Value in the input tag
-            item.choices.forEach(function(choice, index, array) {
-                try {
-                    choice.setChoiceDescription(
-                        (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
-                } catch (e) {
-                    console.log(e);
-                }
-            })
+            if (item.asessmentType.toString() == '5') {
+                item.choices.forEach(function(choice, index, array) {
+                    try {
+                        choice.setChoiceDescription(
+                            (document.getElementById(choice.id.toString()) as HTMLInputElement).value);
+                    } catch (e) {
+                        console.log(e);
+                    }
+                });
+            }
         })
     }
 
@@ -364,20 +391,20 @@ export class SurveyDetailsComponent implements OnInit {
                     this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
                     aPos++; // Update the position of the assessment
                 } else if (item.assessmentType.toString() === '5') {
-                    this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
+                    this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
                     cPos++; // Update the position of the choice
                 }
             } else if (item.assessmentType.toString() === '4') {
                 this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
                 aPos++; // Update the position of the assessments
             } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id === item.assessmentId) {
-                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
                 cPos++; // Update the position of the choice
             } else if (item.assessmentType.toString() === '5' && this.survey.assessments[aPos].id !== item.assessmentId) {
                 cPos = 0; // Reset values
                 aPos++; // Move onto the next assessment
                 this.survey.assessments[aPos].setAssessmentDescription(item.assessmentDescription.toString());
-                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceLabel.toString());
+                this.survey.assessments[aPos].choices[cPos].setChoiceDescription(item.choiceDescription.toString());
                 cPos++; // Update the position of the choice
             }
 
@@ -425,25 +452,58 @@ export class SurveyDetailsComponent implements OnInit {
         // this.isPreview = !this.isPreview;
     }
 
+    /**
+     * Sets the state of the toggle button
+     */
     public setToggle() {
         this.isOpen = !this.isOpen;
         if (!this.isOpen) {
-            (document.getElementById('livePreview') as HTMLButtonElement).style.backgroundColor = '#0198ff';
+            (document.getElementById('livePreview') as HTMLButtonElement).style.backgroundColor = '#016fbe';
         } else {
             (document.getElementById('livePreview') as HTMLButtonElement).style.backgroundColor = '#ffffff';
         }
         this.previewDisabled = !this.previewDisabled;
-
-
     }
 
+    /**
+     * Sets the state of the preview buttons
+     */
     public setPreview() {
         this.disabled = !this.disabled;
         this.isOpen = !this.isOpen;
         this.fullPreview = !this.fullPreview;
         this.isPreview = !this.isPreview;
         this.hideEdit = !this.hideEdit;
-
     }
+
+    drop(event: CdkDragDrop<string[]>) {
+        // moveItemInArray(this.survey.assessments, , this.inputResult);
+    }
+
+    public moveItem(startPos: number) {
+        const newPos = this.inputResult - 1;
+        if (newPos > this.survey.assessments.length) {
+            this.openSnackBar('Invalid Input', 'Close');
+        } else if (newPos < 0) {
+            this.openSnackBar('Invalid Input', 'Close');
+        } else if (newPos === startPos) {
+            this.openSnackBar('Invalid Input', 'Close');
+        } else if (newPos === undefined || startPos === undefined) {
+            this.openSnackBar('Invalid Input', 'Close');
+        } else {
+            moveItemInArray(this.survey.assessments, startPos, newPos);
+        }
+    }
+
+    open(content, startPos: number) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+            this.moveItem(startPos);
+        }, (reason) => {
+        });
+      }
+
+      public changeValue() {
+        this.inputResult = (document.getElementById('orderInput') as HTMLInputElement).value;
+      }
 
 }

@@ -20,7 +20,7 @@
                         </tr>
                         </thead>
                         <tbody class="search-result">
-                        <tr *ngFor="let tab of tabviews | tabViewSearch: queryString | orderBy: sortString"
+                        <tr *ngFor="let tab of drafts | tabViewSearch: queryString | orderBy: sortString"
                             routerLink="/detail/{{tab.entityId}}"
                             class="survey_data">
                             <td class="survey_id">{{tab.entityId }}</td>

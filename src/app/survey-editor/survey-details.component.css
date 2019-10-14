@@ -3,6 +3,31 @@
     overflow: hidden; /* will contain if #first is longer than #second */
 }
 
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+}
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.assessment-item:last-child {
+    border: none;
+}
+
+.assessment-list.cdk-drop-list-dragging .assessment-item:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
 /* Medium screens */
 @media all and (max-width: 800px) {
     .navigation {
@@ -19,22 +44,21 @@
     }
 }
 
+/* Preview Component */
 #preview {
-    /*border: 1px solid black;*/
     padding-left: 1%;
     overflow: hidden;
     float: left;
     width: 50%;
 }
 
+/* The questions */
 #questions {
-    /*margin-top: 1%;*/
     width: 100%;
-    /*width: 50%;*/
     float: left; /* add this */
-    /*box-shadow: 0px 0px 3px #c7c7c7;*/
 }
 
+/* Assessment lists */
 #assessments {
     margin-top: 0.5%;
     margin-bottom: 2%;
@@ -43,7 +67,6 @@
     margin-right: 1%;
     width: 97%;
     box-shadow: 0px 0px 5px #b4b4b4;
-
 }
 
 
@@ -71,8 +94,6 @@
     justify-content: flex-start;
     flex-direction: row;
     z-index: 500;
-    /*margin-top: 0.4%;*/
-    /*margin-bottom: 0.1%;*/
 }
 
 .toolbar-item {
@@ -136,10 +157,7 @@
     text-align: left;
 }
 
-
-
 #btn-div-1 {
-    /*padding: 1px;*/
     margin-top: 2%;
     margin-right: 1%;
     padding-bottom: 1%;
@@ -180,7 +198,7 @@
 
 
 .submit-child {
-    margin-right: 15px;
+    margin-right: 0.5%;
 }
 
 #nav2 {
@@ -198,7 +216,12 @@
     font-weight: bold;
 }
 
-#saveBtn, #mandatory, #change-field, #dropdownBasic2, #dropdownBasic1
+#saveBtn, #mandatory, #change-field, #dropdownBasic2, #dropdownBasic1, #questionOrder
 {
     background-color: #016fbe;
+}
+
+.modal-order{
+    background-color: #016fbe;
+    margin-right: 0.5%;
 }
