@@ -1,3 +1,32 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Change Assessment Order</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="orderInput">Assessment Order</label>
+          <div class="input-group">
+            <input id="orderInput"
+                [(ngModel)]="AssessmentOrder"
+                [ngModelOptions]="{standalone: true}"
+                (ngModelChange)="changeValue()"
+                type="number" 
+                class="form-control" 
+                placeholder="Assessment Order Number" 
+                name="dp">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>
+
 <div class="navigation" *ngIf="survey">
     <button class="btn toolbar-item" routerLink="/tab-views">
         Return
@@ -49,9 +78,9 @@
              class="open-close-container">
             <cdk-virtual-scroll-viewport style="height: 87vh" itemSize="90">
                 <form (ngSubmit)="saveSurvey()" id="form">
-                    <div cdkDropList class="assessment-list" (cdkDropListDropped)="drop($event)">
+                    <div class="assessment-list" >
                         <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments"
-                             class="assessment-item" cdkDrag>
+                             class="assessment-item" >
                             <div class="title-div">
                                 <div class="imgView" *ngIf="assessments.asessmentType.toString() === '5'">
                                     <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
@@ -100,6 +129,9 @@
                                             Mandatory
                                         </button>
                                     </div>
+                                    <button class="btn btn-primary modal-order" (click)="open(content, i)" >
+                                        Order
+                                    </button>
                                     <div ngbDropdown placement="top-right" class="d-inline-block">
                                         <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
                                             dropdown
@@ -129,6 +161,9 @@
                                             Mandatory
                                         </button>
                                     </div>
+                                    <button class="btn btn-primary modal-order" (click)="open(content, i)">
+                                            Order
+                                    </button>
                                     <div ngbDropdown placement="top-right" class="d-inline-block">
                                         <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>Toggle
                                             dropdown
@@ -156,7 +191,6 @@
                  [@fullPreview]="fullPreview ? 'open' : 'close'"
             >
                 <cdk-virtual-scroll-viewport style="height: 85vh" itemSize="90">
-                <!--                    <app-form-builder [survey]="survey"></app-form-builder>-->
                     <app-preview></app-preview>
                 </cdk-virtual-scroll-viewport>
             </div>

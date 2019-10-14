@@ -3,12 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/polyfills.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +39,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
   <component name="ProjectId" id="1Qd1yY8DFrErPPQVuwABM10Grw9" />
   <component name="ProjectLevelVcsManager">
     <OptionsSetting value="false" id="Update" />
@@ -62,7 +66,7 @@
     <property name="nodejs.mocha.mocha_node_package_dir" value="" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
@@ -232,7 +236,7 @@
       <workItem from="1570514444905" duration="14000" />
       <workItem from="1570665821727" duration="798000" />
       <workItem from="1570667951382" duration="1230000" />
-      <workItem from="1570929180363" duration="13633000" />
+      <workItem from="1570929180363" duration="19691000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -521,7 +525,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570940703815</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Added dragging and dropping">
+      <created>1570945200734</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1570945200734</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Added dragging and dropping">
+      <created>1570945321221</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1570945321221</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -564,7 +582,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified code to match drupal data" />
     <MESSAGE value="Patch request now works, but descriptions must be &lt; 50 chars long" />
     <MESSAGE value="Functionality to change quesiton types" />
     <MESSAGE value="Feature to make a quesiton mandatory or optional" />
@@ -589,22 +606,8 @@
     <MESSAGE value="Some polish" />
     <MESSAGE value="Added drafting and publishing" />
     <MESSAGE value="Added draft component" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added draft component" />
+    <MESSAGE value="Added dragging and dropping" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added dragging and dropping" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
