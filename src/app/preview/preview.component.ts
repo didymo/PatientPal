@@ -401,28 +401,42 @@ export class PreviewComponent implements OnInit {
      * @param optional
      * Whether or not a question is optional or not
      */
-    public updateField(i: number, optional: boolean): void {
+    public updateField(i: number, optional: boolean, endPos: number): void {
+        let x = this.checkPos(i, endPos);
         switch (this.fields[i].controlType) {
             case 'SELECT':
                 this.removeField(i);
-                this.createSelect(i, optional);
+                this.createSelect(x, optional);
                 break;
             case 'RADIOGROUP':
                 this.removeField(i);
-                this.createRadioGroup(i, optional);
+                this.createRadioGroup(x, optional);
                 break;
             case 'TEXT':
                 this.removeField(i);
-                this.createText(i, optional);
+                this.createText(x, optional);
                 break;
             case 'NUMBER':
                 this.removeField(i);
-                this.createNumber(i, optional);
+                this.createNumber(x, optional);
                 break;
             case 'CHECK':
                 this.removeField(i);
-                this.createCheckBox(i, optional);
+                this.createCheckBox(x, optional);
                 break;
+        }
+    }
+
+    /**
+     * Determines if positions are equal to each other
+     * @param x start position
+     * @param y new position
+     */
+    public checkPos(x: number, y: number) : number {
+        if(x === y) {
+            return x; 
+        } else {
+            return y;
         }
     }
 

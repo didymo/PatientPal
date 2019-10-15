@@ -332,15 +332,21 @@ export class SurveyDetailsComponent implements OnInit {
         })
     }
 
+    
     /**
-     * When user clicks save question, all question choices are then saved
+     * 
+     * @param i Position of assessment
+     * @param x Position of choice
+     * @param optional Optional or not
+     * @param y satisfy condition
+
      */
-    public saveQuestion(i: number, x: number, optional: boolean): void {
+    public saveQuestion(i: number, x: number, optional: boolean, y: number): void {
         this.survey.assessments[i].setAssessmentDescription(
             (document.getElementById(this.survey.assessments[i].id.toString()) as HTMLInputElement).value);
         this.survey.assessments[i].choices[x].setChoiceDescription(
             (document.getElementById(this.survey.assessments[i].choices[x].id.toString()) as HTMLInputElement).value);
-        this.preview.updateField(i, optional); // Update the preview
+        this.preview.updateField(i, optional, y); // Update the preview
     }
 
     /**
@@ -479,7 +485,10 @@ export class SurveyDetailsComponent implements OnInit {
     drop(event: CdkDragDrop<string[]>) {
         // moveItemInArray(this.survey.assessments, , this.inputResult);
     }
-
+    /**
+     * Move 
+     * @param startPos 
+     */
     public moveItem(startPos: number) {
         const newPos = this.inputResult - 1;
         if (newPos > this.survey.assessments.length) {
@@ -492,9 +501,15 @@ export class SurveyDetailsComponent implements OnInit {
             this.openSnackBar('Invalid Input', 'Close');
         } else {
             moveItemInArray(this.survey.assessments, startPos, newPos);
+            this.preview.updateField(startPos, true, newPos);
         }
     }
 
+    /**
+     * 
+     * @param content content of the modal
+     * @param startPos Starting position
+     */
     open(content, startPos: number) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
             this.moveItem(startPos);

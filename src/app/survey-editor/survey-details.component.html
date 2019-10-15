@@ -114,7 +114,7 @@
                                         <textarea
                                                 [(ngModel)]="survey.assessments[i].choices[x].choiceDesc"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (ngModelChange)="saveQuestion(i, x, false)"
+                                                (ngModelChange)="saveQuestion(i, x, false, i)"
                                                 [value]="choices.choiceDesc"
                                                 [attr.id]=assessments.choices[x].id
                                                 class="form-control" rows="2"
