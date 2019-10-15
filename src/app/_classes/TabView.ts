@@ -9,6 +9,10 @@ export interface TabView {
      */
     tabViewLabel: string;
     /**
+     * The latest available version number for a given TabView
+     */
+    revisionId: number;
+    /**
      * The code of an assessment
      */
     assessmentCode: string;

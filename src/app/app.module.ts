@@ -25,6 +25,7 @@ import {DeployedSurveysComponent, DeployedSurveySearch} from './deployed-surveys
 import {OrderBy} from './tab-views/tab-views.component';
 import {DraftViewComponent} from './draft-view/draft-view.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SurveyVersionListComponent } from './survey-version-list/survey-version-list.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
       DeployedSurveySearch,
       OrderBy,
       DraftViewComponent,
+      SurveyVersionListComponent,
   ],
     imports: [
         BrowserModule,

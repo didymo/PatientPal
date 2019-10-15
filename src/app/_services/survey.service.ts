@@ -7,6 +7,7 @@ import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import {TabviewList} from '../_classes/TabviewList';
 import {TabView} from '../_classes/TabView';
+import {TabViewVersion} from '../_classes/TabViewVersion';
 import {DeployedSurvey} from '../_classes/DeployedSurvey';
 
 const httpOptions = {
@@ -49,6 +50,44 @@ export class SurveyService {
                 tap(_ => this.log('fetched tabViews')),
                 catchError(this.handleError<TabView[]>('getTabViewList', []))
             );
+    }
+    /**
+     * Returns tab view versions list for a specific TabView
+     * @param ID
+     * GET request to druapl using the entityId associated with the tab view
+     */
+    getTabViewVersions(ID: number): Observable<TabViewVersion[]> {
+        const url = `${environment.versionURL}${ID}`;
+        console.log(ID);
+        return this.http.get<TabViewVersion[]>(url)
+            .pipe(
+                tap(_ => this.log('fetched tabView versions for ' + ID)),
+                map(ver => this.getVersionInfo(ver)),
+                //catchError(this.handleError<TabViewVersion[]>('getTabViewVersions', []))
+            );
+    }
+
+    getVersionInfo(ver: any[]): TabViewVersion[]
+    {
+        let re = [];
+
+        let keys = Object.keys(ver);
+        //console.log("in the function");
+        //console.log(ver);
+        //console.log(keys);
+
+        //get all elements of ver
+        for (let i = 0; i < keys.length;i++)
+        {
+            let versioninfo = ver[keys[i]];
+            if (versioninfo["revisionStatus"] == null)
+                versioninfo["revisionStatus"] = "Unknown";
+            versioninfo["id"] = keys[i];
+            //console.log(versioninfo);
+            re.push(versioninfo);
+        }
+
+        return re;
     }
 
     /** PATCH: add a new project to drupal */
