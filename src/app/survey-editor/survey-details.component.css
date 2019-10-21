@@ -216,7 +216,7 @@
     font-weight: bold;
 }
 
-#saveBtn, #mandatory, #change-field, #dropdownBasic2, #dropdownBasic1, #questionOrder
+#saveBtn, #mandatory1, #mandatory2, #optional1, #optional2, #change-field, #dropdownBasic2, #dropdownBasic1, #questionOrder
 {
     background-color: #016fbe;
 }

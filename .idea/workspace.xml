@@ -2,39 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
-      <change afterPath="$PROJECT_DIR$/src/app/_excelClasses/XAssessments.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/_payload/PAssessment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/_payload/PChoice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/_payload/PTabview.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/_payload/PayloadGenerator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_classes/Assessment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/Assessment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_classes/Choice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/Choice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_classes/Survey.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_classes/TabView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/TabView.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_classes/Worksheet.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_questions/question-base.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_questions/question-dropdown.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_questions/question-number.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_questions/question-radio.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_questions/question-textbox.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/build-form.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/build-form.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/excel.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/question-control.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/question-control.service.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/survey.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dynamic-form-question/dynamic-form-question.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dynamic-form-question/dynamic-form-question.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dynamic-form-question/dynamic-form-question.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/dynamic-form-question/dynamic-form-question.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/form-builder/form-builder.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/form-builder/form-builder.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/form-builder/form-builder.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/form-builder/form-builder.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
     </list>
@@ -265,7 +235,7 @@
       <workItem from="1570667951382" duration="1230000" />
       <workItem from="1570929180363" duration="19691000" />
       <workItem from="1571470667082" duration="33265000" />
-      <workItem from="1571622651801" duration="3859000" />
+      <workItem from="1571622651801" duration="9655000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>

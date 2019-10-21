@@ -113,12 +113,25 @@ export class PreviewComponent implements OnInit {
 
         for (let i = 0; i < this.tabView.assessments.length; i++) {
             this.removeField(i);
-            if (this.tabView.assessments[i].assessmentType === '5') {
-                this.createRadioGroup(i, false);
-                this.createSelect(i, false);
-            } else {
-
-                this.createText(i, false);
+            let required = this.tabView.assessments[i].assessmentRequired;
+            switch (this.tabView.assessments[i].assessmentDisplayType) {
+                case 'Radio':
+                    this.createRadioGroup(i, required);
+                    break;
+                case 'SelectMany':
+                    this.createSelectMany(i, required);
+                    break;
+                case 'SelectOne':
+                    this.createSelect(i, required);
+                    break;
+                case 'Text':
+                    this.createText(i, required);
+                    break;
+                case 'Number':
+                    this.createNumber(i, required);
+                    break;
+                default:
+                    console.log("Invalid Type");
             }
         }
     }
@@ -129,13 +142,10 @@ export class PreviewComponent implements OnInit {
      * @param optional
      * Determine if a question is optional or not
      */
-    public createSelect(i: number, optional: boolean) {
+    public createSelect(i: number, optional: string) {
 
-        let options = [];
-        this.tabView.assessments[i].assessmentChoices.forEach(element => {
-            options.push((element.choiceId, element.choiceDescription));
-        });
-
+        let options = this.createOptions(i);
+        let validate = this.checkValidation(optional);
         let tempField: SelectField;
 
         // Check if field already exists
@@ -152,7 +162,7 @@ export class PreviewComponent implements OnInit {
             addNewOptionText: 'id',
             optionLabelKey: 'choiceDesc',
             validators: [
-                Validators.required,
+                validate,
                 Validators.minLength(1)
             ],
         });
@@ -166,8 +176,10 @@ export class PreviewComponent implements OnInit {
      * @param optional
      * Whether or not a question is optional or not
      */
-    public createSelectMany(i: number, optional: boolean) {
+    public createSelectMany(i: number, optional: string) {
 
+        let options = this.createOptions(i);
+        let validate = this.checkValidation(optional);
         let tempField: SelectField;
 
         // Check if field already exists
@@ -179,13 +191,13 @@ export class PreviewComponent implements OnInit {
             key: this.tabView.assessments[i].assessmentId.toString(),
             label: this.tabView.assessments[i].assessmentDescription,
             searchable: true,
-            options: this.tabView.assessments[i].assessmentChoices,
+            options: options,
             addNewOption: true,
             addNewOptionText: 'id',
             optionLabelKey: 'choiceDesc',
             multiple: true,
             validators: [
-                Validators.required,
+                validate,
                 Validators.minLength(1)
             ]
         });
@@ -200,8 +212,10 @@ export class PreviewComponent implements OnInit {
      * @param optional
      * Whether or not a question is optional or not
      */
-    public createRadioGroup(i: number, optional: boolean) {
+    public createRadioGroup(i: number, optional: string) {
 
+        let options = this.createOptions(i);
+        let validate = this.checkValidation(optional);
         let tempField: RadioGroupField;
 
         // Check if field already exists
@@ -212,11 +226,12 @@ export class PreviewComponent implements OnInit {
         tempField = new RadioGroupField({
             key: this.tabView.assessments[i].assessmentId.toString(),
             label: this.tabView.assessments[i].assessmentDescription,
-            options: of(this.tabView.assessments[i].assessmentChoices).pipe(delay(10)),
+            options: of(options).pipe(delay(10)),
             optionValueKey: 'id',
             optionLabelKey: 'choiceDesc',
             validators: [
-                Validators.required
+                validate,
+                Validators.minLength(1)
             ]
         });
         // Reposition
@@ -229,9 +244,9 @@ export class PreviewComponent implements OnInit {
      * @param optional
      * Whether or not a question is optional or not
      */
-    public createText(i: number, optional: boolean) {
+    public createText(i: number, optional: string) {
         let tempField: TextField;
-
+        let validate = this.checkValidation(optional);
         // Check if field already exists
         if (this.fieldCheck(i, 'TEXT')) {
             return;
@@ -241,7 +256,7 @@ export class PreviewComponent implements OnInit {
             key: this.tabView.assessments[i].assessmentId,
             label: this.tabView.assessments[i].assessmentDescription,
             validators: [
-                Validators.required,
+                validate,
                 Validators.minLength(1)
             ]
         });
@@ -255,10 +270,10 @@ export class PreviewComponent implements OnInit {
      * @param optional
      * Whether or not a question is optional or not
      */
-    public createNumber(i: number, optional: boolean): void {
+    public createNumber(i: number, optional: string): void {
 
         let tempField: NumberField;
-
+        let validate = this.checkValidation(optional);
         // Check if field already exists
         if (this.fieldCheck(i, 'NUMBER')) {
             return;
@@ -268,7 +283,7 @@ export class PreviewComponent implements OnInit {
             key: this.tabView.assessments[i].assessmentId,
             label: this.tabView.assessments[i].assessmentDescription,
             validators: [
-                Validators.required,
+                validate,
                 Validators.minLength(1)
             ]
         });
@@ -280,11 +295,15 @@ export class PreviewComponent implements OnInit {
      * This function will return a boolean whether or not an element already exists in the array
      * @param i
      * i is the index of the array which will be checked
+     * @param fieldType
      */
     public fieldCheck(i: number, fieldType: string): boolean {
         let j = 0;
+        let validator;
+        validator = this.checkValidation(this.tabView.assessments[i].assessmentRequired);
         for (j; j < this.fields.length; j++) {
-            if (this.fields[j].key === this.tabView.assessments[i].assessmentId && fieldType === this.fields[j].controlType) {
+            if (this.fields[j].key === this.tabView.assessments[i].assessmentId && fieldType === this.fields[j].controlType
+                 && this.fields[j].validators[0] === validator) {
                 return true;
             } else if (this.fields[j].key === this.tabView.assessments[i].assessmentId) {
                 this.removeField(j);
@@ -318,27 +337,47 @@ export class PreviewComponent implements OnInit {
      * Index of the array which will be added
      * @param optional
      * Whether or not a question is optional or not
+     * @param endPos
      */
-    public updateField(i: number, optional: boolean, endPos: number): void {
+    public updateField(i: number, optional: string, endPos: number): void {
         let x = this.checkPos(i, endPos);
+        let required = this.tabView.assessments[x].assessmentRequired;
         switch (this.fields[i].controlType) {
             case 'SELECT':
                 this.removeField(i);
-                this.createSelect(x, optional);
+                this.createSelect(x, required);
                 break;
             case 'RADIOGROUP':
                 this.removeField(i);
-                this.createRadioGroup(x, optional);
+                this.createRadioGroup(x, required);
                 break;
             case 'TEXT':
                 this.removeField(i);
-                this.createText(x, optional);
+                this.createText(x, required);
                 break;
             case 'NUMBER':
                 this.removeField(i);
-                this.createNumber(x, optional);
+                this.createNumber(x, required);
                 break;
         }
+    }
+
+    public createOptions(i: number): any[] {
+        let options = [];
+        this.tabView.assessments[i].assessmentChoices.forEach(element => {
+            options.push((element.choiceId, element.choiceDescription));
+        });
+        return options;
+    }
+
+    public checkValidation(optional: string) {
+        let validate;
+        if(optional === '0') {
+            validate = Validators.minLength(1)
+        } else {
+            validate = Validators.required
+        }
+        return validate;
     }
 
     /**

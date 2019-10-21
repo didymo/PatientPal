@@ -79,6 +79,8 @@ export class SurveyDetailsComponent implements OnInit {
      */
     private tabView: TabView;
 
+    private mandatory;
+
     disabled = false;
     checked = false;
     isOpen = true;
@@ -261,7 +263,39 @@ export class SurveyDetailsComponent implements OnInit {
         this.preview.updateField(i, optional, y); // Update the preview
     }
 
-    public handleDisplayTypes
+    public handleDisplayTypes(type: string, pos: number) : void {
+        let required = this.tabView.assessments[pos].assessmentRequired;
+        switch (type) {
+            case 'Radio':
+                this.preview.createRadioGroup(pos, required);
+                break;
+            case 'SelectMany':
+                this.preview.createSelectMany(pos, required);
+                break;
+            case 'SelectOne':
+                this.preview.createSelect(pos, required);
+                break;
+            case 'Text':
+                this.preview.createText(pos, required);
+                break;
+            case 'Number':
+                this.preview.createNumber(pos, required);
+                break;
+            default:
+                console.log("Invalid Type");
+        }
+
+        this.tabView.assessments[pos].assessmentDisplayType = type;
+    }
+
+    public handleValidation(required: string, pos: number) {
+        if(required === '1') {
+            this.tabView.assessments[pos].assessmentRequired = '0'
+        } else {
+            this.tabView.assessments[pos].assessmentRequired = '1'
+        }
+        this.handleDisplayTypes(this.tabView.assessments[pos].assessmentDisplayType, pos);
+    }
 
     /**
      * Exports current tabview to excel file
@@ -365,7 +399,10 @@ export class SurveyDetailsComponent implements OnInit {
             this.openSnackBar('Invalid Input', 'Close');
         } else {
             moveItemInArray(this.tabView.assessments, startPos, newPos);
-            this.preview.updateField(startPos, true, newPos);
+            this.tabView.assessments.forEach((element, index, array) => {
+               element.assessmentDelta  = index.toString();
+            });
+            this.preview.updateField(startPos, this.tabView.assessments[newPos].assessmentRequired, newPos);
         }
     }
     /**

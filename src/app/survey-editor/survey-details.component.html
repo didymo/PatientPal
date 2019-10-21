@@ -82,7 +82,7 @@
                         <div *ngFor="let assessments of tabView.assessments; let i = index" id="assessments"
                              class="assessment-item" >
                             <div class="title-div">
-                                <div class="imgView" *ngIf="assessments.toString() === '5'">
+                                <div class="imgView" *ngIf="assessments.assessmentType.toString() === '5'">
                                     <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
                                          alt="">
                                 </div>
@@ -125,9 +125,14 @@
                                 <div id="btn-div-1">
 
                                     <div class="submit-child">
-                                        <button id="mandatory" class="btn btn-primary">
-                                            Mandatory
-                                        </button>
+                                        <div [ngSwitch]="assessments.assessmentRequired">
+                                            <button id="mandatory1" class="btn btn-primary" *ngSwitchCase="1" (click)="handleValidation('1', i)">
+                                                Mandatory
+                                            </button>
+                                            <button id="optional1" class="btn btn-primary" *ngSwitchCase="0" (click)="handleValidation('0', i)">
+                                                Optional
+                                            </button>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary modal-order" (click)="open(content, i)" >
                                         Order
@@ -137,12 +142,12 @@
                                             dropdown
                                         </button>
                                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                            <button ngbDropdownItem (click)="preview.createRadioGroup(i, false)">Radio
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('Radio', i)">Radio
                                                 Buttons
                                             </button>
-                                            <button ngbDropdownItem (click)="preview.createSelect(i, false)">Select One
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('SelectOne', i)">Select One
                                             </button>
-                                            <button ngbDropdownItem (click)="preview.createSelectMany(i , false)">Select
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('SelectMany', i)">Select
                                                 Many
                                             </button>
                                         </div>
@@ -150,16 +155,20 @@
                                 </div>
                             </div>
 
-
                             <!--Assessment 4-->
                             <div id="ass4" *ngIf="assessments.assessmentType.toString() === '4'">
                                 <div id="option-div-parent2">
                                 </div>
                                 <div id="btn-div-2">
                                     <div class="submit-child">
-                                        <button id="mandatory" class="btn btn-primary">
-                                            Mandatory
-                                        </button>
+                                        <div [ngSwitch]="assessments.assessmentRequired">
+                                            <button id="mandatory2" class="btn btn-primary" *ngSwitchCase="1" (click)="handleValidation('1', i)">
+                                                Mandatory
+                                            </button>
+                                            <button id="optional2" class="btn btn-primary" *ngSwitchCase="0" (click)="handleValidation('0', i)">
+                                                Optional
+                                            </button>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary modal-order" (click)="open(content, i)">
                                             Order
@@ -169,9 +178,9 @@
                                             dropdown
                                         </button>
                                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                            <button ngbDropdownItem (click)="preview.createText(i, false)">Text Field
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('Text', i)">Text Field
                                             </button>
-                                            <button ngbDropdownItem (click)="preview.createNumber(i, false)">Number
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('Number', i)">Number
                                                 Field
                                             </button>
                                         </div>
