@@ -1,6 +1,11 @@
 import {Injectable} from '@angular/core';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import {TabView} from '../_classes/TabView';
+import {XAssessments} from '../_excelClasses/XAssessments';
+import {element} from 'protractor';
+import {Choice} from '../_classes/Choice';
+import {Assessment} from '../_classes/Assessment';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
@@ -15,13 +20,13 @@ const EXCEL_EXTENSION = '.xlsx';
  */
 export class ExcelService {
 
-    /**This will be the data gathered from the excel file*/
-    private excelData: any[];
+    private tabView;
 
     private excelId: number;
 
     private translationName: string;
 
+    private choicePos = 0;
 
     constructor() {
     }
@@ -33,14 +38,47 @@ export class ExcelService {
      * @param fileName
      * Name of the file
      */
-    public exportExcelFile(assessments: any[], fileName: string): void {
+    public exportExcelFile(tabView: TabView, fileName: string): void {
+        let choiceSheet = [];
 
-        const assessmentWorksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(assessments);
+        let assessmentSheet = tabView.assessments.map((element) => {
+            if(element.assessmentType === '4') {
+                choiceSheet.push('');
+            } else {
+                element.assessmentChoices.forEach((element, index, array) => {
+                    choiceSheet.push(element);
+                });
+            }
+            return new XAssessments(
+                element.assessmentId,
+                element.assessmentVid,
+                element.assessmentLabel,
+                element.assessmentDescription,
+                element.assessmentType,
+                element.assessmentCode,
+                element.assessmentUuid,
+                element.assessmentDelta,
+                element.assessmentRequired,
+                element.assessmentDisplayType
+            );
+        });
+        let tabSheet =[];
+        tabSheet [0] = {
+            "tabViewLabel": tabView.tabViewLabel,
+            "tabViewId": tabView.tabViewId,
+            "tabViewVid": tabView.tabViewVid,
+            "tabViewCreatedTime": tabView.tabViewCreatedTime,
+            "tabViewChangedTime": tabView.tabViewChangedTime
+        };
 
+        const tabviewWorksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(tabSheet);
+        const assessmentWorksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(assessmentSheet);
+        const choiceWorksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(choiceSheet);
 
         let workbook: XLSX.WorkBook = {
             Sheets:
-                {'data': assessmentWorksheet}, SheetNames: ['data']
+                {'tabview': tabviewWorksheet, 'assessments': assessmentWorksheet, 'choices': choiceWorksheet},
+            SheetNames: ['tabview', 'assessments', 'choices']
         };
 
         const excelBuffer: any = XLSX.write(workbook, {bookType: 'xlsx', type: 'array'});
@@ -61,25 +99,72 @@ export class ExcelService {
         FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     }
 
-    public setExcelData(blob: any[], id: number): void {
-        this.excelData = undefined;
-        this.excelData = blob;
-        this.excelId = id;
-    }
+    public setExcelData(tabviewData: any[], assessmentData: any[], choiceData: any[] ,id: number): void {
 
+        let obj: TabView = {
+            tabViewLabel: tabviewData[0].tabViewLabel,
+            tabViewId: tabviewData[0].tabViewId,
+            tabViewVid: tabviewData[0].tabViewVid,
+            tabViewCreatedTime: tabviewData[0].tabViewCreatedTime,
+            tabViewChangedTime: tabviewData[0].tabViewChangedTime,
+            assessments: assessmentData.map((element) => {
+                return {
+                    assessmentId: element.assessmentId,
+                    assessmentVid: element.assessmentVid,
+                    assessmentLabel: element.assessmentLabel,
+                    assessmentDescription: element.assessmentDescription,
+                    assessmentType: element.assessmentType,
+                    assessmentCode: element.assessmentCode,
+                    assessmentUuid: element.assessmentUuid,
+                    assessmentDelta: element.assessmentDelta,
+                    assessmentRequired: element.assessmentRequired,
+                    assessmentDisplayType: element.assessmentDisplayType,
+                    assessmentChoices: this.sortChoices(choiceData, element.assessmentType)
+                };
+            })
+        };
+        this.excelId = id;
+
+        console.log(obj);
+    }
     public setTranslation(translation: string): void {
         this.translationName = translation;
     }
 
-    public getExcelData(): any [] {
-        let tmp = this.excelData;
+    public sortChoices(choiceData: any[], type: string) :Choice[] {
+        let tmpChoice = [];
+        let next = false;
+        let index = this.choicePos;
+
+        while(next === false) {
+            if(type === '4') {
+                return;
+            } else if (choiceData[index].choiceDelta === '0' && tmpChoice.length === 0 || choiceData[index].choiceDelta != '0') {
+                tmpChoice.push( {
+                    choiceId: choiceData[index].choiceId,
+                    choiceVid: choiceData[index].choiceVid,
+                    choiceLabel: choiceData[index].choiceLabel,
+                    choiceDescription: choiceData[index].choiceDescription,
+                    choiceCode: choiceData[index].choiceCode,
+                    choiceDelta: choiceData[index].choiceDelta,
+                    choiceUuid: choiceData[index].choiceUuid,
+                });
+                index++;
+            } else {
+                next = true;
+            }
+        }
+        return tmpChoice;
+    }
+
+    public getExcelData(): TabView {
+        let tmp = this.tabView;
         this.clearData();
         return tmp;
-
     }
 
     public clearData() {
-        this.excelData = undefined;
+        this.tabView = undefined;
     }
 
     public getID(): number {

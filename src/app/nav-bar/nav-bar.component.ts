@@ -50,7 +50,9 @@ export class NavBarComponent implements OnInit {
 export class NewTabViewDialog {
 
     arrayBuffer: any;
-    blob: any[];
+    tabBlob: any[];
+    assessmentBlob: any[];
+    choiceBlob: any[];
     entityId: number;
     translationName;
 
@@ -87,12 +89,17 @@ export class NewTabViewDialog {
             }
             let bstr = arr.join('');
             let workbook = XLSX.read(bstr, {type: 'binary'}); // Read in the excel file
-            let first_sheet_name = workbook.SheetNames[0]; // Get the first worksheet in the excel file
-            let worksheet = workbook.Sheets[first_sheet_name]; // Create the worksheet
-            this.blob = XLSX.utils.sheet_to_json(worksheet, {raw: true}); // Create the blob
-            this.entityId = this.blob[0].tabViewId; // Get the entity ID from the excel sheet
-            // this.sendData(); // Send the data to the excel service
+            let tabview_sheet = workbook.SheetNames[0]; // Get the first worksheet in the excel file
+            let assessment_sheet = workbook.SheetNames[1]; // Get the first worksheet in the excel file
+            let choice_sheet = workbook.SheetNames[2]; // Get the first worksheet in the excel file
+            let worksheet = workbook.Sheets[tabview_sheet]; // Create the worksheet
+            let worksheet2 = workbook.Sheets[assessment_sheet]; // Create the worksheet
+            let worksheet3 = workbook.Sheets[choice_sheet]; // Create the worksheet
+            this.tabBlob = XLSX.utils.sheet_to_json(worksheet, {raw: true}); // Create the blob
+            this.assessmentBlob = XLSX.utils.sheet_to_json(worksheet2, {raw: true}); // Create the blob
+            this.choiceBlob = XLSX.utils.sheet_to_json(worksheet3, {raw: true}); // Create the blob
 
+            this.entityId = this.tabBlob[0].tabViewId; // Get the entity ID from the excel sheet
         };
         reader.readAsArrayBuffer(f);
 
@@ -103,8 +110,8 @@ export class NewTabViewDialog {
      * Send the excel data to the excel service
      */
     public sendData(): void {
-        let id = this.blob[0].tabViewId;
-        this.excelService.setExcelData(this.blob, id);
+        let id = this.tabBlob[0].tabViewId;
+        this.excelService.setExcelData(this.tabBlob, this.assessmentBlob, this.choiceBlob, id);
         this.excelService.setTranslation(this.translationName);
     }
 

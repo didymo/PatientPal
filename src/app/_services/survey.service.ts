@@ -42,12 +42,12 @@ export class SurveyService {
      * @param ID
      * GET request to druapl using the entityId associated with the tab view
      */
-    getTabView(ID: number): Observable<TabView[]> {
+    getTabView(ID: number): Observable<TabView> {
         const url = `${environment.tabViewURL}${ID}/${'?_format=json'}`;
-        return this.http.get<TabView[]>(url)
+        return this.http.get<TabView>(url, httpOptions)
             .pipe(
                 tap(_ => this.log('fetched tabViews')),
-                catchError(this.handleError<TabView[]>('getTabViewList', []))
+                catchError(this.handleError<TabView>('getTabViewList', ))
             );
     }
 
