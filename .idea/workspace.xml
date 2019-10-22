@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
+      <change afterPath="$PROJECT_DIR$/src/app/beta-editor/beta-editor.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/beta-editor/beta-editor.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/beta-editor/beta-editor.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/beta-editor/beta-editor.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/survey.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
     </list>
@@ -31,7 +36,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dragNdrop" />
+        <entry key="$PROJECT_DIR$" value="updated-drupal" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -45,6 +50,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ChangesTree.GroupingKeys" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
@@ -235,7 +241,8 @@
       <workItem from="1570667951382" duration="1230000" />
       <workItem from="1570929180363" duration="19691000" />
       <workItem from="1571470667082" duration="33265000" />
-      <workItem from="1571622651801" duration="9655000" />
+      <workItem from="1571622651801" duration="10328000" />
+      <workItem from="1571703980491" duration="4193000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -581,6 +588,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Patch request now works, but descriptions must be &lt; 50 chars long" />
     <MESSAGE value="Functionality to change quesiton types" />
     <MESSAGE value="Feature to make a quesiton mandatory or optional" />

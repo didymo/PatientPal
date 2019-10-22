@@ -40,37 +40,37 @@ export class DeployedSurveysComponent implements OnInit {
     queryString: string;
 
     ngOnInit() {
-        // this.getSurveys();
+        this.getSurveys();
 
     }
 
     public getSurveys() {
         this.surveyService.getDeployedSurveys()
             .subscribe(
-                data => this.surveyString = data
-                // error1 => console.log(error1),
-                // () => this.sortString()
+                data => this.surveys = data,
+                error1 => console.log(error1),
+                () => this.sortString()
             )
     }
 
-    // public sortString(): void {
-    //     let tmp;
-    //     let obj;
-    //     let x = 0;
-    //     let count = 0;
-    //     let text = '{ "DeployedSurvey" : []}';
-    //         obj = JSON.parse(text);
-    //     this.surveyString.forEach((item, index, array) => {
-    //         if (count === 0) {
-    //             obj.DeployedSurvey.name = item
-    //             count = 1;
-    //         } else {
-    //             obj.DeployedSurvey.id = item;
-    //             count = 0;
-    //         }
-    //     });
-        
-    //     this.surveys[0] = new DeployedSurvey(obj.DeployedSurvey.name, obj.DeployedSurvey.id);
-    // }
+    public sortString(): void {
+        // let tmp;
+        // let obj;
+        // let x = 0;
+        // let count = 0;
+        // let text = '{ "DeployedSurvey" : []}';
+        //     obj = JSON.parse(text);
+        // this.surveyString.forEach((item, index, array) => {
+        //     if (count === 0) {
+        //         obj.DeployedSurvey.name = item
+        //         count = 1;
+        //     } else {
+        //         obj.DeployedSurvey.id = item;
+        //         count = 0;
+        //     }
+        // });
+        //
+        // this.surveys[0] = new DeployedSurvey(obj.DeployedSurvey.name, obj.DeployedSurvey.id);
+    }
 
 }

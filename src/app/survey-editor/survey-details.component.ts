@@ -89,6 +89,7 @@ export class SurveyDetailsComponent implements OnInit {
     previewDisabled = false;
     hideEdit = false;
     inputResult: any;
+    betaClicked = false;
     /**
      * Stores an instance of the preview component
      */
@@ -215,15 +216,15 @@ export class SurveyDetailsComponent implements OnInit {
         let gen = new PayloadGenerator(this.tabView);
         const payload = gen.genPayload();
         console.log(payload);
-        // this.formService
-        //     .deploySurvey(payload, this.tabView.tabViewId.toString()) // Add the survey
-        //     .subscribe(
-        //         res => {
-        //             console.log(res);
-        //         },
-        //         error1 => this.openSnackBar('Error when deploying', 'Close'), // Log errors
-        //         () => this.openDialog()
-        // );
+        this.formService
+            .deploySurvey(payload, this.tabView.tabViewId.toString()) // Add the survey
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => this.openSnackBar('Error when deploying', 'Close'), // Log errors
+                () => this.openDialog()
+        );
     }
 
     /**
@@ -410,12 +411,17 @@ export class SurveyDetailsComponent implements OnInit {
      * @param content content of the modal
      * @param startPos Starting position
      */
-    open(content, startPos: number) {
+    public open(content, startPos: number) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
             this.moveItem(startPos);
         }, (reason) => {
         });
       }
+    public openBeta(content) {
+        this.modalService.open(content, {ariaLabelledBy: 'open-beta-modal'}).result.then((result) => {
+        }, (reason) => {
+        });
+    }
       public changeValue() {
         this.inputResult = (document.getElementById('orderInput') as HTMLInputElement).value;
       }
