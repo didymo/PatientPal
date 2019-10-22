@@ -128,7 +128,13 @@ export class SurveyDetailsComponent implements OnInit {
      */
     ngOnInit() {
         this.innerWidth = window.innerWidth;
-        this.getTabView();
+        this.tabView = this.fbService.getSurvey();
+        if(this.tabView === undefined) {
+            this.getTabView();
+        } else {
+            this.setSurveyData(false);
+            console.log(this.tabView);
+        }
     }
 
     /**
@@ -161,8 +167,7 @@ export class SurveyDetailsComponent implements OnInit {
                 element.assessmentDisplayType = 'Text'
             }
         }));
-
-        this.updateToExcel();
+        console.log(this.tabView);
         this.setSurveyData(false);
     }
 
@@ -195,6 +200,7 @@ export class SurveyDetailsComponent implements OnInit {
         this.saveSurvey(); // Save any updated fields
         let gen = new PayloadGenerator(this.tabView);
         const payload = gen.genPayload();
+        // console.log(payload);
         this.formService
             .publishSurvey(payload) // Add the survey
             .subscribe(
@@ -213,9 +219,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public deploy(): void {
         this.saveSurvey(); // Save any updated fields
-        let gen = new PayloadGenerator(this.tabView);
-        const payload = gen.genPayload();
-        console.log(payload);
+        const payload = JSON.stringify(this.tabView);
         this.formService
             .deploySurvey(payload, this.tabView.tabViewId.toString()) // Add the survey
             .subscribe(
