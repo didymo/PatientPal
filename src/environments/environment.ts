@@ -7,6 +7,7 @@ export const environment = {
     surveysURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit',
     drupalURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json',
     tabViewURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/',
+    tabViewVersionURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/',
     publishURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/publish',
     versionURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/list/',
   formServerDeployed: 'http://mysite.com/get-deployed',

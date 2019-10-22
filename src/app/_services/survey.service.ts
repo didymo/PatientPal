@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {TabviewList} from '../_classes/TabviewList';
 import {TabView} from '../_classes/TabView';
 import {TabViewVersion} from '../_classes/TabViewVersion';
+import {TabViewVersionInfo} from '../_classes/TabViewVersionInfo';
 import {DeployedSurvey} from '../_classes/DeployedSurvey';
 
 const httpOptions = {
@@ -57,37 +58,49 @@ export class SurveyService {
      * GET request to druapl using the entityId associated with the tab view
      */
     getTabViewVersions(ID: number): Observable<TabViewVersion[]> {
-        const url = `${environment.versionURL}${ID}`;
+        const url = `${environment.versionURL}${ID}/${'?_format=json'}`;
         console.log(ID);
         return this.http.get<TabViewVersion[]>(url)
             .pipe(
                 tap(_ => this.log('fetched tabView versions for ' + ID)),
-                map(ver => this.getVersionInfo(ver)),
+                map(ver => this.getVersionInfo(ver,ID)),
                 //catchError(this.handleError<TabViewVersion[]>('getTabViewVersions', []))
             );
     }
 
-    getVersionInfo(ver: any[]): TabViewVersion[]
+    private getVersionInfo(ver: any[], tabid: number): TabViewVersion[]
     {
         let re = [];
 
         let keys = Object.keys(ver);
-        //console.log("in the function");
-        //console.log(ver);
-        //console.log(keys);
 
         //get all elements of ver
         for (let i = 0; i < keys.length;i++)
         {
             let versioninfo = ver[keys[i]];
-            if (versioninfo["revisionStatus"] == null)
-                versioninfo["revisionStatus"] = "Unknown";
+            //if (versioninfo["revisionStatus"] == null)
+            //versioninfo["revisionStatus"] = "Unknown";
             versioninfo["id"] = keys[i];
-            //console.log(versioninfo);
+            versioninfo["tabid"] = tabid;
+            if (versioninfo["revisionStatus"] != null)
             re.push(versioninfo);
         }
 
         return re;
+    }
+    
+    /**
+     * Returns information about a single version
+     * @param ID
+     * GET request to druapl using the revision ID associated with the version
+     */
+     getTabViewVersionInfo(ID: number): Observable<TabViewVersionInfo> {
+        const url = `${environment.tabViewVersionURL}${ID}/${'?_format=json'}`;
+        console.log(ID);
+        return this.http.get<TabViewVersionInfo>(url)
+            .pipe(
+                tap(_ => this.log('fetched tabView versions for ' + ID)),
+            );
     }
 
     /** PATCH: add a new project to drupal */

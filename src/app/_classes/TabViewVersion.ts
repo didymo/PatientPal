@@ -7,6 +7,12 @@ export interface TabViewVersion
     **/
     id: number;
     /**
+    *
+    * ID of the tabview
+    *
+    **/
+    tabid: number;
+    /**
      * The status of a TabView
      * Used to display the status (published, draft etc)
      * TODO: This should really be an enum
