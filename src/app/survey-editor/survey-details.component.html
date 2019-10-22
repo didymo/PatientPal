@@ -27,7 +27,7 @@
     </div>
   </ng-template>
 
-<div class="navigation" *ngIf="survey">
+<div class="navigation" *ngIf="tabView">
     <button class="btn toolbar-item" routerLink="/tab-views">
         Return
     </button>
@@ -58,19 +58,19 @@
             color="primary">
         Live Preview
     </button>
-    <div class="col-lg-7 toolbar-title" *ngIf="survey">
+    <div class="col-lg-7 toolbar-title" *ngIf="tabView">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Survey Title</span>
             </div>
-            <input type="text" class="form-control" id="surveyTitle" [value]="survey.tabDesc" style="font-weight: bold">
+            <input type="text" class="form-control" id="surveyTitle" [value]="tabView.tabViewLabel" style="font-weight: bold">
         </div>
     </div>
 
 </div>
 <br>
 <div>
-    <div id="wrapper" *ngIf="survey">
+    <div id="wrapper" *ngIf="tabView">
         <div id="questions"
              [@openPreview]="isPreview ? 'hideEdit' : 'visible'"
              [@openClose]="isOpen ? 'open' : 'closed'"
@@ -79,14 +79,14 @@
             <cdk-virtual-scroll-viewport style="height: 87vh" itemSize="90">
                 <form (ngSubmit)="saveSurvey()" id="form">
                     <div class="assessment-list" >
-                        <div *ngFor="let assessments of survey.assessments; let i = index" id="assessments"
+                        <div *ngFor="let assessments of tabView.assessments; let i = index" id="assessments"
                              class="assessment-item" >
                             <div class="title-div">
-                                <div class="imgView" *ngIf="assessments.asessmentType.toString() === '5'">
+                                <div class="imgView" *ngIf="assessments.assessmentType.toString() === '5'">
                                     <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
                                          alt="">
                                 </div>
-                                <div class="imgView" *ngIf="assessments.asessmentType.toString() === '4'">
+                                <div class="imgView" *ngIf="assessments.assessmentType.toString() === '4'">
                                     <img src="assets/icons/texts.png" width="24" height="24" class="rounded float-left"
                                          alt="">
                                 </div>
@@ -95,28 +95,28 @@
                                 </div>
                                 <div class="title-div-child2">
                                     <input class="form-control"
-                                           [value]="assessments.assessmentDesc"
-                                           [(ngModel)]="survey.assessments[i].assessmentDesc"
+                                           [value]="assessments.assessmentDescription"
+                                           [(ngModel)]="assessments.assessmentDescription"
                                            (ngModelChange)="preview.changeTitle(i,$event)"
                                            [ngModelOptions]="{standalone: true}"
-                                           [attr.id]=assessments.id style="font-weight: bold">
+                                           [attr.id]=assessments.assessmentId style="font-weight: bold">
                                 </div>
                             </div>
 
                             <!--Assessment 5-->
-                            <div id="ass5" *ngIf="assessments.asessmentType.toString() === '5'">
+                            <div id="ass5" *ngIf="assessments.assessmentType.toString() === '5'">
 
-                                <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
+                                <div id="option-div-parent1" *ngFor="let choices of assessments.assessmentChoices let x = index">
                                     <div id="option-div-child">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Option {{x + 1}}</span>
                                         </div>
                                         <textarea
-                                                [(ngModel)]="survey.assessments[i].choices[x].choiceDesc"
+                                                [(ngModel)]="choices.choiceDescription"
                                                 [ngModelOptions]="{standalone: true}"
-                                                (ngModelChange)="saveQuestion(i, x, false)"
-                                                [value]="choices.choiceDesc"
-                                                [attr.id]=assessments.choices[x].id
+                                                (ngModelChange)="saveQuestion(i, x, false, i)"
+                                                [value]="choices.choiceDescription"
+                                                [attr.id]=choices.choiceId
                                                 class="form-control" rows="2"
                                         >
                                 </textarea>
@@ -125,9 +125,14 @@
                                 <div id="btn-div-1">
 
                                     <div class="submit-child">
-                                        <button id="mandatory" class="btn btn-primary">
-                                            Mandatory
-                                        </button>
+                                        <div [ngSwitch]="assessments.assessmentRequired">
+                                            <button id="mandatory1" class="btn btn-primary" *ngSwitchCase="1" (click)="handleValidation('1', i)">
+                                                Mandatory
+                                            </button>
+                                            <button id="optional1" class="btn btn-primary" *ngSwitchCase="0" (click)="handleValidation('0', i)">
+                                                Optional
+                                            </button>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary modal-order" (click)="open(content, i)" >
                                         Order
@@ -137,12 +142,12 @@
                                             dropdown
                                         </button>
                                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                            <button ngbDropdownItem (click)="preview.createRadioGroup(i, false)">Radio
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('Radio', i)">Radio
                                                 Buttons
                                             </button>
-                                            <button ngbDropdownItem (click)="preview.createSelect(i, false)">Select One
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('SelectOne', i)">Select One
                                             </button>
-                                            <button ngbDropdownItem (click)="preview.createSelectMany(i , false)">Select
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('SelectMany', i)">Select
                                                 Many
                                             </button>
                                         </div>
@@ -150,16 +155,20 @@
                                 </div>
                             </div>
 
-
                             <!--Assessment 4-->
-                            <div id="ass4" *ngIf="assessments.asessmentType.toString() === '4'">
+                            <div id="ass4" *ngIf="assessments.assessmentType.toString() === '4'">
                                 <div id="option-div-parent2">
                                 </div>
                                 <div id="btn-div-2">
                                     <div class="submit-child">
-                                        <button id="mandatory" class="btn btn-primary">
-                                            Mandatory
-                                        </button>
+                                        <div [ngSwitch]="assessments.assessmentRequired">
+                                            <button id="mandatory2" class="btn btn-primary" *ngSwitchCase="1" (click)="handleValidation('1', i)">
+                                                Mandatory
+                                            </button>
+                                            <button id="optional2" class="btn btn-primary" *ngSwitchCase="0" (click)="handleValidation('0', i)">
+                                                Optional
+                                            </button>
+                                        </div>
                                     </div>
                                     <button class="btn btn-primary modal-order" (click)="open(content, i)">
                                             Order
@@ -169,9 +178,9 @@
                                             dropdown
                                         </button>
                                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                            <button ngbDropdownItem (click)="preview.createText(i, false)">Text Field
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('Text', i)">Text Field
                                             </button>
-                                            <button ngbDropdownItem (click)="preview.createNumber(i, false)">Number
+                                            <button ngbDropdownItem (click)="handleDisplayTypes('Number', i)">Number
                                                 Field
                                             </button>
                                         </div>
@@ -186,7 +195,7 @@
             </cdk-virtual-scroll-viewport>
         </div>
         <ng-container>
-            <div id="preview" *ngIf="survey"
+            <div id="preview" *ngIf="tabView"
                  [@openPreview]="isOpen ? 'hidden' : 'visible'"
                  [@fullPreview]="fullPreview ? 'open' : 'close'"
             >

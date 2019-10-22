@@ -6,7 +6,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import {AppComponent} from './app.component';
 import { NgXformModule } from '@esss/ng-xform';
-
 import {SurveyDetailsComponent} from './survey-editor/survey-details.component';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -15,8 +14,6 @@ import {TabViewsComponent, TabViewSearch} from './tab-views/tab-views.component'
 import {PreviewComponent} from './preview/preview.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatDialogModule, MatFormFieldModule, MatSnackBarModule} from '@angular/material';
-import {FormBuilderComponent} from './form-builder/form-builder.component';
-import {DynamicFormQuestionComponent} from './dynamic-form-question/dynamic-form-question.component';
 import {DeployedLink} from './survey-editor/deployed-link';
 import {MatInputModule} from '@angular/material/input';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -37,8 +34,6 @@ import { SurveyVersionListComponent } from './survey-version-list/survey-version
     PreviewComponent,
     NewTabViewDialog,
     TabViewSearch,
-      FormBuilderComponent,
-      DynamicFormQuestionComponent,
       DeployedLink,
       DeployedSurveysComponent,
       DeployedSurveySearch,
