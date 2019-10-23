@@ -21,6 +21,10 @@ const httpOptions = {
 @Injectable({
     providedIn: 'root'
 })
+/**
+ *  Service class that handles all http communications
+ *  @author Peter Charles Sims
+ */
 export class SurveyService {
     constructor(
         private http: HttpClient,

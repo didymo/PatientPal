@@ -7,6 +7,7 @@ import {TabviewList} from '../_classes/TabviewList';
 })
 /**
  * Handles the sorting by views in the table
+ * @author Peter Charles Sims
  */
 export class TabViewSearch implements PipeTransform {
 
@@ -27,6 +28,7 @@ export class TabViewSearch implements PipeTransform {
 })
 /**
  * Handles the sorting by views in the table
+ * @author Peter Charles Sims
  */
 export class OrderBy implements PipeTransform {
     /**
@@ -92,6 +94,7 @@ export class OrderBy implements PipeTransform {
  * Used to display a list of Tabviews that have been imported from Drupal
  * This component is the homepage of the application
  * From here, users can navigate into the survey editor by clicking on one of the tab views
+ * @author Peter Charles Sims
  */
 export class TabViewsComponent implements OnInit {
     /**

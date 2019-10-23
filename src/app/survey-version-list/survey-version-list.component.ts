@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './survey-version-list.component.html',
   styleUrls: ['./survey-version-list.component.css']
 })
+/**
+ * @author Paul Tunbridge
+ */
 export class SurveyVersionListComponent implements OnInit {
 
     //this holds the list of versions

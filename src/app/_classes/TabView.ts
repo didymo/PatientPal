@@ -1,6 +1,7 @@
 /**
  * Stores the complete set of data associated with a tabview
  * Maintains the format defined by Drupal
+ * @author Peter Charles Sims
  */
 import {Assessment} from './Assessment';
 

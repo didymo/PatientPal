@@ -1,3 +1,7 @@
+/**
+ * Stores relevant information for tabview verions
+ * @author Paul Tunbridge
+ */
 export interface TabViewVersion
 {
     /**

@@ -13,6 +13,10 @@ export interface DialogData {
     templateUrl: './nav-bar.component.html',
     styleUrls: ['./nav-bar.component.css']
 })
+/**
+ * Handles the NavBar processing
+ * @author Peter Charles Sims
+ */
 export class NavBarComponent implements OnInit {
 
     name: string;

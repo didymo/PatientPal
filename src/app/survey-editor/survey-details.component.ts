@@ -67,6 +67,7 @@ export interface DialogData {
  * @implements OnInit
  * This class will handle the process of viewing a survey's questions, and editing them
  * Users will use the to edit their questions, save those questions, and then either publish/draft them
+ * @author Peter Charles Sims
  */
 export class SurveyDetailsComponent implements OnInit {
 

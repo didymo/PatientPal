@@ -4,6 +4,7 @@ import {Choice} from './Choice';
  * Assessments are defined by their id, type, description, and an array of choices
  * This format has been defined within Drupal, so that once Survey has been converted into a JSON string
  * It can match the data in Drupal
+ * @author Peter Charles Sims
  */
 export interface Assessment {
 

@@ -7,6 +7,7 @@ import {TabView} from '../_classes/TabView';
 
 /**
  * This service will be used to transfer Surveys between the survey editor and the standalone preview
+ * @author Peter Charles Sims
  */
 export class BuildFormService {
 

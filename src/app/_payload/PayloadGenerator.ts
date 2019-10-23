@@ -4,16 +4,28 @@ import {PAssessment} from './PAssessment';
 import {Assessment} from '../_classes/Assessment';
 import {PChoice} from './PChoice';
 
+/**
+ * This class provides functionality to generate a payload
+ * @author Peter Charles Sims
+ */
 export class PayloadGenerator {
 
     tabview: TabView;
     ptabview: PTabview;
     passessments: PAssessment[];
 
+    /**
+     * Construcotr fo payload generator
+     * @param tabview
+     * TabView that will be used to gen the payload
+     */
     constructor(tabview: TabView) {
         this.tabview = tabview;
     }
 
+    /**
+     * Generates the payload
+     */
     public genPayload(): string {
         this.sortAssessments();
         this.ptabview = {
@@ -23,7 +35,9 @@ export class PayloadGenerator {
         };
         return JSON.stringify(this.ptabview);
     }
-
+    /**
+     * Sorts the assessments out
+     */
     public sortAssessments(): void {
         this.passessments = this.tabview.assessments.map((element => {
             return {
@@ -37,6 +51,11 @@ export class PayloadGenerator {
         }));
     }
 
+    /**
+     * Sorts the choices out
+     * @param element
+     * The Assessment being iterated
+     */
     public sortChoices(element: Assessment): PChoice[] {
         let tmp = [];
         if (element.assessmentType === '4') {

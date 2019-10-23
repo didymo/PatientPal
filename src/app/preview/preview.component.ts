@@ -30,6 +30,7 @@ import {TabView} from '../_classes/TabView';
 /**
  * Handles the previewing of Surveys
  * When a user is editing a survey this component will display what the actual question will look like
+ * @author Peter Charles Sims
  */
 export class PreviewComponent implements OnInit {
 

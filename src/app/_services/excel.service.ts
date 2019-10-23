@@ -17,6 +17,7 @@ const EXCEL_EXTENSION = '.xlsx';
 
 /**
  * Service class that exports xlsx files to the clients machine.
+ * @author Peter Charles Sims
  */
 export class ExcelService {
 
@@ -101,6 +102,17 @@ export class ExcelService {
         FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     }
 
+    /**
+     * Sets the excel data
+     * @param tabviewData
+     * TabView data from the excel sheet
+     * @param assessmentData
+     * Assessment data from excel sheet
+     * @param choiceData
+     * Choice data from choice sheet
+     * @param id
+     * ID of the tab view
+     */
     public setExcelData(tabviewData: any[], assessmentData: any[], choiceData: any[] ,id: number): void {
 
         let obj: TabView = {
@@ -128,10 +140,23 @@ export class ExcelService {
         this.excelId = id;
         this.tabView = obj;
     }
+
+    /**
+     * Sets the translation name
+     * @param translation
+     * The name of the translation
+     */
     public setTranslation(translation: string): void {
         this.translationName = translation;
     }
 
+    /**
+     * Sorts the choices
+     * @param choiceData
+     * The data of the choice
+     * @param type
+     * The assessment type
+     */
     public sortChoices(choiceData: any[], type: string) :Choice[] {
         let tmpChoice = [];
         let next = false;
@@ -140,7 +165,7 @@ export class ExcelService {
         while(next === false) {
             if(type === '4') {
                 return;
-            } else if (choiceData[index].choiceDelta === '0' && tmpChoice.length === 0 || choiceData[index].choiceDelta != '0') {
+            } else if (choiceData[index] !== undefined || choiceData[index].choiceDelta === '0' && tmpChoice.length === 0 || choiceData[index].choiceDelta != '0') {
                 tmpChoice.push( {
                     choiceId: choiceData[index].choiceId,
                     choiceVid: choiceData[index].choiceVid,
@@ -155,23 +180,36 @@ export class ExcelService {
                 next = true;
             }
         }
+        // this.choicePos = index;
         return tmpChoice;
     }
 
+    /**
+     * Returns the excel data
+     */
     public getExcelData(): TabView {
         let tmp = this.tabView;
         this.clearData();
         return tmp;
     }
 
+    /**
+     * Clears the data
+     */
     public clearData() {
         this.tabView = undefined;
     }
 
+    /**
+     * Returns the tab view ID
+     */
     public getID(): number {
         return this.excelId;
     }
 
+    /**
+     * Returns the translation name
+     */
     public getTranslationName(): string {
         return this.translationName;
     }

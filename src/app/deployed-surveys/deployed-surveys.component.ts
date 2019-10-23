@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
  * Searches for specific TabViews
  * Displays a search bar on the application
  * A user can enter search terms and then see any TabView with similar characters
+ * @author Peter Charles Sims
  */
 export class DeployedSurveySearch implements PipeTransform {
 
@@ -33,6 +34,10 @@ export class DeployedSurveySearch implements PipeTransform {
     styleUrls: ['./deployed-surveys.component.css'],
     providers: [DeployedSurveySearch]
 })
+/**
+ * File that handles the displaying of Deployed Surveys
+ * @author Peter Charles Sims
+ */
 export class DeployedSurveysComponent implements OnInit {
 
     constructor(private surveyService: SurveyService, private fbService: BuildFormService, private router: Router) { }
@@ -45,9 +50,11 @@ export class DeployedSurveysComponent implements OnInit {
 
     ngOnInit() {
         this.getSurveys();
-
     }
 
+    /**
+     * Requests for the surveys
+     */
     public getSurveys() {
         this.surveyService.getDeployedForms()
             .subscribe(
@@ -57,6 +64,9 @@ export class DeployedSurveysComponent implements OnInit {
             )
     }
 
+    /**
+     * Converts json string into deployedForm object
+     */
     public sortString(): void {
         let json = JSON.parse(this.str);
         eval(json);
@@ -67,6 +77,10 @@ export class DeployedSurveysComponent implements OnInit {
         console.log(this.deployedForms);
     }
 
+    /**
+     * Requests for the relevant data for the tab view
+     * @param i
+     */
     public getTabView(i: number): void {
         const id = this.deployedForms[i].id;
         this.surveyService.getDeployedSurvey(id)
@@ -81,6 +95,9 @@ export class DeployedSurveysComponent implements OnInit {
             )
     }
 
+    /**
+     * Sorts the tab view
+     */
     public sortTabView()  {
         let json = JSON.parse(this.strString);
         eval(json);
