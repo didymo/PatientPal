@@ -1,0 +1,24 @@
+#wrapper {
+}
+
+.table td {
+    cursor: pointer;
+}
+
+
+.table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search-component {
+    margin-top: 1%;
+}
+
+#scrollView {
+    box-shadow: 0px 0px 5px #bfbfbf;
+}
+
+#lastElem {
+    display: flex;
+}

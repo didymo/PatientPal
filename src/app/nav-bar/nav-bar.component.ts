@@ -1,19 +1,22 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {ExcelService} from '../_Services/excel.service';
+import {ExcelService} from '../_services/excel.service';
 import * as XLSX from 'xlsx';
+import {Router} from '@angular/router';
 
 export interface DialogData {
     animal: string;
     name: string;
 }
-
-
 @Component({
     selector: 'app-nav-bar',
     templateUrl: './nav-bar.component.html',
     styleUrls: ['./nav-bar.component.css']
 })
+/**
+ * Handles the NavBar processing
+ * @author Peter Charles Sims
+ */
 export class NavBarComponent implements OnInit {
 
     name: string;
@@ -32,7 +35,7 @@ export class NavBarComponent implements OnInit {
      */
     openDialog(): void {
         const dialogRef = this.dialog.open(NewTabViewDialog, {
-            height: '30%',
+            height: '35%',
             width: '40%',
         });
 
@@ -52,17 +55,27 @@ export class NavBarComponent implements OnInit {
 export class NewTabViewDialog {
 
     arrayBuffer: any;
-    blob: any[];
+    tabBlob: any[];
+    assessmentBlob: any[];
+    choiceBlob: any[];
     entityId: number;
+    translationName;
 
     constructor(
         public dialogRef: MatDialogRef<NewTabViewDialog>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
-        private excelService: ExcelService) {
+        private excelService: ExcelService,
+        private router: Router) {
     }
 
     onNoClick(): void {
         this.dialogRef.close();
+    }
+
+    closeDialog(): void {
+        this.translationName = (document.getElementById('languageInput') as HTMLInputElement).value;
+        this.dialogRef.close();
+        this.sendData();
     }
 
     /**
@@ -82,12 +95,17 @@ export class NewTabViewDialog {
             }
             let bstr = arr.join('');
             let workbook = XLSX.read(bstr, {type: 'binary'}); // Read in the excel file
-            let first_sheet_name = workbook.SheetNames[0]; // Get the first worksheet in the excel file
-            let worksheet = workbook.Sheets[first_sheet_name]; // Create the worksheet
-            this.blob = XLSX.utils.sheet_to_json(worksheet, {raw: true}); // Create the blob
-            this.entityId = this.blob[0].tabViewId; // Get the entity ID from the excel sheet
-            this.sendData(); // Send the data to the excel service
+            let tabview_sheet = workbook.SheetNames[0]; // Get the first worksheet in the excel file
+            let assessment_sheet = workbook.SheetNames[1]; // Get the first worksheet in the excel file
+            let choice_sheet = workbook.SheetNames[2]; // Get the first worksheet in the excel file
+            let worksheet = workbook.Sheets[tabview_sheet]; // Create the worksheet
+            let worksheet2 = workbook.Sheets[assessment_sheet]; // Create the worksheet
+            let worksheet3 = workbook.Sheets[choice_sheet]; // Create the worksheet
+            this.tabBlob = XLSX.utils.sheet_to_json(worksheet, {raw: true}); // Create the blob
+            this.assessmentBlob = XLSX.utils.sheet_to_json(worksheet2, {raw: true}); // Create the blob
+            this.choiceBlob = XLSX.utils.sheet_to_json(worksheet3, {raw: true}); // Create the blob
 
+            this.entityId = this.tabBlob[0].tabViewId; // Get the entity ID from the excel sheet
         };
         reader.readAsArrayBuffer(f);
 
@@ -98,7 +116,10 @@ export class NewTabViewDialog {
      * Send the excel data to the excel service
      */
     public sendData(): void {
-        this.excelService.setExcelData(this.blob);
+        let id = this.tabBlob[0].tabViewId;
+        this.excelService.setExcelData(this.tabBlob, this.assessmentBlob, this.choiceBlob, id);
+        this.excelService.setTranslation(this.translationName);
+        this.router.navigate(['/detail/' + id]);
     }
 
 }

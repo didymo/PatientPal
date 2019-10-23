@@ -1,27 +1,85 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
-import {SurveyService} from '../_Services/survey.service';
-import {TabviewList} from '../TabviewList';
+import {SurveyService} from '../_services/survey.service';
+import {TabviewList} from '../_classes/TabviewList';
 
 @Pipe({
     name: 'tabViewSearch'
 })
 /**
- * Used to handle the search functionality of the application
- * Searches for specific TabViews
- * Displays a search bar on the application
- * A user can enter search terms and then see any TabView with similar characters
+ * Handles the sorting by views in the table
+ * @author Peter Charles Sims
  */
 export class TabViewSearch implements PipeTransform {
-
 
     transform(value: TabviewList[], term: string): TabviewList[] {
         if (term == null) {
             return value;
+        } else if (parseInt(term[0]) >= 0 && parseInt(term[0]) <= 9) {
+            return value.filter(item => item.entityId.toString().toLowerCase().match(term.toLowerCase()));
         } else {
             return value.filter(item => item.label.toLowerCase().match(term.toLowerCase()));
         }
     }
 
+}
+
+@Pipe({
+    name: 'orderBy'
+})
+/**
+ * Handles the sorting by views in the table
+ * @author Peter Charles Sims
+ */
+export class OrderBy implements PipeTransform {
+    /**
+     * Compare function
+     * @param a
+     * Item a to be compared with item B
+     * @param b
+     * Item b that is compared with item A
+     */
+    compare(a: any, b: any): number {
+        if (a < b) {
+            return -1;
+        } else if (a > b) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    transform(value: TabviewList[], term: string): TabviewList[] {
+        if (term == null) {
+            return value;
+        }
+        switch (term) {
+            case 'ID':
+                return value.sort((a, b) => {
+                    let itemA = a.entityId;
+                    let itemB = b.entityId;
+                    return this.compare(itemA, itemB);
+                });
+            case 'IDBack':
+                return value.sort((a, b) => {
+                    let itemA = b.entityId;
+                    let itemB = a.entityId;
+                    return this.compare(itemA, itemB);
+                });
+            case 'Label':
+                return value.sort((a, b) => {
+                    let itemA = b.label.toLowerCase().replace(/\s/g, '');
+                    let itemB = a.label.toLowerCase().replace(/\s/g, '');
+                    return this.compare(itemA, itemB);
+                });
+            case 'LabelBack':
+                return value.sort((a, b) => {
+                    let itemA = a.label.toLowerCase().replace(/\s/g, '');
+                    let itemB = b.label.toLowerCase().replace(/\s/g, '');
+                    return this.compare(itemA, itemB);
+                });
+        }
+
+    }
 }
 
 @Component({
@@ -36,6 +94,7 @@ export class TabViewSearch implements PipeTransform {
  * Used to display a list of Tabviews that have been imported from Drupal
  * This component is the homepage of the application
  * From here, users can navigate into the survey editor by clicking on one of the tab views
+ * @author Peter Charles Sims
  */
 export class TabViewsComponent implements OnInit {
     /**
@@ -44,6 +103,10 @@ export class TabViewsComponent implements OnInit {
      */
     tabviews: TabviewList [];
     queryString: string;
+    sortString: string;
+
+    orderId: boolean;
+    orderName: boolean;
 
     /**
      * Constructor of the TabViewComponent Class
@@ -63,6 +126,35 @@ export class TabViewsComponent implements OnInit {
    */
   getTabViews() {
     this.surveyService.getTabViewList()
-        .subscribe(data => this.tabviews = data);
+        .subscribe(
+            data => this.tabviews = data,
+            err => console.log(err),
+        );
   }
+
+    /**
+     * Handles the table sort based on the ID
+     */
+    public tableSort(): void {
+        this.orderId = !this.orderId;
+
+        if (this.orderId == false) {
+            this.sortString = 'ID';
+        } else {
+            this.sortString = 'IDBack';
+        }
+    }
+
+    /**
+     * Deals with the sorting of names in the table
+     */
+    public nameSort(): void {
+        this.orderName = !this.orderName;
+
+        if (this.orderName == false) {
+            this.sortString = 'Label';
+        } else {
+            this.sortString = 'LabelBack';
+        }
+    }
 }

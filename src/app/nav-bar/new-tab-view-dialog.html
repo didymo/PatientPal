@@ -2,13 +2,17 @@
     <h1 mat-dialog-title> Import New Tab View</h1>
     <div mat-dialog-content>
         <p>Please select an XLSX file</p>
-        <mat-form-field>
-            <input matInput id="fileSelector" type="file" accept=".xlsx" (change)="handleFile($event)">
-        </mat-form-field>
+        <input class="form-control" id="languageInput" type="text" placeholder="Translation Language"
+               style="width: 20vw; margin-top: 2%">
+        <br>
+
+        <input id="fileSelector" type="file" accept=".xlsx" (change)="handleFile($event)"
+               style="margin-top: 2%">
     </div>
+    <br>
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()" class="btn-light">Cancel</button>
-        <button mat-button mat-dialog-close="openTabView()" routerLink="/detail/{{entityId}}" class="btn-light"
+        <button mat-button (click)="closeDialog()"  class="btn-light"
                 cdkFocusInitial>Import
         </button>
     </div>

@@ -1,0 +1,40 @@
+<div id="search-component" style="width: 35%; margin-left: 2.5%">
+
+    <input #searchBox id="search-box" class="form-control mr-sm-2"
+           placeholder="Search deployed surveys by name" type="text" [(ngModel)]="queryString"/>
+</div>
+
+<!--Table Data -->
+<div class="align-baseline" *ngIf="deployedForms" style="margin-top: 20px; width: 95%; margin-left: 2.5%">
+    <cdk-virtual-scroll-viewport  style="height: 89vh" itemSize="90" id="scrollView" >
+        <div class="row">
+            <div class="col-md-12 col-md-offset0">
+                <table id="dtOrderExample" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody class="search-result">
+                    <tr *ngFor="let tab of deployedForms | deployedSurveySearch: queryString; let i = index"
+                        class="survey_data" (click)="this.getTabView(i)">
+                        <td class="survey_id">{{tab.id }}</td>
+                        <td>{{ tab.name }}</td>
+                        <td>{{tab.deploy_date}}</td>
+                        <td>Deployed</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </cdk-virtual-scroll-viewport>
+
+</div>
+
+<hr>
+<footer class="container">
+    <p>&copy; PatientPal 2019</p>
+</footer>
