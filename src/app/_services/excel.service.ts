@@ -28,6 +28,8 @@ export class ExcelService {
 
     private choicePos = 0;
 
+    private status = false;
+
     constructor() {
     }
 
@@ -124,8 +126,7 @@ export class ExcelService {
             })
         };
         this.excelId = id;
-
-        console.log(obj);
+        this.tabView = obj;
     }
     public setTranslation(translation: string): void {
         this.translationName = translation;

@@ -128,12 +128,19 @@ export class SurveyDetailsComponent implements OnInit {
      */
     ngOnInit() {
         this.innerWidth = window.innerWidth;
-        this.tabView = this.fbService.getSurvey();
-        if(this.tabView === undefined) {
-            this.getTabView();
+        let tmp: TabView;
+        tmp = this.excelService.getExcelData();
+        if(tmp === undefined) {
+            tmp = this.fbService.getSurvey();
+            if(tmp === undefined) {
+                this.getTabView();
+            } else {
+                this.tabView = tmp;
+                this.setSurveyData(false);
+            }
         } else {
-            this.setSurveyData(false);
-            console.log(this.tabView);
+            this.tabView = tmp;
+            this.updateToExcel();
         }
     }
 
@@ -312,16 +319,10 @@ export class SurveyDetailsComponent implements OnInit {
      * This funciton updates the tabview class based on the data from the imported XLSX files
      * A json string from the XLSX file
      */
-    public updateToExcel() : boolean {
-        let tmp = this.excelService.getExcelData();
-        if (tmp !== undefined) {
-            this.tabView = tmp;
-            this.tabView.tabViewLabel;
+    public updateToExcel(){
+            this.tabView.tabViewLabel += ' (' +this.excelService.getTranslationName()+ ')';
             this.setSurveyData(false);
             this.openSnackBar('Import Successful', 'Close');
-            return true;
-        }
-        return false;
     }
 
     /**

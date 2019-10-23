@@ -11,7 +11,7 @@ import {TabView} from '../_classes/TabView';
 export class BuildFormService {
 
     private survey: TabView;
-    private self: boolean;
+    private surveyStatus: boolean;
 
     constructor() {
     }
@@ -40,4 +40,5 @@ export class BuildFormService {
     public setSurvey(survey: TabView): void {
         this.survey = survey;
     }
+
 }

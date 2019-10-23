@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/survey.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/build-form.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/build-form.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/excel.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/new-tab-view-dialog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/new-tab-view-dialog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ExcelService} from '../_services/excel.service';
 import * as XLSX from 'xlsx';
+import {Router} from '@angular/router';
 
 export interface DialogData {
     animal: string;
@@ -59,7 +60,8 @@ export class NewTabViewDialog {
     constructor(
         public dialogRef: MatDialogRef<NewTabViewDialog>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
-        private excelService: ExcelService) {
+        private excelService: ExcelService,
+        private router: Router) {
     }
 
     onNoClick(): void {
@@ -113,6 +115,7 @@ export class NewTabViewDialog {
         let id = this.tabBlob[0].tabViewId;
         this.excelService.setExcelData(this.tabBlob, this.assessmentBlob, this.choiceBlob, id);
         this.excelService.setTranslation(this.translationName);
+        this.router.navigate(['/detail/' + id]);
     }
 
 }
