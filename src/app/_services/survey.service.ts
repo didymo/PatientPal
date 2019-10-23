@@ -9,7 +9,7 @@ import {TabviewList} from '../_classes/TabviewList';
 import {TabView} from '../_classes/TabView';
 import {TabViewVersion} from '../_classes/TabViewVersion';
 import {TabViewVersionInfo} from '../_classes/TabViewVersionInfo';
-import {DeployedSurvey} from '../_classes/DeployedSurvey';
+
 
 const httpOptions = {
     headers: new HttpHeaders({
