@@ -12,7 +12,7 @@ export const environment = {
     versionURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/list/',
   formServerDeployed: 'http://mysite.com/get-deployed',
   formServerURL: 'http://mysite.com/',
-  formServerApplicationURL: 'http://localhost:4200/form/'
+  formServerApplicationURL: 'http://localhost:4201/form/'
 };
 
 /*

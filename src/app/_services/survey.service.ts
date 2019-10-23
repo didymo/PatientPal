@@ -165,11 +165,23 @@ export class SurveyService {
      * GET TabViewList from drupal
      * Will return 404 if not found
      */
-    getDeployedSurveys(): Observable<string[]> {
-        return this.http.get<string[]>(environment.formServerDeployed)
+    getDeployedForms(): Observable<any> {
+        return this.http.get<any>(environment.formServerDeployed)
             .pipe(
                 tap(_ => this.log('fetched deployed')),
-                catchError(this.handleError<string[]>('getDeployedSurveys', []))
+                catchError(this.handleError<any>('getDeployedSurveys', ))
+            );
+    }
+    /**
+     * GET TabViewList from drupal
+     * Will return 404 if not found
+     */
+    getDeployedSurvey(ID: number): Observable<string> {
+            const url = `${environment.formServerURL}${ID}/${'?_format=json'}`;
+            return this.http.get<string>(url)
+                .pipe(
+                    tap(_ => this.log('fetched tabViews')),
+                    catchError(this.handleError<string>('getTabViewList', ))
             );
     }
     /**

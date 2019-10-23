@@ -23,6 +23,7 @@ import {OrderBy} from './tab-views/tab-views.component';
 import {DraftViewComponent} from './draft-view/draft-view.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SurveyVersionListComponent } from './survey-version-list/survey-version-list.component';
+import { BetaEditorComponent } from './beta-editor/beta-editor.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SurveyVersionListComponent } from './survey-version-list/survey-version
       DeployedSurveySearch,
       OrderBy,
       DraftViewComponent,
+      BetaEditorComponent,
       SurveyVersionListComponent,
   ],
     imports: [

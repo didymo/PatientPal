@@ -89,6 +89,7 @@ export class SurveyDetailsComponent implements OnInit {
     previewDisabled = false;
     hideEdit = false;
     inputResult: any;
+    betaClicked = false;
     /**
      * Stores an instance of the preview component
      */
@@ -127,7 +128,13 @@ export class SurveyDetailsComponent implements OnInit {
      */
     ngOnInit() {
         this.innerWidth = window.innerWidth;
-        this.getTabView();
+        this.tabView = this.fbService.getSurvey();
+        if(this.tabView === undefined) {
+            this.getTabView();
+        } else {
+            this.setSurveyData(false);
+            console.log(this.tabView);
+        }
     }
 
     /**
@@ -160,8 +167,7 @@ export class SurveyDetailsComponent implements OnInit {
                 element.assessmentDisplayType = 'Text'
             }
         }));
-
-        this.updateToExcel();
+        console.log(this.tabView);
         this.setSurveyData(false);
     }
 
@@ -194,6 +200,7 @@ export class SurveyDetailsComponent implements OnInit {
         this.saveSurvey(); // Save any updated fields
         let gen = new PayloadGenerator(this.tabView);
         const payload = gen.genPayload();
+        // console.log(payload);
         this.formService
             .publishSurvey(payload) // Add the survey
             .subscribe(
@@ -212,18 +219,16 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public deploy(): void {
         this.saveSurvey(); // Save any updated fields
-        let gen = new PayloadGenerator(this.tabView);
-        const payload = gen.genPayload();
-        console.log(payload);
-        // this.formService
-        //     .deploySurvey(payload, this.tabView.tabViewId.toString()) // Add the survey
-        //     .subscribe(
-        //         res => {
-        //             console.log(res);
-        //         },
-        //         error1 => this.openSnackBar('Error when deploying', 'Close'), // Log errors
-        //         () => this.openDialog()
-        // );
+        const payload = JSON.stringify(this.tabView);
+        this.formService
+            .deploySurvey(payload, this.tabView.tabViewId.toString()) // Add the survey
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                error1 => this.openSnackBar('Error when deploying', 'Close'), // Log errors
+                () => this.openDialog()
+        );
     }
 
     /**
@@ -410,12 +415,17 @@ export class SurveyDetailsComponent implements OnInit {
      * @param content content of the modal
      * @param startPos Starting position
      */
-    open(content, startPos: number) {
+    public open(content, startPos: number) {
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
             this.moveItem(startPos);
         }, (reason) => {
         });
       }
+    public openBeta(content) {
+        this.modalService.open(content, {ariaLabelledBy: 'open-beta-modal'}).result.then((result) => {
+        }, (reason) => {
+        });
+    }
       public changeValue() {
         this.inputResult = (document.getElementById('orderInput') as HTMLInputElement).value;
       }
