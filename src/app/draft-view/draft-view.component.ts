@@ -8,6 +8,9 @@ import {TabViewSearch, OrderBy,} from '../tab-views/tab-views.component';
     templateUrl: './draft-view.component.html',
     styleUrls: ['./draft-view.component.css']
 })
+/**
+ * @author Peter Charles Sims
+ */
 export class DraftViewComponent implements OnInit {
 
     tabviews: TabviewList [];

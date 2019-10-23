@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="">
+    <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_classes/Assessment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/Assessment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_classes/Choice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/Choice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_classes/DeployedForms.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/DeployedForms.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_classes/TabView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/TabView.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_classes/TabViewVersion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/TabViewVersion.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_classes/TabViewVersionInfo.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/TabViewVersionInfo.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_classes/TabviewList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_classes/TabviewList.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_excelClasses/XAssessments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_excelClasses/XAssessments.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_payload/PAssessment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_payload/PAssessment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_payload/PChoice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_payload/PChoice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_payload/PTabview.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_payload/PTabview.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_payload/PayloadGenerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_payload/PayloadGenerator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/build-form.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/build-form.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/excel.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/survey.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +44,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="polish-peter" />
+        <entry key="$PROJECT_DIR$" value="updated-drupal" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,6 +58,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ChangesTree.GroupingKeys" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
@@ -57,7 +68,7 @@
     <property name="javascript.karma.karma_node_package_dir" value="" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FSApplication/FormServer" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -237,6 +248,12 @@
       <workItem from="1570665821727" duration="798000" />
       <workItem from="1570667951382" duration="1230000" />
       <workItem from="1570929180363" duration="19691000" />
+      <workItem from="1571470667082" duration="33265000" />
+      <workItem from="1571622651801" duration="10328000" />
+      <workItem from="1571703980491" duration="13950000" />
+      <workItem from="1571749553868" duration="8000" />
+      <workItem from="1571749572146" duration="1000" />
+      <workItem from="1571749580791" duration="26000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -582,6 +599,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Patch request now works, but descriptions must be &lt; 50 chars long" />
     <MESSAGE value="Functionality to change quesiton types" />
     <MESSAGE value="Feature to make a quesiton mandatory or optional" />
@@ -609,5 +627,18 @@
     <MESSAGE value="Added dragging and dropping" />
     <option name="LAST_COMMIT_MESSAGE" value="Added dragging and dropping" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint log-message="true" log-stack="true" type="javascript-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="js.build_tools.npm">
+        <watch expression="this.tabView" language="JavaScript" />
+        <watch expression="this.fields" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

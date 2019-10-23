@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Survey} from '../_classes/Survey';
+import {TabView} from '../_classes/TabView';
 
 @Injectable({
     providedIn: 'root'
@@ -7,11 +7,12 @@ import {Survey} from '../_classes/Survey';
 
 /**
  * This service will be used to transfer Surveys between the survey editor and the standalone preview
+ * @author Peter Charles Sims
  */
 export class BuildFormService {
 
-    private survey: Survey;
-    private self: boolean;
+    private survey: TabView;
+    private surveyStatus: boolean;
 
     constructor() {
     }
@@ -19,7 +20,7 @@ export class BuildFormService {
     /**
      * Returns a survey and then removes the data
      */
-    public getSurvey(): Survey {
+    public getSurvey(): TabView {
         let survey = this.survey;
         this.removeSurvey();
         return survey;
@@ -37,20 +38,8 @@ export class BuildFormService {
      * @param survey
      * An instance of a survey object
      */
-    public setSurvey(survey: Survey): void {
+    public setSurvey(survey: TabView): void {
         this.survey = survey;
     }
 
-    /**
-     * Set if the preview is viewed on itself
-     * @param self
-     * Component is either viewed as a preview in the editor or viewed alone
-     */
-    public setSelf(self: boolean) {
-        this.self = self;
-    }
-
-    public getSelf(): boolean {
-        return this.self;
-    }
 }

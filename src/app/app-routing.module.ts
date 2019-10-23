@@ -5,10 +5,12 @@ import {TabViewsComponent} from './tab-views/tab-views.component';
 import {PreviewComponent} from './preview/preview.component';
 import {DeployedSurveysComponent} from './deployed-surveys/deployed-surveys.component';
 import {DraftViewComponent} from './draft-view/draft-view.component';
+import {SurveyVersionListComponent} from './survey-version-list/survey-version-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tab-views', pathMatch: 'full'},
   { path: 'detail/:id', component: SurveyDetailsComponent },
+  { path: 'versions/:id', component: SurveyVersionListComponent},
   { path: 'tab-views', component: TabViewsComponent},
     {path: 'preview/:id', component: PreviewComponent},
   {path: 'deployed-surveys', component: DeployedSurveysComponent},

@@ -1,6 +1,7 @@
 /**
  * Stores the data of a TabView retrieved from the list of TabViews
  * Maintains the format defined from Drupal
+ * @author Peter Charles Sims
  */
 export interface TabviewList {
     /**
