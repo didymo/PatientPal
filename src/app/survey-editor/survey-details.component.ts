@@ -78,7 +78,7 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Stores an array of TabViews that have been imported from Drupal
      */
-    private tabView: TabView;
+    public tabView: TabView;
 
     private mandatory;
 
