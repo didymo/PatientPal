@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/Number.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/SelectMany.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/collection.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/draw.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/radiobtn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/transport.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/deployed-surveys/.deployed-surveys.component.ts.swp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/deployed-surveys/deployed-surveys.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/draft-view/draft-view.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/nav-bar/nav-bar.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-version-list/survey-version-list.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-version-list/survey-version-list.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-version-list/survey-version-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-version-list/survey-version-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/tab-views/tab-views.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
