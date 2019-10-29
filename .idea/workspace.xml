@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
