@@ -1,3 +1,6 @@
+<mat-spinner mode="indeterminate" id="spinner" *ngIf="!tabView"></mat-spinner>
+<!--<mat-progress-bar id="spinner" mode="indeterminate" ></mat-progress-bar>-->
+
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Change Assessment Order</h4>
@@ -27,25 +30,6 @@
     </div>
   </ng-template>
 
-<!--<ng-template #content let-modal>-->
-<!--    <div class="modal-header">-->
-<!--        <h4 class="modal-title" id="open-beta-modal">Warning. Entering Beta Version</h4>-->
-<!--        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">-->
-<!--            <span aria-hidden="true">&times;</span>-->
-<!--        </button>-->
-<!--    </div>-->
-<!--    <div class="modal-body">-->
-<!--        <form>-->
-<!--            <div class="form-group">-->
-<!--                <h2>The beta version of the editor show cases upcoming features. All additional features are-->
-<!--                experimental.</h2>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--    <div class="modal-footer">-->
-<!--        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Continue</button>-->
-<!--    </div>-->
-<!--</ng-template>-->
 
 <div class="navigation" *ngIf="tabView">
     <button class="btn toolbar-item" routerLink="/tab-views">
@@ -106,13 +90,27 @@
                         <div *ngFor="let assessments of tabView.assessments; let i = index" id="assessments"
                              class="assessment-item" >
                             <div class="title-div">
-                                <div class="imgView" *ngIf="assessments.assessmentType.toString() === '5'">
-                                    <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
-                                         alt="">
-                                </div>
-                                <div class="imgView" *ngIf="assessments.assessmentType.toString() === '4'">
-                                    <img src="assets/icons/texts.png" width="24" height="24" class="rounded float-left"
-                                         alt="">
+                                <div [ngSwitch]="assessments.assessmentDisplayType">
+                                    <div class="imgView" *ngSwitchCase="'SelectOne'">
+                                        <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
+                                             alt="">
+                                    </div>
+                                    <div class="imgView" *ngSwitchCase="'Radio'">
+                                        <img src="assets/icons/radiobtn.png" width="24" height="24" class="rounded float-left"
+                                             alt="">
+                                    </div>
+                                    <div class="imgView" *ngSwitchCase="'SelectMany'">
+                                        <img src="assets/icons/SelectMany.png" width="24" height="24" class="rounded float-left"
+                                             alt="">
+                                    </div>
+                                    <div class="imgView" *ngSwitchCase="'Number'">
+                                        <img src="assets/icons/Number.png" width="24" height="24" class="rounded float-left"
+                                             alt="">
+                                    </div>
+                                    <div class="imgView" *ngSwitchCase="'Text'">
+                                        <img src="assets/icons/texts.png" width="24" height="24" class="rounded float-left"
+                                             alt="">
+                                    </div>
                                 </div>
                                 <div class="title-div-child1">
                                     <p style="font-weight: bold">{{i + 1}}.</p>

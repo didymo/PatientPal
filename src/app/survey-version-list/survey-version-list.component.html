@@ -1,4 +1,6 @@
-<div id="wrapper">
+<mat-spinner mode="indeterminate" id="spinner" *ngIf="!versions"></mat-spinner>
+
+<div id="wrapper" *ngIf="versions">
     <div class="align-baseline" style="margin-top: 20px; width: 95%; margin-left: 2.5%">
         <cdk-virtual-scroll-viewport style="height: 89vh;" itemSize="90" id="scrollView">
             <div class="row">

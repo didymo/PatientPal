@@ -1,4 +1,6 @@
-<div id="wrapper">
+<mat-spinner mode="indeterminate" id="spinner" *ngIf="!loaded"></mat-spinner>
+
+<div id="wrapper" *ngIf="loaded">
     <div id="search-component" style="width: 35%; margin-left: 2.5%">
 
         <input #searchBox id="search-box" class="form-control mr-sm-2"
