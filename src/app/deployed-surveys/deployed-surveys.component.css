@@ -21,3 +21,9 @@
 #lastElem {
     display: flex;
 }
+
+
+#spinner {
+    margin: auto;
+    margin-top: 20%;
+}

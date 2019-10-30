@@ -20,6 +20,7 @@ export class DraftViewComponent implements OnInit {
 
     orderId: boolean;
     orderName: boolean;
+    loaded:boolean;
 
     /**
      * Constructor of the DraftViewComponent Class
@@ -56,6 +57,7 @@ export class DraftViewComponent implements OnInit {
                 this.drafts.push(item);
             }
         });
+        this.loaded = true;
     }
 
     /**

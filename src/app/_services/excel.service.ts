@@ -122,6 +122,11 @@ export class ExcelService {
             tabViewCreatedTime: tabviewData[0].tabViewCreatedTime,
             tabViewChangedTime: tabviewData[0].tabViewChangedTime,
             assessments: assessmentData.map((element) => {
+                let options = [];
+                if(element.assessmentType === '5') {
+                    options = this.sortChoices(choiceData, element.assessmentType);
+                    console.log(options);
+                }
                 return {
                     assessmentId: element.assessmentId,
                     assessmentVid: element.assessmentVid,
@@ -133,7 +138,7 @@ export class ExcelService {
                     assessmentDelta: element.assessmentDelta,
                     assessmentRequired: element.assessmentRequired,
                     assessmentDisplayType: element.assessmentDisplayType,
-                    assessmentChoices: this.sortChoices(choiceData, element.assessmentType)
+                    assessmentChoices: options
                 };
             })
         };
@@ -163,24 +168,27 @@ export class ExcelService {
         let index = this.choicePos;
 
         while(next === false) {
-            if(type === '4') {
-                return;
-            } else if (choiceData[index] !== undefined || choiceData[index].choiceDelta === '0' && tmpChoice.length === 0 || choiceData[index].choiceDelta != '0') {
-                tmpChoice.push( {
-                    choiceId: choiceData[index].choiceId,
-                    choiceVid: choiceData[index].choiceVid,
-                    choiceLabel: choiceData[index].choiceLabel,
-                    choiceDescription: choiceData[index].choiceDescription,
-                    choiceCode: choiceData[index].choiceCode,
-                    choiceDelta: choiceData[index].choiceDelta,
-                    choiceUuid: choiceData[index].choiceUuid,
-                });
-                index++;
-            } else {
+            try {
+                if (choiceData[index].choiceDelta === '0' && tmpChoice.length === 0 || choiceData[index].choiceDelta != '0') {
+                    tmpChoice.push( {
+                        choiceId: choiceData[index].choiceId,
+                        choiceVid: choiceData[index].choiceVid,
+                        choiceLabel: choiceData[index].choiceLabel,
+                        choiceDescription: choiceData[index].choiceDescription,
+                        choiceCode: choiceData[index].choiceCode,
+                        choiceDelta: choiceData[index].choiceDelta,
+                        choiceUuid: choiceData[index].choiceUuid,
+                    });
+                    index++;
+                } else {
+                    next = true;
+                }
+            } catch (e) {
                 next = true;
             }
+
         }
-        // this.choicePos = index;
+        this.choicePos = index;
         return tmpChoice;
     }
 

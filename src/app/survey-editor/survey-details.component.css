@@ -196,7 +196,10 @@
     margin-bottom: 0;
 }
 
-
+#spinner {
+    margin: auto;
+    margin-top: 20%;
+}
 .submit-child {
     margin-right: 0.5%;
 }

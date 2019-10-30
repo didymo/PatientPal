@@ -15,7 +15,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PayloadGenerator} from '../_payload/PayloadGenerator';
-import {element} from 'protractor';
 export interface DialogData {
     link: string;
 }
@@ -78,7 +77,7 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Stores an array of TabViews that have been imported from Drupal
      */
-    private tabView: TabView;
+    public tabView: TabView;
 
     private mandatory;
 
@@ -205,10 +204,9 @@ export class SurveyDetailsComponent implements OnInit {
      * Calls publishSurvey from the service class to interface with Drupal
      */
     public publish(): void {
-        this.saveSurvey(); // Save any updated fields
+        this.submit();
         let gen = new PayloadGenerator(this.tabView);
         const payload = gen.genPayload();
-        // console.log(payload);
         this.formService
             .publishSurvey(payload) // Add the survey
             .subscribe(

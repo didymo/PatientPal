@@ -1,4 +1,5 @@
-<div id="wrapper">
+<mat-spinner mode="indeterminate" id="spinner" *ngIf="!tabviews"></mat-spinner>
+<div id="wrapper" *ngIf="tabviews">
     <div id="search-component" style="width: 35%; margin-left: 2.5%">
 
         <input #searchBox id="search-box" class="form-control mr-sm-2"
