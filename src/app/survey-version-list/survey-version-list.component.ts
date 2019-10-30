@@ -17,7 +17,7 @@ export class SurveyVersionListComponent implements OnInit {
     versions: TabViewVersion[];
     
     //The id from the URL is linked to the entity ID of the tabview
-    private id = +this.route.snapshot.paramMap.get('id');
+    public id = +this.route.snapshot.paramMap.get('id');
 
     constructor(private surveyService: SurveyService, private route: ActivatedRoute) { }
 

@@ -27,9 +27,9 @@
                             class="survey_data">
                             <td class="survey_id">{{tab.entityId }}</td>
                             <td>{{ tab.label }}</td>
-                            <td>10/10/19</td>
-                            <td><a routerLink="/versions/{{tab.entityId}}">{{tab.revisionId}}</a></td>
-                            <td>{{tab.revisionStatus}}</td>
+                            <td>{{ tab.createdTime * 1000 | date:' HH:mm:ss dd/MM/yyyy'}}</td>
+                            <td><a routerLink="/versions/{{tab.entityId}}">{{ tab.changedTime * 1000 | date:' HH:mm:ss dd/MM/yyyy' }}</a></td>
+                            <td>{{ tab.revisionStatus }}</td>
                         </tr>
                         </tbody>
                     </table>

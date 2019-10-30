@@ -28,4 +28,6 @@ export interface TabviewList {
     ownedByUser: boolean;
     revisionId: number;
     revisionStatus: string;
+    createdTime: number;
+    changedTime: number;
 }

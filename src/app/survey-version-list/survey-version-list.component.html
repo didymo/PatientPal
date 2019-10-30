@@ -5,6 +5,14 @@
         <cdk-virtual-scroll-viewport style="height: 89vh;" itemSize="90" id="scrollView">
             <div class="row">
                 <div class="col-md-12 col-md-offset0">
+                    <div class="navigation">
+                        <button class="btn toolbar-item" routerLink="/tab-views">
+                            Return
+                        </button>
+                        <button class="btn toolbar-item" routerLink="/detail/{{id}}">
+                            Go to Latest Version
+                        </button>
+                    </div>
                     <table id="dtOrderExample" class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -14,12 +22,11 @@
                         </tr>
                         </thead>
                         <tbody class="search-result">
-                        <tr *ngFor="let tab of versions"
-                            routerLink="/detail/{{tab.tabid}}"
+                        <tr *ngFor="let tab of versions; let i = index"
                             class="survey_data">
-                            <td class="survey_status">{{tab.id}}</td>
+                            <td class="survey_status">{{ i+1 }}</td>
                             <td class="survey_status">{{tab.revisionStatus}}</td>
-                            <td class="survey_timestamp">{{tab.revisionTimestamp}}</td>
+                            <td class="survey_timestamp">{{tab.revisionTimestamp * 1000 | date:' HH:mm:ss dd/MM/yyyy'}}</td>
                         </tr>
                         </tbody>
                     </table>
