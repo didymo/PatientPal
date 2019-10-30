@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/excel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/excel.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +28,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="updated-drupal" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

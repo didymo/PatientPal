@@ -24,6 +24,8 @@ import {DraftViewComponent} from './draft-view/draft-view.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SurveyVersionListComponent } from './survey-version-list/survey-version-list.component';
 import { BetaEditorComponent } from './beta-editor/beta-editor.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -57,8 +59,10 @@ import { BetaEditorComponent } from './beta-editor/beta-editor.component';
         MatInputModule,
         ScrollingModule,
         MatSlideToggleModule,
+        MatProgressBarModule,
         NgbModule,
-        DragDropModule
+        DragDropModule,
+        MatProgressSpinnerModule
 
     ],
   providers: [
