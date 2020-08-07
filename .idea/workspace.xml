@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_payload/PayloadGenerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_payload/PayloadGenerator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/survey.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.prod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,20 +44,29 @@
     <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ChangesTree.GroupingKeys" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="javascript.karma.karma_node_package_dir" value="" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FSApplication/FormServer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../angular-tour-of-heroes" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs.cucumber.cucumber_node_package_dir" value="" />
     <property name="nodejs.jest.jest_package" value="" />
@@ -75,18 +87,6 @@
       <recent name="$PROJECT_DIR$/src/app/nav-bar" />
       <recent name="$PROJECT_DIR$/src/app" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="js.build_tools.grunt">
@@ -125,16 +125,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <treeState>
-          <expand />
-          <select />
-        </treeState>
-      </serviceView>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -239,6 +230,34 @@
       <workItem from="1571749572146" duration="1000" />
       <workItem from="1571749580791" duration="26000" />
       <workItem from="1571964169914" duration="1760000" />
+      <workItem from="1586320398638" duration="4168000" />
+      <workItem from="1590549346067" duration="6802000" />
+      <workItem from="1590630215363" duration="2827000" />
+      <workItem from="1590642519112" duration="1355000" />
+      <workItem from="1590724440278" duration="599000" />
+      <workItem from="1591052696852" duration="2715000" />
+      <workItem from="1591074797402" duration="599000" />
+      <workItem from="1591144845929" duration="6987000" />
+      <workItem from="1591420575605" duration="703000" />
+      <workItem from="1591502858421" duration="766000" />
+      <workItem from="1591576947363" duration="615000" />
+      <workItem from="1592180731760" duration="1519000" />
+      <workItem from="1592264088742" duration="4061000" />
+      <workItem from="1592458614892" duration="832000" />
+      <workItem from="1592890684010" duration="802000" />
+      <workItem from="1593039319847" duration="599000" />
+      <workItem from="1593473788794" duration="986000" />
+      <workItem from="1594622946594" duration="386000" />
+      <workItem from="1594963537262" duration="613000" />
+      <workItem from="1595044144029" duration="787000" />
+      <workItem from="1595566328625" duration="1144000" />
+      <workItem from="1595807079831" duration="652000" />
+      <workItem from="1595984039699" duration="602000" />
+      <workItem from="1596074697286" duration="599000" />
+      <workItem from="1596093707474" duration="10000" />
+      <workItem from="1596586264559" duration="31000" />
+      <workItem from="1596690982089" duration="1353000" />
+      <workItem from="1596758606318" duration="709000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
@@ -554,16 +573,14 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -582,6 +599,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -612,6 +630,12 @@
     <MESSAGE value="Added dragging and dropping" />
     <option name="LAST_COMMIT_MESSAGE" value="Added dragging and dropping" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1000" y="542" key="FileChooserDialogImpl" timestamp="1595807148082">
+      <screen x="67" y="30" width="2493" height="1570" />
+    </state>
+    <state x="1000" y="542" key="FileChooserDialogImpl/67.30.2493.1570@67.30.2493.1570" timestamp="1595807148082" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

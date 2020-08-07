@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import {Injectable} from '@angular/core';
+import {environment} from 'src/environments/environment';
 
-import { Observable, of } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { MessageService } from './message.service';
-import { catchError, map, tap } from 'rxjs/operators';
+import {MessageService} from './message.service';
+import {catchError, map, tap} from 'rxjs/operators';
 import {TabviewList} from '../_classes/TabviewList';
 import {TabView} from '../_classes/TabView';
 import {TabViewVersion} from '../_classes/TabViewVersion';
@@ -53,9 +53,10 @@ export class SurveyService {
         return this.http.get<TabView>(url, httpOptions)
             .pipe(
                 tap(_ => this.log('fetched tabViews')),
-                catchError(this.handleError<TabView>('getTabViewList', ))
+                catchError(this.handleError<TabView>('getTabViewList',))
             );
     }
+
     /**
      * Returns tab view versions list for a specific TabView
      * @param ID
@@ -67,38 +68,37 @@ export class SurveyService {
         return this.http.get<TabViewVersion[]>(url)
             .pipe(
                 tap(_ => this.log('fetched tabView versions for ' + ID)),
-                map(ver => this.getVersionInfo(ver,ID)),
+                map(ver => this.getVersionInfo(ver, ID)),
                 //catchError(this.handleError<TabViewVersion[]>('getTabViewVersions', []))
             );
     }
 
-    private getVersionInfo(ver: any[], tabid: number): TabViewVersion[]
-    {
+    private getVersionInfo(ver: any[], tabid: number): TabViewVersion[] {
         let re = [];
 
         let keys = Object.keys(ver);
 
         //get all elements of ver
-        for (let i = 0; i < keys.length;i++)
-        {
+        for (let i = 0; i < keys.length; i++) {
             let versioninfo = ver[keys[i]];
             //if (versioninfo["revisionStatus"] == null)
             //versioninfo["revisionStatus"] = "Unknown";
-            versioninfo["id"] = keys[i];
-            versioninfo["tabid"] = tabid;
-            if (versioninfo["revisionStatus"] != null)
-            re.push(versioninfo);
+            versioninfo['id'] = keys[i];
+            versioninfo['tabid'] = tabid;
+            if (versioninfo['revisionStatus'] != null) {
+                re.push(versioninfo);
+            }
         }
 
         return re;
     }
-    
+
     /**
      * Returns information about a single version
      * @param ID
      * GET request to druapl using the revision ID associated with the version
      */
-     getTabViewVersionInfo(ID: number): Observable<TabViewVersionInfo> {
+    getTabViewVersionInfo(ID: number): Observable<TabViewVersionInfo> {
         const url = `${environment.tabViewVersionURL}${ID}/${'?_format=json'}`;
         console.log(ID);
         return this.http.get<TabViewVersionInfo>(url)
@@ -113,7 +113,7 @@ export class SurveyService {
      * The payload
      */
     addSurvey(payload: string): Observable<any> {
-        console.log(payload);
+        //       console.log(payload);
         return this.http
             .patch<string>(environment.surveysURL, payload, httpOptions)
             .pipe(
@@ -128,7 +128,7 @@ export class SurveyService {
      * The payload
      */
     publishSurvey(payload: string): Observable<any> {
-        console.log(payload);
+        //    console.log(payload);
         return this.http
             .patch<string>(environment.publishURL, payload, httpOptions)
             .pipe(
@@ -138,14 +138,16 @@ export class SurveyService {
     }
 
     deploySurvey(payload: string, hash: string): Observable<any> {
-        console.log(payload);
-        const url = `${environment.formServerURL}${hash}`;
+        //    console.log(payload);
+        //    const url = `${environment.deploySurveyURL}${hash}`;
+        const url = `${environment.deploySurveyURL}`;
+
         return this.http
             .post<string>(url, payload, httpOptions)
             .pipe(
                 tap(_ => this.log(`Deployed Survey`)),
                 catchError(this.handleError<any>('addSurvey', payload))
-            )
+            );
     }
 
     /**
@@ -162,7 +164,7 @@ export class SurveyService {
             .pipe(
                 tap(_ => this.log(`found survey matching "${term}"`)),
                 catchError(this.handleError<TabviewList[]>('searchSurveys', []))
-        );
+            );
     }
 
     /**
@@ -173,21 +175,23 @@ export class SurveyService {
         return this.http.get<any>(environment.formServerDeployed)
             .pipe(
                 tap(_ => this.log('fetched deployed')),
-                catchError(this.handleError<any>('getDeployedSurveys', ))
+                catchError(this.handleError<any>('getDeployedSurveys',))
             );
     }
+
     /**
      * GET TabViewList from drupal
      * Will return 404 if not found
      */
     getDeployedSurvey(ID: number): Observable<string> {
-            const url = `${environment.formServerURL}${ID}/${'?_format=json'}`;
-            return this.http.get<string>(url)
-                .pipe(
-                    tap(_ => this.log('fetched tabViews')),
-                    catchError(this.handleError<string>('getTabViewList', ))
+        const url = `${environment.formServerURL}${ID}/${'?_format=json'}`;
+        return this.http.get<string>(url)
+            .pipe(
+                tap(_ => this.log('fetched tabViews')),
+                catchError(this.handleError<string>('getTabViewList',))
             );
     }
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.
@@ -207,6 +211,7 @@ export class SurveyService {
             return of(result as T);
         };
     }
+
     /** Log a SurveyService message with the MessageService */
     private log(message: string) {
         this.messageService.add(`SurveyService: ${message}`);

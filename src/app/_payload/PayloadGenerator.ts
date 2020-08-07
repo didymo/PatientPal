@@ -33,8 +33,12 @@ export class PayloadGenerator {
             tabDesc: this.tabview.tabViewLabel,
             assessments: this.passessments
         };
+        // Change made by Ashley chasing json bug
+       // console.log(this.ptabview);
         return JSON.stringify(this.ptabview);
+       // return this.ptabview;
     }
+
     /**
      * Sorts the assessments out
      */

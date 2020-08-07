@@ -4,15 +4,16 @@
 
 export const environment = {
   production: false,
-    surveysURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/edit',
-    drupalURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/tab/list?_format=json',
-    tabViewURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/get/',
-    tabViewVersionURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/rest/content/tab/',
-    publishURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/publish',
-    versionURL: 'http://qadrupal.lan.sesahs.nsw.gov.au/tabview/list/',
-  formServerDeployed: 'http://mysite.com/get-deployed',
-  formServerURL: 'http://mysite.com/',
-  formServerApplicationURL: 'http://localhost:4201/form/'
+    surveysURL: 'https://drupal.didymodesigns.com.au/tabview/edit',
+    drupalURL: 'https://drupal.didymodesigns.com.au/rest/tab/list?_format=json',
+    tabViewURL: 'https://drupal.didymodesigns.com.au/rest/content/tab/get/',
+    tabViewVersionURL: 'https://drupal.didymodesigns.com.au/rest/content/tab/',
+    publishURL: 'https://drupal.didymodesigns.com.au/tabview/publish',
+    versionURL: 'https://drupal.didymodesigns.com.au/tabview/list/',
+  deploySurveyURL: 'https://drupal.didymodesigns.com.au/rest/survey/deploy/',
+  formServerDeployed: 'https://formserver.didymodesigns.com.au/get-deployed',
+  formServerURL: 'https://formserver.didymodesigns.com.au/',
+  formServerApplicationURL: 'http://localhost:4200/form/'
 };
 
 /*

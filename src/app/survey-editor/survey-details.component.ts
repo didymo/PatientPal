@@ -207,11 +207,17 @@ export class SurveyDetailsComponent implements OnInit {
         this.submit();
         let gen = new PayloadGenerator(this.tabView);
         const payload = gen.genPayload();
+        console.log("before publish");
+    //    console.log(payload);
+    //    console.log("after publish");
+
         this.formService
             .publishSurvey(payload) // Add the survey
             .subscribe(
                 res => {
+                    console.log('start');
                     console.log(res);
+                     console.log('finish');
                 },
                 error1 => console.log(error1), // Log errors
                 () => this.openSnackBar('Survey Published', 'Close')
@@ -230,7 +236,9 @@ export class SurveyDetailsComponent implements OnInit {
             .deploySurvey(payload, this.tabView.tabViewId.toString()) // Add the survey
             .subscribe(
                 res => {
+                    console.log('start');
                     console.log(res);
+                    console.log('finish');
                 },
                 error1 => this.openSnackBar('Error when deploying', 'Close'), // Log errors
                 () => this.openDialog()
@@ -264,7 +272,6 @@ export class SurveyDetailsComponent implements OnInit {
      * @param x Position of choice
      * @param optional Optional or not
      * @param y satisfy condition
-
      */
     public saveQuestion(i: number, x: number, optional: boolean, y: number): void {
         this.tabView.assessments[i].assessmentDescription =
