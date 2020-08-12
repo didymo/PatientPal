@@ -6,6 +6,7 @@ export const environment = {
     tabViewVersionURL: 'https://drupal.didymodesigns.com.au/rest/content/tab/',
     publishURL: 'https://drupal.didymodesigns.com.au/tabview/publish',
     versionURL: 'https://drupal.didymodesigns.com.au/tabview/list/',
+    deploySurveyURL: 'https://drupal.didymodesigns.com.au/rest/survey/deploy/',
     formServerDeployed: 'https://formhandler.didymodesigns.com.au/get-deployed',
     formServerURL: 'https://formhandler.didymodesigns.com.au/',
     formServerApplicationURL: 'https://formserver.didymodesigns.com.au/form/'
