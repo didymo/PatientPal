@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import {AppComponent} from './app.component';
-import { NgXformModule } from '@esss/ng-xform';
 import {SurveyDetailsComponent} from './survey-editor/survey-details.component';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -51,7 +50,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        NgXformModule,
         BrowserAnimationsModule,
         MatDialogModule,
         MatFormFieldModule,
