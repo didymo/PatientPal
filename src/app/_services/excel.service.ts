@@ -62,7 +62,8 @@ export class ExcelService {
                 element.assessmentUuid,
                 element.assessmentDelta,
                 element.assessmentRequired,
-                element.assessmentDisplayType
+                element.assessmentDisplayType,
+                element.assessmentAnswer
             );
         });
         let tabSheet =[];
@@ -138,6 +139,7 @@ export class ExcelService {
                     assessmentDelta: element.assessmentDelta,
                     assessmentRequired: element.assessmentRequired,
                     assessmentDisplayType: element.assessmentDisplayType,
+                    assessmentAnswer: element.assessmentAnswer,
                     assessmentChoices: options
                 };
             })

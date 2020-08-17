@@ -45,6 +45,11 @@ export class XAssessments {
     assessmentDisplayType: string;
 
     /**
+     * The return of the answers used in assessments
+     */
+    assessmentAnswer: string;
+
+    /**
      * Constructor for XAssessment Class
      * @param assessmentId
      * @param assessmentVid
@@ -57,7 +62,7 @@ export class XAssessments {
      * @param assessmentRequired
      * @param assessmentDisplayType
      */
-    constructor(assessmentId: string, assessmentVid: string, assessmentLabel: string, assessmentDescription: string, assessmentType: string, assessmentCode: string, assessmentUuid: string, assessmentDelta: string, assessmentRequired: string, assessmentDisplayType: string) {
+    constructor(assessmentId: string, assessmentVid: string, assessmentLabel: string, assessmentDescription: string, assessmentType: string, assessmentCode: string, assessmentUuid: string, assessmentDelta: string, assessmentRequired: string, assessmentDisplayType: string, assessmentAnswer: string) {
         this.assessmentId = assessmentId;
         this.assessmentVid = assessmentVid;
         this.assessmentLabel = assessmentLabel;
@@ -68,5 +73,6 @@ export class XAssessments {
         this.assessmentDelta = assessmentDelta;
         this.assessmentRequired = assessmentRequired;
         this.assessmentDisplayType = assessmentDisplayType;
+        this.assessmentAnswer = assessmentAnswer;
     }
 }

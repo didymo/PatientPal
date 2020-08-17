@@ -18,6 +18,7 @@ export interface Assessment {
     assessmentDelta: string;
     assessmentRequired: string;
     assessmentDisplayType: string;
+    assessmentAnswer: string;
     assessmentChoices: Choice[];
 
 }

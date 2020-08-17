@@ -13,6 +13,7 @@ import {Validators} from '@angular/forms';
 import {delay} from 'rxjs/operators';
 import {BuildFormService} from '../_services/build-form.service';
 import {TabView} from '../_classes/TabView';
+import {Assessment} from '../_classes/Assessment';
 
 
 
@@ -40,6 +41,12 @@ export class PreviewComponent implements OnInit {
     // @Input() survey: Survey;
 
     tabView: TabView;
+
+    /**
+     * Need a new TabView to put the values, not using the old name for now.
+     */
+    currentTabView: TabView;
+
     private self: boolean;
 
     public onchangefn = new Subject<string>();
@@ -60,6 +67,7 @@ export class PreviewComponent implements OnInit {
     public subscriptions: Subscription[] = [];
 
     docHTML = '';
+    private tmpAssessments: Assessment;
 
     /**
      * Constructor for PreviewComponent
@@ -84,8 +92,7 @@ export class PreviewComponent implements OnInit {
             (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
         ));
         this.titleService.setTitle('TabviewList | ' + this.tabView.tabViewLabel); // Sets the title
-        this.initWidgets(); // Initiates the widgets
-
+   //     this.initWidgets(); // Initiates the widgets
     }
 
     changeTitle(i: number, title: string) {
@@ -95,6 +102,9 @@ export class PreviewComponent implements OnInit {
     changeChoice(i: number, x: number, title: string) {
         this.tabView.assessments[i].assessmentChoices[x].choiceDescription = title;
     }
+
+
+
     /**
      * This function is used to init the fields array.
      * The fields will be used to display the different type of questions

@@ -1,9 +1,38 @@
-
+<h4>{{tabView.tabViewLabel}}</h4>
 <div id="wrapper" *ngIf="tabView">
+
     <div id="questions">
-            <div id="assessments">
-                <ng-xform [horizontalForm]="horizontal" [labelWidth]="labelWidth" [fields]="fields"
-                          id="xform"></ng-xform>
+        <hr>
+        <hr>
+        <div id="assessments">
+            <div *ngFor="let assessment of tabView.assessments">
+                <p>{{assessment.assessmentLabel}}</p>
+
+
+                    <div class="textInput" *ngIf="assessment.assessmentType == 4">
+                        <h4>text input</h4>
+                        <input [(ngModel)]="assessment.assessmentAnswer" name="{{assessment.assessmentUuid}}"
+                               title="{{assessment.assessmentDescription}}">
+                    </div>
+
+                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentType == 5">
+                        <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
+                        <label>
+                            <input [(ngModel)]="assessment.assessmentAnswer" type="radio" name="{{assessment.assessmentUuid}}"
+                                   value="{{choice.choiceLabel}}" class="assessmentChoices"
+                                   title="{{assessment.assessmentDescription}}">
+                            {{choice.choiceDescription}}
+                        </label>
+                    </div>
+                </div>
+
+
+                <p></p>
+                <hr>
             </div>
+        </div>
     </div>
 </div>
+ <div class="submitButtonWrapper">
+            <input type="submit" name="survey-submit" value="Submit Survey">
+
