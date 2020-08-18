@@ -15,11 +15,6 @@ import {Assessment} from '../_classes/Assessment';
     templateUrl: './preview.component.html',
     styleUrls: ['./preview.component.css']
 })
-
-@NgModule({
-    declarations: [AppComponent] ,
-    bootstrap: [AppComponent]
-})
 /**
  * Handles the previewing of Surveys
  * When a user is editing a survey this component will display what the actual question will look like
