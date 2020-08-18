@@ -93,7 +93,7 @@ export class SurveyDetailsComponent implements OnInit {
     /**
      * Stores an instance of the preview component
      */
-    @ViewChild(PreviewComponent, {static: false}) preview;
+    @ViewChild(PreviewComponent) preview;
     innerWidth: number;
 
     @HostListener('window:resize', ['$event'])
