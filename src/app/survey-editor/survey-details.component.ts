@@ -6,7 +6,7 @@ import {SurveyService} from '../_services/survey.service';
 import {TabView} from '../_classes/TabView';
 import {PreviewComponent} from '../preview/preview.component';
 import {ExcelService} from '../_services/excel.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {DeployedLink} from './deployed-link';
 import {environment} from '../../environments/environment';
