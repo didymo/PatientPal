@@ -97,3 +97,52 @@
 /*.form-control {*/
 /*    font-weight: bold;*/
 /*}*/
+
+.DistressThermometer {
+ /*
+ background-color: #999999;
+ *
+  */
+ min-height: max-content;
+  width: 50%;
+  font-size: 1em;
+  border: 0;
+  border-radius: 75px;
+  overflow: hidden;
+  background: -webkit-linear-gradient(
+    90deg,
+    #0ef49b 0%,
+    #d2dc69 30%,
+    #faa04b 70%,
+    #ff5a64 100%
+  );
+ background: -moz-linear-gradient(
+         90deg,
+         #0ef49b 0%,
+         #d2dc69 30%,
+         #faa04b 70%,
+         #ff5a64 100%
+ );
+ background: -o-linear-gradient(
+         90deg,
+         #0ef49b 0%,
+         #d2dc69 30%,
+         #faa04b 70%,
+         #ff5a64 100%
+ );
+ background: -ms-linear-gradient(
+         90deg,
+         #0ef49b 0%,
+         #d2dc69 30%,
+         #faa04b 70%,
+         #ff5a64 100%
+ );
+ background: linear-gradient(
+         0deg,
+         #0ef49b 0%,
+         #d2dc69 30%,
+         #faa04b 70%,
+         #ff5a64 100%
+ );
+ color: #000000
+}
