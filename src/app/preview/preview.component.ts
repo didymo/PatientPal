@@ -80,4 +80,5 @@ export class PreviewComponent implements OnInit {
         this.titleService.setTitle('TabviewList | ' + this.tabView.tabViewLabel); // Sets the title
     }
 
+
 }

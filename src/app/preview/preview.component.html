@@ -9,23 +9,36 @@
                 <p>{{assessment.assessmentLabel}}</p>
 
 
-                    <div class="textInput" *ngIf="assessment.assessmentType == 4">
-                        <h4>text input</h4>
-                        <input [(ngModel)]="assessment.assessmentAnswer" name="{{assessment.assessmentUuid}}"
-                               title="{{assessment.assessmentDescription}}">
-                    </div>
-
-                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentType == 5">
-                        <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
-                        <label>
-                            <input [(ngModel)]="assessment.assessmentAnswer" type="radio" name="{{assessment.assessmentUuid}}"
-                                   value="{{choice.choiceLabel}}" class="assessmentChoices"
-                                   title="{{assessment.assessmentDescription}}">
-                            {{choice.choiceDescription}}
-                        </label>
-                    </div>
+                <div class="textInput" *ngIf="assessment.assessmentType == 4">
+                    <h4>text input</h4>
+                    <input [(ngModel)]="assessment.assessmentAnswer" name="{{assessment.assessmentUuid}}"
+                           title="{{assessment.assessmentDescription}}" type="text">
                 </div>
 
+                <div *ngIf="assessment.assessmentType == 5">
+                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentDisplayType==='DistressThermometer'">
+                        <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
+                            <label>
+                                <input [(ngModel)]="assessment.assessmentAnswer" type="radio"
+                                       name="{{assessment.assessmentUuid}}"
+                                       value="{{choice.choiceLabel}}" class="assessmentChoices"
+                                       title="{{assessment.assessmentDescription}}">
+                                {{choice.choiceDescription}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentDisplayType==='Radio'">
+                        <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
+                            <label>
+                                <input [(ngModel)]="assessment.assessmentAnswer" type="radio"
+                                       name="{{assessment.assessmentUuid}}"
+                                       value="{{choice.choiceLabel}}" class="assessmentChoices"
+                                       title="{{assessment.assessmentDescription}}">
+                                {{choice.choiceDescription}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
                 <p></p>
                 <hr>
@@ -33,6 +46,5 @@
         </div>
     </div>
 </div>
- <div class="submitButtonWrapper">
-            <input type="submit" name="survey-submit" value="Submit Survey">
-
+<div class="submitButtonWrapper">
+    <input type="submit" name="survey-submit" value="Submit Survey">
