@@ -164,18 +164,17 @@
                                             dropdown
                                         </button>
                                             <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.assessmentDisplayType">
-
                                                 <option *ngFor="let item of cellTypeList" [ngValue]="item.value" [selected]="assessments.assessmentDisplayType==item.value" >{{item.label}}</option>
-
-                                                <!--
-                                                <option value="Radio">Radio Buttons</option>
-                                                <option value="DistressThermometer">Distress Thermometer</option>
-                                                -->
-                                                <!--
-                                                [ { title: "Radio Buttons", value: "Radio"},
-                                                   {  title: "Distress Thermometer", value: "DistressThermometer" } ]
-                                                -->
                                             </select>
+
+                                        <!--
+                                        <option value="Radio">Radio Buttons</option>
+                                        <option value="DistressThermometer">Distress Thermometer</option>
+                                        -->
+                                        <!--
+                                        [ { title: "Radio Buttons", value: "Radio"},
+                                           {  title: "Distress Thermometer", value: "DistressThermometer" } ]
+                                        -->
                                     </div>
                                 </div>
                             </div>
@@ -199,6 +198,7 @@
                                             Order
                                     </button>
                                     <div ngbDropdown placement="top-right" class="d-inline-block">
+                                        <!--
                                         <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>Toggle
                                             dropdown
                                         </button>
@@ -208,7 +208,12 @@
                                             <button ngbDropdownItem (click)="handleDisplayTypes('Number', i)">Number
                                                 Field
                                             </button>
+
                                         </div>
+                                        -->
+                                        <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.assessmentDisplayType">
+                                            <option *ngFor="let item of optionDisplayList" [ngValue]="item.value" [selected]="assessments.assessmentDisplayType==item.value" >{{item.label}}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
