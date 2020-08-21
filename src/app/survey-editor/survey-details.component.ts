@@ -106,7 +106,10 @@ export class SurveyDetailsComponent implements OnInit {
         {value: 'Number', label: 'Number'},
         {value: 'Text', label: 'Text Field'}
     ];
-
+    public requirementList = [
+        {value: '1', label: 'Mandatory'},
+        {value: '0', label: 'Optional'}
+    ]
 
     /**
      * Stores an instance of the preview component
