@@ -163,14 +163,19 @@
                                         <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
                                             dropdown
                                         </button>
-                                        <select name="dropdownBasic1" [(ngModel)]="assessments.assessmentDisplayType">
-                                            <option value="Radio">Radio Buttons</option>
-                                            <option value="DistressThermometer">Distress Thermometer</option>
-                                            <!--
-                                            [ { title: "Radio Buttons", value: "Radio"},
-                                               {  title: "Distress Thermometer", value: "DistressThermometer" } ]
-                                            -->
-                                        </select>
+                                            <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.assessmentDisplayType">
+
+                                                <option *ngFor="let item of cellTypeList" [ngValue]="item.value" [selected]="assessments.assessmentDisplayType==item.value" >{{item.label}}</option>
+
+                                                <!--
+                                                <option value="Radio">Radio Buttons</option>
+                                                <option value="DistressThermometer">Distress Thermometer</option>
+                                                -->
+                                                <!--
+                                                [ { title: "Radio Buttons", value: "Radio"},
+                                                   {  title: "Distress Thermometer", value: "DistressThermometer" } ]
+                                                -->
+                                            </select>
                                     </div>
                                 </div>
                             </div>
