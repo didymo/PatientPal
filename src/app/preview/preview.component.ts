@@ -7,7 +7,7 @@ import {delay} from 'rxjs/operators';
 import {BuildFormService} from '../_services/build-form.service';
 import {TabView} from '../_classes/TabView';
 import {Assessment} from '../_classes/Assessment';
-
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -40,7 +40,7 @@ export class PreviewComponent implements OnInit {
     /**
      * Defines the width of a label
      */
-    public labelWidth = 0
+    public labelWidth = 0;
     public model: any;
     public outputhelper = {A: 1, B: 2, C: 3};
     public subscriptions: Subscription[] = [];
@@ -58,7 +58,8 @@ export class PreviewComponent implements OnInit {
     constructor(
         private titleService: Title,
         private fbService: BuildFormService
-    ) { }
+    ) {
+    }
 
     /**
      * ngOnInit for PreviewComponent
@@ -68,12 +69,14 @@ export class PreviewComponent implements OnInit {
         this.tabView = this.fbService.getSurvey();
 
         /**
-        this.subscriptions.push(this.onchangefn.asObservable().subscribe(
-            (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
-        ));
-        **/
+         this.subscriptions.push(this.onchangefn.asObservable().subscribe(
+         (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
+         ));
+         **/
         this.titleService.setTitle('TabviewList | ' + this.tabView.tabViewLabel); // Sets the title
     }
 
-
+    public drop(event: CdkDragDrop<string[]>) {
+        moveItemInArray(this.tabView.assessments, event.previousIndex, event.currentIndex);
+    }
 }
