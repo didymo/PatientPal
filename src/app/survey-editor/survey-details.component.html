@@ -86,9 +86,14 @@
              class="open-close-container">
             <cdk-virtual-scroll-viewport style="height: 87vh" itemSize="90">
                 <form (ngSubmit)="saveSurvey()" id="form">
-                    <div class="assessment-list" >
+                    <!--
+                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let movieName of Movies" cdkDrag>{{movieName}}</div>
+</div>
+                    -->
+                    <div cdkDropList class="assessment-list" (cdkDropListDropped)="drop($event)">
                         <div *ngFor="let assessments of tabView.assessments; let i = index" id="assessments"
-                             class="assessment-item" >
+                             class="assessment-item" cdkDrag>
                             <div class="title-div">
                                 <div [ngSwitch]="assessments.assessmentDisplayType">
                                     <div class="imgView" *ngSwitchCase="'SelectOne'">

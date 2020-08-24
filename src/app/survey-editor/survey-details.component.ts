@@ -422,8 +422,14 @@ export class SurveyDetailsComponent implements OnInit {
         this.hideEdit = !this.hideEdit;
     }
 
-    drop(event: CdkDragDrop<string[]>) {
-        // moveItemInArray(this.survey.assessments, , this.inputResult);
+    /**
+     *
+     * @param event
+     */
+    public drop(event: CdkDragDrop<string[]>) {
+        console.log(this.tabView.assessments);
+        moveItemInArray(this.tabView.assessments, event.previousIndex, event.currentIndex);
+        console.log(this.tabView.assessments);
     }
 
     /**
@@ -470,4 +476,8 @@ export class SurveyDetailsComponent implements OnInit {
     public changeValue() {
         this.inputResult = (document.getElementById('orderInput') as HTMLInputElement).value;
     }
+
+
+
+
 }
