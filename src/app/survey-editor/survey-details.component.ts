@@ -194,7 +194,7 @@ export class SurveyDetailsComponent implements OnInit {
                 element.assessmentRequired = '1';
             }
             if (element.assessmentType === '5' && element.assessmentDisplayType === null) {
-                element.assessmentDisplayType = 'SelectOne';
+                element.assessmentDisplayType = 'Radio';
             } else if (element.assessmentType === '4' && element.assessmentDisplayType === null) {
                 element.assessmentDisplayType = 'Text';
             }
@@ -210,8 +210,9 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public submit(): void {
         this.saveSurvey(); // Save any updated fields
-        let gen = new PayloadGenerator(this.tabView);
-        const payload = gen.genPayload();
+        // let gen = new PayloadGenerator(this.tabView);
+        // const payload = gen.genPayload();
+        const payload = JSON.stringify(this.tabView);
         this.formService
             .addSurvey(payload) // Add the survey
             .subscribe(
@@ -230,8 +231,9 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public publish(): void {
         this.submit();
-        let gen = new PayloadGenerator(this.tabView);
-        const payload = gen.genPayload();
+        // let gen = new PayloadGenerator(this.tabView);
+        // const payload = gen.genPayload();
+        const payload = JSON.stringify(this.tabView);
         console.log('before publish');
         //    console.log(payload);
         //    console.log("after publish");
@@ -276,6 +278,7 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public saveSurvey(): void {
         this.tabView.tabViewLabel = (document.getElementById('surveyTitle') as HTMLInputElement).value;
+        /**
         this.tabView.assessments.forEach((item => {
             item.assessmentDescription =
                 (document.getElementById(item.assessmentId.toString()) as HTMLInputElement).value; // Value in the input tag
@@ -290,6 +293,7 @@ export class SurveyDetailsComponent implements OnInit {
                 });
             }
         }));
+        **/
     }
 
     /**
@@ -423,6 +427,7 @@ export class SurveyDetailsComponent implements OnInit {
     }
 
     /**
+     * Drag and Drop method to change the order of the item in the array
      *
      * @param event
      */

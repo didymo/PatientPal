@@ -1,6 +1,7 @@
 <mat-spinner mode="indeterminate" id="spinner" *ngIf="!tabView"></mat-spinner>
 <!--<mat-progress-bar id="spinner" mode="indeterminate" ></mat-progress-bar>-->
 
+<!--
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Change Assessment Order</h4>
@@ -29,7 +30,7 @@
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
     </div>
   </ng-template>
-
+-->
 
 <div class="navigation" *ngIf="tabView">
     <button class="btn toolbar-item" routerLink="/tab-views">
@@ -168,9 +169,11 @@
                                                 </select>
                                         </label>
                                     </div>
+                                    <!--
                                     <button class="btn btn-primary modal-order" (click)="open(content, i)" >
                                         Order
                                     </button>
+                                    -->
                                     <div ngbDropdown placement="top-right" class="d-inline-block">
                                         <!--
                                         <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
@@ -215,9 +218,11 @@
                                             </select>
                                         </label>
                                     </div>
+                                    <!--
                                     <button class="btn btn-primary modal-order" (click)="open(content, i)">
                                             Order
                                     </button>
+                                    -->
                                     <div ngbDropdown placement="top-right" class="d-inline-block">
                                         <!--
                                         <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>Toggle

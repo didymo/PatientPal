@@ -113,7 +113,7 @@ export class SurveyService {
      * The payload
      */
     addSurvey(payload: string): Observable<any> {
-        //       console.log(payload);
+               console.log(payload);
         return this.http
             .patch<string>(environment.surveysURL, payload, httpOptions)
             .pipe(

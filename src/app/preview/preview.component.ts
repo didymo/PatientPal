@@ -76,7 +76,5 @@ export class PreviewComponent implements OnInit {
         this.titleService.setTitle('TabviewList | ' + this.tabView.tabViewLabel); // Sets the title
     }
 
-    public drop(event: CdkDragDrop<string[]>) {
-        moveItemInArray(this.tabView.assessments, event.previousIndex, event.currentIndex);
-    }
+
 }
