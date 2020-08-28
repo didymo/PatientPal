@@ -14,19 +14,38 @@
                            title="{{assessment.assessmentDescription}}" type="text">
                 </div>
 
+                <!-- Distress Thermometer -->
                 <div *ngIf="assessment.assessmentType == 5">
-                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentDisplayType==='DistressThermometer'">
-                        <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
+                    <div
+                         *ngIf="assessment.assessmentDisplayType==='DistressThermometer'" class="DTContainer">
+                        <div class="DistressThermometer firstColumn">
+                        <div *ngFor="let choice of assessment.assessmentChoices">
+                            <!--
+                            <label class="{{assessment.assessmentDisplayType}}">
+                            -->
                             <label>
-                                <input [(ngModel)]="assessment.assessmentAnswer" type="radio"
-                                       name="{{assessment.assessmentUuid}}"
-                                       value="{{choice.choiceLabel}}" class="assessmentChoices"
-                                       title="{{assessment.assessmentDescription}}">
-                                {{choice.choiceDescription}}
+                                    <input [(ngModel)]="assessment.assessmentAnswer" type="radio"
+                                           name="{{assessment.assessmentUuid}}"
+                                           value="{{choice.choiceLabel}}" class="assessmentChoices"
+                                           title="{{assessment.assessmentDescription}}">
                             </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
+
+                            <div class="secondColumn">
+                                <p>
+                                {{choice.choiceDescription}}
+                                </p>
+                            </div>
+                        </div>
                         </div>
                     </div>
-                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentDisplayType==='Radio'">
+
+                    <!-- Radio Buttons -->
+                    <div class="{{assessment.assessmentDisplayType}}"
+                         *ngIf="assessment.assessmentDisplayType==='Radio'">
                         <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
                             <label>
                                 <input [(ngModel)]="assessment.assessmentAnswer" type="radio"
