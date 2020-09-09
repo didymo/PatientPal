@@ -190,13 +190,13 @@ export class SurveyDetailsComponent implements OnInit {
      */
     public sortSurvey(): void {
         this.tabView.assessments.forEach((element => {
-            if (element.assessmentRequired === null) {
-                element.assessmentRequired = '1';
+            if (element.required === null) {
+                element.required = '1';
             }
-            if (element.assessmentType === '5' && element.assessmentDisplayType === null) {
-                element.assessmentDisplayType = 'Radio';
-            } else if (element.assessmentType === '4' && element.assessmentDisplayType === null) {
-                element.assessmentDisplayType = 'Text';
+            if (element.assessmentType === '5' && element.displayType === null) {
+                element.displayType = 'Radio';
+            } else if (element.assessmentType === '4' && element.displayType === null) {
+                element.displayType = 'Text';
             }
         }));
         console.log(this.tabView);
@@ -213,6 +213,8 @@ export class SurveyDetailsComponent implements OnInit {
         // let gen = new PayloadGenerator(this.tabView);
         // const payload = gen.genPayload();
         const payload = JSON.stringify(this.tabView);
+        console.log('payload');
+        console.log(this.tabView);
         this.formService
             .addSurvey(payload) // Add the survey
             .subscribe(
@@ -260,7 +262,7 @@ export class SurveyDetailsComponent implements OnInit {
         this.saveSurvey(); // Save any updated fields
         const payload = JSON.stringify(this.tabView);
         this.formService
-            .deploySurvey(payload, this.tabView.tabViewId.toString()) // Add the survey
+            .deploySurvey(payload, this.tabView.entityId.toString()) // Add the survey
             .subscribe(
                 res => {
                     console.log('start');
@@ -277,7 +279,7 @@ export class SurveyDetailsComponent implements OnInit {
      * Iterates through the input tags and sets the assessments/choices description to those values
      */
     public saveSurvey(): void {
-        this.tabView.tabViewLabel = (document.getElementById('surveyTitle') as HTMLInputElement).value;
+        this.tabView.label = (document.getElementById('surveyTitle') as HTMLInputElement).value;
         /**
         this.tabView.assessments.forEach((item => {
             item.assessmentDescription =
@@ -304,10 +306,10 @@ export class SurveyDetailsComponent implements OnInit {
      * @param y satisfy condition
      */
     public saveQuestion(i: number, x: number, optional: boolean, y: number): void {
-        this.tabView.assessments[i].assessmentDescription =
-            (document.getElementById(this.tabView.assessments[i].assessmentId.toString()) as HTMLInputElement).value;
-        this.tabView.assessments[i].assessmentChoices[x].choiceDescription =
-            (document.getElementById(this.tabView.assessments[i].assessmentChoices[x].choiceId.toString()) as HTMLInputElement).value;
+        this.tabView.assessments[i].description =
+            (document.getElementById(this.tabView.assessments[i].id.toString()) as HTMLInputElement).value;
+        this.tabView.assessments[i].choices[x].description =
+            (document.getElementById(this.tabView.assessments[i].choices[x].id.toString()) as HTMLInputElement).value;
         this.preview.updateField(i, optional, y); // Update the preview
     }
 
@@ -340,18 +342,18 @@ export class SurveyDetailsComponent implements OnInit {
 
     public handleValidation(required: string, pos: number) {
         if (required === '1') {
-            this.tabView.assessments[pos].assessmentRequired = '0';
+            this.tabView.assessments[pos].required = '0';
         } else {
-            this.tabView.assessments[pos].assessmentRequired = '1';
+            this.tabView.assessments[pos].required = '1';
         }
-        this.handleDisplayTypes(this.tabView.assessments[pos].assessmentDisplayType, pos);
+        this.handleDisplayTypes(this.tabView.assessments[pos].displayType, pos);
     }
 
     /**
      * Exports current tabview to excel file
      */
     exportAsXLSX(): void {
-        this.excelService.exportExcelFile(this.tabView, this.tabView.tabViewLabel);
+        this.excelService.exportExcelFile(this.tabView, this.tabView.label);
     }
 
     /**
@@ -359,7 +361,7 @@ export class SurveyDetailsComponent implements OnInit {
      * A json string from the XLSX file
      */
     public updateToExcel() {
-        this.tabView.tabViewLabel += ' (' + this.excelService.getTranslationName() + ')';
+        this.tabView.label += ' (' + this.excelService.getTranslationName() + ')';
         this.setSurveyData(false);
         this.openSnackBar('Import Successful', 'Close');
     }
@@ -454,9 +456,9 @@ export class SurveyDetailsComponent implements OnInit {
         } else {
             moveItemInArray(this.tabView.assessments, startPos, newPos);
             this.tabView.assessments.forEach((element, index, array) => {
-                element.assessmentDelta = index.toString();
+                element.delta = index.toString();
             });
-            this.preview.updateField(startPos, this.tabView.assessments[newPos].assessmentRequired, newPos);
+            this.preview.updateField(startPos, this.tabView.assessments[newPos].required, newPos);
         }
     }
 

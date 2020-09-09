@@ -1,4 +1,4 @@
-<h4>{{tabView.tabViewLabel}}</h4>
+<h4>{{tabView.label}}</h4>
 <div id="wrapper" *ngIf="tabView">
 
     <div id="questions">
@@ -11,29 +11,29 @@
 
                 <div class="textInput" *ngIf="assessment.assessmentType == 4">
                     <input [(ngModel)]="assessment.assessmentAnswer" name="{{assessment.assessmentUuid}}"
-                           title="{{assessment.assessmentDescription}}" type="text">
+                           title="{{assessment.description}}" type="text">
                 </div>
 
                 <div *ngIf="assessment.assessmentType == 5">
-                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentDisplayType==='DistressThermometer'">
-                        <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
+                    <div class="{{assessment.displayType}}" *ngIf="assessment.displayType==='DistressThermometer'">
+                        <div *ngFor="let choice of assessment.choices" class="assessmentQuestion">
                             <label>
                                 <input [(ngModel)]="assessment.assessmentAnswer" type="radio"
                                        name="{{assessment.assessmentUuid}}"
-                                       value="{{choice.choiceLabel}}" class="assessmentChoices"
-                                       title="{{assessment.assessmentDescription}}">
-                                {{choice.choiceDescription}}
+                                       value="{{choice.label}}" class="assessmentChoices"
+                                       title="{{assessment.description}}">
+                                {{choice.description}}
                             </label>
                         </div>
                     </div>
-                    <div class="{{assessment.assessmentDisplayType}}" *ngIf="assessment.assessmentDisplayType==='Radio'">
-                        <div *ngFor="let choice of assessment.assessmentChoices" class="assessmentQuestion">
+                    <div class="{{assessment.displayType}}" *ngIf="assessment.displayType==='Radio'">
+                        <div *ngFor="let choice of assessment.choices" class="assessmentQuestion">
                             <label>
                                 <input [(ngModel)]="assessment.assessmentAnswer" type="radio"
                                        name="{{assessment.assessmentUuid}}"
-                                       value="{{choice.choiceLabel}}" class="assessmentChoices"
-                                       title="{{assessment.assessmentDescription}}">
-                                {{choice.choiceDescription}}
+                                       value="{{choice.label}}" class="assessmentChoices"
+                                       title="{{assessment.description}}">
+                                {{choice.description}}
                             </label>
                         </div>
                     </div>

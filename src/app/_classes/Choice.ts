@@ -5,11 +5,11 @@
  * @author Peter Charles Sims
  */
 export interface Choice {
-    choiceId: string;
+    id: string;
     choiceVid: string;
-    choiceLabel: string;
-    choiceDescription: string;
+    label: string;
+    description: string;
     choiceCode: string;
-    choiceDelta: string;
+    delta: string;
     choiceUuid: string;
 }

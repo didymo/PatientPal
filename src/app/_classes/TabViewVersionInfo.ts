@@ -12,7 +12,7 @@ export interface TabViewVersionInfo
     /**
     * ID of the tabview
     **/
-    tabViewId: number;
+    entityId: number;
 
    /**
     *

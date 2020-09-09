@@ -8,17 +8,17 @@ import {Choice} from './Choice';
  */
 export interface Assessment {
 
-    assessmentId: string;
+    id: string;
     assessmentVid: string;
     assessmentLabel: string;
-    assessmentDescription: string;
+    description: string;
     assessmentType: string;
     assessmentCode: string;
     assessmentUuid: string;
-    assessmentDelta: string;
-    assessmentRequired: string;
-    assessmentDisplayType: string;
+    delta: string;
+    required: string;
+    displayType: string;
     assessmentAnswer: string;
-    assessmentChoices: Choice[];
+    choices: Choice[];
 
 }

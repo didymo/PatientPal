@@ -72,7 +72,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Survey Title</span>
             </div>
-            <input type="text" class="form-control" id="surveyTitle" [value]="tabView.tabViewLabel" style="font-weight: bold">
+            <input type="text" class="form-control" id="surveyTitle" [value]="tabView.label" style="font-weight: bold">
         </div>
     </div>
 
@@ -96,7 +96,7 @@
                         <div *ngFor="let assessments of tabView.assessments; let i = index" id="assessments"
                              class="assessment-item" cdkDrag>
                             <div class="title-div">
-                                <div [ngSwitch]="assessments.assessmentDisplayType">
+                                <div [ngSwitch]="assessments.displayType">
                                     <div class="imgView" *ngSwitchCase="'SelectOne'">
                                         <img src="assets/icons/select.png" width="24" height="24" class="rounded float-left"
                                              alt="">
@@ -123,28 +123,28 @@
                                 </div>
                                 <div class="title-div-child2">
                                     <input class="form-control"
-                                           [value]="assessments.assessmentDescription"
-                                           [(ngModel)]="assessments.assessmentDescription"
+                                           [value]="assessments.description"
+                                           [(ngModel)]="assessments.description"
                                            (ngModelChange)="preview.changeTitle(i,$event)"
                                            [ngModelOptions]="{standalone: true}"
-                                           [attr.id]=assessments.assessmentId style="font-weight: bold">
+                                           [attr.id]=assessments.id style="font-weight: bold">
                                 </div>
                             </div>
 
                             <!--Assessment 5-->
                             <div id="ass5" *ngIf="assessments.assessmentType.toString() === '5'">
 
-                                <div id="option-div-parent1" *ngFor="let choices of assessments.assessmentChoices let x = index">
+                                <div id="option-div-parent1" *ngFor="let choices of assessments.choices let x = index">
                                     <div id="option-div-child">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">Option {{x + 1}}</span>
                                         </div>
                                         <textarea
-                                                [(ngModel)]="choices.choiceDescription"
+                                                [(ngModel)]="choices.description"
                                                 [ngModelOptions]="{standalone: true}"
                                                 (ngModelChange)="saveQuestion(i, x, false, i)"
-                                                [value]="choices.choiceDescription"
-                                                [attr.id]=choices.choiceId
+                                                [value]="choices.description"
+                                                [attr.id]=choices.id
                                                 class="form-control" rows="2"
                                         >
                                 </textarea>
@@ -164,8 +164,8 @@
                                         </div>
                                         -->
                                         <label>
-                                            <select class="btn btn-primary" name="requirement" [(ngModel)]="assessments.assessmentRequired">
-                                                    <option *ngFor="let item of requirementList" [ngValue]="item.value" [selected]="assessments.assessmentDisplayType==item.value" >{{item.label}}</option>
+                                            <select class="btn btn-primary" name="requirement" [(ngModel)]="assessments.required">
+                                                    <option *ngFor="let item of requirementList" [ngValue]="item.value" [selected]="assessments.displayType==item.value" >{{item.label}}</option>
                                                 </select>
                                         </label>
                                     </div>
@@ -180,8 +180,8 @@
                                             dropdown
                                         </button>
                                         -->
-                                            <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.assessmentDisplayType">
-                                                <option *ngFor="let item of cellTypeList" [ngValue]="item.value" [selected]="assessments.assessmentDisplayType==item.value" >{{item.label}}</option>
+                                            <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.displayType">
+                                                <option *ngFor="let item of cellTypeList" [ngValue]="item.value" [selected]="assessments.displayType==item.value" >{{item.label}}</option>
                                             </select>
 
                                         <!--
@@ -213,8 +213,8 @@
                                         </div>
                                         -->
                                         <label>
-                                            <select class="btn btn-primary" name="requirement" [(ngModel)]="assessments.assessmentRequired">
-                                                <option *ngFor="let item of requirementList" [ngValue]="item.value" [selected]="assessments.assessmentDisplayType==item.value" >{{item.label}}</option>
+                                            <select class="btn btn-primary" name="requirement" [(ngModel)]="assessments.required">
+                                                <option *ngFor="let item of requirementList" [ngValue]="item.value" [selected]="assessments.displayType==item.value" >{{item.label}}</option>
                                             </select>
                                         </label>
                                     </div>
@@ -237,8 +237,8 @@
 
                                         </div>
                                         -->
-                                        <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.assessmentDisplayType">
-                                            <option *ngFor="let item of optionDisplayList" [ngValue]="item.value" [selected]="assessments.assessmentDisplayType==item.value" >{{item.label}}</option>
+                                        <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.displayType">
+                                            <option *ngFor="let item of optionDisplayList" [ngValue]="item.value" [selected]="assessments.displayType==item.value" >{{item.label}}</option>
                                         </select>
                                     </div>
                                 </div>

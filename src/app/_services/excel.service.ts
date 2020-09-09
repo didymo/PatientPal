@@ -48,28 +48,28 @@ export class ExcelService {
             if(element.assessmentType === '4') {
                 choiceSheet.push('');
             } else {
-                element.assessmentChoices.forEach((element, index, array) => {
+                element.choices.forEach((element, index, array) => {
                     choiceSheet.push(element);
                 });
             }
             return new XAssessments(
-                element.assessmentId,
+                element.id,
                 element.assessmentVid,
                 element.assessmentLabel,
-                element.assessmentDescription,
+                element.description,
                 element.assessmentType,
                 element.assessmentCode,
                 element.assessmentUuid,
-                element.assessmentDelta,
-                element.assessmentRequired,
-                element.assessmentDisplayType,
+                element.delta,
+                element.required,
+                element.displayType,
                 element.assessmentAnswer
             );
         });
         let tabSheet =[];
         tabSheet [0] = {
-            "tabViewLabel": tabView.tabViewLabel,
-            "tabViewId": tabView.tabViewId,
+            "tabViewLabel": tabView.label,
+            "tabViewId": tabView.entityId,
             "tabViewVid": tabView.tabViewVid,
             "tabViewCreatedTime": tabView.tabViewCreatedTime,
             "tabViewChangedTime": tabView.tabViewChangedTime
@@ -117,8 +117,8 @@ export class ExcelService {
     public setExcelData(tabviewData: any[], assessmentData: any[], choiceData: any[] ,id: number): void {
 
         let obj: TabView = {
-            tabViewLabel: tabviewData[0].tabViewLabel,
-            tabViewId: tabviewData[0].tabViewId,
+            label: tabviewData[0].tabViewLabel,
+            entityId: tabviewData[0].tabViewId,
             tabViewVid: tabviewData[0].tabViewVid,
             tabViewCreatedTime: tabviewData[0].tabViewCreatedTime,
             tabViewChangedTime: tabviewData[0].tabViewChangedTime,
@@ -129,18 +129,18 @@ export class ExcelService {
                     console.log(options);
                 }
                 return {
-                    assessmentId: element.assessmentId,
+                    id: element.assessmentId,
                     assessmentVid: element.assessmentVid,
                     assessmentLabel: element.assessmentLabel,
-                    assessmentDescription: element.assessmentDescription,
+                    description: element.assessmentDescription,
                     assessmentType: element.assessmentType,
                     assessmentCode: element.assessmentCode,
                     assessmentUuid: element.assessmentUuid,
-                    assessmentDelta: element.assessmentDelta,
-                    assessmentRequired: element.assessmentRequired,
-                    assessmentDisplayType: element.assessmentDisplayType,
+                    delta: element.assessmentDelta,
+                    required: element.assessmentRequired,
+                    displayType: element.assessmentDisplayType,
                     assessmentAnswer: element.assessmentAnswer,
-                    assessmentChoices: options
+                    choices: options
                 };
             })
         };

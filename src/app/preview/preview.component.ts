@@ -73,7 +73,7 @@ export class PreviewComponent implements OnInit {
          (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
          ));
          **/
-        this.titleService.setTitle('TabviewList | ' + this.tabView.tabViewLabel); // Sets the title
+        this.titleService.setTitle('TabviewList | ' + this.tabView.label); // Sets the title
     }
 
 

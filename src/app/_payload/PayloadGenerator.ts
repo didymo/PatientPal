@@ -29,8 +29,8 @@ export class PayloadGenerator {
     public genPayload(): string {
         this.sortAssessments();
         this.ptabview = {
-            tabId: this.tabview.tabViewId,
-            tabDesc: this.tabview.tabViewLabel,
+            tabId: this.tabview.entityId,
+            tabDesc: this.tabview.label,
             assessments: this.passessments
         };
         // Change made by Ashley chasing json bug
@@ -45,11 +45,11 @@ export class PayloadGenerator {
     public sortAssessments(): void {
         this.passessments = this.tabview.assessments.map((element => {
             return {
-                id: element.assessmentId,
-                assessmentDesc: element.assessmentDescription,
-                assessmentDelta: element.assessmentDelta,
-                assessmentDisplayType: element.assessmentDisplayType,
-                assessmentRequired: element.assessmentRequired,
+                id: element.id,
+                assessmentDesc: element.description,
+                assessmentDelta: element.delta,
+                assessmentDisplayType: element.displayType,
+                assessmentRequired: element.required,
                 choices: this.sortChoices(element)
             }
         }));
@@ -65,11 +65,11 @@ export class PayloadGenerator {
         if (element.assessmentType === '4') {
             return
         } else {
-            tmp = element.assessmentChoices.map((element => {
+            tmp = element.choices.map((element => {
                 return {
-                    id: element.choiceId,
-                    choiceDelta: element.choiceDelta,
-                    choiceDesc: element.choiceDescription
+                    id: element.id,
+                    choiceDelta: element.delta,
+                    choiceDesc: element.description
                 };
             }))
         }

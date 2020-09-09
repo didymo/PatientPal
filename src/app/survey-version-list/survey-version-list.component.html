@@ -15,7 +15,7 @@
                         </thead>
                         <tbody class="search-result">
                         <tr *ngFor="let tab of versions"
-                            routerLink="/detail/{{tab.tabid}}"
+                            routerLink="/detail/{{tab.entityId}}"
                             class="survey_data">
                             <td class="survey_status">{{tab.id}}</td>
                             <td class="survey_status">{{tab.revisionStatus}}</td>

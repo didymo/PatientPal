@@ -8,9 +8,9 @@ import {Assessment} from './Assessment';
 export interface TabView {
 
     // The label of a tab-view
-    tabViewLabel: string;
+    label: string;
     // The id of a tab-view
-    tabViewId: string;
+    entityId: string;
     // The VID of a tab-view
     tabViewVid: string;
     // The created time of a tab-view

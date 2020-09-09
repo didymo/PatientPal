@@ -15,7 +15,7 @@ export interface TabViewVersion
     * ID of the tabview
     *
     **/
-    tabid: number;
+    entityId: number;
     /**
      * The status of a TabView
      * Used to display the status (published, draft etc)
