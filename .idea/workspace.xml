@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_services/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/survey.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/survey-editor/survey-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +72,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -267,6 +266,11 @@
       <workItem from="1598070333235" duration="686000" />
       <workItem from="1598221560165" duration="7528000" />
       <workItem from="1598312763166" duration="7849000" />
+      <workItem from="1598396432251" duration="10303000" />
+      <workItem from="1598422561708" duration="1358000" />
+      <workItem from="1598487938571" duration="2066000" />
+      <workItem from="1598585175301" duration="28000" />
+      <workItem from="1598589356151" duration="4698000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>
