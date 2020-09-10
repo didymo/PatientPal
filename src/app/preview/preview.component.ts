@@ -23,14 +23,6 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 export class PreviewComponent implements OnInit {
 
     tabView: TabView;
-
-    /**
-     * Need a new TabView to put the values, not using the old name for now.
-     */
-    currentTabView: TabView;
-
-    private self: boolean;
-
     public onchangefn = new Subject<string>();
 
     /**
@@ -41,13 +33,7 @@ export class PreviewComponent implements OnInit {
      * Defines the width of a label
      */
     public labelWidth = 0;
-    public model: any;
-    public outputhelper = {A: 1, B: 2, C: 3};
     public subscriptions: Subscription[] = [];
-
-    docHTML = '';
-    private tmpAssessments: Assessment;
-
     /**
      * Constructor for PreviewComponent
      * @param titleService
@@ -68,11 +54,6 @@ export class PreviewComponent implements OnInit {
 
         this.tabView = this.fbService.getSurvey();
 
-        /**
-         this.subscriptions.push(this.onchangefn.asObservable().subscribe(
-         (value: any) =>  this.xformComponent.setValue({outputopt: this.outputhelper[value]})
-         ));
-         **/
         this.titleService.setTitle('TabviewList | ' + this.tabView.label); // Sets the title
     }
 

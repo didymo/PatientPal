@@ -313,41 +313,6 @@ export class SurveyDetailsComponent implements OnInit {
         this.preview.updateField(i, optional, y); // Update the preview
     }
 
-    public handleDisplayTypes(type: string, pos: number): void {
-        /**
-         let required = this.tabView.assessments[pos].assessmentRequired;
-         switch (type) {
-            case 'Radio':
-                this.preview.createRadioGroup(pos, required);
-                break;
-            case 'SelectMany':
-                this.preview.createSelectMany(pos, required);
-                break;
-            case 'SelectOne':
-                this.preview.createSelect(pos, required);
-                break;
-            case 'Text':
-                this.preview.createText(pos, required);
-                break;
-            case 'Number':
-                this.preview.createNumber(pos, required);
-                break;
-            default:
-                console.log("Invalid Type");
-        }
-
-         this.tabView.assessments[pos].assessmentDisplayType = type;
-         **/
-    }
-
-    public handleValidation(required: string, pos: number) {
-        if (required === '1') {
-            this.tabView.assessments[pos].required = '0';
-        } else {
-            this.tabView.assessments[pos].required = '1';
-        }
-        this.handleDisplayTypes(this.tabView.assessments[pos].displayType, pos);
-    }
 
     /**
      * Exports current tabview to excel file
