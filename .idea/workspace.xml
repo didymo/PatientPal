@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="683db24d-fafc-41bc-b517-1b8c25dd4a54" name="Default Changelist" comment="Added dragging and dropping">
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/preview/preview.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/preview/preview.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,6 +271,16 @@
       <workItem from="1598585175301" duration="28000" />
       <workItem from="1598589356151" duration="4698000" />
       <workItem from="1599630264352" duration="653000" />
+      <workItem from="1599700788115" duration="1776000" />
+      <workItem from="1599710255982" duration="6404000" />
+      <workItem from="1599777612380" duration="2615000" />
+      <workItem from="1599875292264" duration="3998000" />
+      <workItem from="1599971604429" duration="592000" />
+      <workItem from="1600043792760" duration="3114000" />
+      <workItem from="1600128856229" duration="2863000" />
+      <workItem from="1600150058526" duration="637000" />
+      <workItem from="1600205492708" duration="621000" />
+      <workItem from="1600229526065" duration="11000" />
     </task>
     <task id="LOCAL-00002" summary="Simplifies Tab View to Survey">
       <created>1563261008750</created>

@@ -1,35 +1,7 @@
 <mat-spinner mode="indeterminate" id="spinner" *ngIf="!tabView"></mat-spinner>
-<!--<mat-progress-bar id="spinner" mode="indeterminate" ></mat-progress-bar>-->
 
 <!--
-<ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Change Assessment Order</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="orderInput">Assessment Order</label>
-          <div class="input-group">
-            <input id="orderInput"
-                [(ngModel)]="AssessmentOrder"
-                [ngModelOptions]="{standalone: true}"
-                (ngModelChange)="changeValue()"
-                type="number"
-                class="form-control"
-                placeholder="Assessment Order Number"
-                name="dp">
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-    </div>
-  </ng-template>
+
 -->
 
 <div class="navigation" *ngIf="tabView">
@@ -88,9 +60,7 @@
             <cdk-virtual-scroll-viewport style="height: 87vh" itemSize="90">
                 <form (ngSubmit)="saveSurvey()" id="form">
                     <!--
-                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let movieName of Movies" cdkDrag>{{movieName}}</div>
-</div>
+
                     -->
                     <div cdkDropList class="assessment-list" (cdkDropListDropped)="drop($event)">
                         <div *ngFor="let assessments of tabView.assessments; let i = index" id="assessments"
@@ -154,14 +124,7 @@
 
                                     <div class="submit-child">
                                         <!--
-                                        <div [ngSwitch]="assessments.assessmentRequired">
-                                            <button id="mandatory1" class="btn btn-primary" *ngSwitchCase="1" (click)="handleValidation('1', i)">
-                                                Mandatory
-                                            </button>
-                                            <button id="optional1" class="btn btn-primary" *ngSwitchCase="0" (click)="handleValidation('0', i)">
-                                                Optional
-                                            </button>
-                                        </div>
+
                                         -->
                                         <label>
                                             <select class="btn btn-primary" name="requirement" [(ngModel)]="assessments.required">
@@ -170,27 +133,18 @@
                                         </label>
                                     </div>
                                     <!--
-                                    <button class="btn btn-primary modal-order" (click)="open(content, i)" >
-                                        Order
-                                    </button>
+
                                     -->
                                     <div ngbDropdown placement="top-right" class="d-inline-block">
                                         <!--
-                                        <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
-                                            dropdown
-                                        </button>
+
                                         -->
                                             <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.displayType">
                                                 <option *ngFor="let item of cellTypeList" [ngValue]="item.value" [selected]="assessments.displayType==item.value" >{{item.label}}</option>
                                             </select>
 
                                         <!--
-                                        <option value="Radio">Radio Buttons</option>
-                                        <option value="DistressThermometer">Distress Thermometer</option>
-                                        -->
-                                        <!--
-                                        [ { title: "Radio Buttons", value: "Radio"},
-                                           {  title: "Distress Thermometer", value: "DistressThermometer" } ]
+
                                         -->
                                     </div>
                                 </div>
@@ -203,14 +157,7 @@
                                 <div id="btn-div-2">
                                     <div class="submit-child">
                                         <!--
-                                        <div [ngSwitch]="assessments.assessmentRequired">
-                                            <button id="mandatory2" class="btn btn-primary" *ngSwitchCase="1" (click)="handleValidation('1', i)">
-                                                Mandatory
-                                            </button>
-                                            <button id="optional2" class="btn btn-primary" *ngSwitchCase="0" (click)="handleValidation('0', i)">
-                                                Optional
-                                            </button>
-                                        </div>
+
                                         -->
                                         <label>
                                             <select class="btn btn-primary" name="requirement" [(ngModel)]="assessments.required">
@@ -219,23 +166,11 @@
                                         </label>
                                     </div>
                                     <!--
-                                    <button class="btn btn-primary modal-order" (click)="open(content, i)">
-                                            Order
-                                    </button>
+
                                     -->
                                     <div ngbDropdown placement="top-right" class="d-inline-block">
                                         <!--
-                                        <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>Toggle
-                                            dropdown
-                                        </button>
-                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                            <button ngbDropdownItem (click)="handleDisplayTypes('Text', i)">Text Field
-                                            </button>
-                                            <button ngbDropdownItem (click)="handleDisplayTypes('Number', i)">Number
-                                                Field
-                                            </button>
 
-                                        </div>
                                         -->
                                         <select  class="btn btn-primary" name="dropdownBasic1" [(ngModel)]="assessments.displayType">
                                             <option *ngFor="let item of optionDisplayList" [ngValue]="item.value" [selected]="assessments.displayType==item.value" >{{item.label}}</option>

@@ -13,6 +13,7 @@
                     <input [(ngModel)]="assessment.assessmentAnswer" name="{{assessment.assessmentUuid}}"
                            title="{{assessment.description}}" type="text">
                 </div>
+
                     <div *ngIf="assessment.displayType==='DistressThermometer'" class="DTContainer">
                         <div class="DistressThermometer firstColumn">
                         <div *ngFor="let choice of assessment.choices">
